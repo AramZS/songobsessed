@@ -1,6 +1,5 @@
 ---
 title: "Song Obsessed"
-layout: index
 eleventyExcludeFromCollections: true
 internalPageTypes: [ 'home' ]
 ---

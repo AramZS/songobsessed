@@ -62,7 +62,7 @@ module.exports = function (eleventyConfig) {
 		dir: {
 			input: "src",
 			includes: "_includes",
-			layouts: "_layouts",
+			// layouts: "_layouts",
 			data: "_data",
 			output: "docs",
 		},
@@ -70,11 +70,11 @@ module.exports = function (eleventyConfig) {
 
 	// pagefind search
 	eleventyConfig.on("eleventy.after", () => {
-		console.log('After Eleventy')
-		/**console.log("indexing search using pagefind");
-		execSync(`npx pagefind --source _site --glob \"[0-9]*/**/*.html\"`, {
-			encoding: "utf-8",
-		});**/
+		console.log("After Eleventy", eleventyConfig);
+		//console.log("indexing search using pagefind");
+		//execSync(`npx pagefind --source _site --glob \"[0-9]*/**/*.html\"`, {
+		//	encoding: "utf-8",
+		//});
 	});
 
 	return siteConfiguration;

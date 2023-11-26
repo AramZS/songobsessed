@@ -1,4 +1,3 @@
-const dataSource = require("../../src/DataSource");
 const metadata = require("../../_data/metadata.js");
 
 module.exports = function (data, title, description, tagSet, imgUrls) {
@@ -126,27 +125,27 @@ module.exports = function (data, title, description, tagSet, imgUrls) {
 	}
 
 	jsonLDProperties.push({
-		about: [data.metadata.username, data.me.name, ...tags],
+		about: [data.metadata.username, data?.me?.name, ...tags],
 	});
 	jsonLDProperties.push(id);
 	let jsonLD = {
 		"@context": "http://schema.org",
 		creator: {
 			"@type": "Person",
-			name: data.me.name || data.metadata.username,
-			sameAs: data.me.aboutMePage
-				? data.me.aboutMePage
+			name: data?.me?.name || data.metadata.username,
+			sameAs: data?.me?.aboutMePage
+				? data?.me?.aboutMePage
 				: `https://twitter.com/${data.metadata.username}`,
 			image: {
 				"@type": "ImageObject",
-				url: data.metadata.avatar,
+				url: data.metadata?.avatar,
 			},
 		},
-		inLanguage: data.metadata.language,
+		inLanguage: data.metadata?.language,
 		about: ["Twitter", `${data.metadata.username}`],
 	};
 	if (data.me.description) {
-		jsonLD.creator.description = data.me.description;
+		jsonLD.creator.description = data?.me?.description || "";
 		jsonLD.about.push(data.me.name);
 	}
 	if (data.me.PronounceableText) {

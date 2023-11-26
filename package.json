@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx @11ty/eleventy",
+    "serve": "npx @11ty/eleventy --serve --port=8083",
+    "serve-with-log-debug": "DEBUG=Eleventy:Template* npx @11ty/eleventy --serve --port=8083 > ./buildlog.txt",
+    "serve-with-log": "npx @11ty/eleventy --serve --port=8083 | tee ./buildlog.txt"
   },
   "keywords": [],
   "author": "",
