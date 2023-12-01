@@ -1,7 +1,7 @@
 const base = require("./base.11ty");
 
 module.exports = async function (data) {
-	console.log("layout data", data);
+	console.log("tags data", data);
 	let getHashTagsFromText = function (text = "") {
 		let words = {};
 		let splits = text.split(/(\#[A-Za-z][^\s\.\'\"\!\,\?\;\}\{]*)/g);
@@ -16,12 +16,22 @@ module.exports = async function (data) {
 		}
 		return words;
 	};
-	let meta_description = data?.description || data.site?.description || "";
+	let tags = data.paged.posts.reduce((accumulator, post) => {
+		return (
+			/*html*/ `
+				<h3>${post.data.title}</h3><br />
+			` + accumulator
+		);
+	}, "");
 	let insert = {
 		content: /*html*/ `
+			<h2>${data.paged.tagName}</h2>
 			${data.content}
 			<br />
-			<hr /> `,
+			${tags}
+			<hr /> 
+			
+		`,
 	};
 	return base(data, insert);
 };

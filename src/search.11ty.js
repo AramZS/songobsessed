@@ -4,11 +4,13 @@ class Search {
 			layout: "layout.11ty.js",
 			// permalink: false,
 			permalink: "/search/index.html",
+			title: "Search",
+			eleventyExcludeFromCollections: true,
 		};
 	}
 
 	async render(data) {
-		console.log("Search page", data);
+		// console.log("Search page", data);
 		return /*html*/ `<div>
 				<h1>Search Tweet Text</h1>
 				<p>This form will you to search the text of the tweets.</p>

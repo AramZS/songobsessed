@@ -1,5 +1,7 @@
 const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 
+var slugify = require("slugify");
+
 require("dotenv").config();
 
 let domain_name = "songobsessed.com";
@@ -30,6 +32,79 @@ module.exports = function (eleventyConfig) {
 
 	eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
 
+	function filterTagList(tags) {
+		return (tags || []).filter(
+			(tag) =>
+				["all", "nav", "post", "posts", "projects"].indexOf(tag) === -1
+		);
+	}
+
+	eleventyConfig.addFilter("filterTagList", filterTagList);
+
+	const paginate = (arr, size) => {
+		return arr.reduce((acc, val, i) => {
+			let idx = Math.floor(i / size);
+			let page = acc[idx] || (acc[idx] = []);
+			page.push(val);
+
+			return acc;
+		}, []);
+	};
+
+	let tagSet = new Set();
+	let tagList = [];
+
+	getAllTags = (allPosts) => {
+		allPosts.forEach((item) => {
+			if ("tags" in item.data) {
+				let tags = filterTagList(item.data.tags);
+				// console.log("Tags:", tags);
+				tags.forEach((tag) => {
+					tagSet.add(tag);
+				});
+			}
+		});
+		tagList = [...tagSet];
+		return tagList;
+	};
+
+	const makePageObject = (tagName, slug, number, posts, first, last) => {
+		return {
+			tagName: tagName,
+			slug: slug ? slug : slugify(tagName.toLowerCase()),
+			number: number,
+			posts: posts,
+			first: first,
+			last: last,
+		};
+	};
+
+	const getPostClusters = (allPosts, tagName, slug) => {
+		aSet = new Set();
+		let postArray = allPosts.reverse();
+		aSet = [...postArray];
+		postArray = paginate(aSet, 10);
+		let paginatedPostArray = [];
+		postArray.forEach((p, i) => {
+			paginatedPostArray.push(
+				makePageObject(
+					tagName,
+					slug,
+					i + 1,
+					p,
+					i === 0,
+					i === postArray.length - 1
+				)
+			);
+		});
+		// console.log(paginatedPostArray)
+		return paginatedPostArray;
+	};
+
+	eleventyConfig.addCollection("songsPages", (collection) => {
+		return getPostClusters(collection.getFilteredByTag("songs"), "Songs");
+	});
+
 	var siteConfiguration = {
 		// Control which files Eleventy will process
 		// e.g.: *.md, *.njk, *.html
@@ -45,8 +120,8 @@ module.exports = function (eleventyConfig) {
 
 		// You can also pass this in on the command line using `--pathprefix`
 
-		// Optional (default is shown)
-		pathPrefix: process.env.DOMAIN + "/",
+		// Optional
+		pathPrefix: "/",
 		// -----------------------------------------------------------------
 
 		// Pre-process *.md files with: (default: `liquid`)
