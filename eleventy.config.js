@@ -1,5 +1,6 @@
 const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 
+const path = require("path");
 var slugify = require("slugify");
 
 require("dotenv").config();
@@ -7,13 +8,16 @@ require("dotenv").config();
 let domain_name = "songobsessed.com";
 let throwOnUndefinedSetting = false;
 
+let scheme = "https://";
+
 if (process.env.IS_LOCAL) {
 	domain_name = "localhost:8083";
 	throwOnUndefinedSetting = false;
 	console.log("Dev env");
+	scheme = "http://";
 }
 
-let site = "https://" + domain_name;
+let site = scheme + domain_name;
 
 process.env.DOMAIN = site;
 process.env.DOMAIN_NAME = domain_name;
@@ -31,6 +35,17 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("img/");
 
 	eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
+
+	eleventyConfig.browserSyncConfig = {
+		https: true,
+	};
+
+	eleventyConfig.browserSyncConfig = {
+		https: {
+			key: "~/.ssh/localhost+2-key.pem",
+			cert: "~/.ssh/localhost+2.pem",
+		},
+	};
 
 	function filterTagList(tags) {
 		return (tags || []).filter(
@@ -103,6 +118,13 @@ module.exports = function (eleventyConfig) {
 
 	eleventyConfig.addCollection("songsPages", (collection) => {
 		return getPostClusters(collection.getFilteredByTag("songs"), "Songs");
+	});
+
+	eleventyConfig.addPlugin(require("eleventy-plugin-dart-sass"), {
+		sassLocation: path.join(path.resolve("."), "src/_sass/"),
+		perTemplateFiles: "template-",
+		outDir: path.join(path.resolve("."), "docs"),
+		domainName: site,
 	});
 
 	var siteConfiguration = {

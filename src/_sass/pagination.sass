@@ -1,0 +1,40 @@
+@use 'variables' as *
+
+.pagination-block
+    width: 60%
+    margin: 10px auto
+    text-align: center
+    align-content: center
+    @media print, screen and (max-width: $mobile-width)
+        &
+            width: 100%
+
+.pagination
+    margin-left: 25px
+    float: left
+    width: 100%
+    padding: 8px 0
+    a
+        font-size: 16px
+        text-align: center
+        width: 130px
+        background-color: #171717
+        color: #fdfdfb
+        &.disabled-link
+            background-color: rgba(220, 220, 220, .5)
+            color: rgba(0, 0, 0, .3)
+        &:hover:not(.disabled-link)
+            background: lightblue
+            color: black
+        &:hover.disabled-link
+            color: rgba(0, 0, 0, .3)
+        &:first-child
+            border-right: 0px solid black
+            margin-left: 10px
+            float: left
+            box-shadow: -10px 5px 8px rgba(0, 0, 0, .5)
+        &:last-child
+            border-left: 0px solid black
+            float: right
+            margin-right: calc(25px + 10px)
+            box-shadow: 10px 5px 8px rgba(0, 0, 0, .5)

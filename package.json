@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx @11ty/eleventy",
-    "serve": "npx @11ty/eleventy --serve --port=8083",
+    "serve": "export NODE_EXTRA_CA_CERTS=\"$(mkcert -CAROOT)/localhost+2.pem\" | npx @11ty/eleventy --serve --port=8083",
     "serve-with-log-debug": "DEBUG=Eleventy:Template* npx @11ty/eleventy --serve --port=8083 > ./buildlog.txt",
     "serve-with-log": "npx @11ty/eleventy --serve --port=8083 | tee ./buildlog.txt"
   },
@@ -19,6 +19,7 @@
   "dependencies": {
     "@11ty/eleventy-plugin-webc": "^0.11.1",
     "dotenv": "^16.3.1",
+    "eleventy-plugin-dart-sass": "^1.0.3",
     "slugify": "^1.6.6"
   }
 }

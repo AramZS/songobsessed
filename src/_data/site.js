@@ -10,6 +10,7 @@ let data = {
 	metadata: {
 		...metadata,
 	},
+	domain: process.env.DOMAIN,
 };
 
 data.avatar = `/img/twitter-avy.jpg`;

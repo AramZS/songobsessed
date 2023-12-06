@@ -34,7 +34,7 @@ module.exports = async function (data, zones) {
 		}
 		</script>
 
-		<link rel="stylesheet" href="/assets/style.css">
+		<link rel="stylesheet" href="/assets/css/style.css">
 		<script src="/assets/script.js" defer></script>
 		<script defer data-domain="songobsessed.com" src="https://plausible.io/js/script.js"></script>
 	</head>

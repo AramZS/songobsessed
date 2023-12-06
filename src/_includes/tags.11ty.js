@@ -19,7 +19,7 @@ module.exports = async function (data) {
 	let tags = data.paged.posts.reduce((accumulator, post) => {
 		return (
 			/*html*/ `
-				<h3>${post.data.title}</h3><br />
+				<h3><a href="${post.data.site.domain}${post.data.page.url}">${post.data.title} - ${post.data.site.domain}${post.data.page.url}</a></h3><br />
 			` + accumulator
 		);
 	}, "");

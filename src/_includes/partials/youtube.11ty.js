@@ -6,6 +6,11 @@ module.exports = function (youtubeUrl, autoplay) {
 		"www.youtube.com",
 		"www.youtube-nocookie.com"
 	);
+	finalString = youtubeUrl.replaceAll(
+		"youtu.be/",
+		//"www.youtube-nocookie.com/watch?v="
+		"www.youtube-nocookie.com/embed/"
+	);
 	if (autoplay) {
 		if (finalString.indexOf("?") > -1) {
 			finalString += "&";
@@ -14,7 +19,7 @@ module.exports = function (youtubeUrl, autoplay) {
 		}
 		finalString += "autoplay=1";
 	}
-	return /*html*/ `<!-- ${JSON.stringify(imgUrls)} -->
+	return /*html*/ `
 <iframe class="youtube-iframe" src="${finalString}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 `;
 };
