@@ -3,14 +3,15 @@ const metadata = require("../../_data/metadata.js");
 module.exports = function (youtubeUrl, autoplay) {
 	//https://support.google.com/youtube/answer/171780?hl=en#zippy=%2Cturn-on-privacy-enhanced-mode
 	let finalString = youtubeUrl.replaceAll(
-		"www.youtube.com",
-		"www.youtube-nocookie.com"
+		"www.youtube.com/watch?v=",
+		"www.youtube-nocookie.com/embed/"
 	);
 	finalString = youtubeUrl.replaceAll(
 		"youtu.be/",
 		//"www.youtube-nocookie.com/watch?v="
 		"www.youtube-nocookie.com/embed/"
 	);
+	let videoId = finalString.split("embed/")[1];
 	if (autoplay) {
 		if (finalString.indexOf("?") > -1) {
 			finalString += "&";
@@ -19,7 +20,8 @@ module.exports = function (youtubeUrl, autoplay) {
 		}
 		finalString += "autoplay=1";
 	}
+	return /*html*/ `<span id="youtube-setup" class="youtube-data" data-video-url="${finalString}" data-video-id="${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></span>`;
 	return /*html*/ `
-<iframe class="youtube-iframe" src="${finalString}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="youtube-iframe" src="${finalString}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 `;
 };

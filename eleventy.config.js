@@ -2,6 +2,8 @@ const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 
 const path = require("path");
 var slugify = require("slugify");
+var markdownIt = require("markdown-it");
+var mila = require("markdown-it-link-attributes");
 
 require("dotenv").config();
 
@@ -28,25 +30,31 @@ process.env.PRIMARY_AUTHOR = "Aram Zucker-Scharff";
 
 module.exports = function (eleventyConfig) {
 	eleventyConfig.ignores.add("README.md");
-	eleventyConfig.addPassthroughCopy("assets/");
-	eleventyConfig.addPassthroughCopy("favicon.ico");
+	eleventyConfig.addPassthroughCopy("src/assets/");
+	eleventyConfig.addPassthroughCopy("src/favicon.ico");
 	eleventyConfig.addPassthroughCopy(".nojekyll");
 	eleventyConfig.addPassthroughCopy("CNAME");
-	eleventyConfig.addPassthroughCopy("img/");
+	eleventyConfig.addPassthroughCopy("src/img/");
 
 	eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
 
-	eleventyConfig.browserSyncConfig = {
-		https: true,
+	let markdownItOptions = {
+		html: true,
 	};
-
-	eleventyConfig.browserSyncConfig = {
-		https: {
-			key: "~/.ssh/localhost+2-key.pem",
-			cert: "~/.ssh/localhost+2.pem",
+	let milaOptions = {
+		matcher(href, config) {
+			return href.startsWith("/");
+		},
+		attrs: {
+			class: "hxlink",
+			"hx-boost": "true",
+			"hx-swap": "outerHTML show:top",
+			"hx-target": "#main-content",
+			"hx-select": "#main-content",
 		},
 	};
-
+	let markdownLib = markdownIt(markdownItOptions).use(mila, milaOptions);
+	eleventyConfig.setLibrary("md", markdownLib);
 	function filterTagList(tags) {
 		return (tags || []).filter(
 			(tag) =>

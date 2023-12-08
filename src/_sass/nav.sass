@@ -1,34 +1,37 @@
 @use 'variables'
 
 nav, nav h1
-	font-size: 16px
-	display: inline-block
-nav h1
-	text-decoration: underline
-	text-decoration-color: var(--link-color)
+    font-size: 16px
+    display: inline-block
 
-nav h1:hover
-	text-decoration: underline
-	text-decoration-color: var(--c1)
+nav h1, nav h1 a
+    color: white
+    text-decoration: underline
+    text-decoration-color: var(--link-color)
+
+nav h1:hover, nav h1 a:hover
+    color: white
+    text-decoration: underline
+    text-decoration-color: var(--c1)
 
 nav
-	border-bottom: 3px solid var(--border-base)
-	padding: 0 10px
-	width: 100%
-	position: fixed
-	background-color: var(--background-color)
-	height: 40px
-	z-index: 100
-	top: 0
-	left: 0
-	li
-		display: inline-block
-		&:not(:last-of-type)::after
-			content: "|"
-			padding: 0 18px
-			text-decoration: none
-			color: var(--c4)
-			display: inline-block
-			@media (max-width: variables.$mobile-width)
-				&
-					padding: 0 9px
+    border-bottom: 3px solid var(--border-base)
+    padding: 0 10px
+    width: 100%
+    position: fixed
+    background-color: var(--background-color)
+    height: 40px
+    z-index: 100
+    top: 0
+    left: 0
+    li
+        display: inline-block
+        &:not(:last-of-type)::after
+            content: "|"
+            padding: 0 18px
+            text-decoration: none
+            color: var(--c4)
+            display: inline-block
+            @media (max-width: variables.$mobile-width)
+                &
+                    padding: 0 9px

@@ -1,4 +1,5 @@
 const base = require("./base.11ty");
+const linkmaker = require("../utils/linkmaker");
 
 module.exports = async function (data) {
 	console.log("tags data", data);
@@ -19,7 +20,11 @@ module.exports = async function (data) {
 	let tags = data.paged.posts.reduce((accumulator, post) => {
 		return (
 			/*html*/ `
-				<h3><a href="${post.data.site.domain}${post.data.page.url}">${post.data.title} - ${post.data.site.domain}${post.data.page.url}</a></h3><br />
+				<h3>${linkmaker(
+					post.data,
+					post.data.page.url,
+					`${post.data.title} - ${post.data.page.url}`
+				)}</h3><br />
 			` + accumulator
 		);
 	}, "");

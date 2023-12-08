@@ -1,173 +1,145 @@
 @use 'variables' as *
 
 body
-	color: #121212
-	background: #eee
-	max-width: 100%
-	display: block
+    color: #121212
+    background: #eee
+    max-width: 100%
+    display: block
 img
-	max-width: 100%
+    max-width: 100%
 
 // https://github.com/vladocar/Basic.css
 
 *
-	box-sizing: border-box
+    box-sizing: border-box
 
 html
-	-ms-text-size-adjust: 100%
-	-webkit-text-size-adjust: 100%
+    -ms-text-size-adjust: 100%
+    -webkit-text-size-adjust: 100%
 
 // General settings
 
 body
-	margin: 0
-	font: var(--sans)
-	font-weight: 400
-	font-style: normal
-	text-rendering: optimizeLegibility
-	-webkit-font-smoothing: antialiased
-	background-color: var(--c3)
-	color: var(--c4)
+    margin: 0
+    font: var(--sans)
+    font-weight: 400
+    font-style: normal
+    text-rendering: optimizeLegibility
+    -webkit-font-smoothing: antialiased
+    background-color: var(--c3)
+    color: var(--c4)
 
 img, iframe
-	border: none
-	max-width: 100%
+    border: none
+    max-width: 100%
 
 a
-	color: var(--c1)
-	text-decoration: none
+    color: var(--c1)
+    text-decoration: none
 
 a:hover
-	color: var(--c1)
-	text-decoration: underline
+    color: var(--c1)
+    text-decoration: underline
 
 pre
-	font: 1em/1.6 var(--mono)
-	background: var(--c2)
-	padding: 1em
-	overflow: auto
+    font: 1em/1.6 var(--mono)
+    background: var(--c2)
+    padding: 1em
+    overflow: auto
 
 code
-	font: 1em/1.6 var(--mono)
+    font: 1em/1.6 var(--mono)
 
 blockquote
-	border-left: 5px solid var(--c2)
-	padding: 1em 1.5em
-	margin: 0
+    border-left: 5px solid var(--c2)
+    padding: 1em 1.5em
+    margin: 0
 
 hr
-	border: 0
-	border-bottom: 1px solid var(--c4)
+    border: 0
+    border-bottom: 1px solid var(--c4)
 
 // Headlines
 
 h1,h2,h3,h4,h5,h6
-	margin: 0.6em 0
-	font-weight: normal
+    margin: 0.6em 0
+    font-weight: normal
 
 h1
-	font-size: 2.625em
-	line-height: 1.2
+    font-size: 2.625em
+    line-height: 1.2
 
 h2
-	font-size: 1.625em
-	line-height: 1.2
+    font-size: 1.625em
+    line-height: 1.2
 
 h3
-	font-size: 1.3125em
-	line-height: 1.24
+    font-size: 1.3125em
+    line-height: 1.24
 
 h4
-	font-size: 1.1875em
-	line-height: 1.23
+    font-size: 1.1875em
+    line-height: 1.23
 
 h5,h6
-	font-size: 1em
-	font-weight: bold
+    font-size: 1em
+    font-weight: bold
 
 // Table
 
 table
-	border-collapse: collapse
-	border-spacing: 0
-	margin: 1em 0
+    border-collapse: collapse
+    border-spacing: 0
+    margin: 1em 0
 
 th, td
-	text-align: left
-	vertical-align: top
-	border: 1px solid
-	padding: 0.4em
+    text-align: left
+    vertical-align: top
+    border: 1px solid
+    padding: 0.4em
 
 thead,tfoot
-	background: var(--c2)
+    background: var(--c2)
 
 // Rounded Corners
 
 pre,code,input,select,textarea,button,img
-	border-radius: var(--rc)
+    border-radius: var(--rc)
 
 // Forms
 
 input, select, textarea
-	font-size: 1em
-	color: var(--c4)
-	background: var(--c2)
-	border: 0
-	padding: 0.6em
+    font-size: 1em
+    color: var(--c4)
+    background: var(--c2)
+    border: 0
+    padding: 0.6em
 
 button, input[type=submit], input[type=reset], input[type="button"]
-	-webkit-appearance: none
-	font-size: 1em
-	display: inline-block
-	color: var(--c5)
-	background: var(--c1)
-	border: 0
-	margin: 4px
-	padding: 0.6em
-	cursor: pointer
-	text-align: center
+    -webkit-appearance: none
+    font-size: 1em
+    display: inline-block
+    color: var(--c5)
+    background: var(--c1)
+    border: 0
+    margin: 4px
+    padding: 0.6em
+    cursor: pointer
+    text-align: center
 
 button:hover, button:focus, input:hover, textarea:hover, select:hover
-	opacity: 0.8
+    opacity: 0.8
 
 nav
-	text-align: left
-
-// Infinite Grid
-
-section
-	display: flex
-	flex-flow: row wrap
-
-[style*="--c:"], section>section, aside, article
-	flex: var(--c,1)
-	margin: var(--m1)
+    text-align: left
 
 footer
-	margin-top: 20px
-	text-align: center
-
-// Cards
-
-article
-	background: var(--c2)
-	border-radius: var(--rc)
-	padding: 1em
-	box-shadow: 0px 1px 0px rgba(0,0,0,0.3)
-
-[style*="--c:"]:first-child, section>section:first-child, article:first-child
-	margin-left: 0
-
-[style*="--c:"]:last-child, section>section:last-child, article:last-child
-	margin-right: 0
+    margin-top: 20px
+    text-align: center
 
 @media (max-width: 481px)
-	body
-		font-size: 18px
-	main,header,footer
-		width: calc(100% - 36px)
-		margin: 60px auto 12px
-	section,article
-		flex: none
-		width: 100%
-		margin-left: 0
+    body
+        font-size: 18px
+    main,header,footer
+        width: calc(100% - 36px)
+        margin: 60px auto 12px

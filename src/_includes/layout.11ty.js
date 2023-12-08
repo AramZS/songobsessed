@@ -1,7 +1,7 @@
 const base = require("./base.11ty");
 
 module.exports = async function (data) {
-	console.log("layout data", data);
+	//console.log("layout data", data);
 	let getHashTagsFromText = function (text = "") {
 		let words = {};
 		let splits = text.split(/(\#[A-Za-z][^\s\.\'\"\!\,\?\;\}\{]*)/g);

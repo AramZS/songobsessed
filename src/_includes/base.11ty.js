@@ -2,9 +2,10 @@ const metadata = require("../_data/metadata.js");
 // const site = require("../_data/site.js");
 const meta = require("./partials/meta.11ty");
 const nav = require("./partials/nav.11ty");
+const footer = require("./partials/footer.11ty");
 
 module.exports = async function (data, zones) {
-	console.log("layout data", data);
+	// console.log("layout data", data);
 	let getHashTagsFromText = function (text = "") {
 		let words = {};
 		let splits = text.split(/(\#[A-Za-z][^\s\.\'\"\!\,\?\;\}\{]*)/g);
@@ -35,21 +36,29 @@ module.exports = async function (data, zones) {
 		</script>
 
 		<link rel="stylesheet" href="/assets/css/style.css">
-		<script src="/assets/script.js" defer></script>
-		<script defer data-domain="songobsessed.com" src="https://plausible.io/js/script.js"></script>
+		<script src="/assets/js/htmx.min.js" type="application/javascript"></script>
+		<script src="https://www.youtube.com/iframe_api" onload="(function(){var event = new Event('ytapi-ready'); document.dispatchEvent(event);})()"></script>
+		<script src="/assets/js/script.js" defer type="application/javascript"></script>
+		<script defer data-domain="songobsessed.com" src="https://plausible.io/js/script.js" type="application/javascript"></script>
 	</head>
 	<body>
 		${nav(data)}
-		<header>
-			<h1 class="title">${data.title}</h1>
-		</header>
-		<main>
-			${zones.content}
-			<a href="/search"><h2>Search</h2></a>
-		</main>
-		<footer>
-			<p>An open source project from AramZS.</p>
-		</footer>
+		<div id="main-content">
+			<header>
+				<h1 class="title">${data.title}</h1>
+			</header>
+			<main class="wrapper">
+				${zones.content}
+				<a href="/search"><h2>Search</h2></a>
+			</main>
+		</div>
+		<aside hx-preserve>
+			<div id="media-container">
+				<script>console.log(document.location.href)</script>
+				<x-player id="xplayer"></x-player>
+			</div>
+		</aside>
+		${footer(data)}
 	</body>
 </html>`;
 };
