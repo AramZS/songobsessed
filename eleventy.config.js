@@ -51,6 +51,7 @@ module.exports = function (eleventyConfig) {
 			"hx-swap": "outerHTML show:top",
 			"hx-target": "#main-content",
 			"hx-select": "#main-content",
+			"hx-push-url": "true",
 		},
 	};
 	let markdownLib = markdownIt(markdownItOptions).use(mila, milaOptions);

@@ -1,5 +1,5 @@
 ---
-title: Una Rosa Blanca
+title: Una Rosa Blanca by Ibrahim Maalouf
 description: "A jazzy number with a heavy electric feel from France."
 date: 2023-11-25 09:59:43.10 -4
 tags:
@@ -7,6 +7,8 @@ tags:
   - Jazz
   - Trumpet
   - Jazz Fusion
+artists:
+  - Ibrahim Maalouf
 public: true
 featuredImage: "S3NS.webp"
 featuredImageCredit: "Image is used from album for review purposes."

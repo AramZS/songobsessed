@@ -33,15 +33,17 @@ module.exports = async function (data, zones) {
 		if("classList" in document.documentElement) {
 			document.documentElement.classList.add("has-js");
 		}
+		window.pageData = {};
 		</script>
 
 		<link rel="stylesheet" href="/assets/css/style.css">
 		<script src="/assets/js/htmx.min.js" type="application/javascript"></script>
+		<script src="/assets/js/morphdom-swap.js" type="application/javascript"></script>
 		<script src="https://www.youtube.com/iframe_api" onload="(function(){var event = new Event('ytapi-ready'); document.dispatchEvent(event);})()"></script>
 		<script src="/assets/js/script.js" defer type="application/javascript"></script>
 		<script defer data-domain="songobsessed.com" src="https://plausible.io/js/script.js" type="application/javascript"></script>
 	</head>
-	<body>
+	<body hx-boost="true" hx-ext="morphdom-swap">
 		${nav(data)}
 		<div id="main-content">
 			<header>
@@ -52,7 +54,7 @@ module.exports = async function (data, zones) {
 				<a href="/search"><h2>Search</h2></a>
 			</main>
 		</div>
-		<aside hx-preserve>
+		<aside id="stable-container" hx-preserve>
 			<div id="media-container">
 				<script>console.log(document.location.href)</script>
 				<x-player id="xplayer"></x-player>

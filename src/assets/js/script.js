@@ -1,9 +1,27 @@
 // Create a class for the element
+// https://web.dev/articles/custom-elements-best-practices
 class PlayerElement extends HTMLElement {
 	constructor() {
 		// Always call super first in constructor
 		super();
 		this.internalPlaylist = [];
+		this.internalPlayed = [];
+		this.songsadded = new Set();
+		this.dataPath = "pageData"; //window[this.dataPath].post
+		this.mediaStates = {
+			playing: "playing",
+			paused: "paused",
+			ended: "ended",
+			buffering: "buffering",
+			cued: "cued",
+		};
+		this.mode = false;
+	}
+
+	getMediaState(value) {
+		return Object.keys(this.mediaStates).find(
+			(key) => this.mediaStates[key] === value
+		);
 	}
 
 	connectedCallback() {
@@ -19,6 +37,21 @@ class PlayerElement extends HTMLElement {
 
 	htmxSwapCallback() {
 		console.log("Custom element has seen an htmx swap.");
+		if (window["youtube-setup"]) {
+			var autoplay = false;
+			var mediaId =
+				window["youtube-setup"].attributes["data-video-id"].value;
+
+			//this.handlePlayingChange(mediaId);
+			if (!this.songsadded.has(mediaId)) {
+				this.handlePlayingChange(mediaId);
+			} else {
+				console.log(
+					"x-player has already played or added this song and will not auto-enqueue it again.",
+					mediaId
+				);
+			}
+		}
 	}
 
 	youtubeIframeTemplate(videoUrl, autoplay) {
@@ -37,7 +70,7 @@ class PlayerElement extends HTMLElement {
 	}
 
 	youtubeAPIMaker(videoId, autoplay) {
-		console.log("listen for youtubeAPIMaker event");
+		console.log("go youtubeAPIMaker");
 		// https://developers.google.com/youtube/player_parameters
 		// https://developers.google.com/youtube/iframe_api_reference
 		var player;
@@ -56,17 +89,29 @@ class PlayerElement extends HTMLElement {
 				},
 				events: {
 					onReady: autoplay ? onPlayerReady : () => {},
-					onStateChange: onPlayerStateChange,
+					onStateChange: onPlayerStateChange.bind(this),
 				},
 			});
+			this.mediaStates = {
+				playing: YT.PlayerState.PLAYING,
+				paused: YT.PlayerState.PAUSED,
+				ended: YT.PlayerState.ENDED,
+				buffering: YT.PlayerState.BUFFERING,
+				cued: YT.PlayerState.CUED,
+			};
+			this.mode = "YT";
 		}
 		function onPlayerReady(event) {
 			event.target.playVideo();
 		}
 		function onPlayerStateChange(event) {
 			console.log("player state change", event);
+			console.log("Event state is ", this.getMediaState(event.data));
 		}
-		onYouTubeIframeAPIReady();
+		var makeitGo = onYouTubeIframeAPIReady.bind(this);
+		makeitGo();
+		// this.setAttribute("now", videoId);
+		this.internalPlayed.push(videoId);
 	}
 
 	disconnectedCallback() {
@@ -86,6 +131,16 @@ class PlayerElement extends HTMLElement {
 		console.log(this.internalPlaylist);
 	}
 
+	shouldAddToPlaylist() {
+		if (
+			this.internalPlaylist.length == 0 &&
+			this.internalPlayed.length == 0
+		) {
+			return false;
+		}
+		return true;
+	}
+
 	setup() {
 		this.wrapper = document.createElement("div");
 		this.wrapper.id = "xplayer-wrapper";
@@ -98,54 +153,76 @@ class PlayerElement extends HTMLElement {
 		this.wrapper.appendChild(this.playlistbox);
 		var event = new Event("xplaylist-ready");
 		document.dispatchEvent(event);
+		this.dispatchEvent(event);
 
-		if (this.internalPlaylist.length == 0) {
-			if (window["youtube-setup"]) {
-				let activate = function () {
-					this.youtubeAPIMaker(
-						window["youtube-setup"].attributes["data-video-id"]
-							.value,
-						true
-					);
-				}.bind(this);
-				try {
+		if (window["youtube-setup"]) {
+			console.log("setup first YT player");
+			let activate = function () {
+				var mediaId =
+					window["youtube-setup"].attributes["data-video-id"].value;
+				// this.setAttribute("playing", mediaId);
+				this.handlePlayingChange(mediaId);
+				// this.youtubeAPIMaker(mediaId, true);
+				// this.setAttribute("last-added", mediaId);
+			}.bind(this);
+			try {
+				activate();
+			} catch (e) {
+				console.log("initial activation failed because ", e);
+				let timeout = setTimeout(() => {
+					console.log("timeout activation");
 					activate();
-				} catch (e) {
-					let timeout = setTimeout(activate, 3000);
-					document.addEventListener("ytapi-ready", () => {
-						activate();
-						clearTimeout(timeout);
-					});
-					console.log('listen for "ytapi-ready" event');
-				}
+				}, 3000);
+				/** 
+				document.addEventListener("ytapi-ready", () => {
+					activate();
+					console.log('heard "ytapi-ready" event');
+					clearTimeout(timeout);
+				});
+				console.log('listen for "ytapi-ready" event');
+				*/
 			}
-			//this.youtubeAPIMaker()
 		}
 	}
 
-	get playlist() {
-		return this.internalPlaylist;
+	addToPlaylist(mediaId) {
+		this.internalPlaylist.push(mediaId);
 	}
 
-	set playlist(val) {
+	handlePlayingChange(val) {
 		if (val) {
+			console.log("Playing requested set to", val);
 			this.setAttribute("last-added", val);
-			if (this.internalPlaylist.length == 0) {
-				this.setAttribute("now", val);
-				this.playbox.innerHTML = val;
+			this.songsadded.add(val);
+			if (!this.shouldAddToPlaylist()) {
+				console.log("Playing from empty to", val);
+				this.youtubeAPIMaker(val, true);
+			} else {
+				console.log("Playing moved to playlist for", val);
+				this.addToPlaylist(val);
 			}
-			this.internalPlaylist.push(val);
-
-			var prebox = document.createElement("code");
-			prebox.innerText = val + `\n`;
-			this.playlistbox.append(prebox);
-
 			this.playlistCheck();
 		} else {
 			// this.removeAttribute('disabled');
 			console.log("Playlist item not given");
 			this.playlistCheck();
 		}
+	}
+
+	get played() {
+		return this.internalPlayed;
+	}
+
+	get playlist() {
+		return this.internalPlaylist;
+	}
+
+	get playing() {
+		return this.internalPlayed[this.internalPlayed.length - 1];
+	}
+
+	set playing(val) {
+		this.handlePlayingChange(val);
 	}
 }
 
