@@ -48,7 +48,7 @@ module.exports = function (eleventyConfig) {
 		attrs: {
 			class: "hxlink",
 			"hx-boost": "true",
-			"hx-swap": "morph:outerHTML show:top",
+			"hx-swap": "outerHTML show:top",
 			"hx-target": "#main-content",
 			"hx-select": "#main-content",
 			"hx-push-url": "true",
