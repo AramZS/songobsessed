@@ -26,7 +26,7 @@ module.exports = async function (data, zones) {
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>${data.site.title}</title>
+		<title>${data.title || data.site.title}</title>
 		<meta name="description" content="${meta_description}" />
 		${meta(data, `${data.site.title}`, meta_description, [], () => {})}
 		<script>
@@ -38,6 +38,7 @@ module.exports = async function (data, zones) {
 
 		<link rel="stylesheet" href="/assets/css/style.css">
 		<script src="/assets/js/htmx.min.js" type="application/javascript"></script>
+		<script src="/assets/js/morphdom-umd.js"></script>
 		<script src="/assets/js/morphdom-swap.js" type="application/javascript"></script>
 		<script src="https://www.youtube.com/iframe_api" onload="(function(){var event = new Event('ytapi-ready'); document.dispatchEvent(event);})()"></script>
 		<script src="/assets/js/script.js" defer type="application/javascript"></script>
