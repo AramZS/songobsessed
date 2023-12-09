@@ -1,9 +1,11 @@
+/*
 window.hxhLast = [];
 window.hxhNext = [];
 window.hxhPop = false;
 window.history.replaceState({ pathname: window.location.pathname }, null, "");
 document.body.addEventListener("htmx:confirm", function (evt) {
 	//   evt.preventDefault();
+	window.location.hash = "";
 	console.log(
 		"htmx:confirm",
 		evt,
@@ -27,7 +29,7 @@ document.body.addEventListener("htmx:confirm", function (evt) {
 			? window.hxhLast.push(lastState)
 			: (window.hxhLast = [lastState]);
 
-		window.history.pushState(lastState, null, "");
+		// window.history.pushState(lastState, null, "");
 	} else {
 		window.hxhPop = false;
 	}
@@ -38,6 +40,8 @@ document.body.addEventListener("htmx:afterSettle", function (evt) {
 		//		window.onload = null;
 		//		window.onhashchange = null;
 		//		console.log("unhook back control");
+		window.location.href += "#";
+		window.location.href += "!";
 	} else {
 	}
 });
@@ -56,7 +60,6 @@ window.addEventListener("popstate", (event) => {
 	return;
 });
 
-/*
 // https://stackoverflow.com/questions/12381563/how-can-i-stop-the-browser-back-button-using-javascript
 (function (global) {
 	if (typeof global === "undefined") {

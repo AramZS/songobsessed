@@ -38,15 +38,14 @@ module.exports = async function (data, zones) {
 
 		<link rel="stylesheet" href="/assets/css/style.css">
 		<script src="/assets/js/htmx.min.js" type="application/javascript"></script>
-		<script src="/assets/js/morphdom-umd.js"></script>
-		<script src="/assets/js/morphdom-swap.js" type="application/javascript"></script>
+		<script src="/assets/js/idiomorph.min.js"></script>
 		<script src="https://www.youtube.com/iframe_api" onload="(function(){var event = new Event('ytapi-ready'); document.dispatchEvent(event);})()"></script>
 		<script src="/assets/js/script.js" defer type="application/javascript"></script>
 		<script defer data-domain="songobsessed.com" src="https://plausible.io/js/script.js" type="application/javascript"></script>
 	</head>
-	<body hx-boost="true" hx-ext="morphdom-swap">
+	<body hx-ext="morph">
 		${nav(data)}
-		<div id="main-content">
+		<div id="main-content" hx-history-elt>
 			<header>
 				<h1 class="title">${data.title}</h1>
 			</header>

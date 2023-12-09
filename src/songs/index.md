@@ -10,8 +10,8 @@ pagination:
     alias: paged
 permalink: "songs/{% if paged.number > 1 %}{{ paged.number }}/{% endif %}index.html"
 eleventyComputed:
-    title: "Topics {% if paged.number > 1 %} | Page {{paged.number}}{% endif %}"
-    description: "Topics with Context"
+    title: "Songs {% if paged.number > 1 %} | Page {{paged.number}}{% endif %}"
+    description: "Songs I'm obsessed with"
 ---
 
 Welcome to the list of songs I'm obsessed with.
