@@ -7,11 +7,12 @@ module.exports = async function (data) {
 		site: data.site,
 		metadata: data.metadata,
 		me: data.me,
-		post: {
+		song: {
 			description: data.description,
 			tags: data.tags,
 			date: data.date,
 			title: data.title,
+			songtitle: data.songtitle,
 			artists: data.artists,
 			youtube: data.youtube,
 			spotify: data.spotify,
@@ -26,7 +27,7 @@ module.exports = async function (data) {
 			<script>
 				window.pageData = ${JSON.stringify(onPageObject)};
 			</script>
-			${youtube(data.youtube, false)}
+			${youtube(data.youtube, false, onPageObject)}
 			<hr /> 
 			
 		`,

@@ -8,6 +8,7 @@ tags:
 public: true
 artists:
   - Đá Số Tới
+songtitle: Em
 featuredImage: "em.webp"
 featuredImageCredit: "Image is used from album for review purposes."
 featuredImageLink: "https://www.last.fm/music/%C4%90%C3%A1+S%E1%BB%91+T%E1%BB%9Bi/Em"

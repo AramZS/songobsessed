@@ -1,6 +1,6 @@
 const metadata = require("../../_data/metadata.js");
 
-module.exports = function (youtubeUrl, autoplay) {
+module.exports = function (youtubeUrl, autoplay, songData) {
 	//https://support.google.com/youtube/answer/171780?hl=en#zippy=%2Cturn-on-privacy-enhanced-mode
 	let finalString = youtubeUrl.replaceAll(
 		"www.youtube.com/watch?v=",
@@ -20,7 +20,8 @@ module.exports = function (youtubeUrl, autoplay) {
 		}
 		finalString += "autoplay=1";
 	}
-	return /*html*/ `<span id="youtube-setup" class="youtube-data" data-video-url="${finalString}" data-video-id="${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></span>`;
+	var jsonString = JSON.stringify(songData);
+	return /*html*/ `<span id="xplayer-setup" class="youtube-data" data-playertype="youtube" data-video-url="${finalString}" data-video-id='${videoId}' frameborder="0" style="display:none;">${jsonString}</span>`;
 	return /*html*/ `
 <iframe class="youtube-iframe" src="${finalString}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 `;

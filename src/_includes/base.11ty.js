@@ -35,12 +35,13 @@ module.exports = async function (data, zones) {
 		}
 		window.pageData = {};
 		</script>
-
+		${zones.earlyHead}
 		<link rel="stylesheet" href="/assets/css/style.css">
 		<script src="/assets/js/htmx.min.js" type="application/javascript"></script>
 		<script src="https://www.youtube.com/iframe_api" onload="(function(){var event = new Event('ytapi-ready'); document.dispatchEvent(event);})()"></script>
 		<script src="/assets/js/script.js" defer type="application/javascript"></script>
 		<script defer data-domain="songobsessed.com" src="https://plausible.io/js/script.js" type="application/javascript"></script>
+		${zones.lateHead}
 	</head>
 	<body hx-ext="morph">
 		${nav(data)}
@@ -60,6 +61,7 @@ module.exports = async function (data, zones) {
 			</div>
 		</aside>
 		${footer(data)}
+		<script src="/assets/js/xplayer.js" defer type="application/javascript"></script>
 	</body>
 </html>`;
 };

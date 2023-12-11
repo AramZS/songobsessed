@@ -9,6 +9,7 @@ tags:
   - Jazz Fusion
 artists:
   - Ibrahim Maalouf
+songtitle: Una Rosa Blanca
 public: true
 featuredImage: "S3NS.webp"
 featuredImageCredit: "Image is used from album for review purposes."
