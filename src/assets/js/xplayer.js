@@ -29,6 +29,8 @@ class PlayerElement extends HTMLElement {
 					window.xplayer.songDataStore[value] = JSON.parse(
 						window["xplayer-setup"].innerText
 					).song;
+					window.xplayer.songDataStore[value].siteUrl =
+						window.location.href;
 				} else {
 					console.log("Song object not found");
 				}
@@ -107,6 +109,11 @@ class PlayerElement extends HTMLElement {
 		}
 	}
 
+	removePlaylistTag(mediaId) {
+		var el = document.getElementById("playlist-item-" + mediaId);
+		el.remove();
+	}
+
 	advanceMedia() {
 		// Advance the player to next media item.
 		console.log("Advance to next media item.");
@@ -120,6 +127,7 @@ class PlayerElement extends HTMLElement {
 			//var nextMediaObj = this.songDataStore[nextMedia];
 			this.setPlaylistPlaying(nextMedia);
 			this.youtubeAPI(nextMedia);
+			this.removePlaylistTag(nextMedia);
 		}
 	}
 
@@ -267,6 +275,12 @@ class PlayerElement extends HTMLElement {
 
 	addToPlaylist(mediaId) {
 		this.playlistManager.push(mediaId);
+		var newItem = document.createElement("div");
+		newItem.innerText = `${
+			this.songDataStore[mediaId].songtitle
+		} by ${this.songDataStore[mediaId].artists.join(", ")}`;
+		newItem.id = "playlist-item-" + mediaId;
+		this.playlistbox.append(newItem);
 	}
 
 	setPlaylistPlaying(val) {
@@ -288,6 +302,7 @@ class PlayerElement extends HTMLElement {
 			this.songDataStore[val] = JSON.parse(
 				window["xplayer-setup"].innerText
 			).song;
+			this.songDataStore[val].siteUrl = window.location.href;
 			// this.songDataStore[val] = window[this.dataPath].song;
 			if (!this.shouldAddToPlaylist() && !!!advancing) {
 				console.log("Song Data store state now ", this.songDataStore);
