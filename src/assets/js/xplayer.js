@@ -70,6 +70,7 @@ class PlayerElement extends HTMLElement {
 			buffering: "buffering",
 			cued: "cued",
 		};
+		this.mediaState = "await";
 		this.mode = false;
 	}
 
@@ -187,8 +188,10 @@ class PlayerElement extends HTMLElement {
 			};
 			var onPlayerStateChange = (event) => {
 				console.log("player state change", event);
-				console.log("Event state is ", this.getMediaState(event.data));
-				if ("ended" == this.getMediaState(event.data)) {
+				var state = this.getMediaState(event.data);
+				console.log("Event state is ", state);
+				this.mediaState = state;
+				if ("ended" == state) {
 					this.advanceMedia();
 				}
 			};
