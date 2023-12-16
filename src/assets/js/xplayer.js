@@ -4,36 +4,48 @@ class PlayerElement extends HTMLElement {
 	constructor() {
 		// Always call super first in constructor
 		super();
+		this.player = false;
 		this.internalPlaylist = [];
 		this.songDataStore = {};
 		this.playlistHandler = {
 			deleteProperty: function (target, property) {
-				delete window.xplayer.songDataStore[target[property]];
+				//delete window.xplayer.songDataStore[target[property]];
 				delete target[property];
 				console.log("Deleted %s", property);
 				return true;
 			},
+			has(target, property) {
+				return property in customFunctions || property in target;
+			},
 			set: function (target, property, value, receiver) {
 				target[property] = value;
+				console.log("Set %s to %o", property, value);
 				if (window.xplayer.songDataStore.hasOwnProperty(value)) {
 					console.log("Song set that was already cached.");
-				} else if (window["xplayer-setup"].innerText) {
+				} else if (
+					property != "length" && // fun fact, length is a property managed by the object! I didn't know that until now.
+					window["xplayer-setup"].innerText
+				) {
 					window.xplayer.songDataStore[value] = JSON.parse(
 						window["xplayer-setup"].innerText
 					).song;
 				} else {
 					console.log("Song object not found");
 				}
-				console.log("Set %s to %o", property, value);
 				return true;
 			},
 			get: function (target, property) {
 				console.log("get %s", property);
-				if (["get", "set", "push", "pop"].includes(property)) {
+				// Use the properties of the thing we are proxying if we haven't overwritten them.
+				if (
+					Object.getOwnPropertyNames(
+						Object.getPrototypeOf(this)
+					).includes(property)
+				) {
+					return window.xplayer.songDataStore[target[property]];
+				} else {
 					console.log("return native", property);
 					return target[property];
-				} else {
-					return window.xplayer.songDataStore[target[property]];
 				}
 			},
 			toString: function (target) {
@@ -95,6 +107,22 @@ class PlayerElement extends HTMLElement {
 		}
 	}
 
+	advanceMedia() {
+		// Advance the player to next media item.
+		console.log("Advance to next media item.");
+		console.log(
+			"Song Data store state at advanceMedia now ",
+			this.songDataStore
+		);
+		if (this.playlistManager.length > 0) {
+			var nextMedia = this.playlistManager.shift();
+			console.log("Next media item is:", nextMedia);
+			//var nextMediaObj = this.songDataStore[nextMedia];
+			this.setPlaylistPlaying(nextMedia);
+			this.youtubeAPI(nextMedia);
+		}
+	}
+
 	youtubeIframeTemplate(videoUrl, autoplay) {
 		// https://developers.google.com/youtube/player_parameters
 		// https://developers.google.com/youtube/iframe_api_reference
@@ -110,47 +138,55 @@ class PlayerElement extends HTMLElement {
 		return /*html*/ `<iframe class="youtube-iframe" src="${videoUrl}${append}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
 	}
 
-	youtubeAPIMaker(videoId, autoplay) {
-		console.log("go youtubeAPIMaker");
-		// https://developers.google.com/youtube/player_parameters
-		// https://developers.google.com/youtube/iframe_api_reference
-		var player;
-		function onYouTubeIframeAPIReady() {
-			player = new YT.Player("xplayer-playbox", {
-				height: "390",
-				width: "640",
-				videoId: videoId,
-				playerVars: {
-					playsinline: 1,
-					allowfullscreen: 1,
-					frameborder: 0,
-					autoplay: autoplay ? 1 : 0,
-					enablejsapi: 1,
-					origin: document.location.host,
-				},
-				events: {
-					onReady: autoplay ? onPlayerReady : () => {},
-					onStateChange: onPlayerStateChange.bind(this),
-				},
-			});
-			this.mediaStates = {
-				playing: YT.PlayerState.PLAYING,
-				paused: YT.PlayerState.PAUSED,
-				ended: YT.PlayerState.ENDED,
-				buffering: YT.PlayerState.BUFFERING,
-				cued: YT.PlayerState.CUED,
+	youtubeAPI(videoId, autoplay) {
+		if (this.player) {
+			// Player is already going
+			this.player.loadVideoById(videoId);
+		} else {
+			console.log("go youtubeAPIMaker");
+			// https://developers.google.com/youtube/player_parameters
+			// https://developers.google.com/youtube/iframe_api_reference
+			// var player;
+			var onYouTubeIframeAPIReady = () => {
+				this.player = new YT.Player("xplayer-playbox", {
+					height: "390",
+					width: "640",
+					videoId: videoId,
+					playerVars: {
+						playsinline: 1,
+						allowfullscreen: 1,
+						frameborder: 0,
+						autoplay: autoplay ? 1 : 0,
+						enablejsapi: 1,
+						origin: document.location.host,
+					},
+					events: {
+						onReady: autoplay ? onPlayerReady : () => {},
+						onStateChange: onPlayerStateChange.bind(this),
+					},
+				});
+				this.mediaStates = {
+					playing: YT.PlayerState.PLAYING,
+					paused: YT.PlayerState.PAUSED,
+					ended: YT.PlayerState.ENDED,
+					buffering: YT.PlayerState.BUFFERING,
+					cued: YT.PlayerState.CUED,
+				};
+				this.mode = "YT";
 			};
-			this.mode = "YT";
+			var onPlayerReady = (event) => {
+				event.target.playVideo();
+			};
+			var onPlayerStateChange = (event) => {
+				console.log("player state change", event);
+				console.log("Event state is ", this.getMediaState(event.data));
+				if ("ended" == this.getMediaState(event.data)) {
+					this.advanceMedia();
+				}
+			};
+			var makeitGo = onYouTubeIframeAPIReady.bind(this);
+			makeitGo();
 		}
-		function onPlayerReady(event) {
-			event.target.playVideo();
-		}
-		function onPlayerStateChange(event) {
-			console.log("player state change", event);
-			console.log("Event state is ", this.getMediaState(event.data));
-		}
-		var makeitGo = onYouTubeIframeAPIReady.bind(this);
-		makeitGo();
 		// this.setAttribute("now", videoId);
 		this.internalPlayed.push(videoId);
 	}
@@ -233,6 +269,17 @@ class PlayerElement extends HTMLElement {
 		this.playlistManager.push(mediaId);
 	}
 
+	setPlaylistPlaying(val) {
+		console.log(
+			"Process song object to currently playing",
+			this.songDataStore[val]
+		);
+		window["xplayer-currently"].innerHTML = `${
+			this.songDataStore[val].songtitle
+		} by ${this.songDataStore[val].artists.join(", ")}`;
+		window["xplayer-currently"].setAttribute("data-active-media", val);
+	}
+
 	handlePlayingChange(val, advancing) {
 		if (val) {
 			console.log("Playing requested set to", val);
@@ -244,14 +291,8 @@ class PlayerElement extends HTMLElement {
 			// this.songDataStore[val] = window[this.dataPath].song;
 			if (!this.shouldAddToPlaylist() && !!!advancing) {
 				console.log("Song Data store state now ", this.songDataStore);
-				window["xplayer-currently"].innerHTML = `${
-					this.songDataStore[val].songtitle
-				} by ${this.songDataStore[val].artists.join(", ")}`;
-				window["xplayer-currently"].setAttribute(
-					"data-active-media",
-					val
-				);
-				this.youtubeAPIMaker(val, true);
+				this.setPlaylistPlaying(val);
+				this.youtubeAPI(val, true);
 			} else {
 				console.log("Playing moved to playlist for", val);
 				this.addToPlaylist(val);
