@@ -1,0 +1,101 @@
+#media-container
+    float: right
+    width: 100%
+    position: fixed
+    bottom: 6px
+    left: 0
+
+.stretch-footer
+    background: rgb(255,46,255)
+    background: linear-gradient(180deg, #ff2eff 0%, #ff2f86 25%, #00fff2 85%)
+    width: 100%
+    height: 10px
+    display: block
+    position: fixed
+    bottom: 0
+
+#xplayer
+    float: right
+    text-align: right
+    border: var(--accent) 8px inset
+    border-style: groove
+    background: var(--background-color)
+    width: 100%
+    transition: opacity 1s, display 5s allow-discrete
+    display: none
+    opacity: 0
+#xplayer.player-active
+    opacity: 1
+    display: block
+
+@starting-style
+    #xplayer.player-active
+        opacity: 0
+
+#xplayer-wrapper
+    display: flex
+    align-items: flex-end
+    flex-wrap: wrap
+    padding: 6px
+    gap: 16px
+
+#xplayer-playlist
+    overflow: hidden
+    max-height: 200px
+    overflow-y: auto
+
+.playlist-item
+    border-radius: 5px
+
+#xplayer-currently
+    color: var(--dark-highlight-accent)
+    background-color: var(--dark-highlight)
+    padding: .35em
+
+#xplayer-playlist-next .playlist-item
+    background: var(--accent-overlap)
+    display: block
+    color: var(--base-font-color)
+    padding: 0.05em 0.25em
+    border-radius: 5px
+    max-width: max-content
+
+#xplayer-playbox
+    width: 390px
+    height: 200px
+    flex-grow: 1
+#xplayer-playlist
+    text-align: justify
+    flex-grow: 3
+
+#xplayer-controlbox
+    position: fixed
+    bottom: -7px
+    right: 25px
+    background-color: var(--accent-overlap)
+    color: var(--back-fill)
+    width: max-content
+    div.xplayer-control
+        color: var(--back-fill)
+        text-decoration: none
+        padding: 0px 5px
+        vertical-align: top
+        display: inline-block
+        cursor: pointer
+
+#xplayer.large
+    #xplayer-wrapper
+        flex-direction: row-reverse
+    #xplayer-playbox
+        width: 575px
+        height: 472px
+        flex-grow: 3
+    #xplayer-playlist
+        margin-bottom: 10px
+        flex-grow: 2
+
+#xplayer.min
+    #xplayer-playbox
+        position: fixed
+        left: -9999px
+        top: -9999px

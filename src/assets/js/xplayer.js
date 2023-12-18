@@ -1,7 +1,7 @@
 // Create a class for the element
 // https://web.dev/articles/custom-elements-best-practices
 class PlayerElement extends HTMLElement {
-	static observedAttributes = ["playing", "playertype"];
+	static observedAttributes = ["playing", "playertype", "media-state"];
 	constructor() {
 		// Always call super first in constructor
 		super();
@@ -95,6 +95,34 @@ class PlayerElement extends HTMLElement {
 		this.setup();
 	}
 
+	makeMediaPlay() {
+		var type = this.getAttribute("playertype");
+		console.log("play");
+		switch (type) {
+			case "youtube":
+				this.player.playVideo();
+				break;
+
+			default:
+				break;
+		}
+	}
+	makeMediaPause() {
+		var type = this.getAttribute("playertype");
+		console.log("pause");
+		switch (type) {
+			case "youtube":
+				this.player.pauseVideo();
+				break;
+
+			default:
+				break;
+		}
+	}
+	makeMediaAdvance() {
+		var type = this.getAttribute("playertype");
+	}
+
 	attributeChangedCallback(attribute, previousValue, currentValue) {
 		// called when attributes are added, removed, or changed
 		console.log(
@@ -117,6 +145,17 @@ class PlayerElement extends HTMLElement {
 				} else if (!currentValue || currentValue.length < 1) {
 					this.classList.add(this.playerEmptyStateClass);
 					this.classList.remove(this.playerActiveClass);
+				}
+				break;
+			case "media-state":
+				if (currentValue == "playing") {
+					window["xplayer-pause"].style.display = "inline-block";
+					window["xplayer-play"].style.display = "none";
+					this.makeMediaPlay();
+				} else if (currentValue == "paused") {
+					window["xplayer-pause"].style.display = "none";
+					window["xplayer-play"].style.display = "inline-block";
+					this.makeMediaPause();
 				}
 				break;
 			default:
@@ -148,6 +187,10 @@ class PlayerElement extends HTMLElement {
 		el.remove();
 	}
 
+	setMediaState(state) {
+		this.setAttribute("media-state", state);
+	}
+
 	advanceMedia() {
 		// Advance the player to next media item.
 		console.log("Advance to next media item.");
@@ -162,6 +205,7 @@ class PlayerElement extends HTMLElement {
 			this.setPlaylistPlaying(nextMedia);
 			this.youtubeAPI(nextMedia);
 			this.removePlaylistTag(nextMedia);
+			this.setMediaState("playing");
 		}
 	}
 
@@ -218,6 +262,7 @@ class PlayerElement extends HTMLElement {
 			};
 			var onPlayerReady = (event) => {
 				event.target.playVideo();
+				this.setMediaState("playing");
 			};
 			var onPlayerStateChange = (event) => {
 				console.log("player state change", event);
@@ -267,10 +312,24 @@ class PlayerElement extends HTMLElement {
 		this.playbox.id = "xplayer-playbox";
 		this.playlistbox = document.createElement("div");
 		this.playlistbox.id = "xplayer-playlist";
-		this.playlistbox.innerHTML = `<p>Currently Playing: <span id="xplayer-currently"> ... </span></p><p>Next Up:</p><div id="xplayer-playlist-next"></div>`;
+		this.playlistbox.innerHTML = `<p>Currently Playing: <span id="xplayer-currently" class="playlist-item"> ... </span></p><p>Next Up:</p>`;
+		this.playlistqueue = document.createElement("div");
+		this.playlistqueue.id = "xplayer-playlist-next";
+		this.playlistbox.appendChild(this.playlistqueue);
 		this.appendChild(this.wrapper);
 		this.wrapper.appendChild(this.playbox);
 		this.wrapper.appendChild(this.playlistbox);
+
+		this.controlbox = document.createElement("div");
+		this.controlbox.id = "xplayer-controlbox";
+		this.controlbox.innerHTML = /*html*/ `<div>
+			<div class="xplayer-control" id="xplayer-play">▶</div>
+			<div class="xplayer-control" id="xplayer-pause">⏸</div>
+			<div class="xplayer-control" id="xplayer-next">⏭</div>
+			<div class="xplayer-control" id="xplayer-enlarge">↖</div>
+			<div class="xplayer-control" id="xplayer-shrink">↘</div>
+		</div>`;
+		this.wrapper.appendChild(this.controlbox);
 		var event = new Event("xplaylist-ready");
 		document.dispatchEvent(event);
 		this.dispatchEvent(event);
@@ -305,6 +364,34 @@ class PlayerElement extends HTMLElement {
 				*/
 			}
 		}
+
+		this.controlbox.addEventListener("click", (e) => {
+			console.log("Control box click", e.target.id);
+			switch (e.target.id) {
+				case "xplayer-enlarge":
+					if (xplayer.classList.contains("min")) {
+						this.classList.remove("min");
+					} else {
+						this.classList.add("large");
+					}
+					break;
+				case "xplayer-shrink":
+					if (xplayer.classList.contains("large")) {
+						this.classList.remove("large");
+					} else {
+						this.classList.add("min");
+					}
+					break;
+				case "xplayer-play":
+					this.setMediaState("playing");
+					break;
+				case "xplayer-pause":
+					this.setMediaState("paused");
+					break;
+				default:
+					break;
+			}
+		});
 	}
 
 	addToPlaylist(mediaId) {
@@ -314,7 +401,8 @@ class PlayerElement extends HTMLElement {
 			this.songDataStore[mediaId].songtitle
 		} by ${this.songDataStore[mediaId].artists.join(", ")}`;
 		newItem.id = "playlist-item-" + mediaId;
-		this.playlistbox.append(newItem);
+		newItem.classList.add("playlist-item");
+		this.playlistqueue.append(newItem);
 	}
 
 	setPlaylistPlaying(val) {
