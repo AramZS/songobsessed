@@ -1,12 +1,16 @@
 // Create a class for the element
 // https://web.dev/articles/custom-elements-best-practices
 class PlayerElement extends HTMLElement {
+	static observedAttributes = ["playing"];
 	constructor() {
 		// Always call super first in constructor
 		super();
+		this.playerEmptyStateClass = "player-empty";
+		this.playerActiveClass = "player-active";
 		this.player = false;
 		this.internalPlaylist = [];
 		this.songDataStore = {};
+		this.classList.add(this.playerEmptyStateClass);
 		this.playlistHandler = {
 			deleteProperty: function (target, property) {
 				//delete window.xplayer.songDataStore[target[property]];
@@ -89,6 +93,35 @@ class PlayerElement extends HTMLElement {
 			}.bind(this)
 		);
 		this.setup();
+	}
+
+	attributeChangedCallback(attribute, previousValue, currentValue) {
+		// called when attributes are added, removed, or changed
+		console.log(
+			"Attribute change",
+			attribute,
+			" changed from ",
+			previousValue,
+			" to ",
+			currentValue
+		);
+		switch (attribute) {
+			case "playing":
+				if (
+					(!previousValue || previousValue.length < 1) &&
+					currentValue &&
+					currentValue.length > 0
+				) {
+					this.classList.add(this.playerActiveClass);
+					this.classList.remove(this.playerEmptyStateClass);
+				} else if (!currentValue || currentValue.length < 1) {
+					this.classList.add(this.playerEmptyStateClass);
+					this.classList.remove(this.playerActiveClass);
+				}
+				break;
+			default:
+				break;
+		}
 	}
 
 	htmxSwapCallback() {
@@ -211,10 +244,6 @@ class PlayerElement extends HTMLElement {
 		console.log("");
 	}
 
-	attributeChangedCallback(name, oldValue, newValue) {
-		console.log(`Attribute ${name} has changed.`);
-	}
-
 	playlistCheck() {
 		console.log(this.internalPlaylist);
 	}
@@ -291,6 +320,7 @@ class PlayerElement extends HTMLElement {
 			"Process song object to currently playing",
 			this.songDataStore[val]
 		);
+		this.setAttribute("playing", val);
 		window["xplayer-currently"].innerHTML = `${
 			this.songDataStore[val].songtitle
 		} by ${this.songDataStore[val].artists.join(", ")}`;
@@ -329,10 +359,6 @@ class PlayerElement extends HTMLElement {
 
 	get playlist() {
 		return this.internalPlaylist;
-	}
-
-	get playing() {
-		return this.internalPlayed[this.internalPlayed.length - 1];
 	}
 
 	set playing(val) {
