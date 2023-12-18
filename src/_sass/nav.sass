@@ -3,24 +3,44 @@
 nav, nav h1
     font-size: 16px
     display: inline-block
+    padding: 0.15em
 
-nav h1, nav h1 a
-    color: white
-    text-decoration: underline
-    text-decoration-color: var(--link-color)
+nav h1:first-of-type
+    clip-path: polygon(0 0, 101% 0, 97% 100%, 0 85%)
 
-nav h1:hover, nav h1 a:hover
-    color: white
+nav h1
+    padding: 0.35em
+
+nav > a
+    padding: 0.25em
+    margin-left: 12px
+
+nav > a:nth-of-type(odd)
+    clip-path: polygon(0 0, 80% 0%, 100% 20%, 100% 100%, 80% 100%, 20% 100%, 0 100%, 0% 20%)
+
+nav > a:nth-of-type(even)
+    clip-path: polygon(0 0, 100% 0, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0 100%, 0% 20%)
+
+nav h1, nav h1 a, nav > a:link, nav h1 a:visited, nav > a:visited
+    color: var(--accent-overlap)
     text-decoration: underline
-    text-decoration-color: var(--c1)
+    text-decoration-color: var(--med-highlight)
+    font-weight: 500
+    background-color: var(--base-font-color)
+
+nav h1:hover, nav h1 a:hover, nav > a:hover
+    color: var(--accent-overlap)
+    text-decoration: underline
+    text-decoration-color: var(--base-font-color)
+    background-color: var(--link-color)
 
 nav
-    border-bottom: 3px solid var(--border-base)
+    border-bottom: 3px solid var(--accent)
     padding: 0 10px
     width: 100%
     position: fixed
-    background-color: var(--background-color)
-    height: 40px
+    background-color: var(--back-fill)
+    height: 46px
     z-index: 100
     top: 0
     left: 0
@@ -30,7 +50,7 @@ nav
             content: "|"
             padding: 0 18px
             text-decoration: none
-            color: var(--c4)
+            color: var(--dark-highlight)
             display: inline-block
             @media (max-width: variables.$mobile-width)
                 &

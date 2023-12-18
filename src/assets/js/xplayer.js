@@ -1,7 +1,7 @@
 // Create a class for the element
 // https://web.dev/articles/custom-elements-best-practices
 class PlayerElement extends HTMLElement {
-	static observedAttributes = ["playing"];
+	static observedAttributes = ["playing", "playertype"];
 	constructor() {
 		// Always call super first in constructor
 		super();
@@ -229,6 +229,8 @@ class PlayerElement extends HTMLElement {
 				}
 			};
 			var makeitGo = onYouTubeIframeAPIReady.bind(this);
+			this.classList.add("yt");
+			this.setAttribute("playertype", "youtube");
 			makeitGo();
 		}
 		// this.setAttribute("now", videoId);

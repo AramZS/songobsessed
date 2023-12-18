@@ -26,19 +26,23 @@ body
     font-style: normal
     text-rendering: optimizeLegibility
     -webkit-font-smoothing: antialiased
-    background-color: var(--c3)
-    color: var(--c4)
+    background-color: var(--background-color)
+    color: var(--base-font-color)
 
 img, iframe
     border: none
     max-width: 100%
 
-a
-    color: var(--c1)
-    text-decoration: none
+a, a:visited, a:link
+    color: var(--link-color)
+    text-decoration: underline
+
+a:visited
+    color: var(--med-highlight)
+    text-decoration: underline
 
 a:hover
-    color: var(--c1)
+    color: var(--light-highlight)
     text-decoration: underline
 
 pre
@@ -136,6 +140,9 @@ nav
 footer
     margin-top: 20px
     text-align: center
+
+#inner-body
+    margin-bottom: 500px
 
 @media (max-width: 481px)
     body

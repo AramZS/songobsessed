@@ -21,6 +21,13 @@ module.exports = async function (data, zones) {
 		return words;
 	};
 	let meta_description = data?.description || data.site?.description || "";
+	let metaChunk = meta(
+		data,
+		`${data.site.title}`,
+		meta_description,
+		[],
+		() => {}
+	);
 	return /*html*/ `<!doctype html>
 <html lang="en">
 	<head>
@@ -28,39 +35,42 @@ module.exports = async function (data, zones) {
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>${data.title || data.site.title}</title>
 		<meta name="description" content="${meta_description}" />
-		${meta(data, `${data.site.title}`, meta_description, [], () => {})}
+		${metaChunk}
 		<script>
 		if("classList" in document.documentElement) {
 			document.documentElement.classList.add("has-js");
 		}
 		window.pageData = {};
 		</script>
-		${zones.earlyHead}
+		${zones.earlyHead || ""}
 		<link rel="stylesheet" href="/assets/css/style.css">
 		<script src="/assets/js/htmx.min.js" type="application/javascript"></script>
 		<script src="https://www.youtube.com/iframe_api" onload="(function(){var event = new Event('ytapi-ready'); document.dispatchEvent(event);})()"></script>
 		<script src="/assets/js/script.js" defer type="application/javascript"></script>
 		<script defer data-domain="songobsessed.com" src="https://plausible.io/js/script.js" type="application/javascript"></script>
-		${zones.lateHead}
+		${zones.lateHead || ""}
 	</head>
 	<body hx-ext="morph">
+		<div id="inner-body">
 		${nav(data)}
-		<div id="main-content" hx-history-elt>
-			<header>
-				<h1 class="title">${data.title}</h1>
-			</header>
-			<main class="wrapper">
-				${zones.content}
-				<a href="/search"><h2>Search</h2></a>
-			</main>
+			<div id="main-content" hx-history-elt>
+				<header>
+					<h1 class="title">${data.title}</h1>
+				</header>
+				<main class="wrapper">
+					${zones.content}
+					<a href="/search"><h2>Search</h2></a>
+				</main>
+			</div>
+			${footer(data)}
 		</div>
 		<aside id="stable-container" hx-preserve>
 			<div id="media-container">
 				<script>console.log(document.location.href)</script>
+				<div class="stretch-footer"></div>
 				<x-player id="xplayer"></x-player>
 			</div>
 		</aside>
-		${footer(data)}
 		<script src="/assets/js/xplayer.js" defer type="application/javascript"></script>
 	</body>
 </html>`;
