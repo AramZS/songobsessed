@@ -1,6 +1,8 @@
 // Playlist: https://open.spotify.com/playlist/2mSWs9FQ3n06F7yriWDr0M?si=37461f70a5cd4ba8
 // https://api.spotify.com/v1/playlists/2mSWs9FQ3n06F7yriWDr0M/tracks?limit=50&fields=items(added_by.id,added_at,track(name,href,external_urls,external_ids,external_urls,href,uri,id,album(name,href,external_urls,images),artists(name,external_urls,genres,href,uri)))
 // &offset=200
+
+// Got my token to request these via - https://developer.spotify.com/
 const fs = require("fs");
 
 var slugify = require("slugify");
