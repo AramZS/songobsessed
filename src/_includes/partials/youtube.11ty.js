@@ -1,6 +1,9 @@
 const metadata = require("../../_data/metadata.js");
 
 module.exports = function (youtubeUrl, autoplay, songData) {
+	if (!youtubeUrl) {
+		return "";
+	}
 	//https://support.google.com/youtube/answer/171780?hl=en#zippy=%2Cturn-on-privacy-enhanced-mode
 	let finalString = youtubeUrl.replaceAll(
 		"www.youtube.com/watch?v=",
