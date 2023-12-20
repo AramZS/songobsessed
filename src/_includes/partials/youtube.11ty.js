@@ -9,7 +9,7 @@ module.exports = function (youtubeUrl, autoplay, songData) {
 		"www.youtube.com/watch?v=",
 		"www.youtube-nocookie.com/embed/"
 	);
-	finalString = youtubeUrl.replaceAll(
+	finalString = finalString.replaceAll(
 		"youtu.be/",
 		//"www.youtube-nocookie.com/watch?v="
 		"www.youtube-nocookie.com/embed/"

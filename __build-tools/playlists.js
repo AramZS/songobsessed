@@ -24144,7 +24144,8 @@ var whole = new Set([
 var c = 0;
 whole.forEach(async (track) => {
 	console.log(++c, track.track.name);
-	if (c == 433) {
+	// 453 total
+	if (c > 450 && c < 453) {
 		console.log(
 			track,
 			track.track.artists,
@@ -24278,7 +24279,7 @@ whole.forEach(async (track) => {
 		let localImageName = "";
 		if (image?.url) {
 			console.log("imageurl", image.url);
-			processImageUrl(image.url, "jpeg");
+			await processImageUrl(image.url, "jpeg");
 		} else if (lastFMData?.track?.album?.image) {
 			var image = lastFMData.track.album.image.find((image) => {
 				if (image.size == "extralarge") {
@@ -24287,7 +24288,7 @@ whole.forEach(async (track) => {
 					return false;
 				}
 			});
-			processImageUrl(image["#text"], "png");
+			await processImageUrl(image["#text"], "png");
 		}
 		let description = "";
 		if (lastFMData.wiki && lastFMData.wiki.summary) {
@@ -24318,7 +24319,7 @@ songtitle: "${track.track.name}"
 album: "${track.track.album.name}"
 featuredImage: "${localImageName}"
 featuredImageCredit: "Image is used from album for review purposes."
-featuredImageLink: "${image.url}"
+featuredImageLink: "${localImageName}"
 featuredImageAlt: ""
 playlists:
   -

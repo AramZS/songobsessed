@@ -24,7 +24,7 @@ class PlayerElement extends HTMLElement {
 				return true;
 			},
 			has(target, property) {
-				return property in customFunctions || property in target;
+				return property in this || property in target;
 			},
 			set: function (target, property, value, receiver) {
 				target[property] = value;
