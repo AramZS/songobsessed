@@ -24141,7 +24141,7 @@ var whole = new Set([
 var c = 0;
 whole.forEach(async (track) => {
 	console.log(++c, track.track.name);
-	if (c == 2) {
+	if (c == 427) {
 		console.log(
 			track,
 			track.track.artists,
@@ -24269,12 +24269,19 @@ whole.forEach(async (track) => {
 				"From Last.fm: " +
 				lastFMData.wiki.summary +
 				`<br/><br/><br/> *User-contributed text is used from the Last.fm wiki under the Creative Commons By-SA License*`;
+			description.replace('"', "'");
 		}
+		let spotifyTrack =
+			!!track.track?.external_urls?.spotify &&
+			track.track.external_urls.spotify != "undefined"
+				? track.track.external_urls.spotify
+				: "";
+		console.log("spotifyTrack", spotifyTrack);
 		let writeOptions = { flag: "w" };
 		// writeOptions = { flag: "wx" }; // Once we start writing stuff into the posts we don't want to overwrite them.
 		let mdMode = `---
 title: "${title}"
-description: ""
+description: "${description}"
 date: ${track.added_at}
 tags:
   - ${YAMLTags}
@@ -24282,16 +24289,18 @@ public: true
 artists:
   - ${YAMLArtists}
 songtitle: "${track.track.name}"
+album: "${track.track.album.name}"
 featuredImage: "${localImageName}"
 featuredImageCredit: "Image is used from album for review purposes."
 featuredImageLink: "${image.url}"
 featuredImageAlt: ""
-playlists
-  - name: Obsessions
+playlists:
+  -
+    name: "Obsessions"
     position: ${c}
-	author: ${process.env.PLAYLIST_AUTHOR}
+    author: ${process.env.PLAYLIST_AUTHOR}
 youtube: 
-spotify: ${track.track.external_urls.spotify}
+spotify: ${spotifyTrack}
 soundcloud:
 audiofile:
 lastfm: ${lastFMData.track.url}

@@ -18,6 +18,9 @@ module.exports = async function (data) {
 			spotify: data.spotify,
 			soundcloud: data.soundcloud,
 			audiofile: data.audiofile,
+			lastfm: data.lastfm,
+			album: data.album,
+			playlists: data.playlists,
 		},
 	};
 	let insert = {
