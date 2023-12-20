@@ -5,6 +5,7 @@ class PlayerElement extends HTMLElement {
 		"xp-playing",
 		"xp-playertype",
 		"xp-media-state",
+		"xp-player-mode",
 	];
 	constructor() {
 		// Always call super first in constructor
@@ -195,6 +196,10 @@ class PlayerElement extends HTMLElement {
 		this.setAttribute("xp-media-state", state);
 	}
 
+	setPlayerState(state) {
+		this.setAttribute("xp-player-mode", state);
+	}
+
 	advanceMedia() {
 		// Advance the player to next media item.
 		console.log("Advance to next media item.");
@@ -375,15 +380,19 @@ class PlayerElement extends HTMLElement {
 				case "xplayer-enlarge":
 					if (xplayer.classList.contains("min")) {
 						this.classList.remove("min");
+						this.setPlayerState("standard");
 					} else {
 						this.classList.add("large");
+						this.setPlayerState("large");
 					}
 					break;
 				case "xplayer-shrink":
 					if (xplayer.classList.contains("large")) {
 						this.classList.remove("large");
+						this.setPlayerState("standard");
 					} else {
 						this.classList.add("min");
+						this.setPlayerState("min");
 					}
 					break;
 				case "xplayer-play":

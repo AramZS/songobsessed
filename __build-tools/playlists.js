@@ -9,6 +9,3987 @@ const fs = require("fs");
 
 var slugify = require("slugify");
 
+require("dotenv").config();
+
+const LASTFM_API_KEY = process.env.LASTFM_API_KEY;
+
+const from61 = {
+	items: [
+		{
+			added_at: "2011-07-16T16:40:35Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Absolution Project",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 211000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Mad World",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Absolution+Project::Mad+World:211",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:40:54Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Mathilde",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Bark Cat Bark",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 211000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Jardin du Ranelagh",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Bark+Cat+Bark:Mathilde:Jardin+du+Ranelagh:211",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:41:09Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Robots in Love EP",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Beautiful Small Machines",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 237000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Counting Back to One",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Beautiful+Small+Machines:Robots+in+Love+EP:Counting+Back+to+One:237",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:41:11Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Robots in Love EP",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Beautiful Small Machines",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 229000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Robots in Love",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Beautiful+Small+Machines:Robots+in+Love+EP:Robots+in+Love:229",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:41:27Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Not a Christmas Album (2005)",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Bob Ricci",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 227000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "5 for 1",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Bob+Ricci:Not+a+Christmas+Album+%282005%29:5+for+1:227",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:41:35Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "It's All Gravy",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Capital Road",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 201000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "The Bongo Song",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Capital+Road:It%27s+All+Gravy:The+Bongo+Song:201",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:41:47Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/5Q0sHoDBn75JCe4OJVXmUP",
+					},
+					href: "https://api.spotify.com/v1/albums/5Q0sHoDBn75JCe4OJVXmUP",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b27357ebd1df3bc0f2461559edd8",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e0257ebd1df3bc0f2461559edd8",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d0000485157ebd1df3bc0f2461559edd8",
+							width: 64,
+						},
+					],
+					name: "The Throat Is Dreaming",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/4U6cZkjQE5aIsCnfL9DaJk",
+						name: "Cavedoll",
+						uri: "spotify:artist:4U6cZkjQE5aIsCnfL9DaJk",
+					},
+				],
+				external_ids: {
+					isrc: "ushm21082886",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/4cvRWH9AmYyHmPLZKZ5u0O",
+				},
+				href: "https://api.spotify.com/v1/tracks/4cvRWH9AmYyHmPLZKZ5u0O",
+				name: "Leviathan Smiles",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:41:59Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Chesney Hawkes",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 214000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Thing of beauty",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Chesney+Hawkes::Thing+of+beauty:214",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:42:07Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Back to BASIC",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Children of the CPU",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 256000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Slay Your Dragons",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Children+of+the+CPU:Back+to+BASIC:Slay+Your+Dragons:256",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:42:19Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Coax",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 165000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Starship March",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Coax::Starship+March:165",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:42:45Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Volume 2",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Craigmire",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 217000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "1 on 1 (Round 2)",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Craigmire:Volume+2:1+on+1+%28Round+2%29:217",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:43:07Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/0I6Dq3hTubPUyEYRvlaTxw",
+					},
+					href: "https://api.spotify.com/v1/albums/0I6Dq3hTubPUyEYRvlaTxw",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b273c76e1092cb97ffa5b7adaa89",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e02c76e1092cb97ffa5b7adaa89",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d00004851c76e1092cb97ffa5b7adaa89",
+							width: 64,
+						},
+					],
+					name: "Hemvägen",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/25IOiTtNlrRS3SaIcKbo7h",
+						name: "Detektivbyrån",
+						uri: "spotify:artist:25IOiTtNlrRS3SaIcKbo7h",
+					},
+				],
+				external_ids: {
+					isrc: "SEXDQ0600103",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/6v9b7TqeOovPEd5LrMxKsF",
+				},
+				href: "https://api.spotify.com/v1/tracks/6v9b7TqeOovPEd5LrMxKsF",
+				name: "Nattöppet",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:43:33Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "DJ Low",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 291000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Lose Yourself in a Bittersweet Symphony",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:DJ+Low::Lose+Yourself+in+a+Bittersweet+Symphony:291",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:43:44Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "DJ TELTA",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 3648000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Uplift part 2",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:DJ+TELTA::Uplift+part+2:3648",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:44:18Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Remixes",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "EEPROM",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 215000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "crushcrushcrush REMIXREMIXREMIX",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:EEPROM:Remixes:crushcrushcrush+REMIXREMIXREMIX:215",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:44:30Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/3le9KQl8wzoPiLN66AzSCC",
+					},
+					href: "https://api.spotify.com/v1/albums/3le9KQl8wzoPiLN66AzSCC",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b273036b30c77c68e426a975e129",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e02036b30c77c68e426a975e129",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d00004851036b30c77c68e426a975e129",
+							width: 64,
+						},
+					],
+					name: "Songs For A Break Up: Volume 1",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/4AcHt3JxKy59IX7JNNlZn4",
+						name: "Fitz and The Tantrums",
+						uri: "spotify:artist:4AcHt3JxKy59IX7JNNlZn4",
+					},
+				],
+				external_ids: {
+					isrc: "USCGH0952920",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/0wuyh173FUOIX9yGAmUrLv",
+				},
+				href: "https://api.spotify.com/v1/tracks/0wuyh173FUOIX9yGAmUrLv",
+				name: "Breakin' The Chains of Love",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:44:56Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "FLYING MACHINES",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 242000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "The Way I Want to Love",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:FLYING+MACHINES::The+Way+I+Want+to+Love:242",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:45:14Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "The Promised Land",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Gunryo",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 350000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Soldiers",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Gunryo:The+Promised+Land:Soldiers:350",
+			},
+		},
+		{
+			added_at: "2011-07-18T03:55:30Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Zyndabox",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "goto80",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 206000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Killer Piller",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:goto80:Zyndabox:Killer+Piller:206",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:45:46Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Henry Homesweet",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 229000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "OkiiRobo Navigation System",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Henry+Homesweet::OkiiRobo+Navigation+System:229",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:46:01Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/5cW972qoSvOXfAnBjJJlWH",
+					},
+					href: "https://api.spotify.com/v1/albums/5cW972qoSvOXfAnBjJJlWH",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b273354cc886f338e94afc23baec",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e02354cc886f338e94afc23baec",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d00004851354cc886f338e94afc23baec",
+							width: 64,
+						},
+					],
+					name: "Hooray",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/1pTBQC9zXDUgiVPQbBDTM4",
+						name: "Hollywood Drunks",
+						uri: "spotify:artist:1pTBQC9zXDUgiVPQbBDTM4",
+					},
+				],
+				external_ids: {
+					isrc: "USTC70835543",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/21AAwnwqbkjXZ7ljj7zSlw",
+				},
+				href: "https://api.spotify.com/v1/tracks/21AAwnwqbkjXZ7ljj7zSlw",
+				name: "Punchline",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:46:11Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/1SzvhsYJtM1B0UvYO0r50f",
+					},
+					href: "https://api.spotify.com/v1/albums/1SzvhsYJtM1B0UvYO0r50f",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b2732409177d2996b23160d17aaf",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e022409177d2996b23160d17aaf",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d000048512409177d2996b23160d17aaf",
+							width: 64,
+						},
+					],
+					name: "Swell",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/1pTBQC9zXDUgiVPQbBDTM4",
+						name: "Hollywood Drunks",
+						uri: "spotify:artist:1pTBQC9zXDUgiVPQbBDTM4",
+					},
+				],
+				external_ids: {
+					isrc: "USTC70835716",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/06ZvioYXKUgyudeCP5RKrX",
+				},
+				href: "https://api.spotify.com/v1/tracks/06ZvioYXKUgyudeCP5RKrX",
+				name: "That Age",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:46:25Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Empty Vessels",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Isaac Graham",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 146000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Karl Marx And The Reds",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Isaac+Graham:Empty+Vessels:Karl+Marx+And+The+Reds:146",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:46:45Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/3vLnCCc6nSz1bDLKRVQWgp",
+					},
+					href: "https://api.spotify.com/v1/albums/3vLnCCc6nSz1bDLKRVQWgp",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b273f27d9a2e8bdf7f03b1fc4c74",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e02f27d9a2e8bdf7f03b1fc4c74",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d00004851f27d9a2e8bdf7f03b1fc4c74",
+							width: 64,
+						},
+					],
+					name: "Discoballs",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/35Jmw5lJjihbFBMRJ8k2Mt",
+						name: "The Love Dictators",
+						uri: "spotify:artist:35Jmw5lJjihbFBMRJ8k2Mt",
+					},
+				],
+				external_ids: {
+					isrc: "DEBL60949547",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/7H8Duf5GllduaXpNhFMxtY",
+				},
+				href: "https://api.spotify.com/v1/tracks/7H8Duf5GllduaXpNhFMxtY",
+				name: "Soviet Power",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:47:03Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "James Daniello",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 361000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "In Six Minutes",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:James+Daniello::In+Six+Minutes:361",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:47:14Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "James Hogan",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 207000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Lost Control",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:James+Hogan::Lost+Control:207",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:47:26Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/0osfpItv12J5J0AkTx3MWe",
+					},
+					href: "https://api.spotify.com/v1/albums/0osfpItv12J5J0AkTx3MWe",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b2733acc85d09062f85355b60021",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e023acc85d09062f85355b60021",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d000048513acc85d09062f85355b60021",
+							width: 64,
+						},
+					],
+					name: "Sunny Days",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/2NM3w8uoFsNQYYNIJc8LxO",
+						name: "Jason Silver",
+						uri: "spotify:artist:2NM3w8uoFsNQYYNIJc8LxO",
+					},
+				],
+				external_ids: {
+					isrc: "uscgj0830982",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/0bicEbfAabms5yAA5Umcup",
+				},
+				href: "https://api.spotify.com/v1/tracks/0bicEbfAabms5yAA5Umcup",
+				name: "Satisfied",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:47:40Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Jon Skarin",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 144000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Once Upon A Time",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Jon+Skarin::Once+Upon+A+Time:144",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:48:11Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/7GoZlNMjflJgjzB2LgHvl5",
+					},
+					href: "https://api.spotify.com/v1/albums/7GoZlNMjflJgjzB2LgHvl5",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b27301ed422c1dfc82e0b1d725fd",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e0201ed422c1dfc82e0b1d725fd",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d0000485101ed422c1dfc82e0b1d725fd",
+							width: 64,
+						},
+					],
+					name: "Near the Sun",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/0ZatCBdBCqqXtLe2tUUNug",
+						name: "Julie Peel",
+						uri: "spotify:artist:0ZatCBdBCqqXtLe2tUUNug",
+					},
+				],
+				external_ids: {
+					isrc: "FR6V80872915",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/5K69VbwMMZVNIA9OU7n7Pm",
+				},
+				href: "https://api.spotify.com/v1/tracks/5K69VbwMMZVNIA9OU7n7Pm",
+				name: "Unfold",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:48:30Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Justice",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 197000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "D.A.N.C.E. (Benny Blanco Remix Feat. Mos Def and Spank Ro...",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Justice::D.A.N.C.E.+%28Benny+Blanco+Remix+Feat.+Mos+Def+and+Spank+Ro...:197",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:48:49Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "kfox",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 441000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Purple Underground",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:kfox::Purple+Underground:441",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:49:00Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Kina Grannis",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 241000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Strong Enough",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Kina+Grannis::Strong+Enough:241",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:49:14Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/13a5XK95LsLu2ODpBRNYWB",
+					},
+					href: "https://api.spotify.com/v1/albums/13a5XK95LsLu2ODpBRNYWB",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b27393a158af6773ba86589e9ddd",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e0293a158af6773ba86589e9ddd",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d0000485193a158af6773ba86589e9ddd",
+							width: 64,
+						},
+					],
+					name: "Goodbye Planet Earth",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/0ye92QxZfhKHjwY7DOcHYP",
+						name: "Matthew Ebel",
+						uri: "spotify:artist:0ye92QxZfhKHjwY7DOcHYP",
+					},
+				],
+				external_ids: {
+					isrc: "usl4r0701701",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/5Ee5cEhbBJiFgMTzCmSFoQ",
+				},
+				href: "https://api.spotify.com/v1/tracks/5Ee5cEhbBJiFgMTzCmSFoQ",
+				name: "Join The Conversation",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:51:17Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/7zqudbTp74jYOhSa3PWgpj",
+					},
+					href: "https://api.spotify.com/v1/albums/7zqudbTp74jYOhSa3PWgpj",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b273047acabd0796282442d8f0f3",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e02047acabd0796282442d8f0f3",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d00004851047acabd0796282442d8f0f3",
+							width: 64,
+						},
+					],
+					name: "No More Kings",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/71ayJn19k4ENbNmOmKKgfi",
+						name: "No More Kings",
+						uri: "spotify:artist:71ayJn19k4ENbNmOmKKgfi",
+					},
+				],
+				external_ids: {
+					isrc: "USZVZ0600011",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/5sUzjPvwB4U362UGZeaj1v",
+				},
+				href: "https://api.spotify.com/v1/tracks/5sUzjPvwB4U362UGZeaj1v",
+				name: "Zombie Me",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:50:23Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Moonalice",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 305000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Blink of an Eye",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Moonalice::Blink+of+an+Eye:305",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:50:41Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/0xQrn80aZgOT8mFDWBwwqF",
+					},
+					href: "https://api.spotify.com/v1/albums/0xQrn80aZgOT8mFDWBwwqF",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b273bccd9f33bfcc1b3bd8c26205",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e02bccd9f33bfcc1b3bd8c26205",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d00004851bccd9f33bfcc1b3bd8c26205",
+							width: 64,
+						},
+					],
+					name: "Moonalice",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/03UgRdV3bSLEHGmdagyM0e",
+						name: "Moonalice",
+						uri: "spotify:artist:03UgRdV3bSLEHGmdagyM0e",
+					},
+				],
+				external_ids: {
+					isrc: "USQ740800005",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/1XLiceOghYqvGbthlv4f45",
+				},
+				href: "https://api.spotify.com/v1/tracks/1XLiceOghYqvGbthlv4f45",
+				name: "I'm Glad You Think So",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:50:42Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/0xQrn80aZgOT8mFDWBwwqF",
+					},
+					href: "https://api.spotify.com/v1/albums/0xQrn80aZgOT8mFDWBwwqF",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b273bccd9f33bfcc1b3bd8c26205",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e02bccd9f33bfcc1b3bd8c26205",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d00004851bccd9f33bfcc1b3bd8c26205",
+							width: 64,
+						},
+					],
+					name: "Moonalice",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/03UgRdV3bSLEHGmdagyM0e",
+						name: "Moonalice",
+						uri: "spotify:artist:03UgRdV3bSLEHGmdagyM0e",
+					},
+				],
+				external_ids: {
+					isrc: "USQ740800008",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/3Z1Hoj7c1RoaEiIhmuu9yg",
+				},
+				href: "https://api.spotify.com/v1/tracks/3Z1Hoj7c1RoaEiIhmuu9yg",
+				name: "Kick It Open",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:51:07Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/3OLVn34ynKbMsf9mtShvfm",
+					},
+					href: "https://api.spotify.com/v1/albums/3OLVn34ynKbMsf9mtShvfm",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b27337716aa244ad57a82fa95f30",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e0237716aa244ad57a82fa95f30",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d0000485137716aa244ad57a82fa95f30",
+							width: 64,
+						},
+					],
+					name: "Fight For You",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/1N9n8MSxrr4Emhb566493b",
+						name: "Morgan Page",
+						uri: "spotify:artist:1N9n8MSxrr4Emhb566493b",
+					},
+				],
+				external_ids: {
+					isrc: "CAN110900386",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/0Uj2EojymZumOtBAcT1UNJ",
+				},
+				href: "https://api.spotify.com/v1/tracks/0Uj2EojymZumOtBAcT1UNJ",
+				name: "Fight For You",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:51:46Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "M. Sykops",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 164000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Classical Gas",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:M.+Sykops::Classical+Gas:164",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:51:55Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "MrEpic Productions",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 206000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Google Maps Theme Song",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:MrEpic+Productions::Google+Maps+Theme+Song:206",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:52:25Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/5cFRngtvbnQmlo6VllubcE",
+					},
+					href: "https://api.spotify.com/v1/albums/5cFRngtvbnQmlo6VllubcE",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b273adc34926ac5429660831271e",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e02adc34926ac5429660831271e",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d00004851adc34926ac5429660831271e",
+							width: 64,
+						},
+					],
+					name: "New Music On The Block 2006-2008",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/3JpZEPU8DAkZSMEkvdNL0S",
+						name: "University of Michigan - Block M Records",
+						uri: "spotify:artist:3JpZEPU8DAkZSMEkvdNL0S",
+					},
+					{
+						href: "https://api.spotify.com/v1/artists/6AXr7aXrJYFI3XjslAWDPY",
+						name: "Michelle Chamuel",
+						uri: "spotify:artist:6AXr7aXrJYFI3XjslAWDPY",
+					},
+					{
+						href: "https://api.spotify.com/v1/artists/55JUCZ76IirVQixHXXnseL",
+						name: "Robert Lester",
+						uri: "spotify:artist:55JUCZ76IirVQixHXXnseL",
+					},
+				],
+				external_ids: {
+					isrc: "USEU60800144",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/1YQQTFiRB1SX5m9MqJmdsv",
+				},
+				href: "https://api.spotify.com/v1/tracks/1YQQTFiRB1SX5m9MqJmdsv",
+				name: "My Dear Disco",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:52:09Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Dancethink LP",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "My Dear Disco",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 327000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "For Your Love",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:My+Dear+Disco:Dancethink+LP:For+Your+Love:327",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:52:09Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Dancethink LP",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "My Dear Disco",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 383000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "M.Y.F. (Move Your Feet)",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:My+Dear+Disco:Dancethink+LP:M.Y.F.+%28Move+Your+Feet%29:383",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:52:09Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Dancethink LP",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "My Dear Disco",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 267000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Amsterdam",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:My+Dear+Disco:Dancethink+LP:Amsterdam:267",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:52:09Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Dancethink LP",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "My Dear Disco",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 325000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "All I Do",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:My+Dear+Disco:Dancethink+LP:All+I+Do:325",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:52:43Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "My First Earthquake",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 182000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Fa La Freezing",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:My+First+Earthquake::Fa+La+Freezing:182",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:52:56Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "In Blackout Cities",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Paper Sailboat",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 191000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "The twin cities",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Paper+Sailboat:In+Blackout+Cities:The+twin+cities:191",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:53:15Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Paul Dateh",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 376000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Violin w/ Inka One",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Paul+Dateh::Violin+w%2F+Inka+One:376",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:53:25Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Hand Held Accordion Blasters",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Polka Glocks",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 131000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Wind Chime",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Polka+Glocks:Hand+Held+Accordion+Blasters:Wind+Chime:131",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:53:40Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/3aYJt8Krn8bWDiYChZh8n4",
+					},
+					href: "https://api.spotify.com/v1/albums/3aYJt8Krn8bWDiYChZh8n4",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b2737cc7174d2c5ff34700b7f556",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e027cc7174d2c5ff34700b7f556",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d000048517cc7174d2c5ff34700b7f556",
+							width: 64,
+						},
+					],
+					name: "The Rhumb Line",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/6FIrstf3kHEg3zBOyLpvxD",
+						name: "Ra Ra Riot",
+						uri: "spotify:artist:6FIrstf3kHEg3zBOyLpvxD",
+					},
+				],
+				external_ids: {
+					isrc: "USBS50830885",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/5Qqi7SlouvumlxpJoBgvGW",
+				},
+				href: "https://api.spotify.com/v1/tracks/5Qqi7SlouvumlxpJoBgvGW",
+				name: "Can You Tell",
+			},
+		},
+	],
+};
+
+const from61_51 = {
+	items: [
+		{
+			added_at: "2011-07-16T16:53:59Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Days Between Stations",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Radio Nowhere",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 255000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "London Calling",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Radio+Nowhere:Days+Between+Stations:London+Calling:255",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:54:38Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/6skyXDBxUCVKoAcPkb4THT",
+					},
+					href: "https://api.spotify.com/v1/albums/6skyXDBxUCVKoAcPkb4THT",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b273a61eb5b07dd536bd767e6512",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e02a61eb5b07dd536bd767e6512",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d00004851a61eb5b07dd536bd767e6512",
+							width: 64,
+						},
+					],
+					name: "Oh My",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/5d6Jinp5tHZ4qTziEwJdN6",
+						name: "Sean Fournier",
+						uri: "spotify:artist:5d6Jinp5tHZ4qTziEwJdN6",
+					},
+				],
+				external_ids: {
+					isrc: "ushm80866964",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/3TwiQpVy3us8t8a1077WA2",
+				},
+				href: "https://api.spotify.com/v1/tracks/3TwiQpVy3us8t8a1077WA2",
+				name: "Goodbye (Piano Version)",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:54:54Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "sgx",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 306000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Lux Aeterna - Requiem for a Dream [SGX's Transient Mix]",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:sgx::Lux+Aeterna+-+Requiem+for+a+Dream+%5BSGX%27s+Transient+Mix%5D:306",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:55:16Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Songs From The Pit",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Shael Riley and The Double Ice Backfire",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 231000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Publishing Rights (feat. Schaffer the Darklord)",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Shael+Riley+and+The+Double+Ice+Backfire:Songs+From+The+Pit:Publishing+Rights+%28feat.+Schaffer+the+Darklord%29:231",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:55:20Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Songs From The Pit",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Shael Riley and The Double Ice Backfire",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 174000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "How to Fire a Gun",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Shael+Riley+and+The+Double+Ice+Backfire:Songs+From+The+Pit:How+to+Fire+a+Gun:174",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:55:39Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Morning After Cuts",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Skybox",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 198000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "In A Dream",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Skybox:Morning+After+Cuts:In+A+Dream:198",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:55:58Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Soul Capital",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Soul Capital",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 160000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Know the Law",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Soul+Capital:Soul+Capital:Know+the+Law:160",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:56:11Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/57WwNLKYGLEvT6lefOxUuP",
+					},
+					href: "https://api.spotify.com/v1/albums/57WwNLKYGLEvT6lefOxUuP",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b2731a4e37384a3732eb3b314aaf",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e021a4e37384a3732eb3b314aaf",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d000048511a4e37384a3732eb3b314aaf",
+							width: 64,
+						},
+					],
+					name: "This Is Old",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/4wTyadrU4Yuj2DolnrAMqv",
+						name: "State Shirt",
+						uri: "spotify:artist:4wTyadrU4Yuj2DolnrAMqv",
+					},
+				],
+				external_ids: {
+					isrc: "ushm80882346",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/4dMuaUPtmzmHAytoEfF71R",
+				},
+				href: "https://api.spotify.com/v1/tracks/4dMuaUPtmzmHAytoEfF71R",
+				name: "Computer",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:56:24Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Remixes",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Superpowerless",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 230000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Real Late Starter",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Superpowerless:Remixes:Real+Late+Starter:230",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:58:37Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Platforms EP",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "The Agency",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 200000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Platforms",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:The+Agency:Platforms+EP:Platforms:200",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:58:48Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "The Dandy Warhols performing live at Terminal 5 (NYC) on 17 Sep 2008",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "The Dandy Warhols",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 372000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Burned (Live)",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:The+Dandy+Warhols:The+Dandy+Warhols+performing+live+at+Terminal+5+%28NYC%29+on+17+Sep+2008:Burned+%28Live%29:372",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:58:59Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "The Grammar Club",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 223000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Code Monkey",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:The+Grammar+Club::Code+Monkey:223",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:59:13Z",
+			added_by: {
+				id: "aramzs",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "tomac",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 272000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "another day",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:tomac::another+day:272",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:59:32Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Illinoize",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Tor and Sufjan Stevens",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 305000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "John Wayne Gacy Jr. / Specialize (f. Pete Rock & CL Smooth)",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Tor+and+Sufjan+Stevens:Illinoize:John+Wayne+Gacy+Jr.+%2F+Specialize+%28f.+Pete+Rock+%26+CL+Smooth%29:305",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:59:43Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Van Go Lion",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 223000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "The Good Fight",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Van+Go+Lion::The+Good+Fight:223",
+			},
+		},
+		{
+			added_at: "2011-07-16T16:59:56Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Victims of Science",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 162000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "The Device Has Been Modified",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Victims+of+Science::The+Device+Has+Been+Modified:162",
+			},
+		},
+		{
+			added_at: "2011-07-16T17:00:26Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "The Logic of The Sound EP",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "WM",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 189000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "#7 String Organ",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:WM:The+Logic+of+The+Sound+EP:%237+String+Organ:189",
+			},
+		},
+		{
+			added_at: "2013-03-15T04:00:20Z",
+			added_by: {
+				id: "aramzs",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "tomac",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 297000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "in your head",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:tomac::in+your+head:297",
+			},
+		},
+		{
+			added_at: "2013-03-15T04:01:03Z",
+			added_by: {
+				id: "aramzs",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "tomac",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 273000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "another daymension",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:tomac::another+daymension:273",
+			},
+		},
+		{
+			added_at: "2013-03-15T04:01:25Z",
+			added_by: {
+				id: "aramzs",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "tomac",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 318000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "a new hope",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:tomac::a+new+hope:318",
+			},
+		},
+		{
+			added_at: "2011-07-17T13:56:02Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/1DYDk4haCMnCHkbYGLEynU",
+					},
+					href: "https://api.spotify.com/v1/albums/1DYDk4haCMnCHkbYGLEynU",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b273454f92330267f67cebcd5e8e",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e02454f92330267f67cebcd5e8e",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d00004851454f92330267f67cebcd5e8e",
+							width: 64,
+						},
+					],
+					name: "The Golden Age",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/68g1s6VqLLLBI3tXR0Bb7C",
+						name: "The Asteroids Galaxy Tour",
+						uri: "spotify:artist:68g1s6VqLLLBI3tXR0Bb7C",
+					},
+				],
+				external_ids: {
+					isrc: "GBWRR0800045",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/75xJgtHmTdEr4v8pyflyxE",
+				},
+				href: "https://api.spotify.com/v1/tracks/75xJgtHmTdEr4v8pyflyxE",
+				name: "The Golden Age",
+			},
+		},
+		{
+			added_at: "2011-09-23T22:26:32Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/09Cvd1XS0KwCXfMXukpvSS",
+					},
+					href: "https://api.spotify.com/v1/albums/09Cvd1XS0KwCXfMXukpvSS",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b273e4028ad4cc09d10ce65f26e4",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e02e4028ad4cc09d10ce65f26e4",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d00004851e4028ad4cc09d10ce65f26e4",
+							width: 64,
+						},
+					],
+					name: "Yael Naim",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/32aFdXARUiqP81SXqIPD4w",
+						name: "Yael Naim",
+						uri: "spotify:artist:32aFdXARUiqP81SXqIPD4w",
+					},
+				],
+				external_ids: {
+					isrc: "FR79W0700370",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/6l9HDwqU46DHCuNyvbmFdP",
+				},
+				href: "https://api.spotify.com/v1/tracks/6l9HDwqU46DHCuNyvbmFdP",
+				name: "New Soul",
+			},
+		},
+		{
+			added_at: "2011-11-03T11:08:37Z",
+			added_by: {
+				id: "",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/6PKuuIHL3SCjlGYVWMz5RS",
+					},
+					href: "https://api.spotify.com/v1/albums/6PKuuIHL3SCjlGYVWMz5RS",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b2739e961340fc00c6ce7b43054b",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e029e961340fc00c6ce7b43054b",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d000048519e961340fc00c6ce7b43054b",
+							width: 64,
+						},
+					],
+					name: "David Dunn",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/57ZPJfidpxGJGkyjcmz68v",
+						name: "David Dunn",
+						uri: "spotify:artist:57ZPJfidpxGJGkyjcmz68v",
+					},
+				],
+				external_ids: {
+					isrc: "USDHM0907868",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/0MXWsIgEHv3E4LkM92yfBP",
+				},
+				href: "https://api.spotify.com/v1/tracks/0MXWsIgEHv3E4LkM92yfBP",
+				name: "This Is For You",
+			},
+		},
+		{
+			added_at: "2013-03-15T04:14:35Z",
+			added_by: {
+				id: "aramzs",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/7spq56B9kBvywDrcIKLNgL",
+					},
+					href: "https://api.spotify.com/v1/albums/7spq56B9kBvywDrcIKLNgL",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b2735cbc2c3d3344f49db0eac4a6",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e025cbc2c3d3344f49db0eac4a6",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d000048515cbc2c3d3344f49db0eac4a6",
+							width: 64,
+						},
+					],
+					name: "Out of the Toybox",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/3U77VPrrDmHFOSCk3VRoV4",
+						name: "The Cosmic Ragdolls",
+						uri: "spotify:artist:3U77VPrrDmHFOSCk3VRoV4",
+					},
+				],
+				external_ids: {
+					isrc: "TCABM1362732",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/5YWr5oWKnu7NaZT0sQEpW1",
+				},
+				href: "https://api.spotify.com/v1/tracks/5YWr5oWKnu7NaZT0sQEpW1",
+				name: "Rosalinda",
+			},
+		},
+		{
+			added_at: "2013-03-15T04:16:01Z",
+			added_by: {
+				id: "aramzs",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/2eIeZ8LYlgmts8tJWDkalg",
+					},
+					href: "https://api.spotify.com/v1/albums/2eIeZ8LYlgmts8tJWDkalg",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b273ed21972c3287e82e1e8ad9c3",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e02ed21972c3287e82e1e8ad9c3",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d00004851ed21972c3287e82e1e8ad9c3",
+							width: 64,
+						},
+					],
+					name: "Turning Stone",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/13CKL0erBftcm3d7zwd7xR",
+						name: "The Drexels",
+						uri: "spotify:artist:13CKL0erBftcm3d7zwd7xR",
+					},
+				],
+				external_ids: {
+					isrc: "ushm21297121",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/1w9ps7DPHMqIFYcyMdATDE",
+				},
+				href: "https://api.spotify.com/v1/tracks/1w9ps7DPHMqIFYcyMdATDE",
+				name: "Magneto's Dream",
+			},
+		},
+		{
+			added_at: "2013-03-15T04:16:59Z",
+			added_by: {
+				id: "aramzs",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/0s0Bc5cmfLhgk2ZBfDDEgB",
+					},
+					href: "https://api.spotify.com/v1/albums/0s0Bc5cmfLhgk2ZBfDDEgB",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b2732e000976ed9624afb140edcd",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e022e000976ed9624afb140edcd",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d000048512e000976ed9624afb140edcd",
+							width: 64,
+						},
+					],
+					name: "Bells",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/1Ecagb1V0oVlO0pFKnhYWM",
+						name: "Laura Jansen",
+						uri: "spotify:artist:1Ecagb1V0oVlO0pFKnhYWM",
+					},
+				],
+				external_ids: {
+					isrc: "USTC90945091",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/49NgRY5ZN7l7ijcelXxO4q",
+				},
+				href: "https://api.spotify.com/v1/tracks/49NgRY5ZN7l7ijcelXxO4q",
+				name: "Wicked World",
+			},
+		},
+		{
+			added_at: "2013-03-15T04:20:05Z",
+			added_by: {
+				id: "aramzs",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/5sf0VZf1VyW7VRu8ZpseP0",
+					},
+					href: "https://api.spotify.com/v1/albums/5sf0VZf1VyW7VRu8ZpseP0",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b273bc5eb819315c093fefdad7c9",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e02bc5eb819315c093fefdad7c9",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d00004851bc5eb819315c093fefdad7c9",
+							width: 64,
+						},
+					],
+					name: "Love Technology",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/5unEyN9QxgIk94Llcb8kbL",
+						name: "Heads We Dance",
+						uri: "spotify:artist:5unEyN9QxgIk94Llcb8kbL",
+					},
+				],
+				external_ids: {
+					isrc: "GBRUQ0900001",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/6jU5sgP6mWQAQiFaoZrkd2",
+				},
+				href: "https://api.spotify.com/v1/tracks/6jU5sgP6mWQAQiFaoZrkd2",
+				name: "The Human Touch",
+			},
+		},
+		{
+			added_at: "2013-03-15T04:26:00Z",
+			added_by: {
+				id: "aramzs",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "The Human Touch Single",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Heads We Dance",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 370000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "The Human Touch (Sidechains remix)",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Heads+We+Dance:The+Human+Touch+Single:The+Human+Touch+%28Sidechains+remix%29:370",
+			},
+		},
+		{
+			added_at: "2013-03-15T04:20:46Z",
+			added_by: {
+				id: "aramzs",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/4ygLzPNpG3nEJhjz7smlQY",
+					},
+					href: "https://api.spotify.com/v1/albums/4ygLzPNpG3nEJhjz7smlQY",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b2732f6c31ce384f4ba8c3a5c492",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e022f6c31ce384f4ba8c3a5c492",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d000048512f6c31ce384f4ba8c3a5c492",
+							width: 64,
+						},
+					],
+					name: "Adventure We Go",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/3O316toq9Q067BGkekOs6b",
+						name: "Muchuu",
+						uri: "spotify:artist:3O316toq9Q067BGkekOs6b",
+					},
+				],
+				external_ids: {
+					isrc: "GB4HB0900006",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/0AZddUqTcvGlurFqu6w06l",
+				},
+				href: "https://api.spotify.com/v1/tracks/0AZddUqTcvGlurFqu6w06l",
+				name: "Songs In My Room",
+			},
+		},
+		{
+			added_at: "2013-03-15T04:51:58Z",
+			added_by: {
+				id: "aramzs",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/5pa6TS6zRNIBGEsLVji0fL",
+					},
+					href: "https://api.spotify.com/v1/albums/5pa6TS6zRNIBGEsLVji0fL",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b273a894be23080a62d5c3299a98",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e02a894be23080a62d5c3299a98",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d00004851a894be23080a62d5c3299a98",
+							width: 64,
+						},
+					],
+					name: "To Build A Fire",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/0M8H25L3mBby3gXQg84pab",
+						name: "Post Human Era",
+						uri: "spotify:artist:0M8H25L3mBby3gXQg84pab",
+					},
+				],
+				external_ids: {
+					isrc: "USQY50974174",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/06qlTDjiL42kjZ7kOhDQCK",
+				},
+				href: "https://api.spotify.com/v1/tracks/06qlTDjiL42kjZ7kOhDQCK",
+				name: "Replacing You",
+			},
+		},
+		{
+			added_at: "2013-03-15T04:57:10Z",
+			added_by: {
+				id: "aramzs",
+			},
+			track: {
+				album: {
+					album_type: null,
+					artists: [],
+					available_markets: [],
+					external_urls: {},
+					href: null,
+					id: null,
+					images: [],
+					name: "Warmer In The Winter",
+					release_date: null,
+					release_date_precision: null,
+					type: "album",
+					uri: null,
+				},
+				artists: [
+					{
+						external_urls: {},
+						href: null,
+						id: null,
+						name: "Katie Lee",
+						type: "artist",
+						uri: null,
+					},
+				],
+				available_markets: [],
+				disc_number: 0,
+				duration_ms: 258000,
+				explicit: false,
+				external_ids: {},
+				external_urls: {},
+				href: null,
+				id: null,
+				is_local: true,
+				name: "Mama Said",
+				popularity: 0,
+				preview_url: null,
+				track_number: 0,
+				type: "track",
+				uri: "spotify:local:Katie+Lee:Warmer+In+The+Winter:Mama+Said:258",
+			},
+		},
+		{
+			added_at: "2013-03-15T05:14:21Z",
+			added_by: {
+				id: "aramzs",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/5LmcXTcYscwOiFk3hctW2Q",
+					},
+					href: "https://api.spotify.com/v1/albums/5LmcXTcYscwOiFk3hctW2Q",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b27333ca1353990bed74d57bbae5",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e0233ca1353990bed74d57bbae5",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d0000485133ca1353990bed74d57bbae5",
+							width: 64,
+						},
+					],
+					name: "Masquerade",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/4lN8IYTePwhNUi2ESHEHip",
+						name: "Lelia Broussard",
+						uri: "spotify:artist:4lN8IYTePwhNUi2ESHEHip",
+					},
+				],
+				external_ids: {
+					isrc: "USZXY1001532",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/6EmUcJbVBCUQ0R0VoOPUJf",
+				},
+				href: "https://api.spotify.com/v1/tracks/6EmUcJbVBCUQ0R0VoOPUJf",
+				name: "Hipster Bitch",
+			},
+		},
+		{
+			added_at: "2013-03-15T05:14:21Z",
+			added_by: {
+				id: "aramzs",
+			},
+			track: {
+				album: {
+					external_urls: {
+						spotify:
+							"https://open.spotify.com/album/5LmcXTcYscwOiFk3hctW2Q",
+					},
+					href: "https://api.spotify.com/v1/albums/5LmcXTcYscwOiFk3hctW2Q",
+					images: [
+						{
+							height: 640,
+							url: "https://i.scdn.co/image/ab67616d0000b27333ca1353990bed74d57bbae5",
+							width: 640,
+						},
+						{
+							height: 300,
+							url: "https://i.scdn.co/image/ab67616d00001e0233ca1353990bed74d57bbae5",
+							width: 300,
+						},
+						{
+							height: 64,
+							url: "https://i.scdn.co/image/ab67616d0000485133ca1353990bed74d57bbae5",
+							width: 64,
+						},
+					],
+					name: "Masquerade",
+				},
+				artists: [
+					{
+						href: "https://api.spotify.com/v1/artists/4lN8IYTePwhNUi2ESHEHip",
+						name: "Lelia Broussard",
+						uri: "spotify:artist:4lN8IYTePwhNUi2ESHEHip",
+					},
+				],
+				external_ids: {
+					isrc: "USZXY1001524",
+				},
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/track/3lYetAlENuMoDwdpac5HGJ",
+				},
+				href: "https://api.spotify.com/v1/tracks/3lYetAlENuMoDwdpac5HGJ",
+				name: "Satellite",
+			},
+		},
+	],
+};
+
 const project = {
 	items: [
 		{
@@ -13465,6 +17446,8 @@ var project201 = {
 };
 
 var whole = new Set([
+	...from61.items,
+	...from61_51.items,
 	...project.items,
 	...project51.items,
 	...project101.items,
@@ -13524,7 +17507,7 @@ var whole = new Set([
 var c = 0;
 whole.forEach(async (track) => {
 	console.log(++c, track.track.name);
-	if (c == 236) {
+	if (c == 2) {
 		console.log(
 			track,
 			track.track.artists,
@@ -13544,6 +17527,25 @@ whole.forEach(async (track) => {
 				return false;
 			}
 		});
+
+		let lastFMPromisedData = new Promise((resolve, reject) => {
+			fetch(
+				`http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${LASTFM_API_KEY}&artist=${artists[0]}&track=${track.track.name}&format=json`,
+				{
+					headers: {
+						"User-Agent":
+							"Song Obsessed/1.0 ( http://aramzs.github.io )",
+					},
+				}
+			)
+				.then((response) => response.json())
+				.then((data) => {
+					console.log("LASTFM Data", data);
+					resolve(data);
+				})
+				.catch((error) => console.error("Error:", error));
+		});
+
 		let artistGenre = new Promise((resolve, reject) => {
 			fetch(
 				`https://musicbrainz.org/ws/2/artist/?query=${artists[0]}&limit=1&fmt=json`,
@@ -13562,7 +17564,7 @@ whole.forEach(async (track) => {
 				.catch((error) => console.error("Error:", error));
 		});
 		let artistsObject = await artistGenre;
-		console.log("artistsObject", artistsObject);
+		//console.log("artistsObject", artistsObject);
 		let tags = [];
 		if (artistsObject.artists.length > 0) {
 			let artist = artistsObject.artists[0];
@@ -13577,6 +17579,13 @@ whole.forEach(async (track) => {
 				});
 			}
 		}
+		let lastFMData = await lastFMPromisedData;
+		console.log("lastFMData.track", lastFMData.track);
+		if (lastFMData.track.toptags.hasOwnProperty("tag") > 0) {
+			lastFMData.track.toptags.tag.forEach((tag) => {
+				tags.push(tag.name);
+			});
+		}
 		var YAMLTags = tags.join(`
   - `);
 		let commaSeperatedArtists = artists.join(", ");
@@ -13589,22 +17598,46 @@ whole.forEach(async (track) => {
 			strict: true,
 			locale: "en",
 		});
-		console.log("imageurl", image.url);
-		let imageBlob = await fetch(image.url, {
-			headers: {
-				"User-Agent": "Song Obsessed/1.0 ( http://aramzs.github.io )",
-			},
-		});
-		let imageReady = await imageBlob.blob();
-		const arrayBuffer = await imageReady.arrayBuffer();
-		const buffer = Buffer.from(arrayBuffer);
-		console.log(imageBlob);
-		var imageParts = image.url.split("/");
-		var imageName = imageParts[imageParts.length - 1];
-		// imageBlob.body.pipe(fs.createWriteStream(`./${imageName}.jpeg`));
-		fs.writeFileSync("./src/img/" + slug + ".jpeg", buffer);
-		let localImageName = slug + ".jpeg";
-
+		let processImageUrl = async (aUrl, filetype) => {
+			let imageBlob = await fetch(aUrl, {
+				headers: {
+					"User-Agent":
+						"Song Obsessed/1.0 ( http://aramzs.github.io )",
+				},
+			});
+			let imageReady = await imageBlob.blob();
+			const arrayBuffer = await imageReady.arrayBuffer();
+			const buffer = Buffer.from(arrayBuffer);
+			// console.log(imageBlob);
+			var imageParts = aUrl.split("/");
+			var imageName = imageParts[imageParts.length - 1];
+			// imageBlob.body.pipe(fs.createWriteStream(`./${imageName}.jpeg`));
+			fs.writeFileSync("./src/img/" + slug + `.${filetype}`, buffer);
+			localImageName = slug + `.${filetype}`;
+		};
+		let localImageName = "";
+		if (image?.url) {
+			console.log("imageurl", image.url);
+			processImageUrl(image.url, "jpeg");
+		} else if (lastFMData?.track?.album?.image) {
+			var image = lastFMData.track.album.image.find((image) => {
+				if (image.size == "extralarge") {
+					return true;
+				} else {
+					return false;
+				}
+			});
+			processImageUrl(image["#text"], "png");
+		}
+		let description = "";
+		if (lastFMData.wiki && lastFMData.wiki.summary) {
+			description =
+				"From Last.fm: " +
+				lastFMData.wiki.summary +
+				`<br/><br/><br/> *User-contributed text is used from the Last.fm wiki under the Creative Commons By-SA License*`;
+		}
+		let writeOptions = { flag: "w" };
+		// writeOptions = { flag: "wx" }; // Once we start writing stuff into the posts we don't want to overwrite them.
 		let mdMode = `---
 title: "${title}"
 description: ""
@@ -13624,10 +17657,20 @@ youtube:
 spotify: ${track.track.external_urls.spotify}
 soundcloud:
 audiofile:
+lastfm: ${lastFMData.track.url}
 ---
 
+${description}
 		`;
 		console.log(mdMode);
-		fs.writeFileSync("./src/songs/" + slug + ".md", mdMode);
+		try {
+			fs.writeFileSync(
+				"./src/songs/" + slug + ".md",
+				mdMode,
+				writeOptions
+			);
+		} catch (e) {
+			console.log("Write error", e);
+		}
 	}
 });

@@ -19,6 +19,8 @@ youtube:
 spotify: https://open.spotify.com/track/3UfDSlvREHwBUjUkmucQuU
 soundcloud:
 audiofile:
+lastfm: https://www.last.fm/music/Electric+Dragon/_/Kara%27s+Theme+(Cartridge+1987+Remix)
 ---
+
 
 		
