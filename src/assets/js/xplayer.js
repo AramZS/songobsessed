@@ -1,7 +1,11 @@
 // Create a class for the element
 // https://web.dev/articles/custom-elements-best-practices
 class PlayerElement extends HTMLElement {
-	static observedAttributes = ["playing", "playertype", "media-state"];
+	static observedAttributes = [
+		"xp-playing",
+		"xp-playertype",
+		"xp-media-state",
+	];
 	constructor() {
 		// Always call super first in constructor
 		super();
@@ -96,7 +100,7 @@ class PlayerElement extends HTMLElement {
 	}
 
 	makeMediaPlay() {
-		var type = this.getAttribute("playertype");
+		var type = this.getAttribute("xp-playertype");
 		console.log("play");
 		switch (type) {
 			case "youtube":
@@ -108,7 +112,7 @@ class PlayerElement extends HTMLElement {
 		}
 	}
 	makeMediaPause() {
-		var type = this.getAttribute("playertype");
+		var type = this.getAttribute("xp-playertype");
 		console.log("pause");
 		switch (type) {
 			case "youtube":
@@ -120,7 +124,7 @@ class PlayerElement extends HTMLElement {
 		}
 	}
 	makeMediaAdvance() {
-		var type = this.getAttribute("playertype");
+		var type = this.getAttribute("xp-playertype");
 	}
 
 	attributeChangedCallback(attribute, previousValue, currentValue) {
@@ -134,7 +138,7 @@ class PlayerElement extends HTMLElement {
 			currentValue
 		);
 		switch (attribute) {
-			case "playing":
+			case "xp-playing":
 				if (
 					(!previousValue || previousValue.length < 1) &&
 					currentValue &&
@@ -147,7 +151,7 @@ class PlayerElement extends HTMLElement {
 					this.classList.remove(this.playerActiveClass);
 				}
 				break;
-			case "media-state":
+			case "xp-media-state":
 				if (currentValue == "playing") {
 					window["xplayer-pause"].style.display = "inline-block";
 					window["xplayer-play"].style.display = "none";
@@ -188,7 +192,7 @@ class PlayerElement extends HTMLElement {
 	}
 
 	setMediaState(state) {
-		this.setAttribute("media-state", state);
+		this.setAttribute("xp-media-state", state);
 	}
 
 	advanceMedia() {
@@ -275,7 +279,7 @@ class PlayerElement extends HTMLElement {
 			};
 			var makeitGo = onYouTubeIframeAPIReady.bind(this);
 			this.classList.add("yt");
-			this.setAttribute("playertype", "youtube");
+			this.setAttribute("xp-playertype", "youtube");
 			makeitGo();
 		}
 		// this.setAttribute("now", videoId);
@@ -410,7 +414,7 @@ class PlayerElement extends HTMLElement {
 			"Process song object to currently playing",
 			this.songDataStore[val]
 		);
-		this.setAttribute("playing", val);
+		this.setAttribute("xp-playing", val);
 		window["xplayer-currently"].innerHTML = `${
 			this.songDataStore[val].songtitle
 		} by ${this.songDataStore[val].artists.join(", ")}`;
