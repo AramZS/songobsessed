@@ -9,6 +9,9 @@ const fs = require("fs");
 
 var slugify = require("slugify");
 
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+
 require("dotenv").config();
 
 const LASTFM_API_KEY = process.env.LASTFM_API_KEY;
@@ -24141,7 +24144,7 @@ var whole = new Set([
 var c = 0;
 whole.forEach(async (track) => {
 	console.log(++c, track.track.name);
-	if (c == 427) {
+	if (c == 433) {
 		console.log(
 			track,
 			track.track.artists,
@@ -24198,6 +24201,30 @@ whole.forEach(async (track) => {
 				.catch((error) => console.error("Error:", error));
 		});
 		let artistsObject = await artistGenre;
+		let lastFMData = await lastFMPromisedData;
+		let ytcheck = new Promise((resolve, reject) => {
+			fetch(lastFMData.track.url, {
+				headers: {
+					"User-Agent":
+						"Song Obsessed/1.0 ( http://aramzs.github.io )",
+				},
+			})
+				.then((response) => response.text())
+				.then((data) => {
+					console.log("ytcheck");
+					let ytlink = false;
+					if (data) {
+						fs.writeFileSync("./testLast.html", data);
+						const dom = new JSDOM(data);
+						ytlink = dom.window.document
+							.querySelector("#track-page-video-playlink")
+							.getAttribute("data-youtube-url");
+					}
+					resolve(ytlink);
+				})
+				.catch((error) => console.error("Error:", error));
+		});
+		let ytlink = await ytcheck;
 		//console.log("artistsObject", artistsObject);
 		let tags = [];
 		if (artistsObject.artists.length > 0) {
@@ -24213,7 +24240,6 @@ whole.forEach(async (track) => {
 				});
 			}
 		}
-		let lastFMData = await lastFMPromisedData;
 		console.log("lastFMData.track", lastFMData.track);
 		if (lastFMData.track.toptags.hasOwnProperty("tag") > 0) {
 			lastFMData.track.toptags.tag.forEach((tag) => {
@@ -24299,7 +24325,7 @@ playlists:
     name: "Obsessions"
     position: ${c}
     author: ${process.env.PLAYLIST_AUTHOR}
-youtube: 
+youtube: ${ytlink}
 spotify: ${spotifyTrack}
 soundcloud:
 audiofile:
