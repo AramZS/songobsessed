@@ -3,6 +3,8 @@
 // &offset=200
 
 // Got my token to request these via - https://developer.spotify.com/
+
+// run via node ./__build-tools/playlists.js
 const fs = require("fs");
 
 var slugify = require("slugify");
@@ -13577,6 +13579,16 @@ whole.forEach(async (track) => {
 		}
 		var YAMLTags = tags.join(`
   - `);
+		let commaSeperatedArtists = artists.join(", ");
+		let title = `${track.track.name} by ${commaSeperatedArtists.replace(
+			/,(?=[^,]+$)/,
+			" and"
+		)}`;
+		let slug = slugify(`${title}`, {
+			lower: true,
+			strict: true,
+			locale: "en",
+		});
 		console.log("imageurl", image.url);
 		let imageBlob = await fetch(image.url, {
 			headers: {
@@ -13590,10 +13602,11 @@ whole.forEach(async (track) => {
 		var imageParts = image.url.split("/");
 		var imageName = imageParts[imageParts.length - 1];
 		// imageBlob.body.pipe(fs.createWriteStream(`./${imageName}.jpeg`));
-		fs.writeFileSync("./src/img/" + imageName + ".jpeg", buffer);
-		let localImageName = imageName + ".jpeg";
+		fs.writeFileSync("./src/img/" + slug + ".jpeg", buffer);
+		let localImageName = slug + ".jpeg";
+
 		let mdMode = `---
-title: "${track.track.name} by ${artists.join(", ")}"
+title: "${title}"
 description: ""
 date: ${track.added_at}
 tags:
@@ -13615,15 +13628,6 @@ audiofile:
 
 		`;
 		console.log(mdMode);
-		fs.writeFileSync(
-			"./src/songs/" +
-				slugify(`${track.track.name} by ${artists.join(", ")}`, {
-					lower: true,
-					strict: true,
-					locale: "en",
-				}) +
-				".md",
-			mdMode
-		);
+		fs.writeFileSync("./src/songs/" + slug + ".md", mdMode);
 	}
 });
