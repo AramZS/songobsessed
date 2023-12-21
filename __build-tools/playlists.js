@@ -24143,15 +24143,19 @@ var whole = new Set([
 
 var c = 0;
 whole.forEach(async (track) => {
-	console.log(++c, track.track.name);
+	++c;
+	//console.log(c, track.track.name);
 	// 453 total
-	if (c > 450 && c < 453) {
-		console.log(
+	if (c == 429) {
+		console.log(c, track.track.name);
+		// c > 419 && c < 441) {
+		let playlistNumber = JSON.stringify(c);
+		/*console.log(
 			track,
 			track.track.artists,
 			track.track.album.external_urls,
 			track.track.album.images
-		);
+		);**/
 		var artists = [];
 		track.track.artists.forEach((a) => {
 			artists.push(a.name);
@@ -24183,7 +24187,7 @@ whole.forEach(async (track) => {
 				})
 				.catch((error) => console.error("Error:", error));
 		});
-
+		console.log("Artists check: ", artists);
 		let artistGenre = new Promise((resolve, reject) => {
 			fetch(
 				`https://musicbrainz.org/ws/2/artist/?query=${artists[0]}&limit=1&fmt=json`,
@@ -24196,10 +24200,12 @@ whole.forEach(async (track) => {
 			)
 				.then((response) => response.json())
 				.then((data) => {
-					console.log(data);
+					// console.log("mbz artists", data);
 					resolve(data);
 				})
-				.catch((error) => console.error("Error:", error));
+				.catch((error) =>
+					console.error("\x1b[33m  mbz Error: \x1b[0m", error)
+				);
 		});
 		let artistsObject = await artistGenre;
 		let lastFMData = await lastFMPromisedData;
@@ -24223,12 +24229,14 @@ whole.forEach(async (track) => {
 					}
 					resolve(ytlink);
 				})
-				.catch((error) => console.error("Error:", error));
+				.catch((error) =>
+					console.error("\x1b[33m  Error: \x1b[0m", error)
+				);
 		});
 		let ytlink = await ytcheck;
 		//console.log("artistsObject", artistsObject);
 		let tags = [];
-		if (artistsObject.artists.length > 0) {
+		if (artistsObject?.artists?.length > 0) {
 			let artist = artistsObject.artists[0];
 			if (artist.disambiguation) {
 				tags.push(artist.disambiguation);
@@ -24240,6 +24248,10 @@ whole.forEach(async (track) => {
 					}
 				});
 			}
+		} else {
+			console.log(
+				`\x1b[33m  Song ${playlistNumber} ${track.track.name} failed artists check. \x1b[0m`
+			);
 		}
 		console.log("lastFMData.track", lastFMData.track);
 		if (lastFMData.track.toptags.hasOwnProperty("tag") > 0) {
@@ -24290,7 +24302,7 @@ whole.forEach(async (track) => {
 			});
 			await processImageUrl(image["#text"], "png");
 		}
-		let description = "";
+		let description = "A fun song I like. More information to come!";
 		if (lastFMData.wiki && lastFMData.wiki.summary) {
 			description =
 				"From Last.fm: " +
@@ -24324,7 +24336,7 @@ featuredImageAlt: ""
 playlists:
   -
     name: "Obsessions"
-    position: ${c}
+    position: ${playlistNumber}
     author: ${process.env.PLAYLIST_AUTHOR}
 youtube: ${ytlink}
 spotify: ${spotifyTrack}

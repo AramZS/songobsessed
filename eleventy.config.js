@@ -127,7 +127,21 @@ module.exports = function (eleventyConfig) {
 	};
 
 	eleventyConfig.addCollection("songsPages", (collection) => {
-		return getPostClusters(collection.getFilteredByTag("songs"), "Songs");
+		let songPages = collection.getFilteredByTag("songs");
+		songPages.sort((a, b) => {
+			if (!b?.data?.playlists?.length) {
+				return 0;
+			}
+			return b.data.playlists[0].position - a.data.playlists[0].position;
+		});
+		[songPages[0], songPages[1], songPages[2]].forEach((song) => {
+			console.log(
+				"songPages",
+				song.data.title,
+				JSON.stringify(song.data.playlists)
+			);
+		});
+		return getPostClusters(songPages, "Songs");
 	});
 
 	eleventyConfig.addPlugin(require("eleventy-plugin-dart-sass"), {
@@ -177,7 +191,7 @@ module.exports = function (eleventyConfig) {
 
 	// pagefind search
 	eleventyConfig.on("eleventy.after", () => {
-		console.log("After Eleventy", eleventyConfig);
+		// console.log("After Eleventy", eleventyConfig);
 		//console.log("indexing search using pagefind");
 		//execSync(`npx pagefind --source _site --glob \"[0-9]*/**/*.html\"`, {
 		//	encoding: "utf-8",

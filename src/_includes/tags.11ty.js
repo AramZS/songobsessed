@@ -2,7 +2,7 @@ const base = require("./base.11ty");
 const linkmaker = require("../utils/linkmaker");
 
 module.exports = async function (data) {
-	console.log("tags data", data);
+	// console.log("tags data", data);
 	let getHashTagsFromText = function (text = "") {
 		let words = {};
 		let splits = text.split(/(\#[A-Za-z][^\s\.\'\"\!\,\?\;\}\{]*)/g);

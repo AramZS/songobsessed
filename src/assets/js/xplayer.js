@@ -1,5 +1,7 @@
 // Create a class for the element
 // https://web.dev/articles/custom-elements-best-practices
+// https://github.com/web-scrobbler/web-scrobbler/blob/master/src/connectors/player.fm.ts
+// https://github.com/web-scrobbler/web-scrobbler/issues/3730
 class PlayerElement extends HTMLElement {
 	static observedAttributes = [
 		"xp-playing",
@@ -16,6 +18,7 @@ class PlayerElement extends HTMLElement {
 		this.internalPlaylist = [];
 		this.songDataStore = {};
 		this.classList.add(this.playerEmptyStateClass);
+		this.classList.add("miniplayer");
 		this.playlistHandler = {
 			deleteProperty: function (target, property) {
 				//delete window.xplayer.songDataStore[target[property]];
@@ -81,6 +84,10 @@ class PlayerElement extends HTMLElement {
 		};
 		this.mediaState = "await";
 		this.mode = false;
+	}
+
+	linkMaker(url) {
+		return `<a href="${url}" class="xplayer-songlink" hx-boost="true" hx-swap="outerHTML show:top" hx-target="#main-content" hx-push-url="true" hx-select="#main-content">🔗</a>`;
 	}
 
 	getMediaState(value) {
@@ -332,7 +339,7 @@ class PlayerElement extends HTMLElement {
 		this.controlbox = document.createElement("div");
 		this.controlbox.id = "xplayer-controlbox";
 		this.controlbox.innerHTML = /*html*/ `<div>
-			<div class="xplayer-control" id="xplayer-play">▶</div>
+			<div class="xplayer-control play" id="xplayer-play">▶</div>
 			<div class="xplayer-control" id="xplayer-pause">⏸</div>
 			<div class="xplayer-control" id="xplayer-next">⏭</div>
 			<div class="xplayer-control" id="xplayer-enlarge">↖</div>
@@ -410,9 +417,11 @@ class PlayerElement extends HTMLElement {
 	addToPlaylist(mediaId) {
 		this.playlistManager.push(mediaId);
 		var newItem = document.createElement("div");
-		newItem.innerText = `${
+		newItem.innerHTML = `${
 			this.songDataStore[mediaId].songtitle
-		} by ${this.songDataStore[mediaId].artists.join(", ")}`;
+		} by ${this.songDataStore[mediaId].artists.join(
+			", "
+		)}   ${this.linkMaker(this.songDataStore[mediaId].siteUrl)}`;
 		newItem.id = "playlist-item-" + mediaId;
 		newItem.classList.add("playlist-item");
 		this.playlistqueue.append(newItem);
@@ -424,9 +433,15 @@ class PlayerElement extends HTMLElement {
 			this.songDataStore[val]
 		);
 		this.setAttribute("xp-playing", val);
-		window["xplayer-currently"].innerHTML = `${
+		window[
+			"xplayer-currently"
+		].innerHTML = `<span class="current-episode-link">${
 			this.songDataStore[val].songtitle
-		} by ${this.songDataStore[val].artists.join(", ")}`;
+		}</span> by <span class="current-series-link">${this.songDataStore[
+			val
+		].artists.join(", ")}</span>  ${this.linkMaker(
+			this.songDataStore[val].siteUrl
+		)}`;
 		window["xplayer-currently"].setAttribute("data-active-media", val);
 	}
 
