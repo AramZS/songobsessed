@@ -2,12 +2,22 @@ const linkmaker = require("../../utils/linkmaker");
 
 module.exports = function (data) {
 	return /*html*/ `
-<nav id="nav">
+<nav id="top-nav">
+	<script>
+	function opennav(e){
+		console.log(e.parentNode.parentNode); e.parentNode.parentNode.classList.toggle('open');
+	}
+	</script>
+	<div id="nav-icon" onclick="opennav(this)">
+		<img src="/assets/menu-icon.svg" />
+	</div>
 	<h1>${linkmaker(data, "", data.site.title)}</h1>
-	${linkmaker(data, "/songs/", "Songs")}
-	${linkmaker(data, "/search/", "Search")}
-	${linkmaker(data, "/how-to-scrobble/", "Scrobble This Site")}
-	${linkmaker(data, "/about/", "What is This?")}
+	<div id="nav-menu-items"><ul>
+		<li>${linkmaker(data, "/songs/", "Songs")}</li>
+		<li>${linkmaker(data, "/search/", "Search")}</li>
+		<li>${linkmaker(data, "/how-to-scrobble/", "Scrobble This Site")}</li>
+		<li>${linkmaker(data, "/about/", "What is This?")}</li>
+	</ul></div>
 </nav>
 `;
 };
