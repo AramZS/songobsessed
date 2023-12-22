@@ -28,6 +28,10 @@ module.exports = async function (data, zones) {
 		[],
 		() => {}
 	);
+	let templateStyle = "";
+	if (zones.template) {
+		templateStyle = `<link rel="stylesheet" href="/assets/css/template-${zones.template}.css">`;
+	}
 	return /*html*/ `<!doctype html>
 <html lang="en">
 	<head>
@@ -35,6 +39,7 @@ module.exports = async function (data, zones) {
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>${data.title || data.site.title}</title>
 		<meta name="description" content="${meta_description}" />
+		<link href="/assets/fraunces/fraunces.css" rel="stylesheet">
 		${metaChunk}
 		<script>
 		if("classList" in document.documentElement) {
@@ -54,6 +59,7 @@ module.exports = async function (data, zones) {
 		<div id="inner-body">
 		${nav(data)}
 			<div id="main-content" hx-history-elt>
+			${templateStyle}
 				<header>
 					<h1 class="title">${data.title}</h1>
 				</header>

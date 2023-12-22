@@ -61,8 +61,9 @@ module.exports = async function (data) {
 		},
 	};
 	let insert = {
+		template: "song",
 		content: /*html*/ `
-		<div id="song-image"></div>
+		<div id="song-image-wrapper"><div id="song-image"><img src="${albumImage}" /></div></div>
 		${data.content}
 			<br />
 			<script>

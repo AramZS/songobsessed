@@ -1,6 +1,59 @@
 h1.title
     font-family: 'Fraunces', serif
     font-weight: 900
-#song-image, #song-image img
+#song-image-wrapper
+    display: block
+    margin: 0 auto
+    height: 640px
+    width: 640px
+    max-width: 100%
+    margin-bottom: 15px
+#song-image
+    display: block
+    position: relative
+    width: inherit
+    height: inherit
+    float: left
+    margin: 0 auto
+#song-image img
     margin: 0 auto
     display: block
+    top: 0
+    left: 0
+    width: inherit
+    height: inherit
+    object-fit: contain
+#song-image::before
+    content: ""
+    width: 100%
+    display: block
+    position: absolute
+    top: 0
+    left: 0
+    width: inherit
+    height: inherit
+    background-color: var(--accent)
+    background: radial-gradient(transparent 250px, rgba(255, 46, 255, 0.196) 250px)
+    background: -moz-radial-gradient(transparent 250px, rgba(255, 46, 255, 0.196) 250px)
+    background: -webkit-radial-gradient(transparent 250px, rgba(255, 46, 255, 0.196) 250px)
+    background: -ms-radial-gradient(transparent 250px, rgba(255, 46, 255, 0.196) 250px)
+    background: -o-radial-gradient(transparent 250px, rgba(255, 46, 255, 0.196) 250px)
+    pointer-events: none
+
+@media (max-width: 670px)
+    #song-image-wrapper
+        display: block
+        margin: 0 auto
+        margin-bottom: 15px
+        height: 370px
+        width: 370px
+    #song-image
+        display: block
+        position: relative
+    #song-image::before
+        background: radial-gradient(transparent 150px, rgba(255, 46, 255, 0.196) 150px)
+        background: -moz-radial-gradient(transparent 150px, rgba(255, 46, 255, 0.196) 150px)
+        background: -webkit-radial-gradient(transparent 150px, rgba(255, 46, 255, 0.196) 150px)
+        background: -ms-radial-gradient(transparent 150px, rgba(255, 46, 255, 0.196) 150px)
+        background: -o-radial-gradient(transparent 150px, rgba(255, 46, 255, 0.196) 150px)
+        pointer-events: none

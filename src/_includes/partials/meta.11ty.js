@@ -210,7 +210,7 @@ module.exports = function (data, title, description, tagSet, imgUrls) {
 		`;
 	});
 
-	return `<!-- ${JSON.stringify(imgUrls)} -->
+	return `<!-- Meta Block -->
 <script type="application/ld+json">
    	${jsonString}
 </script>
