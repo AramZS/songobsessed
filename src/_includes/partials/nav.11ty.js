@@ -2,12 +2,12 @@ const linkmaker = require("../../utils/linkmaker");
 
 module.exports = function (data) {
 	return /*html*/ `
+<script>
+function opennav(e){
+	console.log(e.parentNode.parentNode); e.parentNode.parentNode.classList.toggle('open');
+}
+</script>	
 <nav id="top-nav">
-	<script>
-	function opennav(e){
-		console.log(e.parentNode.parentNode); e.parentNode.parentNode.classList.toggle('open');
-	}
-	</script>
 	<div id="nav-icon" onclick="opennav(this)">
 		<img src="/assets/menu-icon.svg" />
 	</div>

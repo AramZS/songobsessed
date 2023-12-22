@@ -50,32 +50,52 @@ nav
     overflow: hidden
     ul
         display: inline-block
+        margin-left: 12px
     li
         display: inline-block
+        @media (max-width: variables.$large-mobile)
+            &
+                margin-top: 12px
         &:not(:last-of-type)::after
             content: " "
             padding: 0 4px
             text-decoration: none
             color: var(--dark-highlight)
             display: inline-block
-            @media (max-width: variables.$mobile-width)
+            @media (max-width: variables.$large-mobile)
                 &
                     padding: 0 4px
     &:hover, &.open, &:active
         @media (max-width: variables.$large-mobile)
             overflow: visible
+            height: auto
+            padding-bottom: 10px
             #top-nav-inner
-                background-color: var(--background)
+                background-color: var(--back-fill)
                 height: auto
+
+nav h1, #nav-menu-items
+                margin-top: 8px
+                margin-right: 0
+
+nav h1
+    @media (max-width: variables.$large-mobile)
+        margin-bottom: 0
 
 #nav-menu-items
     display: inline-block
+    @media (max-width: variables.$large-mobile)
+        display: block
+        margin-top: 0
+        padding-left: 20px
 
 #nav-icon
     display: none
     width: 25px
     height: 25px
+    float: left
     margin-top: 10px
+    margin-right: 18px
     position: relative
     overflow: hidden
     cursor: pointer
