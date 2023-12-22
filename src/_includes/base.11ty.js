@@ -59,7 +59,7 @@ module.exports = async function (data, zones) {
 				</header>
 				<main class="wrapper">
 					${zones.content}
-					<a href="/search"><h2>Search</h2></a>
+					
 				</main>
 			</div>
 			${footer(data)}

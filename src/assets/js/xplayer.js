@@ -425,6 +425,7 @@ class PlayerElement extends HTMLElement {
 		newItem.id = "playlist-item-" + mediaId;
 		newItem.classList.add("playlist-item");
 		this.playlistqueue.append(newItem);
+		htmx.process(this.playlistqueue);
 	}
 
 	setPlaylistPlaying(val) {
@@ -443,6 +444,7 @@ class PlayerElement extends HTMLElement {
 			this.songDataStore[val].siteUrl
 		)}`;
 		window["xplayer-currently"].setAttribute("data-active-media", val);
+		htmx.process(window["xplayer-currently"]);
 	}
 
 	handlePlayingChange(val, advancing) {
