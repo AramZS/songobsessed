@@ -387,18 +387,24 @@ class PlayerElement extends HTMLElement {
 				case "xplayer-enlarge":
 					if (xplayer.classList.contains("min")) {
 						this.classList.remove("min");
+						document.body.classList.remove("xp-min");
 						this.setPlayerState("standard");
+						document.body.classList.add("xp-standard");
 					} else {
 						this.classList.add("large");
+						document.body.classList.add("xp-large");
 						this.setPlayerState("large");
 					}
 					break;
 				case "xplayer-shrink":
 					if (xplayer.classList.contains("large")) {
 						this.classList.remove("large");
+						document.body.classList.remove("xp-large");
 						this.setPlayerState("standard");
+						document.body.classList.add("xp-standard");
 					} else {
 						this.classList.add("min");
+						document.body.classList.add("xp-min");
 						this.setPlayerState("min");
 					}
 					break;

@@ -36,7 +36,7 @@ module.exports = async function (data, zones) {
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1">
 		<title>${data.title || data.site.title}</title>
 		<meta name="description" content="${meta_description}" />
 		<link href="/assets/fraunces/fraunces.css" rel="stylesheet">

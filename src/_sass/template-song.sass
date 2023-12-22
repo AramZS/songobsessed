@@ -57,3 +57,21 @@ h1.title
         background: -ms-radial-gradient(transparent 150px, rgba(255, 46, 255, 0.196) 150px)
         background: -o-radial-gradient(transparent 150px, rgba(255, 46, 255, 0.196) 150px)
         pointer-events: none
+
+@media (max-width: 500px)
+    #song-image-wrapper
+        display: block
+        margin: 0 auto
+        margin-bottom: 15px
+        height: 250px
+        width: 250px
+    #song-image
+        display: block
+        position: relative
+    #song-image::before
+        background: radial-gradient(transparent 125px, rgba(255, 46, 255, 0.196) 125px)
+        background: -moz-radial-gradient(transparent 125px, rgba(255, 46, 255, 0.196) 125px)
+        background: -webkit-radial-gradient(transparent 125px, rgba(255, 46, 255, 0.196) 125px)
+        background: -ms-radial-gradient(transparent 125px, rgba(255, 46, 255, 0.196) 125px)
+        background: -o-radial-gradient(transparent 125px, rgba(255, 46, 255, 0.196) 125px)
+        pointer-events: none
