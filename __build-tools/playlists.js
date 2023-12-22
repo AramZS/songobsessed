@@ -24363,7 +24363,7 @@ audiofile:
 lastfm: ${lastFMData.track.url}
 ---
 
-${description}
+A song I plan to write more about.
 		`;
 		console.log(mdMode);
 		try {

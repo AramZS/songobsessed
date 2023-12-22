@@ -6,11 +6,21 @@ header, main, footer
     ul
         margin: 18px auto
 
+header, main, footer
+    margin: 60px auto 12px
+
 header
-    padding: 25px 65px
-    margin-top: 60px
+    padding: 25px 16px
     @media (max-width: 481px)
         padding: 25px 2px
 
-header, main, footer
-    margin: 60px auto 12px
+h1.title
+    font-family: 'Fraunces', serif
+    font-size: 3em
+    font-weight: 900
+    padding-left: 0
+    padding-right: 0
+    &::before
+        content: "— "
+    &::after
+        content: " —"

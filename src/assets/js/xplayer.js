@@ -414,6 +414,9 @@ class PlayerElement extends HTMLElement {
 				case "xplayer-pause":
 					this.setMediaState("paused");
 					break;
+				case "xplayer-next":
+					this.advanceMedia();
+					break;
 				default:
 					break;
 			}

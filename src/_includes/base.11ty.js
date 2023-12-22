@@ -61,7 +61,7 @@ module.exports = async function (data, zones) {
 			<div id="main-content" hx-history-elt>
 			${templateStyle}
 				<header>
-					<h1 class="title">${data.title}</h1>
+					<h1 class="title">${data.title.trim()}</h1>
 				</header>
 				<main class="wrapper">
 					${zones.content}

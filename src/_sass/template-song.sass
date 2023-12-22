@@ -4,7 +4,7 @@
     height: 640px
     width: 640px
     max-width: 100%
-    margin-bottom: 15px
+    margin-bottom: 20px
 #song-image
     display: block
     position: relative
@@ -36,6 +36,30 @@
     background: -ms-radial-gradient(transparent 250px, rgba(255, 46, 255, 0.196) 250px)
     background: -o-radial-gradient(transparent 250px, rgba(255, 46, 255, 0.196) 250px)
     pointer-events: none
+
+p
+    font-size: 18px
+
+#brief
+    float: right
+    font-size: 18px
+    margin: 0px 20px 20px
+    padding: 10px 10px 10px
+    background: var(--dark-highlight)
+    color: var(--light-highlight)
+    width: 40%
+    p:last-of-type
+        margin-bottom: 0px
+    .genre-tag
+        background: var(--light-highlight-overlap)
+        color: var(--dark-highlight-accent)
+        padding: 2px 8px
+
+.date-added
+    font-style: italic
+    color: var(--accent)
+    background-color: #141414
+    padding: 6px
 
 @media (max-width: 670px)
     #song-image-wrapper

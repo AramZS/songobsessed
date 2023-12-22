@@ -60,15 +60,41 @@ module.exports = async function (data) {
 			featuredImage: data.featuredImage,
 		},
 	};
+	let tagText = data.tags.map((tag) => {
+		return `<span class="genre-tag">${tag}</span>`;
+	});
+	let linksSet = "";
+	if (data.youtube) {
+		linksSet += `<a href="${data.youtube}" target="_blank" rel="noopener noreferrer">YouTube</a> | `;
+	}
+	if (data.spotify) {
+		linksSet += `<a href="${data.spotify}" target="_blank" rel="noopener noreferrer">Spotify</a> | `;
+	}
+	if (data.lastfm) {
+		linksSet += `<a href="${data.lastfm}" target="_blank" rel="noopener noreferrer">Last.fm</a> | `;
+	}
+	console.log("date", data.date.toString());
+	let dateParts = data?.date.toString().split(" ");
 	let insert = {
 		template: "song",
 		content: /*html*/ `
 		<div id="song-image-wrapper"><div id="song-image"><img src="${albumImage}" /></div></div>
+		<div id="brief">
+			<p>${data.description}</p>
+			<p>Artists: <span>${data.artists.join(", ")}</span></p>
+			<p>Album: <span>${data.album}</span></p>
+			<p>Tags: <span>${tagText.join(" | ")}</span></p>
+			<p>${linksSet}</p>
+		</div>
+		<p><span class="date-added">Added on: ${dateParts[0]} ${dateParts[1]} ${
+			dateParts[2]
+		} ${dateParts[3]}</span></p>
 		${data.content}
 			<br />
 			<script>
 				window.pageData = ${JSON.stringify(onPageObject)};
 			</script>
+			<!--
 			<p>
 			description: ${data.description}, <br /><br />
 			tags: ${data.tags},<br /><br />
@@ -85,6 +111,7 @@ module.exports = async function (data) {
 			playlists: ${JSON.stringify(data.playlists)},<br /><br />
 			featuredImage: <img src="${albumImage}" /><br /><br />
 			</p>
+			-->
 			${youtube(data.youtube, false, onPageObject)}
 			<hr /> 
 			
