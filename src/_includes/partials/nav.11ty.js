@@ -7,6 +7,7 @@ module.exports = function (data) {
 	${linkmaker(data, "/songs/", "Songs")}
 	${linkmaker(data, "/search/", "Search")}
 	${linkmaker(data, "/how-to-scrobble/", "Scrobble This Site")}
+	${linkmaker(data, "/about/", "What is This?")}
 </nav>
 `;
 };

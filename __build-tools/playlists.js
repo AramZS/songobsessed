@@ -24146,7 +24146,7 @@ whole.forEach(async (track) => {
 	++c;
 	//console.log(c, track.track.name);
 	// 453 total
-	if (c == 429) {
+	if (c > 425 && c < 429) {
 		console.log(c, track.track.name);
 		// c > 419 && c < 441) {
 		let playlistNumber = JSON.stringify(c);
@@ -24235,16 +24235,16 @@ whole.forEach(async (track) => {
 		});
 		let ytlink = await ytcheck;
 		//console.log("artistsObject", artistsObject);
-		let tags = [];
+		let tags = new Set();
 		if (artistsObject?.artists?.length > 0) {
 			let artist = artistsObject.artists[0];
 			if (artist.disambiguation) {
-				tags.push(artist.disambiguation);
+				tags.add(artist.disambiguation);
 			}
 			if (artist.tags) {
 				artist.tags.forEach((tag) => {
 					if (tag?.name != "_edit") {
-						tags.push(tag.name);
+						tags.add(tag.name);
 					}
 				});
 			}
@@ -24256,10 +24256,11 @@ whole.forEach(async (track) => {
 		console.log("lastFMData.track", lastFMData.track);
 		if (lastFMData.track.toptags.hasOwnProperty("tag") > 0) {
 			lastFMData.track.toptags.tag.forEach((tag) => {
-				tags.push(tag.name);
+				tags.add(tag.name);
 			});
 		}
-		var YAMLTags = tags.join(`
+		let tagsArray = Array.from(tags);
+		var YAMLTags = tagsArray.join(`
   - `);
 		let commaSeperatedArtists = artists.join(", ");
 		let title = `${track.track.name} by ${commaSeperatedArtists.replace(
@@ -24271,7 +24272,12 @@ whole.forEach(async (track) => {
 			strict: true,
 			locale: "en",
 		});
-		let processImageUrl = async (aUrl, filetype) => {
+		let processImageUrl = async (aUrl, filetype, filename) => {
+			let localImageName = filename + `.${filetype}`;
+			let fileStructureName = "./src/img/" + filename + `.${filetype}`;
+			if (fs.existsSync(fileStructureName)) {
+				return localImageName;
+			}
 			let imageBlob = await fetch(aUrl, {
 				headers: {
 					"User-Agent":
@@ -24285,13 +24291,24 @@ whole.forEach(async (track) => {
 			var imageParts = aUrl.split("/");
 			var imageName = imageParts[imageParts.length - 1];
 			// imageBlob.body.pipe(fs.createWriteStream(`./${imageName}.jpeg`));
-			fs.writeFileSync("./src/img/" + slug + `.${filetype}`, buffer);
-			localImageName = slug + `.${filetype}`;
+			fs.writeFileSync(fileStructureName, buffer);
+			return localImageName;
 		};
-		let localImageName = "";
+		let localImageFileName = "";
+		let imageUrl = "";
 		if (image?.url) {
 			console.log("imageurl", image.url);
-			await processImageUrl(image.url, "jpeg");
+			var sluggedAlbum = slugify(`${track.track.album.name}`, {
+				lower: true,
+				strict: true,
+				locale: "en",
+			});
+			localImageFileName = await processImageUrl(
+				image.url,
+				"jpeg",
+				sluggedAlbum
+			);
+			imageUrl = image.url;
 		} else if (lastFMData?.track?.album?.image) {
 			var image = lastFMData.track.album.image.find((image) => {
 				if (image.size == "extralarge") {
@@ -24302,7 +24319,7 @@ whole.forEach(async (track) => {
 			});
 			await processImageUrl(image["#text"], "png");
 		}
-		let description = "A fun song I like. More information to come!";
+		let description = "More information to come!";
 		if (lastFMData.wiki && lastFMData.wiki.summary) {
 			description =
 				"From Last.fm: " +
@@ -24329,10 +24346,11 @@ artists:
   - ${YAMLArtists}
 songtitle: "${track.track.name}"
 album: "${track.track.album.name}"
-featuredImage: "${localImageName}"
+featuredImage: "${localImageFileName}"
 featuredImageCredit: "Image is used from album for review purposes."
-featuredImageLink: "${localImageName}"
+featuredImageLink: "${imageUrl}"
 featuredImageAlt: ""
+author: Aram Zucker-Scharff
 playlists:
   -
     name: "Obsessions"
