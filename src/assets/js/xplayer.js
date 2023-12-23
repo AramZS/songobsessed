@@ -321,6 +321,34 @@ class PlayerElement extends HTMLElement {
 		return true;
 	}
 
+	mediaEntry(mediaId, active) {
+		var mediaObj = this.songDataStore[mediaId];
+		var newItem = document.createElement("div");
+		var innerCode = `${mediaObj.songtitle}`;
+		if (active) {
+			innerCode = `<span class="current-episode-link">${innerCode}</span>`;
+		}
+		var artistHtml = `${mediaObj.artists.join(", ")}`;
+		if (active) {
+			artistHtml = `<span class="current-series-link">${artistHtml}</span>`;
+		}
+		innerCode += ` by ${artistHtml}`;
+		innerCode += `   <span class="playlist-link-chip playlist-chip">${this.linkMaker(
+			mediaObj.siteUrl
+		)}</span>`;
+		if (!active) {
+			innerCode += ` <span class="playlist-next-chip playlist-chip" xp-command="queue-next">⬆</span>`;
+			innerCode += ` <span class="playlist-now-chip playlist-chip" xp-command="play-now">▶</span>`;
+			innerCode += ` <span class="playlist-remove-chip playlist-chip" xp-command="playlist-remove">⌧</span>`;
+		}
+		newItem.id = "playlist-item-" + mediaId;
+		newItem.classList.add("playlist-item");
+		newItem.setAttribute("data-media-id", mediaId);
+		newItem.innerHTML = innerCode;
+
+		return newItem;
+	}
+
 	setup() {
 		this.wrapper = document.createElement("div");
 		this.wrapper.id = "xplayer-wrapper";
@@ -380,7 +408,13 @@ class PlayerElement extends HTMLElement {
 				*/
 			}
 		}
-
+		window["xplayer-playlist-next"].addEventListener("click", (e) => {
+			console.log("Next playlist item click", e.target);
+			window.test = e.target;
+			var command = e.target.getAttribute("xp-command");
+			var playlistItem = e.target.closest(".playlist-item");
+			var mediaId = playlistItem.getAttribute("data-media-id");
+		});
 		this.controlbox.addEventListener("click", (e) => {
 			console.log("Control box click", e.target.id);
 			switch (e.target.id) {
@@ -425,14 +459,7 @@ class PlayerElement extends HTMLElement {
 
 	addToPlaylist(mediaId) {
 		this.playlistManager.push(mediaId);
-		var newItem = document.createElement("div");
-		newItem.innerHTML = `${
-			this.songDataStore[mediaId].songtitle
-		} by ${this.songDataStore[mediaId].artists.join(
-			", "
-		)}   ${this.linkMaker(this.songDataStore[mediaId].siteUrl)}`;
-		newItem.id = "playlist-item-" + mediaId;
-		newItem.classList.add("playlist-item");
+		var newItem = this.mediaEntry(mediaId);
 		this.playlistqueue.append(newItem);
 		htmx.process(this.playlistqueue);
 	}
@@ -443,15 +470,8 @@ class PlayerElement extends HTMLElement {
 			this.songDataStore[val]
 		);
 		this.setAttribute("xp-playing", val);
-		window[
-			"xplayer-currently"
-		].innerHTML = `<span class="current-episode-link">${
-			this.songDataStore[val].songtitle
-		}</span> by <span class="current-series-link">${this.songDataStore[
-			val
-		].artists.join(", ")}</span>  ${this.linkMaker(
-			this.songDataStore[val].siteUrl
-		)}`;
+		window["xplayer-currently"].innerHTML = "";
+		window["xplayer-currently"].append(this.mediaEntry(val, true));
 		window["xplayer-currently"].setAttribute("data-active-media", val);
 		htmx.process(window["xplayer-currently"]);
 	}

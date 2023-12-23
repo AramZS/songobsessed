@@ -56,6 +56,9 @@
     background-color: var(--dark-highlight)
     padding: .35em
 
+#xplayer-currently .playlist-item
+    display: inline-block
+
 #xplayer-playlist-next .playlist-item
     background: var(--accent-overlap)
     display: block
@@ -72,10 +75,28 @@
     text-align: justify
     flex-grow: 3
 
+.playlist-link-chip
+    display: inline-block
+    margin-left: 8px
+
 a.xplayer-songlink
     font-size: .7em
+    margin-top: 2px
     text-decoration: none
-    vertical-align: text-top
+    vertical-align: middle
+
+.playlist-chip
+    cursor: pointer
+    &:not(.playlist-link-chip)
+        background: var(--accent-overlap)
+        color: var(--back-fill)
+        padding: 0.05em 0.25em
+        margin-left: 8px
+        border-radius: 5px
+        max-width: max-content
+        vertical-align: middle
+    &.playlist-next-chip
+        font-weight: 900
 
 #xplayer-controlbox
     position: fixed
