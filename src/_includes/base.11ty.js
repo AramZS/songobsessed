@@ -40,6 +40,9 @@ module.exports = async function (data, zones) {
 		<title>${data.title || data.site.title}</title>
 		<meta name="description" content="${meta_description}" />
 		<link href="/assets/fraunces/fraunces.css" rel="stylesheet">
+		<link rel="preconnect" href="https://www.youtube.com">
+		<link rel="dns-prefetch" href="https://www.youtube.com">
+		<link rel="preload" href="/assets/css/template-song.css">
 		${metaChunk}
 		<script>
 		if("classList" in document.documentElement) {

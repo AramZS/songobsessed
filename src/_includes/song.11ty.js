@@ -116,7 +116,7 @@ module.exports = async function (data) {
 			</p>
 			-->
 		</div>
-		${youtube(data.youtube, false, onPageObject)}
+		${data.youtube ? youtube(data.youtube, false, onPageObject) : ""}
 		<hr /> 
 			
 		`,
