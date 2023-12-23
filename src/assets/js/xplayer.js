@@ -57,6 +57,8 @@ class PlayerElement extends HTMLElement {
 					).includes(property)
 				) {
 					return window.xplayer.songDataStore[target[property]];
+				} else if (property in this) {
+					return property in this;
 				} else {
 					console.log("return native", property);
 					return target[property];
@@ -88,6 +90,16 @@ class PlayerElement extends HTMLElement {
 
 	linkMaker(url) {
 		return `<a href="${url}" class="xplayer-songlink" hx-boost="true" hx-swap="outerHTML show:top" hx-target="#main-content" hx-push-url="true" hx-select="#main-content">🔗</a>`;
+	}
+
+	dropFromPlaylistArray(targetArray, value) {
+		var index = targetArray.indexOf(value);
+		var removed = false;
+		if (index > -1) {
+			// only splice array when item is found
+			removed = targetArray.splice(index, 1); // 2nd parameter means remove one item only
+		}
+		return removed;
 	}
 
 	getMediaState(value) {
@@ -131,8 +143,41 @@ class PlayerElement extends HTMLElement {
 				break;
 		}
 	}
-	makeMediaAdvance() {
+
+	makeMediaAdvance(specificMediaId) {
+		// Advance the player to next media item.
+		console.log("Advance to next media item.");
+		console.log(
+			"Song Data store state at makeMediaAdvance now ",
+			this.songDataStore
+		);
 		var type = this.getAttribute("xp-playertype");
+		if (this.playlistManager.length > 0) {
+			var nextMedia = "";
+			if (specificMediaId) {
+				nextMedia = specificMediaId;
+				this.dropFromPlaylistArray(
+					this.playlistManager,
+					specificMediaId
+				);
+			} else {
+				nextMedia = this.playlistManager.shift();
+			}
+			console.log("advance play");
+			console.log("Next media item is:", nextMedia);
+			this.removePlaylistTag(nextMedia);
+			//var nextMediaObj = this.songDataStore[nextMedia];
+			this.setPlaylistPlaying(nextMedia);
+			switch (type) {
+				case "youtube":
+					this.youtubeAPI(nextMedia);
+					break;
+
+				default:
+					break;
+			}
+			this.setMediaState("playing");
+		}
 	}
 
 	attributeChangedCallback(attribute, previousValue, currentValue) {
@@ -207,24 +252,6 @@ class PlayerElement extends HTMLElement {
 		this.setAttribute("xp-player-mode", state);
 	}
 
-	advanceMedia() {
-		// Advance the player to next media item.
-		console.log("Advance to next media item.");
-		console.log(
-			"Song Data store state at advanceMedia now ",
-			this.songDataStore
-		);
-		if (this.playlistManager.length > 0) {
-			var nextMedia = this.playlistManager.shift();
-			console.log("Next media item is:", nextMedia);
-			//var nextMediaObj = this.songDataStore[nextMedia];
-			this.setPlaylistPlaying(nextMedia);
-			this.youtubeAPI(nextMedia);
-			this.removePlaylistTag(nextMedia);
-			this.setMediaState("playing");
-		}
-	}
-
 	youtubeIframeTemplate(videoUrl, autoplay) {
 		// https://developers.google.com/youtube/player_parameters
 		// https://developers.google.com/youtube/iframe_api_reference
@@ -286,7 +313,7 @@ class PlayerElement extends HTMLElement {
 				console.log("Event state is ", state);
 				this.mediaState = state;
 				if ("ended" == state) {
-					this.advanceMedia();
+					this.makeMediaAdvance();
 				}
 			};
 			var makeitGo = onYouTubeIframeAPIReady.bind(this);
@@ -409,11 +436,22 @@ class PlayerElement extends HTMLElement {
 			}
 		}
 		window["xplayer-playlist-next"].addEventListener("click", (e) => {
-			console.log("Next playlist item click", e.target);
 			window.test = e.target;
 			var command = e.target.getAttribute("xp-command");
 			var playlistItem = e.target.closest(".playlist-item");
 			var mediaId = playlistItem.getAttribute("data-media-id");
+			console.log("Next playlist item command click", command, mediaId);
+			switch (command) {
+				case "queue-next":
+					break;
+				case "play-now":
+					this.makeMediaAdvance(mediaId);
+					break;
+				case "playlist-remove":
+					break;
+				default:
+					break;
+			}
 		});
 		this.controlbox.addEventListener("click", (e) => {
 			console.log("Control box click", e.target.id);
@@ -449,7 +487,7 @@ class PlayerElement extends HTMLElement {
 					this.setMediaState("paused");
 					break;
 				case "xplayer-next":
-					this.advanceMedia();
+					this.makeMediaAdvance();
 					break;
 				default:
 					break;
