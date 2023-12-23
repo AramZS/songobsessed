@@ -78,18 +78,21 @@ module.exports = async function (data) {
 	let insert = {
 		template: "song",
 		content: /*html*/ `
-		<div id="song-image-wrapper"><div id="song-image"><img src="${albumImage}" /></div></div>
-		<div id="brief">
-			<p>${data.description}</p>
-			<p>Artists: <span>${data.artists.join(", ")}</span></p>
-			<p>Album: <span>${data.album}</span></p>
-			<p>Tags: <span>${tagText.join(" | ")}</span></p>
-			<p>${linksSet}</p>
+		<div id="song-image-wrapper">
+			<div id="song-image"><img src="${albumImage}" /></div>
 		</div>
-		<p><span class="date-added">Added on: ${dateParts[0]} ${dateParts[1]} ${
+		<div id="article-body">
+			<div id="brief">
+				<p>${data.description}</p>
+				<p>Artists: <span>${data.artists.join(", ")}</span></p>
+				<p>Album: <span>${data.album}</span></p>
+				<p>Tags: <span>${tagText.join(" | ")}</span></p>
+				<p>${linksSet}</p>
+			</div>
+			<p><span class="date-added">Added on: ${dateParts[0]} ${dateParts[1]} ${
 			dateParts[2]
 		} ${dateParts[3]}</span></p>
-		${data.content}
+			${data.content}
 			<br />
 			<script>
 				window.pageData = ${JSON.stringify(onPageObject)};
@@ -112,8 +115,9 @@ module.exports = async function (data) {
 			featuredImage: <img src="${albumImage}" /><br /><br />
 			</p>
 			-->
-			${youtube(data.youtube, false, onPageObject)}
-			<hr /> 
+		</div>
+		${youtube(data.youtube, false, onPageObject)}
+		<hr /> 
 			
 		`,
 	};
