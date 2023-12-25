@@ -4,6 +4,8 @@ const path = require("path");
 var slugify = require("slugify");
 var markdownIt = require("markdown-it");
 var mila = require("markdown-it-link-attributes");
+const sitemap = require("@quasibit/eleventy-plugin-sitemap");
+const pluginRss = require("@11ty/eleventy-plugin-rss");
 
 require("dotenv").config();
 
@@ -188,6 +190,20 @@ module.exports = function (eleventyConfig) {
 			output: "docs",
 		},
 	};
+
+	eleventyConfig.addPlugin(sitemap, {
+		// Name of the property for the last modification date.
+		// By default it is undefined and the plugin will fallback to `date`.
+		// When set, the plugin will try to use this property and it will fallback
+		// to the `date` property when needed.
+		lastModifiedProperty: "modified",
+
+		sitemap: {
+			// Options for SitemapStream. See https://github.com/ekalinin/sitemap.js/blob/master/api.md#sitemapstream
+			// Hostname is needed when the URLs of the items don't include it.
+			hostname: site,
+		},
+	});
 
 	// pagefind search
 	eleventyConfig.on("eleventy.after", () => {

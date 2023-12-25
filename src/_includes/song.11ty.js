@@ -5,6 +5,7 @@ const fs = require("fs");
 
 let imageCheck = async function (data) {
 	// console.log("image data", data);
+	let promiseArray = [];
 	if (data?.featuredImage) {
 		let imagePath = `./src/img/${data.featuredImage}`;
 		let imageNameArray = data.featuredImage.split(".");
@@ -13,26 +14,53 @@ let imageCheck = async function (data) {
 			""
 		);
 		if (!fs.existsSync(`./src/img/${imageName}-640.jpg`)) {
-			let resized = await sharp(imagePath)
-				.resize(640)
-				.jpeg({ mozjpeg: true })
-				.toFile(`./src/img/${imageName}-640.jpg`)
-				.then((data) => {})
-				.catch((err) => {});
+			promiseArray.push(
+				await sharp(imagePath)
+					.resize(640)
+					.jpeg({ mozjpeg: true })
+					.toFile(`./src/img/${imageName}-640.jpg`)
+					.then((data) => {})
+					.catch((err) => {})
+			);
 		}
-
+		if (!fs.existsSync(`./src/img/${imageName}-240.jpg`)) {
+			promiseArray.push(
+				await sharp(imagePath)
+					.resize(640)
+					.jpeg({ mozjpeg: true })
+					.toFile(`./src/img/${imageName}-240.jpg`)
+					.then((data) => {})
+					.catch((err) => {})
+			);
+		}
+		let promiseResult = await Promise.all(promiseArray);
 		return `/img/${imageName}-640.jpg`;
 	} else {
+		// Default image used under creative commons from https://www.metmuseum.org/art/collection/search/501692
+		if (!fs.existsSync(`./src/img/glass-horn-240.jpg`)) {
+			let imagePath = `./src/img/glass-horn.jpg`;
+			promiseArray.push(
+				await sharp(imagePath)
+					.resize(640)
+					.jpeg({ mozjpeg: true })
+					.toFile(`./src/img/glass-horn-240.jpg`)
+					.then((data) => {})
+					.catch((err) => {})
+			);
+		}
 		if (!fs.existsSync(`./src/img/glass-horn-640.jpg`)) {
 			let imagePath = `./src/img/glass-horn.jpg`;
-			let resized = await sharp(imagePath)
-				.resize(640)
-				.jpeg({ mozjpeg: true })
-				.toFile(`./src/img/glass-horn-640.jpg`)
-				.then((data) => {})
-				.catch((err) => {});
-			return `img/glass-horn-640.jpg`;
+			promiseArray.push(
+				await sharp(imagePath)
+					.resize(640)
+					.jpeg({ mozjpeg: true })
+					.toFile(`./src/img/glass-horn-640.jpg`)
+					.then((data) => {})
+					.catch((err) => {})
+			);
 		}
+		let promiseResult = await Promise.all(promiseArray);
+		return `img/glass-horn-640.jpg`;
 	}
 };
 
@@ -57,7 +85,7 @@ module.exports = async function (data) {
 			lastfm: data.lastfm,
 			album: data.album,
 			playlists: data.playlists,
-			featuredImage: data.featuredImage,
+			featuredImage: albumImage,
 		},
 	};
 	let tagText = data.tags.map((tag) => {

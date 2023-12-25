@@ -10,6 +10,12 @@ let data = {
 	metadata: {
 		...metadata,
 	},
+	lang: "en-US",
+	github: {
+		build_revision: process.env.MY_GITHUB_RUN_ID || 1.0,
+		build_sha: process.env.GITHUB_SHA || 1,
+	},
+	site_url: process.env.DOMAIN,
 	domain: process.env.DOMAIN,
 };
 
