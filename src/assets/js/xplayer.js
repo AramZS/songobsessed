@@ -22,6 +22,7 @@ class PlayerElement extends HTMLElement {
 		this.playlistHandler = {
 			deleteProperty: function (target, property) {
 				//delete window.xplayer.songDataStore[target[property]];
+
 				delete target[property];
 				console.log("Deleted %s", property);
 				return true;
@@ -178,6 +179,10 @@ class PlayerElement extends HTMLElement {
 			}
 			this.setMediaState("playing");
 		}
+	}
+
+	removeMediaFromPlaylist(mediaId) {
+		this.removePlaylistTag(nextMedia);
 	}
 
 	attributeChangedCallback(attribute, previousValue, currentValue) {
@@ -438,19 +443,31 @@ class PlayerElement extends HTMLElement {
 		window["xplayer-playlist-next"].addEventListener("click", (e) => {
 			window.test = e.target;
 			var command = e.target.getAttribute("xp-command");
-			var playlistItem = e.target.closest(".playlist-item");
-			var mediaId = playlistItem.getAttribute("data-media-id");
-			console.log("Next playlist item command click", command, mediaId);
-			switch (command) {
-				case "queue-next":
-					break;
-				case "play-now":
-					this.makeMediaAdvance(mediaId);
-					break;
-				case "playlist-remove":
-					break;
-				default:
-					break;
+			if (command) {
+				var playlistItem = e.target.closest(".playlist-item");
+				var mediaId = playlistItem.getAttribute("data-media-id");
+				console.log(
+					"Next playlist item command click",
+					command,
+					mediaId
+				);
+				switch (command) {
+					case "queue-next":
+						this.dropFromPlaylistArray(
+							this.playlistManager,
+							mediaId
+						);
+						this.addToPlaylist(mediaId, true);
+						break;
+					case "play-now":
+						this.makeMediaAdvance(mediaId);
+						break;
+					case "playlist-remove":
+						this.removeMediaFromPlaylist(mediaId);
+						break;
+					default:
+						break;
+				}
 			}
 		});
 		this.controlbox.addEventListener("click", (e) => {
@@ -495,10 +512,17 @@ class PlayerElement extends HTMLElement {
 		});
 	}
 
-	addToPlaylist(mediaId) {
-		this.playlistManager.push(mediaId);
-		var newItem = this.mediaEntry(mediaId);
-		this.playlistqueue.append(newItem);
+	addToPlaylist(mediaId, moveToTop) {
+		console.log("Add to playlist", mediaId, moveToTop);
+		if (moveToTop) {
+			this.playlistManager.unshift(mediaId);
+			var oldItem = document.getElementById("playlist-item-" + mediaId);
+			this.playlistqueue.prepend(oldItem);
+		} else {
+			this.playlistManager.push(mediaId);
+			var newItem = this.mediaEntry(mediaId);
+			this.playlistqueue.append(newItem);
+		}
 		htmx.process(this.playlistqueue);
 	}
 
