@@ -9,6 +9,7 @@ class PlayerElement extends HTMLElement {
 		"xp-media-state",
 		"xp-player-mode",
 	];
+	// Setup
 	constructor() {
 		// Always call super first in constructor
 		super();
@@ -89,8 +90,46 @@ class PlayerElement extends HTMLElement {
 		this.mode = false;
 	}
 
+	// templates
+	imgMaker(mediaId) {
+		var url = this.songDataStore[mediaId].featuredImage.replace(
+			"640",
+			"240"
+		);
+		return `<img src="${url}" class="xplayer-image" data-xp-image-mediaid="${mediaId}" />`;
+	}
+
 	linkMaker(url) {
 		return `<a href="${url}" class="xplayer-songlink" hx-boost="true" hx-swap="outerHTML show:top" hx-target="#main-content" hx-push-url="true" hx-select="#main-content">🔗</a>`;
+	}
+
+	mediaEntryMaker(mediaId, active) {
+		var mediaObj = this.songDataStore[mediaId];
+		var newItem = document.createElement("div");
+		var innerCode = `${mediaObj.songtitle}`;
+		if (active) {
+			this.playboxImageWrapper.innerHTML = this.imgMaker(mediaId);
+			innerCode = `<span class="current-episode-link">${innerCode}</span>`;
+		}
+		var artistHtml = `${mediaObj.artists.join(", ")}`;
+		if (active) {
+			artistHtml = `<span class="current-series-link">${artistHtml}</span>`;
+		}
+		innerCode += ` by ${artistHtml}`;
+		innerCode += `   <span class="playlist-link-chip playlist-chip">${this.linkMaker(
+			mediaObj.siteUrl
+		)}</span>`;
+		if (!active) {
+			innerCode += ` <span class="playlist-next-chip playlist-chip" xp-command="queue-next">⬆</span>`;
+			innerCode += ` <span class="playlist-now-chip playlist-chip" xp-command="play-now">▶</span>`;
+			innerCode += ` <span class="playlist-remove-chip playlist-chip" xp-command="playlist-remove">⌧</span>`;
+		}
+		newItem.id = "playlist-item-" + mediaId;
+		newItem.classList.add("playlist-item");
+		newItem.setAttribute("data-media-id", mediaId);
+		newItem.innerHTML = innerCode;
+
+		return newItem;
 	}
 
 	dropFromPlaylistArray(targetArray, value) {
@@ -120,6 +159,7 @@ class PlayerElement extends HTMLElement {
 		this.setup();
 	}
 
+	// Actions
 	makeMediaPlay() {
 		var type = this.getAttribute("xp-playertype");
 		console.log("play");
@@ -185,6 +225,12 @@ class PlayerElement extends HTMLElement {
 		this.removePlaylistTag(nextMedia);
 	}
 
+	removePlaylistTag(mediaId) {
+		var el = document.getElementById("playlist-item-" + mediaId);
+		el.remove();
+	}
+
+	// Listeners
 	attributeChangedCallback(attribute, previousValue, currentValue) {
 		// called when attributes are added, removed, or changed
 		console.log(
@@ -243,12 +289,7 @@ class PlayerElement extends HTMLElement {
 			}
 		}
 	}
-
-	removePlaylistTag(mediaId) {
-		var el = document.getElementById("playlist-item-" + mediaId);
-		el.remove();
-	}
-
+	// State Management
 	setMediaState(state) {
 		this.setAttribute("xp-media-state", state);
 	}
@@ -353,39 +394,19 @@ class PlayerElement extends HTMLElement {
 		return true;
 	}
 
-	mediaEntry(mediaId, active) {
-		var mediaObj = this.songDataStore[mediaId];
-		var newItem = document.createElement("div");
-		var innerCode = `${mediaObj.songtitle}`;
-		if (active) {
-			innerCode = `<span class="current-episode-link">${innerCode}</span>`;
-		}
-		var artistHtml = `${mediaObj.artists.join(", ")}`;
-		if (active) {
-			artistHtml = `<span class="current-series-link">${artistHtml}</span>`;
-		}
-		innerCode += ` by ${artistHtml}`;
-		innerCode += `   <span class="playlist-link-chip playlist-chip">${this.linkMaker(
-			mediaObj.siteUrl
-		)}</span>`;
-		if (!active) {
-			innerCode += ` <span class="playlist-next-chip playlist-chip" xp-command="queue-next">⬆</span>`;
-			innerCode += ` <span class="playlist-now-chip playlist-chip" xp-command="play-now">▶</span>`;
-			innerCode += ` <span class="playlist-remove-chip playlist-chip" xp-command="playlist-remove">⌧</span>`;
-		}
-		newItem.id = "playlist-item-" + mediaId;
-		newItem.classList.add("playlist-item");
-		newItem.setAttribute("data-media-id", mediaId);
-		newItem.innerHTML = innerCode;
-
-		return newItem;
-	}
-
 	setup() {
 		this.wrapper = document.createElement("div");
 		this.wrapper.id = "xplayer-wrapper";
+		this.playboxWrapper = document.createElement("div");
+		this.playboxWrapper.id = "xplayer-playbox-wrapper";
+
+		this.playboxImageWrapper = document.createElement("div");
+		this.playboxImageWrapper.id = "xplayer-image-wrapper";
+		this.playboxWrapper.appendChild(this.playboxImageWrapper);
+
 		this.playbox = document.createElement("div");
 		this.playbox.id = "xplayer-playbox";
+		this.playboxWrapper.appendChild(this.playbox);
 		this.playlistbox = document.createElement("div");
 		this.playlistbox.id = "xplayer-playlist";
 		this.playlistbox.innerHTML = `<p>Currently Playing: <span id="xplayer-currently" class="playlist-item"> ... </span></p><p>Next Up:</p>`;
@@ -393,7 +414,7 @@ class PlayerElement extends HTMLElement {
 		this.playlistqueue.id = "xplayer-playlist-next";
 		this.playlistbox.appendChild(this.playlistqueue);
 		this.appendChild(this.wrapper);
-		this.wrapper.appendChild(this.playbox);
+		this.wrapper.appendChild(this.playboxWrapper);
 		this.wrapper.appendChild(this.playlistbox);
 
 		this.controlbox = document.createElement("div");
@@ -511,7 +532,7 @@ class PlayerElement extends HTMLElement {
 			}
 		});
 	}
-
+	// Playlist Management
 	addToPlaylist(mediaId, moveToTop) {
 		console.log("Add to playlist", mediaId, moveToTop);
 		if (moveToTop) {
@@ -520,7 +541,7 @@ class PlayerElement extends HTMLElement {
 			this.playlistqueue.prepend(oldItem);
 		} else {
 			this.playlistManager.push(mediaId);
-			var newItem = this.mediaEntry(mediaId);
+			var newItem = this.mediaEntryMaker(mediaId);
 			this.playlistqueue.append(newItem);
 		}
 		htmx.process(this.playlistqueue);
@@ -533,7 +554,7 @@ class PlayerElement extends HTMLElement {
 		);
 		this.setAttribute("xp-playing", val);
 		window["xplayer-currently"].innerHTML = "";
-		window["xplayer-currently"].append(this.mediaEntry(val, true));
+		window["xplayer-currently"].append(this.mediaEntryMaker(val, true));
 		window["xplayer-currently"].setAttribute("data-active-media", val);
 		htmx.process(window["xplayer-currently"]);
 	}
