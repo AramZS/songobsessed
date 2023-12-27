@@ -16,6 +16,7 @@ class PlayerElement extends HTMLElement {
 		this.playerEmptyStateClass = "player-empty";
 		this.playerActiveClass = "player-active";
 		this.player = false;
+		this.spotifyController = false;
 		this.autoPlay = true;
 		this.internalPlaylist = [];
 		this.songDataStore = {};
@@ -87,6 +88,149 @@ class PlayerElement extends HTMLElement {
 		this.mode = false;
 	}
 
+	connectedCallback() {
+		console.log("Custom element added to page.");
+		document.body.addEventListener(
+			"htmx:afterOnLoad",
+			function (evt) {
+				this.htmxSwapCallback();
+			}.bind(this)
+		);
+		this.setup();
+	}
+
+	setup() {
+		this.wrapper = document.createElement("div");
+		this.wrapper.id = "xplayer-wrapper";
+		this.playboxWrapper = document.createElement("div");
+		this.playboxWrapper.id = "xplayer-playbox-wrapper";
+
+		this.playboxImageWrapper = document.createElement("div");
+		this.playboxImageWrapper.id = "xplayer-image-wrapper";
+		this.playboxWrapper.appendChild(this.playboxImageWrapper);
+
+		this.playbox = document.createElement("div");
+		this.playbox.id = "xplayer-playbox";
+		this.playboxWrapper.appendChild(this.playbox);
+		this.playlistbox = document.createElement("div");
+		this.playlistbox.id = "xplayer-playlist";
+		this.playlistbox.innerHTML = `<p>Currently Playing: <span id="xplayer-currently" class="playlist-item"> ... </span></p><p>Next Up:</p>`;
+		this.playlistqueue = document.createElement("div");
+		this.playlistqueue.id = "xplayer-playlist-next";
+		this.playlistbox.appendChild(this.playlistqueue);
+		this.appendChild(this.wrapper);
+		this.wrapper.appendChild(this.playboxWrapper);
+		this.wrapper.appendChild(this.playlistbox);
+
+		this.controlbox = document.createElement("div");
+		this.controlbox.id = "xplayer-controlbox";
+		this.controlbox.innerHTML = this.ctrlBox();
+		this.wrapper.appendChild(this.controlbox);
+
+		var playerMode = this.getRetainedSetting("playerMode");
+		if (playerMode == "min") {
+			this.changePlayerMode("xplayer-shrink");
+		} else if (playerMode == "large") {
+			this.changePlayerMode("xplayer-enlarge");
+		}
+		if (
+			this.hasRetainedSetting("autoPlay") &&
+			window["xplayer-autoplay-switch"]
+		) {
+			this.autoPlay = this.getRetainedSetting("autoPlay");
+			window["xplayer-autoplay-switch"].checked = this.autoPlay;
+		} else if (window["xplayer-autoplay-switch"]) {
+			this.autoPlay = window["xplayer-autoplay-switch"].checked;
+		} else {
+			this.autoPlay = true;
+		}
+		this.setRetainedSetting("autoPlay", this.autoPlay);
+		var event = new Event("xplaylist-ready");
+		document.dispatchEvent(event);
+		this.dispatchEvent(event);
+		var playMode = this.getRetainedSetting("autoPlay");
+		this.autoPlay = playMode ? true : playMode;
+		if (window["xplayer-setup"]) {
+			console.log("setup first YT player");
+			let activate = function () {
+				var mediaId =
+					window["xplayer-setup"].attributes["data-video-id"].value;
+
+				// this.songDataStore[mediaId] = window[this.dataPath].song;
+				// this.setAttribute("playing", mediaId);
+				this.handlePlayingChange(mediaId);
+				// this.youtubeAPIMaker(mediaId, true);
+				// this.setAttribute("last-added", mediaId);
+			}.bind(this);
+			try {
+				activate();
+			} catch (e) {
+				console.log("initial activation failed because ", e);
+				let timeout = setTimeout(() => {
+					console.log("timeout activation");
+					activate();
+				}, 3000);
+				/** 
+				document.addEventListener("ytapi-ready", () => {
+					activate();
+					console.log('heard "ytapi-ready" event');
+					clearTimeout(timeout);
+				});
+				console.log('listen for "ytapi-ready" event');
+				*/
+			}
+		}
+		window["xplayer-playlist-next"].addEventListener("click", (e) => {
+			window.test = e.target;
+			var command = e.target.getAttribute("xp-command");
+			if (command) {
+				var playlistItem = e.target.closest(".playlist-item");
+				var mediaId = playlistItem.getAttribute("data-media-id");
+				console.log(
+					"Next playlist item command click",
+					command,
+					mediaId
+				);
+				switch (command) {
+					case "queue-next":
+						this.dropFromPlaylistArray(
+							this.playlistManager,
+							mediaId
+						);
+						this.addToPlaylist(mediaId, true);
+						break;
+					case "play-now":
+						this.makeMediaAdvance(mediaId);
+						break;
+					case "playlist-remove":
+						this.removeMediaFromPlaylist(mediaId);
+						break;
+					default:
+						break;
+				}
+			}
+		});
+		this.controlbox.addEventListener("click", (e) => {
+			console.log("Control box click", e.target.id);
+			this.changePlayerMode(e.target.id);
+		});
+		window["xplayer-autoplay-switch"].addEventListener("click", (e) => {
+			var autoPlaySetting = e.target.checked;
+			console.log("Autoplay switch click", autoPlaySetting);
+			this.autoPlay = autoPlaySetting;
+			this.setRetainedSetting("autoPlay", this.autoPlay);
+		});
+	}
+
+	disconnectedCallback() {
+		console.log("Custom element removed from page.");
+	}
+
+	adoptedCallback() {
+		console.log("Custom element moved to new page.");
+		console.log("");
+	}
+
 	// Retain settings mode
 	getRetainedSettings() {
 		var settings = localStorage.getItem(this.localStorageKey);
@@ -107,7 +251,16 @@ class PlayerElement extends HTMLElement {
 		this.setRetainedSettings(settingsObj);
 	}
 
-	// templates
+	// Templates
+	ctrlBox() {
+		return /*html*/ `<div>
+			<div class="xplayer-control play" id="xplayer-play">▶</div>
+			<div class="xplayer-control" id="xplayer-pause">⏸</div>
+			<div class="xplayer-control" id="xplayer-next">⏭</div>
+			<div class="xplayer-control" id="xplayer-enlarge">↖</div>
+			<div class="xplayer-control" id="xplayer-shrink">↘</div>
+		</div>`;
+	}
 	imgMaker(mediaId) {
 		var url = this.songDataStore[mediaId].featuredImage.replace(
 			"640",
@@ -149,6 +302,138 @@ class PlayerElement extends HTMLElement {
 		return newItem;
 	}
 
+	// API Wrappers
+
+	apiStylesManager(apiName) {
+		let apiDataName = "";
+		switch (apiName) {
+			case "yt":
+				this.classList.add("yt");
+				this.classList.remove("spotify");
+				apiDataName = "youtube";
+				break;
+			case "spotify":
+				this.classList.add("spotify");
+				this.classList.remove("yt");
+				apiDataName = "spotify";
+				break;
+			default:
+				break;
+		}
+		this.setAttribute("xp-playertype", apiDataName);
+	}
+
+	// YouTube API
+	youtubeIframeTemplate(videoUrl, autoplay) {
+		// https://developers.google.com/youtube/player_parameters
+		// https://developers.google.com/youtube/iframe_api_reference
+		var append = "";
+		if (autoplay) {
+			if (finalString.indexOf("?") > -1) {
+				append += "&";
+			} else {
+				append += "?";
+			}
+			append += "autoplay=1";
+		}
+		return /*html*/ `<iframe class="youtube-iframe" src="${videoUrl}${append}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+	}
+
+	youtubeAPI(videoId, autoplay) {
+		if (this.player) {
+			// Player is already going
+			this.player.loadVideoById(videoId);
+		} else {
+			console.log("go youtubeAPIMaker");
+			// https://developers.google.com/youtube/player_parameters
+			// https://developers.google.com/youtube/iframe_api_reference
+			// var player;
+			var onYouTubeIframeAPIReady = () => {
+				this.player = new YT.Player("xplayer-playbox", {
+					height: "390",
+					width: "640",
+					videoId: videoId,
+					host: "https://www.youtube-nocookie.com", // https://stackoverflow.com/questions/56225247/enforce-nocookie-mode-when-using-the-youtube-iframe-api
+					playerVars: {
+						playsinline: 1,
+						allowfullscreen: 1,
+						frameborder: 0,
+						autoplay: autoplay ? 1 : 0,
+						enablejsapi: 1,
+						origin: document.location.host,
+					},
+					events: {
+						onReady: autoplay ? onPlayerReady : () => {},
+						onStateChange: onPlayerStateChange.bind(this),
+					},
+				});
+				this.mediaStates = {
+					playing: YT.PlayerState.PLAYING,
+					paused: YT.PlayerState.PAUSED,
+					ended: YT.PlayerState.ENDED,
+					buffering: YT.PlayerState.BUFFERING,
+					cued: YT.PlayerState.CUED,
+				};
+				this.mode = "YT";
+			};
+			var onPlayerReady = (event) => {
+				event.target.playVideo();
+				this.setMediaState("playing");
+			};
+			var onPlayerStateChange = (event) => {
+				console.log("player state change", event);
+				var state = this.getMediaState(event.data);
+				console.log("Event state is ", state);
+				this.mediaState = state;
+				if ("ended" == state) {
+					this.makeMediaAdvance();
+				}
+			};
+			var makeitGo = onYouTubeIframeAPIReady.bind(this);
+			this.apiStylesManager("yt");
+			makeitGo();
+		}
+		// this.setAttribute("now", videoId);
+		this.internalPlayed.push(videoId);
+	}
+
+	// Spotify API
+	// https://developer.spotify.com/documentation/embeds/tutorials/using-the-iframe-api
+	// https://developer.spotify.com/documentation/embeds/references/iframe-api
+	spotifyAPI(mediaId) {
+		let activate = (IFrameAPI) => {
+			console.log("onSpotifyIframeApiReady go");
+		};
+		document.addEventListener("spotify-api-ready", () => {
+			// activate();
+			console.log('heard "spotify-api-ready" event');
+			// clearTimeout(timeout);
+		});
+		const element = document.getElementById("xplayer-playbox");
+		const options = {
+			uri: mediaId,
+			width: "100%",
+			height: "100%",
+			id: "xplayer-playbox",
+		};
+		const callback = (EmbedController) => {
+			EmbedController.iframeElement.id = "xplayer-playbox";
+			this.SpotifyIFrameController = EmbedController;
+			this.player = EmbedController;
+			this.apiStylesManager("spotify");
+			if (this.autoPlay) {
+				this.player.play();
+			}
+		};
+		callback.bind(this);
+		window.SpotifyIFrameAPI.createController(element, options, callback);
+	}
+
+	spotifyNext(mediaId) {
+		this.SpotifyIFrameController.loadUri(mediaId);
+	}
+
+	// Playlist Management
 	dropFromPlaylistArray(targetArray, value) {
 		var index = targetArray.indexOf(value);
 		var removed = false;
@@ -157,17 +442,6 @@ class PlayerElement extends HTMLElement {
 			removed = targetArray.splice(index, 1); // 2nd parameter means remove one item only
 		}
 		return removed;
-	}
-
-	connectedCallback() {
-		console.log("Custom element added to page.");
-		document.body.addEventListener(
-			"htmx:afterOnLoad",
-			function (evt) {
-				this.htmxSwapCallback();
-			}.bind(this)
-		);
-		this.setup();
 	}
 
 	// Actions
@@ -310,89 +584,6 @@ class PlayerElement extends HTMLElement {
 		this.setRetainedSetting("playerMode", state);
 	}
 
-	youtubeIframeTemplate(videoUrl, autoplay) {
-		// https://developers.google.com/youtube/player_parameters
-		// https://developers.google.com/youtube/iframe_api_reference
-		var append = "";
-		if (autoplay) {
-			if (finalString.indexOf("?") > -1) {
-				append += "&";
-			} else {
-				append += "?";
-			}
-			append += "autoplay=1";
-		}
-		return /*html*/ `<iframe class="youtube-iframe" src="${videoUrl}${append}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
-	}
-
-	youtubeAPI(videoId, autoplay) {
-		if (this.player) {
-			// Player is already going
-			this.player.loadVideoById(videoId);
-		} else {
-			console.log("go youtubeAPIMaker");
-			// https://developers.google.com/youtube/player_parameters
-			// https://developers.google.com/youtube/iframe_api_reference
-			// var player;
-			var onYouTubeIframeAPIReady = () => {
-				this.player = new YT.Player("xplayer-playbox", {
-					height: "390",
-					width: "640",
-					videoId: videoId,
-					host: "https://www.youtube-nocookie.com", // https://stackoverflow.com/questions/56225247/enforce-nocookie-mode-when-using-the-youtube-iframe-api
-					playerVars: {
-						playsinline: 1,
-						allowfullscreen: 1,
-						frameborder: 0,
-						autoplay: autoplay ? 1 : 0,
-						enablejsapi: 1,
-						origin: document.location.host,
-					},
-					events: {
-						onReady: autoplay ? onPlayerReady : () => {},
-						onStateChange: onPlayerStateChange.bind(this),
-					},
-				});
-				this.mediaStates = {
-					playing: YT.PlayerState.PLAYING,
-					paused: YT.PlayerState.PAUSED,
-					ended: YT.PlayerState.ENDED,
-					buffering: YT.PlayerState.BUFFERING,
-					cued: YT.PlayerState.CUED,
-				};
-				this.mode = "YT";
-			};
-			var onPlayerReady = (event) => {
-				event.target.playVideo();
-				this.setMediaState("playing");
-			};
-			var onPlayerStateChange = (event) => {
-				console.log("player state change", event);
-				var state = this.getMediaState(event.data);
-				console.log("Event state is ", state);
-				this.mediaState = state;
-				if ("ended" == state) {
-					this.makeMediaAdvance();
-				}
-			};
-			var makeitGo = onYouTubeIframeAPIReady.bind(this);
-			this.classList.add("yt");
-			this.setAttribute("xp-playertype", "youtube");
-			makeitGo();
-		}
-		// this.setAttribute("now", videoId);
-		this.internalPlayed.push(videoId);
-	}
-
-	disconnectedCallback() {
-		console.log("Custom element removed from page.");
-	}
-
-	adoptedCallback() {
-		console.log("Custom element moved to new page.");
-		console.log("");
-	}
-
 	playlistCheck() {
 		console.log(this.internalPlaylist);
 	}
@@ -405,135 +596,6 @@ class PlayerElement extends HTMLElement {
 			return false;
 		}
 		return true;
-	}
-
-	setup() {
-		this.wrapper = document.createElement("div");
-		this.wrapper.id = "xplayer-wrapper";
-		this.playboxWrapper = document.createElement("div");
-		this.playboxWrapper.id = "xplayer-playbox-wrapper";
-
-		this.playboxImageWrapper = document.createElement("div");
-		this.playboxImageWrapper.id = "xplayer-image-wrapper";
-		this.playboxWrapper.appendChild(this.playboxImageWrapper);
-
-		this.playbox = document.createElement("div");
-		this.playbox.id = "xplayer-playbox";
-		this.playboxWrapper.appendChild(this.playbox);
-		this.playlistbox = document.createElement("div");
-		this.playlistbox.id = "xplayer-playlist";
-		this.playlistbox.innerHTML = `<p>Currently Playing: <span id="xplayer-currently" class="playlist-item"> ... </span></p><p>Next Up:</p>`;
-		this.playlistqueue = document.createElement("div");
-		this.playlistqueue.id = "xplayer-playlist-next";
-		this.playlistbox.appendChild(this.playlistqueue);
-		this.appendChild(this.wrapper);
-		this.wrapper.appendChild(this.playboxWrapper);
-		this.wrapper.appendChild(this.playlistbox);
-
-		this.controlbox = document.createElement("div");
-		this.controlbox.id = "xplayer-controlbox";
-		this.controlbox.innerHTML = /*html*/ `<div>
-			<div class="xplayer-control play" id="xplayer-play">▶</div>
-			<div class="xplayer-control" id="xplayer-pause">⏸</div>
-			<div class="xplayer-control" id="xplayer-next">⏭</div>
-			<div class="xplayer-control" id="xplayer-enlarge">↖</div>
-			<div class="xplayer-control" id="xplayer-shrink">↘</div>
-		</div>`;
-		this.wrapper.appendChild(this.controlbox);
-
-		var playerMode = this.getRetainedSetting("playerMode");
-		if (playerMode == "min") {
-			this.changePlayerMode("xplayer-shrink");
-		} else if (playerMode == "large") {
-			this.changePlayerMode("xplayer-enlarge");
-		}
-		if (
-			this.hasRetainedSetting("autoPlay") &&
-			window["xplayer-autoplay-switch"]
-		) {
-			this.autoPlay = this.getRetainedSetting("autoPlay");
-			window["xplayer-autoplay-switch"].checked = this.autoPlay;
-		} else if (window["xplayer-autoplay-switch"]) {
-			this.autoPlay = window["xplayer-autoplay-switch"].checked;
-		} else {
-			this.autoPlay = true;
-		}
-		this.setRetainedSetting("autoPlay", this.autoPlay);
-		var event = new Event("xplaylist-ready");
-		document.dispatchEvent(event);
-		this.dispatchEvent(event);
-		var playMode = this.getRetainedSetting("autoPlay");
-		this.autoPlay = playMode ? true : playMode;
-		if (window["xplayer-setup"]) {
-			console.log("setup first YT player");
-			let activate = function () {
-				var mediaId =
-					window["xplayer-setup"].attributes["data-video-id"].value;
-
-				// this.songDataStore[mediaId] = window[this.dataPath].song;
-				// this.setAttribute("playing", mediaId);
-				this.handlePlayingChange(mediaId);
-				// this.youtubeAPIMaker(mediaId, true);
-				// this.setAttribute("last-added", mediaId);
-			}.bind(this);
-			try {
-				activate();
-			} catch (e) {
-				console.log("initial activation failed because ", e);
-				let timeout = setTimeout(() => {
-					console.log("timeout activation");
-					activate();
-				}, 3000);
-				/** 
-				document.addEventListener("ytapi-ready", () => {
-					activate();
-					console.log('heard "ytapi-ready" event');
-					clearTimeout(timeout);
-				});
-				console.log('listen for "ytapi-ready" event');
-				*/
-			}
-		}
-		window["xplayer-playlist-next"].addEventListener("click", (e) => {
-			window.test = e.target;
-			var command = e.target.getAttribute("xp-command");
-			if (command) {
-				var playlistItem = e.target.closest(".playlist-item");
-				var mediaId = playlistItem.getAttribute("data-media-id");
-				console.log(
-					"Next playlist item command click",
-					command,
-					mediaId
-				);
-				switch (command) {
-					case "queue-next":
-						this.dropFromPlaylistArray(
-							this.playlistManager,
-							mediaId
-						);
-						this.addToPlaylist(mediaId, true);
-						break;
-					case "play-now":
-						this.makeMediaAdvance(mediaId);
-						break;
-					case "playlist-remove":
-						this.removeMediaFromPlaylist(mediaId);
-						break;
-					default:
-						break;
-				}
-			}
-		});
-		this.controlbox.addEventListener("click", (e) => {
-			console.log("Control box click", e.target.id);
-			this.changePlayerMode(e.target.id);
-		});
-		window["xplayer-autoplay-switch"].addEventListener("click", (e) => {
-			var autoPlaySetting = e.target.checked;
-			console.log("Autoplay switch click", autoPlaySetting);
-			this.autoPlay = autoPlaySetting;
-			this.setRetainedSetting("autoPlay", this.autoPlay);
-		});
 	}
 
 	changePlayerMode(command) {

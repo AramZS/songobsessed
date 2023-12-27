@@ -42,6 +42,8 @@ module.exports = async function (data, zones) {
 		<link href="/assets/fraunces/fraunces.css" rel="stylesheet">
 		<link rel="preconnect" href="https://www.youtube.com">
 		<link rel="dns-prefetch" href="https://www.youtube.com">
+		<link rel="preconnect" href="https://open.spotify.com">
+		<link rel="dns-prefetch" href="https://open.spotify.com">
 		<link rel="preload" href="/assets/css/template-song.css">
 		${metaChunk}
 		<script>
@@ -49,11 +51,19 @@ module.exports = async function (data, zones) {
 			document.documentElement.classList.add("has-js");
 		}
 		window.pageData = {};
+		console.log('setup window.onSpotifyIframeApiReady')
+		window.onSpotifyIframeApiReady = (IFrameAPI) => {
+			window.SpotifyIFrameAPI = IFrameAPI
+		};
 		</script>
 		${zones.earlyHead || ""}
 		<link rel="stylesheet" href="/assets/css/style.css">
 		<script src="/assets/js/htmx.min.js" type="application/javascript"></script>
-		<script src="https://www.youtube.com/iframe_api" onload="(function(){var event = new Event('ytapi-ready'); document.dispatchEvent(event);})()"></script>
+		<script src="https://www.youtube.com/iframe_api" async onload="(function(){var event = new Event('ytapi-ready'); document.dispatchEvent(event);})()"></script>
+		<script src="https://open.spotify.com/embed/iframe-api/v1" async onload="(function(){
+			var event = new Event('spotify-api-ready'); 
+			document.dispatchEvent(event);
+		})()"></script>
 		<script src="/assets/js/script.js" defer type="application/javascript"></script>
 		<script defer data-domain="songobsessed.com" src="https://plausible.io/js/script.js" type="application/javascript"></script>
 		${zones.lateHead || ""}

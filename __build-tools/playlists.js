@@ -24332,6 +24332,10 @@ whole.forEach(async (track) => {
 			track.track.external_urls.spotify != "undefined"
 				? track.track.external_urls.spotify
 				: "";
+		let spotifyUri =
+			!!track.track?.uri && track.track.uri != "undefined"
+				? track.track.uri
+				: "";
 		console.log("spotifyTrack", spotifyTrack);
 		let writeOptions = { flag: "w" };
 		// writeOptions = { flag: "wx" }; // Once we start writing stuff into the posts we don't want to overwrite them.
@@ -24358,6 +24362,7 @@ playlists:
     author: ${process.env.PLAYLIST_AUTHOR}
 youtube: ${ytlink}
 spotify: ${spotifyTrack}
+spotifyUri: ${spotifyUri}
 soundcloud:
 audiofile:
 lastfm: ${lastFMData.track.url}

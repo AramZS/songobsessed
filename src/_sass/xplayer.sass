@@ -71,9 +71,17 @@
     width: 390px
     height: 200px
     flex-grow: 1
+    overflow: hidden
+    text-align: center
 #xplayer-playbox
     width: 100%
     height: 100%
+
+[xp-playertype="spotify"] #xplayer-playbox
+    width: 390px
+    height: 152px
+    margin: 26px auto
+
 #xplayer-playlist
     text-align: justify
     flex-grow: 3
@@ -131,6 +139,10 @@ a.xplayer-songlink
         width: 575px
         height: 472px
         flex-grow: 3
+    &[xp-playertype="spotify"] #xplayer-playbox
+        width: 800px
+        height: 450px
+        margin: 60px auto
     #xplayer-playlist
         margin-bottom: 10px
         flex-grow: 2
