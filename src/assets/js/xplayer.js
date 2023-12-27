@@ -409,6 +409,9 @@ class PlayerElement extends HTMLElement {
 			console.log('heard "spotify-api-ready" event');
 			// clearTimeout(timeout);
 		});
+		if (this.SpotifyIFrameController) {
+			this.spotifyNext(mediaId);
+		}
 		const element = document.getElementById("xplayer-playbox");
 		const options = {
 			uri: mediaId,
@@ -427,10 +430,12 @@ class PlayerElement extends HTMLElement {
 		};
 		callback.bind(this);
 		window.SpotifyIFrameAPI.createController(element, options, callback);
+		this.internalPlayed.push(mediaId);
 	}
 
 	spotifyNext(mediaId) {
 		this.SpotifyIFrameController.loadUri(mediaId);
+		this.internalPlayed.push(mediaId);
 	}
 
 	// Playlist Management
