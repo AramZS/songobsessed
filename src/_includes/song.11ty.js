@@ -26,7 +26,7 @@ let imageCheck = async function (data) {
 		if (!fs.existsSync(`./src/img/${imageName}-240.jpg`)) {
 			promiseArray.push(
 				await sharp(imagePath)
-					.resize(640)
+					.resize(240)
 					.jpeg({ mozjpeg: true })
 					.toFile(`./src/img/${imageName}-240.jpg`)
 					.then((data) => {})
@@ -41,7 +41,7 @@ let imageCheck = async function (data) {
 			let imagePath = `./src/img/glass-horn.jpg`;
 			promiseArray.push(
 				await sharp(imagePath)
-					.resize(640)
+					.resize(240)
 					.jpeg({ mozjpeg: true })
 					.toFile(`./src/img/glass-horn-240.jpg`)
 					.then((data) => {})

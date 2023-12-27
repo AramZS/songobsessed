@@ -77,6 +77,8 @@
 #xplayer-playlist
     text-align: justify
     flex-grow: 3
+    p
+        text-align: left
 
 .playlist-link-chip
     display: inline-block
@@ -143,7 +145,7 @@ a.xplayer-songlink
     #xplayer-playbox-wrapper
         width: 60px
         height: 60px
-        flex-grow: 1
+        flex-grow: 0
         position: relative
     #xplayer-image-wrapper
         text-align: center
@@ -153,15 +155,17 @@ a.xplayer-songlink
         height: 100%
         width: 100%
     #xplayer-playbox
-        position: fixed
+        position: absolute
         left: -9999px
         top: -9999px
     .xplayer-image
         display: inline-block
         object-fit: cover
         position: relative
+        width: 60px
     #xplayer-playlist
         flex-grow: 8
         max-height: 60px
+        flex-basis: min-content
     #xplayer-image-wrapper
         display: inline-block

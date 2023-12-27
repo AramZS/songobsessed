@@ -16,10 +16,12 @@ class PlayerElement extends HTMLElement {
 		this.playerEmptyStateClass = "player-empty";
 		this.playerActiveClass = "player-active";
 		this.player = false;
+		this.autoPlay = true;
 		this.internalPlaylist = [];
 		this.songDataStore = {};
 		this.classList.add(this.playerEmptyStateClass);
 		this.classList.add("miniplayer");
+		this.localStorageKey = "xplayerRetainedSettings";
 		this.playlistHandler = {
 			deleteProperty: function (target, property) {
 				//delete window.xplayer.songDataStore[target[property]];
@@ -66,18 +68,13 @@ class PlayerElement extends HTMLElement {
 					return target[property];
 				}
 			},
-			toString: function (target) {
-				target[property] = value;
-				console.log("toString");
-				return target.toString();
-			},
 		};
 		this.playlistManager = new Proxy(
 			this.internalPlaylist,
 			this.playlistHandler
 		);
 		this.internalPlayed = [];
-		this.songsadded = new Set();
+		this.songsAdded = new Set();
 		this.dataPath = "pageData"; //window[this.dataPath].song
 		this.mediaStates = {
 			playing: "playing",
@@ -88,6 +85,26 @@ class PlayerElement extends HTMLElement {
 		};
 		this.mediaState = "await";
 		this.mode = false;
+	}
+
+	// Retain settings mode
+	getRetainedSettings() {
+		var settings = localStorage.getItem(this.localStorageKey);
+		return settings === null ? {} : JSON.parse(settings);
+	}
+	hasRetainedSetting(settingName) {
+		return this.getRetainedSettings()?.hasOwnProperty(settingName);
+	}
+	getRetainedSetting(settingName) {
+		return this.getRetainedSettings()?.[settingName];
+	}
+	setRetainedSettings(settingsObj) {
+		localStorage.setItem(this.localStorageKey, JSON.stringify(settingsObj));
+	}
+	setRetainedSetting(settingName, settingValue) {
+		var settingsObj = this.getRetainedSettings();
+		settingsObj[settingName] = settingValue;
+		this.setRetainedSettings(settingsObj);
 	}
 
 	// templates
@@ -140,12 +157,6 @@ class PlayerElement extends HTMLElement {
 			removed = targetArray.splice(index, 1); // 2nd parameter means remove one item only
 		}
 		return removed;
-	}
-
-	getMediaState(value) {
-		return Object.keys(this.mediaStates).find(
-			(key) => this.mediaStates[key] === value
-		);
 	}
 
 	connectedCallback() {
@@ -211,7 +222,7 @@ class PlayerElement extends HTMLElement {
 			this.setPlaylistPlaying(nextMedia);
 			switch (type) {
 				case "youtube":
-					this.youtubeAPI(nextMedia);
+					this.youtubeAPI(nextMedia, this.autoPlay);
 					break;
 
 				default:
@@ -279,7 +290,7 @@ class PlayerElement extends HTMLElement {
 				window["xplayer-setup"].attributes["data-video-id"].value;
 
 			//this.handlePlayingChange(mediaId);
-			if (!this.songsadded.has(mediaId)) {
+			if (!this.songsAdded.has(mediaId)) {
 				this.handlePlayingChange(mediaId);
 			} else {
 				console.log(
@@ -296,6 +307,7 @@ class PlayerElement extends HTMLElement {
 
 	setPlayerState(state) {
 		this.setAttribute("xp-player-mode", state);
+		this.setRetainedSetting("playerMode", state);
 	}
 
 	youtubeIframeTemplate(videoUrl, autoplay) {
@@ -327,6 +339,7 @@ class PlayerElement extends HTMLElement {
 					height: "390",
 					width: "640",
 					videoId: videoId,
+					host: "https://www.youtube-nocookie.com", // https://stackoverflow.com/questions/56225247/enforce-nocookie-mode-when-using-the-youtube-iframe-api
 					playerVars: {
 						playsinline: 1,
 						allowfullscreen: 1,
@@ -427,10 +440,30 @@ class PlayerElement extends HTMLElement {
 			<div class="xplayer-control" id="xplayer-shrink">↘</div>
 		</div>`;
 		this.wrapper.appendChild(this.controlbox);
+
+		var playerMode = this.getRetainedSetting("playerMode");
+		if (playerMode == "min") {
+			this.changePlayerMode("xplayer-shrink");
+		} else if (playerMode == "large") {
+			this.changePlayerMode("xplayer-enlarge");
+		}
+		if (
+			this.hasRetainedSetting("autoPlay") &&
+			window["xplayer-autoplay-switch"]
+		) {
+			this.autoPlay = this.getRetainedSetting("autoPlay");
+			window["xplayer-autoplay-switch"].checked = this.autoPlay;
+		} else if (window["xplayer-autoplay-switch"]) {
+			this.autoPlay = window["xplayer-autoplay-switch"].checked;
+		} else {
+			this.autoPlay = true;
+		}
+		this.setRetainedSetting("autoPlay", this.autoPlay);
 		var event = new Event("xplaylist-ready");
 		document.dispatchEvent(event);
 		this.dispatchEvent(event);
-
+		var playMode = this.getRetainedSetting("autoPlay");
+		this.autoPlay = playMode ? true : playMode;
 		if (window["xplayer-setup"]) {
 			console.log("setup first YT player");
 			let activate = function () {
@@ -493,45 +526,56 @@ class PlayerElement extends HTMLElement {
 		});
 		this.controlbox.addEventListener("click", (e) => {
 			console.log("Control box click", e.target.id);
-			switch (e.target.id) {
-				case "xplayer-enlarge":
-					if (xplayer.classList.contains("min")) {
-						this.classList.remove("min");
-						document.body.classList.remove("xp-min");
-						this.setPlayerState("standard");
-						document.body.classList.add("xp-standard");
-					} else {
-						this.classList.add("large");
-						document.body.classList.add("xp-large");
-						this.setPlayerState("large");
-					}
-					break;
-				case "xplayer-shrink":
-					if (xplayer.classList.contains("large")) {
-						this.classList.remove("large");
-						document.body.classList.remove("xp-large");
-						this.setPlayerState("standard");
-						document.body.classList.add("xp-standard");
-					} else {
-						this.classList.add("min");
-						document.body.classList.add("xp-min");
-						this.setPlayerState("min");
-					}
-					break;
-				case "xplayer-play":
-					this.setMediaState("playing");
-					break;
-				case "xplayer-pause":
-					this.setMediaState("paused");
-					break;
-				case "xplayer-next":
-					this.makeMediaAdvance();
-					break;
-				default:
-					break;
-			}
+			this.changePlayerMode(e.target.id);
+		});
+		window["xplayer-autoplay-switch"].addEventListener("click", (e) => {
+			var autoPlaySetting = e.target.checked;
+			console.log("Autoplay switch click", autoPlaySetting);
+			this.autoPlay = autoPlaySetting;
+			this.setRetainedSetting("autoPlay", this.autoPlay);
 		});
 	}
+
+	changePlayerMode(command) {
+		switch (command) {
+			case "xplayer-enlarge":
+				if (xplayer.classList.contains("min")) {
+					this.classList.remove("min");
+					document.body.classList.remove("xp-min");
+					this.setPlayerState("standard");
+					document.body.classList.add("xp-standard");
+				} else {
+					this.classList.add("large");
+					document.body.classList.add("xp-large");
+					this.setPlayerState("large");
+				}
+				break;
+			case "xplayer-shrink":
+				if (xplayer.classList.contains("large")) {
+					this.classList.remove("large");
+					document.body.classList.remove("xp-large");
+					this.setPlayerState("standard");
+					document.body.classList.add("xp-standard");
+				} else {
+					this.classList.add("min");
+					document.body.classList.add("xp-min");
+					this.setPlayerState("min");
+				}
+				break;
+			case "xplayer-play":
+				this.setMediaState("playing");
+				break;
+			case "xplayer-pause":
+				this.setMediaState("paused");
+				break;
+			case "xplayer-next":
+				this.makeMediaAdvance();
+				break;
+			default:
+				break;
+		}
+	}
+
 	// Playlist Management
 	addToPlaylist(mediaId, moveToTop) {
 		console.log("Add to playlist", mediaId, moveToTop);
@@ -562,8 +606,8 @@ class PlayerElement extends HTMLElement {
 	handlePlayingChange(val, advancing) {
 		if (val) {
 			console.log("Playing requested set to", val);
-			this.setAttribute("last-added", val);
-			this.songsadded.add(val);
+			this.setAttribute("xp-last-added", val);
+			this.songsAdded.add(val);
 			this.songDataStore[val] = JSON.parse(
 				window["xplayer-setup"].innerText
 			).song;
@@ -583,6 +627,13 @@ class PlayerElement extends HTMLElement {
 			console.log("Playlist item not given");
 			this.playlistCheck();
 		}
+	}
+
+	// Getters and Setters
+	getMediaState(value) {
+		return Object.keys(this.mediaStates).find(
+			(key) => this.mediaStates[key] === value
+		);
 	}
 
 	get played() {
