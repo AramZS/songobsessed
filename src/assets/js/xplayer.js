@@ -364,10 +364,15 @@ class PlayerElement extends HTMLElement {
 
 	youtubeAPI(ytID, autoplay) {
 		console.log('Youtube API called with videoId "' + ytID + '"');
-		if (this.player) {
+		if (
+			this.hasAttribute("xp-playertype") &&
+			this.getAttribute("xp-playertype") == "yt"
+		) {
 			// Player is already going
 			this.player.loadVideoById(ytID);
+			this.setMediaState("playing");
 		} else {
+			this.apiStylesManager("yt");
 			console.log("go youtubeAPIMaker");
 			// https://developers.google.com/youtube/player_parameters
 			// https://developers.google.com/youtube/iframe_api_reference
@@ -418,7 +423,7 @@ class PlayerElement extends HTMLElement {
 				}
 			};
 			var makeitGo = onYouTubeIframeAPIReady.bind(this);
-			this.apiStylesManager("yt");
+
 			makeitGo();
 		}
 		// this.setAttribute("now", videoId);
@@ -446,6 +451,7 @@ class PlayerElement extends HTMLElement {
 			this.spotifyNext(mediaId, autoplay);
 			return;
 		}
+		this.apiStylesManager("spotify");
 		const element = document.getElementById("xplayer-playbox");
 		const options = {
 			uri: mediaId,
@@ -477,7 +483,7 @@ class PlayerElement extends HTMLElement {
 			EmbedController.iframeElement.id = "xplayer-playbox";
 			this.SpotifyIFrameController = EmbedController;
 			this.player = EmbedController;
-			this.apiStylesManager("spotify");
+			// this.apiStylesManager("spotify");
 			if (autoplay) {
 				this.setMediaState("playing");
 			}
@@ -498,6 +504,7 @@ class PlayerElement extends HTMLElement {
 	spotifyNext(mediaId, autoplay) {
 		this.SpotifyIFrameController.loadUri(mediaId);
 		this.internalPlayed.push(mediaId);
+		this.setMediaState("playing");
 	}
 
 	// Native Audio API
@@ -547,14 +554,15 @@ class PlayerElement extends HTMLElement {
 			this,
 			' with mediaId "' + mediaId + '"'
 		);
-		xplayer.player.src = mediaId;
+		this.player.src = mediaId;
 		let readyToPlay = () => {
 			// activate();
-			console.log('heard "canplaythrough" event');
+			console.log('heard "canplaythrough" event from next');
 			this.setMediaState("playing");
 			// clearTimeout(timeout);
 		};
-		audioElement.addEventListener("canplaythrough", readyToPlay.bind(this));
+		// TODO: Need to remove the old events
+		this.player.addEventListener("canplaythrough", readyToPlay.bind(this));
 		this.internalPlayed.push(mediaId);
 	}
 
@@ -611,11 +619,21 @@ class PlayerElement extends HTMLElement {
 
 	// Actions
 	makeMediaPlay() {
+		// Note that many players will not start play if the window does not have focus.
 		var type = this.getAttribute("xp-playertype");
 		console.log("play");
 		switch (type) {
 			case "youtube":
 				this.player.playVideo();
+				let playCheck = () => {
+					if (
+						this.player.getPlayerState() != this.mediaStates.playing
+					) {
+						console.log("YT player play failed");
+						this.setMediaState("paused");
+					}
+				};
+				setTimeout(playCheck.bind(this), 5000);
 				break;
 			case "spotify":
 			case "native":
@@ -636,7 +654,14 @@ class PlayerElement extends HTMLElement {
 		console.log("pause");
 		switch (type) {
 			case "youtube":
-				this.player.pauseVideo();
+				try {
+					this.player.pauseVideo();
+				} catch (e) {
+					console.log(
+						"YT player pause failed, likely because player not ready",
+						e
+					);
+				}
 				break;
 			case "native":
 			case "spotify":
@@ -672,7 +697,6 @@ class PlayerElement extends HTMLElement {
 			//var nextMediaObj = this.songDataStore[nextMedia];
 			this.setPlaylistPlaying(nextMedia);
 			this.routeToCorrectPlayAPI(nextMedia, true);
-			this.setMediaState("playing");
 		}
 	}
 

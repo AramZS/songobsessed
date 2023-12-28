@@ -82,7 +82,9 @@ module.exports = async function (data) {
 			spotify: data.spotify,
 			spotifyUri: data.spotifyUri,
 			soundcloud: data.soundcloud,
-			audiofile: `/assets/media/${data.audiofile}`,
+			audiofile: data.audiofile
+				? `/assets/media/${data.audiofile}`
+				: false,
 			lastfm: data.lastfm,
 			album: data.album,
 			playlists: data.playlists,
