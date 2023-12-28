@@ -13,6 +13,7 @@ class PlayerElement extends HTMLElement {
 	constructor() {
 		// Always call super first in constructor
 		super();
+		console.group("XPlayer constructing");
 		this.playerEmptyStateClass = "player-empty";
 		this.playerActiveClass = "player-active";
 		this.playerActivated = false;
@@ -422,7 +423,8 @@ class PlayerElement extends HTMLElement {
 	// Spotify API
 	// https://developer.spotify.com/documentation/embeds/tutorials/using-the-iframe-api
 	// https://developer.spotify.com/documentation/embeds/references/iframe-api
-	spotifyAPI(mediaId) {
+	spotifyAPI(mediaId, autoplay) {
+		console.log("spotifyAPI go");
 		let activate = (IFrameAPI) => {
 			console.log("onSpotifyIframeApiReady go");
 		};
@@ -431,8 +433,12 @@ class PlayerElement extends HTMLElement {
 			console.log('heard "spotify-api-ready" event');
 			// clearTimeout(timeout);
 		});
-		if (this.SpotifyIFrameController) {
-			this.spotifyNext(mediaId);
+		console.log("spotifyAPI timing check", this);
+		if (
+			this.hasAttribute("xp-playertype") &&
+			this.getAttribute("xp-playertype") == "spotify"
+		) {
+			this.spotifyNext(mediaId, autoplay);
 			return;
 		}
 		const element = document.getElementById("xplayer-playbox");
@@ -449,7 +455,7 @@ class PlayerElement extends HTMLElement {
 				`${parseInt(e.data.position / 1000, 10)} s`,
 				e
 			);*/
-			if (e.data.isPaused) {
+			if (e.data.isPaused && "paused" != this.getMediaState()) {
 				this.setMediaState("paused");
 			} else {
 				// this.setMediaState("playing");
@@ -467,8 +473,8 @@ class PlayerElement extends HTMLElement {
 			this.SpotifyIFrameController = EmbedController;
 			this.player = EmbedController;
 			this.apiStylesManager("spotify");
-			if (this.autoPlay) {
-				this.player.play();
+			if (autoplay) {
+				this.setMediaState("playing");
 			}
 			this.SpotifyIFrameController.addListener(
 				"playback_update",
@@ -484,14 +490,37 @@ class PlayerElement extends HTMLElement {
 		this.internalPlayed.push(mediaId);
 	}
 
-	spotifyNext(mediaId) {
+	spotifyNext(mediaId, autoplay) {
 		this.SpotifyIFrameController.loadUri(mediaId);
 		this.internalPlayed.push(mediaId);
 	}
 
+	routeToCorrectPlayAPI(mediaId, autoplay) {
+		var mediaObj = this.songDataStore[mediaId];
+		var apiID = false;
+		var callingAPI = null;
+		switch (this.preferredAPI) {
+			case "spotify":
+				callingAPI = this.spotifyAPI.bind(this);
+				apiID = mediaObj.spotifyUri;
+				break;
+			case "yt":
+			default:
+				callingAPI = this.youtubeAPI.bind(this);
+				apiID = mediaObj.youtubeId;
+				break;
+		}
+		// We assume every media has a YouTube URL as fallback.
+		if (!apiID) {
+			callingAPI = this.youtubeAPI.bind(this);
+			apiID = mediaObj.youtubeId;
+		}
+		callingAPI(apiID, autoplay);
+	}
+
 	// Playlist Management
-	dropFromPlaylistArray(targetArray, value) {
-		var index = targetArray.indexOf(value);
+	dropFromPlaylistArray(targetArray, mediaId) {
+		var index = targetArray.indexOf(mediaId);
 		var removed = false;
 		if (index > -1) {
 			// only splice array when item is found
@@ -508,7 +537,8 @@ class PlayerElement extends HTMLElement {
 			case "youtube":
 				this.player.playVideo();
 				break;
-
+			case "spotify":
+				this.player.play();
 			default:
 				break;
 		}
@@ -520,7 +550,8 @@ class PlayerElement extends HTMLElement {
 			case "youtube":
 				this.player.pauseVideo();
 				break;
-
+			case "spotify":
+				this.player.pause();
 			default:
 				break;
 		}
@@ -550,14 +581,7 @@ class PlayerElement extends HTMLElement {
 			this.removePlaylistTag(nextMedia);
 			//var nextMediaObj = this.songDataStore[nextMedia];
 			this.setPlaylistPlaying(nextMedia);
-			switch (type) {
-				case "youtube":
-					this.youtubeAPI(nextMedia, true);
-					break;
-
-				default:
-					break;
-			}
+			this.routeToCorrectPlayAPI(nextMedia, true);
 			this.setMediaState("playing");
 		}
 	}
@@ -716,36 +740,39 @@ class PlayerElement extends HTMLElement {
 		htmx.process(this.playlistqueue);
 	}
 
-	setPlaylistPlaying(val) {
+	setPlaylistPlaying(mediaId) {
 		console.log(
 			"Process song object to currently playing",
-			this.songDataStore[val]
+			mediaId,
+			this.songDataStore[mediaId]
 		);
-		this.setAttribute("xp-playing", val);
+		this.setAttribute("xp-playing", mediaId);
 		window["xplayer-currently"].innerHTML = "";
-		window["xplayer-currently"].append(this.mediaEntryMaker(val, true));
-		window["xplayer-currently"].setAttribute("data-active-media", val);
+		window["xplayer-currently"].append(this.mediaEntryMaker(mediaId, true));
+		window["xplayer-currently"].setAttribute("data-active-media", mediaId);
 		htmx.process(window["xplayer-currently"]);
 	}
 
-	handlePlayingChange(val, advancing) {
-		if (val) {
-			console.log("Playing requested set to", val);
-			this.setAttribute("xp-last-added", val);
-			this.songsAdded.add(val);
-			this.songDataStore[val] = JSON.parse(
+	handlePlayingChange(mediaId, advancing) {
+		if (mediaId) {
+			console.log("Playing requested set to", mediaId);
+			this.setAttribute("xp-last-added", mediaId);
+			this.songsAdded.add(mediaId);
+			this.songDataStore[mediaId] = JSON.parse(
 				window["xplayer-setup"].innerText
 			).song;
-			this.songDataStore[val].siteUrl = window.location.href;
-			this.songDataStore[val].mediaId = val;
+			this.songDataStore[mediaId].siteUrl = window.location.href;
+			this.songDataStore[mediaId].mediaId = mediaId;
 			// this.songDataStore[val] = window[this.dataPath].song;
 			if (!this.shouldAddToPlaylist() && !!!advancing) {
 				console.log("Song Data store state now ", this.songDataStore);
-				this.setPlaylistPlaying(val);
-				this.youtubeAPI(val, this.autoPlay);
+				this.setPlaylistPlaying(mediaId);
+				// This will destroy the binding to `this` unless it
+				// is explicitly bound.
+				this.routeToCorrectPlayAPI(mediaId, this.autoPlay);
 			} else {
-				console.log("Playing moved to playlist for", val);
-				this.addToPlaylist(val);
+				console.log("Playing moved to playlist for", mediaId);
+				this.addToPlaylist(mediaId);
 			}
 			this.playlistCheck();
 		} else {
@@ -770,8 +797,11 @@ class PlayerElement extends HTMLElement {
 		return this.internalPlaylist;
 	}
 
-	set playing(val) {
-		this.handlePlayingChange(val);
+	set playing(mediaId) {
+		// It is expected that you will have added
+		// the song data to this.songDataStore
+		// before setting the playing attribute.
+		this.handlePlayingChange(mediaId);
 	}
 }
 

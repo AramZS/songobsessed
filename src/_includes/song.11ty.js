@@ -80,8 +80,9 @@ module.exports = async function (data) {
 			artists: data.artists,
 			youtube: data.youtube,
 			spotify: data.spotify,
+			spotifyUri: data.spotifyUri,
 			soundcloud: data.soundcloud,
-			audiofile: data.audiofile,
+			audiofile: `/assets/media/${data.audiofile}`,
 			lastfm: data.lastfm,
 			album: data.album,
 			playlists: data.playlists,
@@ -89,6 +90,16 @@ module.exports = async function (data) {
 			youtubeId: "",
 		},
 	};
+	let simpleHash = (str) => {
+		let hash = 0;
+		for (let i = 0; i < str.length; i++) {
+			const char = str.charCodeAt(i);
+			hash = (hash << 5) - hash + char;
+			hash &= hash; // Convert to 32bit integer
+		}
+		return new Uint32Array([hash])[0].toString(36);
+	};
+	onPageObject.song.mediaId = simpleHash(onPageObject.song.title);
 	let tagText = data.tags.map((tag) => {
 		return `<span class="genre-tag">${tag}</span>`;
 	});
