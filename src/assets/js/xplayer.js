@@ -529,6 +529,11 @@ class PlayerElement extends HTMLElement {
 			// clearTimeout(timeout);
 		};
 		audioElement.addEventListener("canplaythrough", readyToPlay.bind(this));
+		let advancePlay = () => {
+			console.log("Native song ended");
+			this.makeMediaAdvance();
+		};
+		audioElement.addEventListener("ended", advancePlay.bind(this));
 		this.playerActivated = true;
 		// https://stackoverflow.com/questions/1307165/unloading-removing-content-from-an-iframe
 		const element = document.getElementById("xplayer-playbox");
@@ -542,7 +547,7 @@ class PlayerElement extends HTMLElement {
 			this,
 			' with mediaId "' + mediaId + '"'
 		);
-		this.player.src(mediaId);
+		xplayer.player.src = mediaId;
 		let readyToPlay = () => {
 			// activate();
 			console.log('heard "canplaythrough" event');
