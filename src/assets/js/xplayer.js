@@ -13,7 +13,7 @@ class PlayerElement extends HTMLElement {
 	constructor() {
 		// Always call super first in constructor
 		super();
-		console.group("XPlayer constructing");
+		console.group("XPlayer");
 		this.playerEmptyStateClass = "player-empty";
 		this.playerActiveClass = "player-active";
 		this.playerActivated = false;
@@ -116,7 +116,7 @@ class PlayerElement extends HTMLElement {
 		this.playboxWrapper.appendChild(this.playbox);
 		this.playlistbox = document.createElement("div");
 		this.playlistbox.id = "xplayer-playlist";
-		this.playlistbox.innerHTML = `<p>Currently Playing: <span id="xplayer-currently" class="playlist-item"> ... </span></p><p>Next Up:</p>`;
+		this.playlistbox.innerHTML = `<p>Currently Playing: <span id="xplayer-currently"> ... </span></p><p>Next Up:</p>`;
 		this.playlistqueue = document.createElement("div");
 		this.playlistqueue.id = "xplayer-playlist-next";
 		this.playlistbox.appendChild(this.playlistqueue);
@@ -312,7 +312,7 @@ class PlayerElement extends HTMLElement {
 			innerCode += ` <span class="playlist-now-chip playlist-chip" xp-command="play-now">▶</span>`;
 			innerCode += ` <span class="playlist-remove-chip playlist-chip" xp-command="playlist-remove">⌧</span>`;
 		}
-		newItem.id = "playlist-item-" + mediaId;
+		// newItem.id = "playlist-item-" + mediaId;
 		newItem.classList.add("playlist-item");
 		newItem.setAttribute("data-media-id", mediaId);
 		newItem.innerHTML = innerCode;
@@ -372,6 +372,8 @@ class PlayerElement extends HTMLElement {
 			this.player.loadVideoById(ytID);
 			this.setMediaState("playing");
 		} else {
+			const element = document.getElementById("xplayer-playbox");
+			element.outerHTML = `<div id="xplayer-playbox"></div>`;
 			this.apiStylesManager("yt");
 			console.log("go youtubeAPIMaker");
 			// https://developers.google.com/youtube/player_parameters
@@ -451,7 +453,7 @@ class PlayerElement extends HTMLElement {
 			this.spotifyNext(mediaId, autoplay);
 			return;
 		}
-		this.apiStylesManager("spotify");
+		// this.apiStylesManager("spotify");
 		const element = document.getElementById("xplayer-playbox");
 		const options = {
 			uri: mediaId,
@@ -483,7 +485,7 @@ class PlayerElement extends HTMLElement {
 			EmbedController.iframeElement.id = "xplayer-playbox";
 			this.SpotifyIFrameController = EmbedController;
 			this.player = EmbedController;
-			// this.apiStylesManager("spotify");
+			this.apiStylesManager("spotify");
 			if (autoplay) {
 				this.setMediaState("playing");
 			}
@@ -502,6 +504,7 @@ class PlayerElement extends HTMLElement {
 	}
 
 	spotifyNext(mediaId, autoplay) {
+		console.log("spotifyNext");
 		this.SpotifyIFrameController.loadUri(mediaId);
 		this.internalPlayed.push(mediaId);
 		this.setMediaState("playing");
@@ -526,7 +529,6 @@ class PlayerElement extends HTMLElement {
 		this.player = audioElement;
 		this.playboxWrapper.appendChild(audioElement);
 		this.internalPlayed.push(mediaId);
-		this.apiStylesManager("native");
 		let readyToPlay = () => {
 			// activate();
 			console.log('heard "canplaythrough" event');
@@ -543,8 +545,9 @@ class PlayerElement extends HTMLElement {
 		audioElement.addEventListener("ended", advancePlay.bind(this));
 		this.playerActivated = true;
 		// https://stackoverflow.com/questions/1307165/unloading-removing-content-from-an-iframe
-		const element = document.getElementById("xplayer-playbox");
-		element.outerHTML = `<div id="xplayer-playbox"></div>`;
+		// const element = document.getElementById("xplayer-playbox");
+		// element.outerHTML = `<div id="xplayer-playbox"></div>`;
+		this.apiStylesManager("native");
 		this.mode = "native";
 	}
 
@@ -579,6 +582,7 @@ class PlayerElement extends HTMLElement {
 		console.log("selectPlayAPI", mediaObj, autoplay, preferredAPI);
 		var apiID = false;
 		var callingAPI = null;
+		var selectedAPI = preferredAPI;
 		switch (preferredAPI) {
 			case "spotify":
 				callingAPI = this.spotifyAPI.bind(this);
@@ -592,16 +596,40 @@ class PlayerElement extends HTMLElement {
 			default:
 				callingAPI = this.youtubeAPI.bind(this);
 				apiID = mediaObj.youtubeId;
+				selectedAPI = "yt";
 				break;
 		}
-		// Still can't find an API? Let's try for audiofile.
 		if (!apiID && !mediaObj.youtubeId && mediaObj.audiofile) {
+			// Still can't find an API? Let's try for audiofile.
 			callingAPI = this.nativeAudioAPI.bind(this);
 			apiID = mediaObj.audiofile;
-		} else if (!apiID) {
+			selectedAPI = "native";
+		} else if (!apiID && mediaObj.youtubeId) {
 			// We assume every media has a YouTube URL as fallback.
 			callingAPI = this.youtubeAPI.bind(this);
 			apiID = mediaObj.youtubeId;
+			selectedAPI = "yt";
+		} else if (!apiID && mediaObj.spotifyUri) {
+			// We assume every media has a YouTube URL as fallback.
+			callingAPI = this.spotifyAPI.bind(this);
+			apiID = mediaObj.spotifyUri;
+			selectedAPI = "spotify";
+		} else if (!apiID) {
+			console.error("No ID found for media", mediaObj);
+		}
+		if (this.getAttribute("xp-playing") === apiID) {
+			console.log("Repeating song");
+			switch (selectedAPI) {
+				case "spotify":
+					break;
+				case "native":
+					this.player.src = "";
+					break;
+				case "yt":
+				default:
+					this.player.seekTo(0, true);
+					return;
+			}
 		}
 		callingAPI(apiID, autoplay);
 	}
@@ -679,7 +707,6 @@ class PlayerElement extends HTMLElement {
 			"Song Data store state at makeMediaAdvance now ",
 			this.songDataStore
 		);
-		var type = this.getAttribute("xp-playertype");
 		if (this.playlistManager.length > 0) {
 			var nextMedia = "";
 			if (specificMediaId) {
@@ -701,11 +728,17 @@ class PlayerElement extends HTMLElement {
 	}
 
 	removeMediaFromPlaylist(mediaId) {
-		this.removePlaylistTag(nextMedia);
+		this.removePlaylistTag(mediaId);
+		this.dropFromPlaylistArray(this.playlistManager, mediaId);
 	}
 
 	removePlaylistTag(mediaId) {
-		var el = document.getElementById("playlist-item-" + mediaId);
+		//var el = document.getElementById("playlist-item-" + mediaId);
+		var el = new Array(
+			...document.getElementsByClassName("playlist-item")
+		).filter((el) => {
+			return el.getAttribute("data-media-id") == mediaId;
+		})[0];
 		el.remove();
 	}
 
@@ -848,7 +881,12 @@ class PlayerElement extends HTMLElement {
 		console.log("Add to playlist", mediaId, moveToTop);
 		if (moveToTop) {
 			this.playlistManager.unshift(mediaId);
-			var oldItem = document.getElementById("playlist-item-" + mediaId);
+			// var oldItem = document.getElementById("playlist-item-" + mediaId);
+			var oldItem = new Array(
+				...document.getElementsByClassName("playlist-item")
+			).filter((el) => {
+				return el.getAttribute("data-media-id") == mediaId;
+			})[0];
 			this.playlistqueue.prepend(oldItem);
 		} else {
 			this.playlistManager.push(mediaId);
@@ -905,6 +943,13 @@ class PlayerElement extends HTMLElement {
 		return Object.keys(this.mediaStates).find(
 			(key) => this.mediaStates[key] === value
 		);
+	}
+
+	addFromPage(mediaObj) {
+		if (!this.songDataStore.hasOwnProperty(mediaObj.mediaId)) {
+			window.xplayer.songDataStore[mediaObj.mediaId] = mediaObj;
+		}
+		this.playing = mediaObj.mediaId;
 	}
 
 	get played() {

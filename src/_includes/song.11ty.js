@@ -149,6 +149,16 @@ module.exports = async function (data) {
 			<p><span class="date-added">Added on: ${dateParts[0]} ${dateParts[1]} ${
 			dateParts[2]
 		} ${dateParts[3]}</span></p>
+			<p>
+
+				<button onclick="(
+					function(){
+						window.xplayer.addFromPage(
+							window.pageData.media
+						)
+					}
+				)()">Add to Playlist</button>
+			</p>
 			${data.content}
 			<br />
 			<script>
