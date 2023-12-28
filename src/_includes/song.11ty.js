@@ -87,6 +87,7 @@ module.exports = async function (data) {
 			album: data.album,
 			playlists: data.playlists,
 			featuredImage: albumImage,
+			podbean: data.podbean,
 			youtubeId: "",
 		},
 	};

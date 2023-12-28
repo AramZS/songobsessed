@@ -324,16 +324,21 @@ class PlayerElement extends HTMLElement {
 
 	apiStylesManager(apiName) {
 		let apiDataName = "";
+		this.classList.remove("spotify");
+		this.classList.remove("yt");
+		this.classList.remove("native");
 		switch (apiName) {
 			case "yt":
-				this.classList.add("yt");
-				this.classList.remove("spotify");
 				apiDataName = "youtube";
+				this.classList.add("yt");
 				break;
 			case "spotify":
-				this.classList.add("spotify");
-				this.classList.remove("yt");
 				apiDataName = "spotify";
+				this.classList.add(apiDataName);
+				break;
+			case "native":
+				apiDataName = "native";
+				this.classList.add(apiDataName);
 				break;
 			default:
 				break;
@@ -495,16 +500,70 @@ class PlayerElement extends HTMLElement {
 		this.internalPlayed.push(mediaId);
 	}
 
+	// Native Audio API
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio
+	// https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement
+	nativeAudioAPI(mediaId, autoplay) {
+		console.log("nativeAudioAPI go");
+		if (
+			this.hasAttribute("xp-playertype") &&
+			this.getAttribute("xp-playertype") == "native"
+		) {
+			this.nativeNext(mediaId, autoplay);
+			return;
+		}
+		let audioElement = new Audio(mediaId);
+		audioElement.id = "xplayer-native-playbox";
+		audioElement.controls = true;
+		audioElement.controlslist = "nodownload";
+		this.player = audioElement;
+		this.playboxWrapper.appendChild(audioElement);
+		this.internalPlayed.push(mediaId);
+		this.apiStylesManager("native");
+		let readyToPlay = () => {
+			// activate();
+			console.log('heard "canplaythrough" event');
+			if (autoplay) {
+				this.setMediaState("playing");
+			}
+			// clearTimeout(timeout);
+		};
+		audioElement.addEventListener("canplaythrough", readyToPlay.bind(this));
+		this.playerActivated = true;
+		// https://stackoverflow.com/questions/1307165/unloading-removing-content-from-an-iframe
+		const element = document.getElementById("xplayer-playbox");
+		element.outerHTML = `<div id="xplayer-playbox"></div>`;
+		this.mode = "native";
+	}
+
+	nativeNext(mediaId, autoplay) {
+		console.log(
+			"nativeNext called",
+			this,
+			' with mediaId "' + mediaId + '"'
+		);
+		this.player.src(mediaId);
+		let readyToPlay = () => {
+			// activate();
+			console.log('heard "canplaythrough" event');
+			this.setMediaState("playing");
+			// clearTimeout(timeout);
+		};
+		audioElement.addEventListener("canplaythrough", readyToPlay.bind(this));
+		this.internalPlayed.push(mediaId);
+	}
+
 	routeToCorrectPlayAPI(mediaId, autoplay) {
 		var mediaObj = this.songDataStore[mediaId];
 		let preferredAPI = this.preferredAPI;
 		if (mediaObj?.presetPreferredAPI) {
 			preferredAPI = mediaObj.presetPreferredAPI;
 		}
-		this.routeToCorrectPlayAPI(mediaId, autoplay, preferredAPI);
+		this.selectPlayAPI(mediaObj, autoplay, preferredAPI);
 	}
 
-	routeToCorrectPlayAPI(mediaObj, autoplay, preferredAPI) {
+	selectPlayAPI(mediaObj, autoplay, preferredAPI) {
+		console.log("selectPlayAPI", mediaObj, autoplay, preferredAPI);
 		var apiID = false;
 		var callingAPI = null;
 		switch (preferredAPI) {
@@ -512,14 +571,22 @@ class PlayerElement extends HTMLElement {
 				callingAPI = this.spotifyAPI.bind(this);
 				apiID = mediaObj.spotifyUri;
 				break;
+			case "native":
+				callingAPI = this.nativeAudioAPI.bind(this);
+				apiID = mediaObj.audiofile;
+				break;
 			case "yt":
 			default:
 				callingAPI = this.youtubeAPI.bind(this);
 				apiID = mediaObj.youtubeId;
 				break;
 		}
-		// We assume every media has a YouTube URL as fallback.
-		if (!apiID) {
+		// Still can't find an API? Let's try for audiofile.
+		if (!apiID && !mediaObj.youtubeId && mediaObj.audiofile) {
+			callingAPI = this.nativeAudioAPI.bind(this);
+			apiID = mediaObj.audiofile;
+		} else if (!apiID) {
+			// We assume every media has a YouTube URL as fallback.
 			callingAPI = this.youtubeAPI.bind(this);
 			apiID = mediaObj.youtubeId;
 		}
@@ -546,7 +613,15 @@ class PlayerElement extends HTMLElement {
 				this.player.playVideo();
 				break;
 			case "spotify":
-				this.player.play();
+			case "native":
+				let playResult = this.player.play();
+				if (playResult && playResult.catch) {
+					playResult.catch((e) => {
+						console.log("Play error", e);
+						this.setMediaState("paused");
+					});
+				}
+				break;
 			default:
 				break;
 		}
@@ -558,7 +633,9 @@ class PlayerElement extends HTMLElement {
 			case "youtube":
 				this.player.pauseVideo();
 				break;
+			case "native":
 			case "spotify":
+				// sigh, why is this undocumented? https://developer.spotify.com/documentation/embeds/references/iframe-api
 				this.player.pause();
 			default:
 				break;
@@ -641,6 +718,10 @@ class PlayerElement extends HTMLElement {
 					}
 				}
 				break;
+			case "xp-playertype":
+				if (previousValue == "native" && currentValue != "native") {
+					window["xplayer-native-playbox"].remove();
+				}
 			default:
 				break;
 		}
@@ -814,3 +895,10 @@ class PlayerElement extends HTMLElement {
 }
 
 customElements.define("x-player", PlayerElement);
+
+/**
+ * todo:
+ * 	- Podbean: https://developers.podbean.com/apidoc/widget
+ * 	- Soundcloud:
+ *  - Bandcamp: No api, so can just load.
+ */

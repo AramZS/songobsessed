@@ -24365,6 +24365,7 @@ spotify: ${spotifyTrack}
 spotifyUri: ${spotifyUri}
 soundcloud:
 audiofile:
+podbean:
 lastfm: ${lastFMData.track.url}
 ---
 

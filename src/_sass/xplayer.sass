@@ -28,9 +28,9 @@
     transition: opacity 1s, display 5s allow-discrete
     display: none
     opacity: 0
-#xplayer.player-active
-    opacity: 1
-    display: block
+    &.player-active
+        opacity: 1
+        display: block
 
 @starting-style
     #xplayer.player-active
@@ -116,6 +116,27 @@ a.xplayer-songlink
 
 #xplayer-image-wrapper
     display: none
+
+[xp-playertype="native"]
+    #xplayer-playbox
+        display: none
+    #xplayer-image-wrapper
+        display: inline-flex
+        text-align: center
+        position: relative
+        justify-content: center
+        overflow: hidden
+        height: 70%
+        width: 70%
+        margin: 0 auto
+    .xplayer-image
+        display: inline-block
+        object-fit: cover
+        position: relative
+        width: 100%
+    #xplayer-native-playbox
+        display: block
+        margin: 0 auto
 
 #xplayer-controlbox
     position: fixed
