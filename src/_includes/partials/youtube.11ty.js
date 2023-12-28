@@ -23,6 +23,7 @@ module.exports = function (youtubeUrl, autoplay, songData) {
 		}
 		finalString += "autoplay=1";
 	}
+	// songData.youtubeId = videoId;
 	var jsonString = JSON.stringify(songData);
 	return /*html*/ `<span id="xplayer-setup" class="youtube-data" data-playertype="youtube" data-video-url="${finalString}" data-video-id='${videoId}' frameborder="0" style="display:none;">${jsonString}</span>`;
 	return /*html*/ `

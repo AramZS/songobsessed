@@ -86,6 +86,7 @@ module.exports = async function (data) {
 			album: data.album,
 			playlists: data.playlists,
 			featuredImage: albumImage,
+			youtubeId: "",
 		},
 	};
 	let tagText = data.tags.map((tag) => {
@@ -102,6 +103,20 @@ module.exports = async function (data) {
 		linksSet += `<a href="${data.lastfm}" target="_blank" rel="noopener noreferrer">Last.fm</a> | `;
 	}
 	console.log("date", data.date.toString());
+	if (data.youtube) {
+		let finalString = data.youtube.replaceAll(
+			"www.youtube.com/watch?v=",
+			"www.youtube-nocookie.com/embed/"
+		);
+		finalString = finalString.replaceAll(
+			"youtu.be/",
+			//"www.youtube-nocookie.com/watch?v="
+			"www.youtube-nocookie.com/embed/"
+		);
+		let videoId = finalString.split("embed/")[1];
+		console.log("videoId", videoId);
+		onPageObject.song.youtubeId = videoId;
+	}
 	let dateParts = data?.date.toString().split(" ");
 	let insert = {
 		template: "song",

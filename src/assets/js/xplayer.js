@@ -157,9 +157,10 @@ class PlayerElement extends HTMLElement {
 		if (window["xplayer-setup"]) {
 			console.log("setup first YT player");
 			let activate = function () {
-				var mediaId =
-					window["xplayer-setup"].attributes["data-video-id"].value;
-
+				// Set Media ID
+				// var mediaId =
+				//	window["xplayer-setup"].attributes["data-video-id"].value;
+				var mediaId = this.simpleHash(document.location.pathname);
 				// this.songDataStore[mediaId] = window[this.dataPath].song;
 				// this.setAttribute("playing", mediaId);
 				this.handlePlayingChange(mediaId);
@@ -233,6 +234,17 @@ class PlayerElement extends HTMLElement {
 	adoptedCallback() {
 		console.log("Custom element moved to new page.");
 		console.log("");
+	}
+
+	// https://gist.github.com/jlevy/c246006675becc446360a798e2b2d781
+	simpleHash(str) {
+		let hash = 0;
+		for (let i = 0; i < str.length; i++) {
+			const char = str.charCodeAt(i);
+			hash = (hash << 5) - hash + char;
+			hash &= hash; // Convert to 32bit integer
+		}
+		return new Uint32Array([hash])[0].toString(36);
 	}
 
 	// Retain settings mode
@@ -345,9 +357,10 @@ class PlayerElement extends HTMLElement {
 	}
 
 	youtubeAPI(videoId, autoplay) {
+		var ytID = xplayer.songDataStore[videoId].youtubeId;
 		if (this.player) {
 			// Player is already going
-			this.player.loadVideoById(videoId);
+			this.player.loadVideoById(ytID);
 		} else {
 			console.log("go youtubeAPIMaker");
 			// https://developers.google.com/youtube/player_parameters
@@ -357,7 +370,7 @@ class PlayerElement extends HTMLElement {
 				this.player = new YT.Player("xplayer-playbox", {
 					height: "390",
 					width: "640",
-					videoId: videoId,
+					videoId: ytID,
 					host: "https://www.youtube-nocookie.com", // https://stackoverflow.com/questions/56225247/enforce-nocookie-mode-when-using-the-youtube-iframe-api
 					playerVars: {
 						playsinline: 1,
@@ -601,11 +614,13 @@ class PlayerElement extends HTMLElement {
 		console.log("Custom element has seen an htmx swap.");
 		if (window["xplayer-setup"]) {
 			// var autoplay = false;
-			var mediaId =
-				window["xplayer-setup"].attributes["data-video-id"].value;
+			// var mediaId =
+			//	window["xplayer-setup"].attributes["data-video-id"].value;
 
 			//this.handlePlayingChange(mediaId);
+			var mediaId = this.simpleHash(document.location.pathname);
 			if (!this.songsAdded.has(mediaId)) {
+				// document.location.pathname
 				this.handlePlayingChange(mediaId);
 			} else {
 				console.log(
@@ -718,6 +733,7 @@ class PlayerElement extends HTMLElement {
 				window["xplayer-setup"].innerText
 			).song;
 			this.songDataStore[val].siteUrl = window.location.href;
+			this.songDataStore[val].mediaId = val;
 			// this.songDataStore[val] = window[this.dataPath].song;
 			if (!this.shouldAddToPlaylist() && !!!advancing) {
 				console.log("Song Data store state now ", this.songDataStore);
