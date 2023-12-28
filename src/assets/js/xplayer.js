@@ -444,18 +444,20 @@ class PlayerElement extends HTMLElement {
 		};
 		const managePlaybackUpdate = (e) => {
 			//  {isPaused: true, isBuffering: false, duration: 146800, position: 0}
-			console.log(
+			/*console.log(
 				"Spotify progressTimestamp",
 				`${parseInt(e.data.position / 1000, 10)} s`,
 				e
-			);
+			);*/
 			if (e.data.isPaused) {
 				this.setMediaState("paused");
 			} else {
-				this.setMediaState("playing");
+				// this.setMediaState("playing");
+				// Need to get autoplay to work here
 				this.playerActivated = true;
 			}
 			if (e.data.position == e.data.duration) {
+				console.log("Spotify song ended");
 				this.makeMediaAdvance();
 			}
 		};
@@ -602,7 +604,9 @@ class PlayerElement extends HTMLElement {
 				} else if (currentValue == "paused") {
 					window["xplayer-pause"].style.display = "none";
 					window["xplayer-play"].style.display = "inline-block";
-					this.makeMediaPause();
+					if (previousValue == "playing") {
+						this.makeMediaPause();
+					}
 				}
 				break;
 			default:
