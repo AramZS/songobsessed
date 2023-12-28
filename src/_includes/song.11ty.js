@@ -1,5 +1,5 @@
 const base = require("./base.11ty");
-const youtube = require("./partials/youtube.11ty");
+const xplayer = require("./partials/xplayer.11ty");
 const sharp = require("sharp");
 const fs = require("fs");
 
@@ -173,7 +173,7 @@ module.exports = async function (data) {
 			</p>
 			-->
 		</div>
-		${data.youtube ? youtube(data.youtube, false, onPageObject) : ""}
+		${data.songtitle ? xplayer(onPageObject) : ""}
 		<hr /> 
 			
 		`,
