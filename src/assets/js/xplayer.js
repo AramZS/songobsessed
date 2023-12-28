@@ -15,6 +15,7 @@ class PlayerElement extends HTMLElement {
 		super();
 		this.playerEmptyStateClass = "player-empty";
 		this.playerActiveClass = "player-active";
+		this.playerActivated = false;
 		this.player = false;
 		this.spotifyController = false;
 		this.autoPlay = true;
@@ -133,6 +134,9 @@ class PlayerElement extends HTMLElement {
 		} else if (playerMode == "large") {
 			this.changePlayerMode("xplayer-enlarge");
 		}
+
+		this.preferredAPI = this.getRetainedSetting("preferredAPI") || "yt";
+
 		if (
 			this.hasRetainedSetting("autoPlay") &&
 			window["xplayer-autoplay-switch"]
@@ -261,6 +265,7 @@ class PlayerElement extends HTMLElement {
 			<div class="xplayer-control" id="xplayer-shrink">↘</div>
 		</div>`;
 	}
+
 	imgMaker(mediaId) {
 		var url = this.songDataStore[mediaId].featuredImage.replace(
 			"640",
@@ -367,6 +372,7 @@ class PlayerElement extends HTMLElement {
 						onStateChange: onPlayerStateChange.bind(this),
 					},
 				});
+				this.setMediaState("paused");
 				this.mediaStates = {
 					playing: YT.PlayerState.PLAYING,
 					paused: YT.PlayerState.PAUSED,
@@ -374,12 +380,15 @@ class PlayerElement extends HTMLElement {
 					buffering: YT.PlayerState.BUFFERING,
 					cued: YT.PlayerState.CUED,
 				};
-				this.mode = "YT";
+				this.mode = "yt";
 			};
 			var onPlayerReady = (event) => {
-				event.target.playVideo();
-				this.setMediaState("playing");
+				//event.target.playVideo();
+				if (this.playerActivated || this.autoPlay) {
+					this.setMediaState("playing");
+				}
 			};
+			onPlayerReady.bind(this);
 			var onPlayerStateChange = (event) => {
 				console.log("player state change", event);
 				var state = this.getMediaState(event.data);
@@ -411,6 +420,7 @@ class PlayerElement extends HTMLElement {
 		});
 		if (this.SpotifyIFrameController) {
 			this.spotifyNext(mediaId);
+			return;
 		}
 		const element = document.getElementById("xplayer-playbox");
 		const options = {
@@ -419,6 +429,24 @@ class PlayerElement extends HTMLElement {
 			height: "100%",
 			id: "xplayer-playbox",
 		};
+		const managePlaybackUpdate = (e) => {
+			//  {isPaused: true, isBuffering: false, duration: 146800, position: 0}
+			console.log(
+				"Spotify progressTimestamp",
+				`${parseInt(e.data.position / 1000, 10)} s`,
+				e
+			);
+			if (e.data.isPaused) {
+				this.setMediaState("paused");
+			} else {
+				this.setMediaState("playing");
+				this.playerActivated = true;
+			}
+			if (e.data.position == e.data.duration) {
+				this.makeMediaAdvance();
+			}
+		};
+		managePlaybackUpdate.bind(this);
 		const callback = (EmbedController) => {
 			EmbedController.iframeElement.id = "xplayer-playbox";
 			this.SpotifyIFrameController = EmbedController;
@@ -427,6 +455,14 @@ class PlayerElement extends HTMLElement {
 			if (this.autoPlay) {
 				this.player.play();
 			}
+			this.SpotifyIFrameController.addListener(
+				"playback_update",
+				managePlaybackUpdate
+			);
+			this.SpotifyIFrameController.addListener("ready", (e) => {
+				console.log("SpotifyIFrameController ready event", e);
+			});
+			this.mode = "spotify";
 		};
 		callback.bind(this);
 		window.SpotifyIFrameAPI.createController(element, options, callback);
@@ -501,7 +537,7 @@ class PlayerElement extends HTMLElement {
 			this.setPlaylistPlaying(nextMedia);
 			switch (type) {
 				case "youtube":
-					this.youtubeAPI(nextMedia, this.autoPlay);
+					this.youtubeAPI(nextMedia, true);
 					break;
 
 				default:
@@ -564,7 +600,7 @@ class PlayerElement extends HTMLElement {
 	htmxSwapCallback() {
 		console.log("Custom element has seen an htmx swap.");
 		if (window["xplayer-setup"]) {
-			var autoplay = false;
+			// var autoplay = false;
 			var mediaId =
 				window["xplayer-setup"].attributes["data-video-id"].value;
 
@@ -581,6 +617,9 @@ class PlayerElement extends HTMLElement {
 	}
 	// State Management
 	setMediaState(state) {
+		if (!["paused", "playing"].includes(state)) {
+			console.error("Unexpected player state", state);
+		}
 		this.setAttribute("xp-media-state", state);
 	}
 
@@ -683,7 +722,7 @@ class PlayerElement extends HTMLElement {
 			if (!this.shouldAddToPlaylist() && !!!advancing) {
 				console.log("Song Data store state now ", this.songDataStore);
 				this.setPlaylistPlaying(val);
-				this.youtubeAPI(val, true);
+				this.youtubeAPI(val, this.autoPlay);
 			} else {
 				console.log("Playing moved to playlist for", val);
 				this.addToPlaylist(val);
