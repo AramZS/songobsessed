@@ -497,9 +497,17 @@ class PlayerElement extends HTMLElement {
 
 	routeToCorrectPlayAPI(mediaId, autoplay) {
 		var mediaObj = this.songDataStore[mediaId];
+		let preferredAPI = this.preferredAPI;
+		if (mediaObj?.presetPreferredAPI) {
+			preferredAPI = mediaObj.presetPreferredAPI;
+		}
+		this.routeToCorrectPlayAPI(mediaId, autoplay, preferredAPI);
+	}
+
+	routeToCorrectPlayAPI(mediaObj, autoplay, preferredAPI) {
 		var apiID = false;
 		var callingAPI = null;
-		switch (this.preferredAPI) {
+		switch (preferredAPI) {
 			case "spotify":
 				callingAPI = this.spotifyAPI.bind(this);
 				apiID = mediaObj.spotifyUri;
