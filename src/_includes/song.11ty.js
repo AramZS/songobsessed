@@ -71,7 +71,7 @@ module.exports = async function (data) {
 		site: data.site,
 		metadata: data.metadata,
 		me: data.me,
-		song: {
+		media: {
 			description: data.description,
 			tags: data.tags,
 			date: data.date,
@@ -99,7 +99,7 @@ module.exports = async function (data) {
 		}
 		return new Uint32Array([hash])[0].toString(36);
 	};
-	onPageObject.song.mediaId = simpleHash(onPageObject.song.title);
+	onPageObject.media.mediaId = simpleHash(onPageObject.media.title);
 	let tagText = data.tags.map((tag) => {
 		return `<span class="genre-tag">${tag}</span>`;
 	});
@@ -126,7 +126,7 @@ module.exports = async function (data) {
 		);
 		let videoId = finalString.split("embed/")[1];
 		console.log("videoId", videoId);
-		onPageObject.song.youtubeId = videoId;
+		onPageObject.media.youtubeId = videoId;
 	}
 	let dateParts = data?.date.toString().split(" ");
 	let insert = {

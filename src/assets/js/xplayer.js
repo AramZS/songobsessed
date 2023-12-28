@@ -357,8 +357,8 @@ class PlayerElement extends HTMLElement {
 		return /*html*/ `<iframe class="youtube-iframe" src="${videoUrl}${append}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
 	}
 
-	youtubeAPI(videoId, autoplay) {
-		var ytID = xplayer.songDataStore[videoId].youtubeId;
+	youtubeAPI(ytID, autoplay) {
+		console.log('Youtube API called with videoId "' + ytID + '"');
 		if (this.player) {
 			// Player is already going
 			this.player.loadVideoById(ytID);
@@ -417,7 +417,7 @@ class PlayerElement extends HTMLElement {
 			makeitGo();
 		}
 		// this.setAttribute("now", videoId);
-		this.internalPlayed.push(videoId);
+		this.internalPlayed.push(ytID);
 	}
 
 	// Spotify API
@@ -760,7 +760,7 @@ class PlayerElement extends HTMLElement {
 			this.songsAdded.add(mediaId);
 			this.songDataStore[mediaId] = JSON.parse(
 				window["xplayer-setup"].innerText
-			).song;
+			).media;
 			this.songDataStore[mediaId].siteUrl = window.location.href;
 			this.songDataStore[mediaId].mediaId = mediaId;
 			// this.songDataStore[val] = window[this.dataPath].song;
