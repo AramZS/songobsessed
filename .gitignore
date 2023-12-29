@@ -6,3 +6,5 @@ docs
 **/.DS_Store
 build_log.txt
 buildlog.txt
+gh-pages
+gh-pages.pub
