@@ -115,6 +115,7 @@ module.exports = async function (data) {
 		return new Uint32Array([hash])[0].toString(36);
 	};
 	if (data?.spotify && !data.spotifyUri) {
+		// https://community.spotify.com/t5/Desktop-Windows/URI-Codes/td-p/4479486
 		let spotifyUri = data.spotify.split("track/")[1];
 		onPageObject.media.spotifyUri = `spotify:track:${spotifyUri}`;
 	}
