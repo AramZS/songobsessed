@@ -1,7 +1,7 @@
 ---
 title: "Computer by State Shirt"
 description: "More information to come!"
-date: 2011-07-16T16:56:11Z
+date: 2015-09-30T17:31:50Z
 tags:
   - "indie"
   - "electronica"
@@ -21,7 +21,7 @@ author: Aram Zucker-Scharff
 playlists:
   -
     name: "Obsessions"
-    position: 58
+    position: 212
     author: Aram Zucker-Scharff
 youtube: https://www.youtube.com/watch?v=nhgxgP0osXs
 spotify: https://open.spotify.com/track/4dMuaUPtmzmHAytoEfF71R

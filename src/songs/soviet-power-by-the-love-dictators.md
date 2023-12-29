@@ -1,10 +1,9 @@
 ---
 title: "Soviet Power by The Love Dictators"
 description: "More information to come!"
-date: 2011-07-16T16:46:45Z
+date: 2015-09-30T17:31:50Z
 tags:
-  - German
-  - Dance
+  - Tags Needed
 public: true
 artists:
   - The Love Dictators
@@ -18,9 +17,9 @@ author: Aram Zucker-Scharff
 playlists:
   -
     name: "Obsessions"
-    position: 24
+    position: 188
     author: Aram Zucker-Scharff
-youtube: https://youtu.be/2Uof5utdLDw
+youtube: 
 spotify: https://open.spotify.com/track/7H8Duf5GllduaXpNhFMxtY
 spotifyUri: 
 soundcloud:

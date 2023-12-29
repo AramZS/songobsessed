@@ -1,14 +1,13 @@
 ---
 title: "That Age by Hollywood Drunks"
 description: "More information to come!"
-date: 2011-07-16T16:46:11Z
+date: 2015-09-30T17:31:50Z
 tags:
-  - Magnatune Artist
-  - Coldplay
-  - Growing Old
-  - jason mraz
-  - The Fray
-  - Great new music
+  - "Coldplay"
+  - "Growing Old"
+  - "jason mraz"
+  - "The Fray"
+  - "Great new music"
 public: true
 artists:
   - Hollywood Drunks
@@ -22,7 +21,7 @@ author: Aram Zucker-Scharff
 playlists:
   -
     name: "Obsessions"
-    position: 22
+    position: 215
     author: Aram Zucker-Scharff
 youtube: https://www.youtube.com/watch?v=91dBnEn5ZdQ
 spotify: https://open.spotify.com/track/06ZvioYXKUgyudeCP5RKrX
