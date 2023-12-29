@@ -24321,7 +24321,11 @@ whole.forEach(async (track) => {
 					return false;
 				}
 			});
-			await processImageUrl(image["#text"], "png");
+			localImageFileName = await processImageUrl(
+				image["#text"],
+				"png",
+				sluggedAlbum
+			);
 		}
 		let description = "More information to come!";
 		if (lastFMData.wiki && lastFMData.wiki.summary) {
@@ -24340,6 +24344,10 @@ whole.forEach(async (track) => {
 			!!track.track?.uri && track.track.uri != "undefined"
 				? track.track.uri
 				: "";
+		if (spotifyUri.includes(":local:")) {
+			// We can't play tis
+			spotifyUri = "";
+		}
 		console.log("spotifyTrack", spotifyTrack);
 		let writeOptions = { flag: "w" };
 		// writeOptions = { flag: "wx" }; // Once we start writing stuff into the posts we don't want to overwrite them.
