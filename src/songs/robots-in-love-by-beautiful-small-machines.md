@@ -13,7 +13,7 @@ artists:
   - Beautiful Small Machines
 songtitle: "Robots in Love"
 album: "Robots in Love EP"
-featuredImage: "undefined.png"
+featuredImage: "robots-in-love-ep.png"
 featuredImageCredit: "Image is used from album for review purposes."
 featuredImageLink: ""
 featuredImageAlt: ""

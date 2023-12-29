@@ -12,7 +12,7 @@ artists:
   - Bark Cat Bark
 songtitle: "Jardin du Ranelagh"
 album: "Mathilde"
-featuredImage: "undefined.png"
+featuredImage: "mathilde.png"
 featuredImageCredit: "Image is used from album for review purposes."
 featuredImageLink: ""
 featuredImageAlt: ""

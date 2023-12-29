@@ -3,7 +3,7 @@ title: "1 on 1 (Round 2) by Craigmire"
 description: "More information to come!"
 date: 2011-07-16T16:42:45Z
 tags:
-  - 
+  - Tags Needed
 public: true
 artists:
   - Craigmire

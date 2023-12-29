@@ -3,9 +3,8 @@ title: "Killer Piller by goto80"
 description: "More information to come!"
 date: 2011-07-18T03:55:30Z
 tags:
-  - 8-bit
   - chiptune
-  - chip
+  - 8-bit
   - 8bit
   - electronic
   - chiptunes
@@ -14,7 +13,7 @@ artists:
   - goto80
 songtitle: "Killer Piller"
 album: "Zyndabox"
-featuredImage: "undefined.png"
+featuredImage: "zyndabox.png"
 featuredImageCredit: "Image is used from album for review purposes."
 featuredImageLink: ""
 featuredImageAlt: ""

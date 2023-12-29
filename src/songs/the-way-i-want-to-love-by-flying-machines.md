@@ -3,7 +3,7 @@ title: "The Way I Want to Love by FLYING MACHINES"
 description: "More information to come!"
 date: 2011-07-16T16:44:56Z
 tags:
-  - 
+  - Alex Munk
 public: true
 artists:
   - FLYING MACHINES

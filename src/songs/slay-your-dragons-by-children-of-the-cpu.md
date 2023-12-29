@@ -13,7 +13,7 @@ artists:
   - Children of the CPU
 songtitle: "Slay Your Dragons"
 album: "Back to BASIC"
-featuredImage: "undefined.png"
+featuredImage: "back-to-basic.png"
 featuredImageCredit: "Image is used from album for review purposes."
 featuredImageLink: ""
 featuredImageAlt: ""

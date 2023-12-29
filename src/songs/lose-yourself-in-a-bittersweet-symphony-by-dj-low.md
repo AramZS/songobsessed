@@ -3,7 +3,7 @@ title: "Lose Yourself in a Bittersweet Symphony by DJ Low"
 description: "More information to come!"
 date: 2011-07-16T16:43:33Z
 tags:
-  - Tom De Weerdt
+  - Tags Needed
 public: true
 artists:
   - DJ Low

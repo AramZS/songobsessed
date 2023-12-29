@@ -3,13 +3,7 @@ title: "Uplift part 2 by DJ TELTA"
 description: "More information to come!"
 date: 2011-07-16T16:43:44Z
 tags:
-  - Dutch hardcore/gabber DJ, often credited as DJ Paul
-  - hardcore
-  - rave
-  - hardcore techno
-  - gabber
-  - happy hardcore
-  - edm
+  - Tags Needed
 public: true
 artists:
   - DJ TELTA

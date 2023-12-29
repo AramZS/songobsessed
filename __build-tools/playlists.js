@@ -72,7 +72,7 @@ whole.forEach(async (track) => {
 	++c;
 	//console.log(c, track.track.name);
 	// 453 total
-	if (c > 20 && c < 41) {
+	if (c > 0 && c < 21) {
 		console.log(c, track.track.name);
 		// c > 419 && c < 441) {
 		let playlistNumber = JSON.stringify(c);
@@ -195,7 +195,15 @@ whole.forEach(async (track) => {
 			});
 		}
 		let tagsArray = Array.from(tags);
-		var YAMLTags = tagsArray.join(`
+		let tagsArrayFiltered = tagsArray.filter((tag) => {
+			if (tag) {
+				return true;
+			}
+		});
+		let tagsArrayStringed = tagsArrayFiltered.map((tag) => {
+			return `"${tag}"`;
+		});
+		var YAMLTags = tagsArrayStringed.join(`
   - `);
 		let commaSeperatedArtists = artists.join(", ");
 		let title = `${track.track.name} by ${commaSeperatedArtists.replace(
@@ -312,6 +320,7 @@ whole.forEach(async (track) => {
 		console.log("spotifyTrack", spotifyTrack);
 		let writeOptions = { flag: "w" };
 		// writeOptions = { flag: "wx" }; // Once we start writing stuff into the posts we don't want to overwrite them.
+		YAMLTags = YAMLTags ? YAMLTags : "Tags Needed";
 		let mdMode = `---
 title: "${title}"
 description: "${description}"

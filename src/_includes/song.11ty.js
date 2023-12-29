@@ -70,7 +70,7 @@ let imageCheck = async function (data) {
 			);
 		}
 		let promiseResult = await Promise.all(promiseArray);
-		return `img/glass-horn-640.jpg`;
+		return `/img/glass-horn-640.jpg`;
 	}
 };
 
@@ -103,6 +103,8 @@ module.exports = async function (data) {
 			youtubeId: "",
 		},
 	};
+	var hasSongData = false;
+
 	let simpleHash = (str) => {
 		let hash = 0;
 		for (let i = 0; i < str.length; i++) {
@@ -159,6 +161,24 @@ module.exports = async function (data) {
 		console.log("videoId", videoId);
 		onPageObject.media.youtubeId = videoId;
 	}
+	["spotifyUri", "youtubeId", "audiofile"].forEach((key) => {
+		if (onPageObject.media[key]) {
+			hasSongData = true;
+		}
+	});
+	let playlistButton = hasSongData
+		? /*html*/ `
+<p>
+	<button onclick="(
+		function(){
+			window.xplayer.addFromPage(
+				window.pageData.media
+			)
+		}
+	)()">Add to Playlist</button>
+</p>`
+		: "";
+
 	let dateParts = data?.date.toString().split(" ");
 	let insert = {
 		template: "song",
@@ -177,16 +197,7 @@ module.exports = async function (data) {
 			<p><span class="date-added">Added on: ${dateParts[0]} ${dateParts[1]} ${
 			dateParts[2]
 		} ${dateParts[3]}</span></p>
-			<p>
-
-				<button onclick="(
-					function(){
-						window.xplayer.addFromPage(
-							window.pageData.media
-						)
-					}
-				)()">Add to Playlist</button>
-			</p>
+			${playlistButton}
 			${data.content}
 			<br />
 			<script>
@@ -211,7 +222,7 @@ module.exports = async function (data) {
 			</p>
 			-->
 		</div>
-		${data.songtitle ? xplayer(onPageObject) : ""}
+		${hasSongData ? xplayer(onPageObject) : ""}
 		<hr /> 
 			
 		`,

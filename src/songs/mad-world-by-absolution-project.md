@@ -1,18 +1,19 @@
 ---
 title: "Mad World by Absolution Project"
 description: "More information to come!"
-date: 2009-06-16T21:06:29Z
+date: 2011-07-16T16:40:35Z
 tags:
-  - cover
-  - indie
+  - rock
+  - cover songs
+  - male vocals
 public: true
 artists:
   - Absolution Project
 songtitle: "Mad World"
-album: "Songs From..."
-featuredImage: "songs-from.webp"
+album: ""
+featuredImage: "mad-world-by-absolution-project.png"
 featuredImageCredit: "Image is used from album for review purposes."
-featuredImageLink: "https://www.last.fm/music/Absolution+Project/Songs+From+.+.+./+images/8ba6ef7abd65dff0884f4009f1b71e0e"
+featuredImageLink: ""
 featuredImageAlt: ""
 author: Aram Zucker-Scharff
 playlists:
@@ -24,7 +25,8 @@ youtube: https://www.youtube.com/watch?v=2toB18Eu14A
 spotify: 
 spotifyUri: 
 soundcloud:
-audiofile: "Absolution Project - Mad World by Tears for Fears ⧸ Gary Jules (Cover).mp3"
+audiofile:
+podbean:
 lastfm: https://www.last.fm/music/Absolution+Project/_/Mad+World
 ---
 
