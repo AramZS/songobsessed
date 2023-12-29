@@ -72,7 +72,7 @@ whole.forEach(async (track) => {
 	++c;
 	//console.log(c, track.track.name);
 	// 453 total
-	if (c > 100 && c < 121) {
+	if (c > 120 && c < 141) {
 		console.log(c, track.track.name);
 		// c > 419 && c < 441) {
 		let playlistNumber = JSON.stringify(c);
