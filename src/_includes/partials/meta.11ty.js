@@ -33,7 +33,7 @@ module.exports = function (data, title, description, tagSet, imgUrls) {
 		{
 			meta: "property",
 			property: "og:site_name",
-			content: `${data.metadata.username}’s Twitter Archive`,
+			content: `${data.metadata.username}’s Song Obsessions`,
 		},
 		{
 			meta: "property",
@@ -99,7 +99,7 @@ module.exports = function (data, title, description, tagSet, imgUrls) {
 			jsonLDProperties.push({
 				isPartOf: {
 					"@type": ["ArchiveOrganization", "WebSite"],
-					name: `${data.metadata.username}’s Twitter Archive`,
+					name: `${data.metadata.username}’s Song Obsessions`,
 					url: `${data.metadata.baseUrl}`,
 				},
 			});
@@ -120,7 +120,7 @@ module.exports = function (data, title, description, tagSet, imgUrls) {
 				url: `${data.metadata.baseUrl}${data.page.url}`,
 			});
 			jsonLDProperties.push({
-				name: `${data.metadata.username}’s Twitter Archive`,
+				name: `${data.metadata.username}’s Song Obsessions`,
 			});
 	}
 
