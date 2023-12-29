@@ -109,6 +109,18 @@ whole.forEach(async (track) => {
 				.then((response) => response.json())
 				.then((data) => {
 					console.log("LASTFM Data", data);
+					if (
+						data.hasOwnProperty("error") &&
+						data.hasOwnProperty("message")
+					) {
+						console.error(
+							"LastFM Error",
+							data.message,
+							"for",
+							track.track.name
+						);
+						resolve(false);
+					}
 					resolve(data);
 				})
 				.catch((error) => console.error("Error:", error));
@@ -135,36 +147,52 @@ whole.forEach(async (track) => {
 		});
 		let artistsObject = await artistGenre;
 		let lastFMData = await lastFMPromisedData;
-		let ytcheck = new Promise((resolve, reject) => {
-			fetch(lastFMData.track.url, {
-				headers: {
-					"User-Agent":
-						"Song Obsessed/1.0 ( http://aramzs.github.io )",
-				},
-			})
-				.then((response) => response.text())
-				.then((data) => {
-					console.log("ytcheck");
-					let ytlink = false;
-					if (data) {
-						fs.writeFileSync("./testLast.html", data);
-						const dom = new JSDOM(data);
-						ytlink = dom.window.document
-							.querySelector("#track-page-video-playlink")
-							.getAttribute("data-youtube-url");
-					}
-					resolve(ytlink);
+		let ytlink = "";
+		if (lastFMData) {
+			let ytcheck = new Promise((resolve, reject) => {
+				fetch(lastFMData.track.url, {
+					headers: {
+						"User-Agent":
+							"Song Obsessed/1.0 ( http://aramzs.github.io )",
+					},
 				})
-				.catch((error) => {
-					console.error(
-						"\x1b[33m  Error: \x1b[0m",
-						"from retrieving " + lastFMData.track.url,
-						error
-					);
+					.then((response) => response.text())
+					.then((data) => {
+						console.log("ytcheck");
+						let ytlink = false;
+						if (data) {
+							fs.writeFileSync("./testLast.html", data);
+							const dom = new JSDOM(data);
+							ytlink = dom.window.document
+								.querySelector("#track-page-video-playlink")
+								.getAttribute("data-youtube-url");
+						}
+						resolve(ytlink);
+					})
+					.catch((error) => {
+						console.error(
+							"\x1b[33m  Error: \x1b[0m",
+							"from retrieving " + lastFMData.track.url,
+							error
+						);
+						resolve("");
+					});
+			});
+			ytlink = new Promise((resolve, reject) => {
+				setTimeout(() => {
 					resolve("");
-				});
-		});
-		let ytlink = await ytcheck;
+				}, 3000);
+			});
+			try {
+				ytlink = await ytcheck;
+			} catch (e) {
+				console.log("ytcheck error", e, "from lastFM data");
+				ytlink = "";
+			}
+			await ytlink;
+		} else {
+			ytlink = "";
+		}
 		//console.log("artistsObject", artistsObject);
 		let tags = new Set();
 		if (artistsObject?.artists?.length > 0) {
@@ -189,10 +217,18 @@ whole.forEach(async (track) => {
 			);
 		}
 		console.log("lastFMData.track", lastFMData.track);
-		if (lastFMData.track.toptags.hasOwnProperty("tag") > 0) {
+		if (
+			lastFMData &&
+			lastFMData.hasOwnProperty("track") &&
+			lastFMData.track.toptags.hasOwnProperty("tag") > 0
+		) {
 			lastFMData.track.toptags.tag.forEach((tag) => {
 				tags.add(tag.name);
 			});
+		} else {
+			console.error(
+				`\x1b[33m  Song ${playlistNumber} ${track.track.name} failed lastFMData check. \x1b[0m`
+			);
 		}
 		let tagsArray = Array.from(tags);
 		let tagsArrayFiltered = tagsArray.filter((tag) => {
@@ -348,7 +384,7 @@ spotifyUri: ${spotifyUri}
 soundcloud:
 audiofile:
 podbean:
-lastfm: ${lastFMData.track.url}
+lastfm: ${lastFMData ? lastFMData.track.url : ""}
 ---
 
 A song I plan to write more about.
