@@ -31,6 +31,8 @@ The audio player on this site supports each of these player types. Not all songs
 
 Heads up: This site assumes that if you click on a song, you want to listen to it. So it will start playing automatically. If you don't want that it to work like that, there's an autoplay switch in the top right.
 
+~~[Aram](https://aramzs.github.io/aramzs/)
+
 <br /><br /><br /><br />
 
 ## WiP
