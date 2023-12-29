@@ -1,15 +1,14 @@
 ---
-title: "crushcrushcrush REMIXREMIXREMIX by EEPROM"
+title: "The Bongo Song by Capital Road"
 description: "More information to come!"
-date: 2011-07-16T16:44:18Z
+date: 2011-07-16T16:41:35Z
 tags:
-  - electronica mix
+  - Tags Needed
 public: true
 artists:
-  - EEPROM
-  - Paramore
-songtitle: "crushcrushcrush REMIXREMIXREMIX"
-album: "Remixes"
+  - Capital Road
+songtitle: "The Bongo Song"
+album: "It's All Gravy"
 featuredImage: ""
 featuredImageCredit: "Image is used from album for review purposes."
 featuredImageLink: ""
@@ -18,16 +17,17 @@ author: Aram Zucker-Scharff
 playlists:
   -
     name: "Obsessions"
-    position: 15
+    position: 6
     author: Aram Zucker-Scharff
-youtube: https://www.youtube.com/watch?v=rMLCNA_WM_Q
+youtube: 
 spotify: 
 spotifyUri: 
 soundcloud:
-audiofile: "EEPROM - Crush Crush Crush Remix.mp3"
+audiofile:
 podbean:
-lastfm: https://www.last.fm/music/EEPROM/_/crushcrushcrush+REMIXREMIXREMIX
+lastfm: https://www.last.fm/music/Capital+Road/_/The+Bongo+Song
 ---
 
 A song I plan to write more about.
 		
+Also can hear it at https://www.reverbnation.com/capitalroad/song/499576-the-bongo-song

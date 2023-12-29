@@ -1,15 +1,16 @@
 ---
-title: "crushcrushcrush REMIXREMIXREMIX by EEPROM"
+title: "Purple Underground by kfox"
 description: "More information to come!"
-date: 2011-07-16T16:44:18Z
+date: 2011-07-16T16:48:49Z
 tags:
-  - electronica mix
+  - epic trance
+  - 8 of 10 stars
+  - older listen later
 public: true
 artists:
-  - EEPROM
-  - Paramore
-songtitle: "crushcrushcrush REMIXREMIXREMIX"
-album: "Remixes"
+  - kfox
+songtitle: "Purple Underground"
+album: ""
 featuredImage: ""
 featuredImageCredit: "Image is used from album for review purposes."
 featuredImageLink: ""
@@ -18,15 +19,15 @@ author: Aram Zucker-Scharff
 playlists:
   -
     name: "Obsessions"
-    position: 15
+    position: 31
     author: Aram Zucker-Scharff
-youtube: https://www.youtube.com/watch?v=rMLCNA_WM_Q
+youtube: 
 spotify: 
 spotifyUri: 
 soundcloud:
-audiofile: "EEPROM - Crush Crush Crush Remix.mp3"
+audiofile:
 podbean:
-lastfm: https://www.last.fm/music/EEPROM/_/crushcrushcrush+REMIXREMIXREMIX
+lastfm: https://www.last.fm/music/kfox/_/Purple+Underground
 ---
 
 A song I plan to write more about.
