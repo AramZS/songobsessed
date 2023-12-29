@@ -16,19 +16,27 @@ module.exports = async function (data) {
 		//console.log("tagText", tagText);
 		return (
 			/*html*/ `
-				<div class="media-entry">
+				<div class="media-entry h-entry">
+					<div class="media-img">
 					${linkmaker(
 						post.data,
 						post.data.page.url,
 						`<img src="/img/${imageName}-240.jpg" alt="${post.data.title}" />`
 					)}
-					<h3>${linkmaker(post.data, post.data.page.url, `${post.data.title}`)}</h3>
+					</div>
+					<h3 class="p-name">${linkmaker(
+						post.data,
+						post.data.page.url,
+						`${post.data.title}`
+					)}</h3>
 					<p class="tag-list">${tagText.join(", ")}</p>
+					
 				</div>
 			` + accumulator
 		);
 	}, "");
 	let insert = {
+		template: "tags",
 		content: /*html*/ `
 			<h2>${data.paged.tagName}</h2>
 			${data.content}

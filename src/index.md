@@ -6,13 +6,13 @@ path: /
 layout: "index.11ty.js"
 ---
 
-Welcome to Song Obsessed. This is a site for me to share my favorite songs and write about them. Since early 2009 I've been using a variety of sites to keep track of one song a day, a week or a month. Sometimes I've written about them, sometimes not. But trying to find a way to retain that list and remember them over time has been a challange. [First The61 closed](https://en.wikipedia.org/wiki/Thesixtyone). Then [ThisIsMyJam](https://www.theguardian.com/technology/2015/aug/10/this-is-my-jam-music-website-shuts-down-open-web). Now I use [Last.fm Obsessions](https://www.last.fm/user/Shade0/obsessions), but it doesn't work exactly how I'd like.
+Welcome to <span class="site-name">Song Obsessed</span>. This is a site for me to share my favorite songs and write about them. Since early 2009 I've been using a variety of sites to keep track of one song a day, a week or a month. Sometimes I've written about them, sometimes not. But trying to find a way to retain that list and remember them over time has been a challange. [First The61 closed](https://en.wikipedia.org/wiki/Thesixtyone). Then [ThisIsMyJam](https://www.theguardian.com/technology/2015/aug/10/this-is-my-jam-music-website-shuts-down-open-web). Now I use [Last.fm Obsessions](https://www.last.fm/user/Shade0/obsessions), but it doesn't work exactly how I'd like.
 
 So this site will hopefully work and, even if it isn't the best option, I'm running it, so I won't lose those songs and I'll always have a stable place to share them with others. 
 
 ## What is this site for?
 
-Right now Song Obsessed serves two goals, a lab for me to experiment with technology where a single site owner like myself can leverage all the places audio and video can be hosted to create something a little like their own mixtape, one that's dependent on the variety of media hosting tools out there, but not on any single one of them, as a sort of hedge against something happening to any of them. 
+Right now<span class="site-name"> Song Obsessed </span>serves two goals, a lab for me to experiment with technology where a single site owner like myself can leverage all the places audio and video can be hosted to create something a little like their own mixtape, one that's dependent on the variety of media hosting tools out there, but not on any single one of them, as a sort of hedge against something happening to any of them. 
 
 I say a mixtape, but it isn't quite a mixtape and it isn't quite a blog. It's something that I hope takes advantage of the best qualities of the web to share a listening experience that's a little curated and a little self-directed. 
 

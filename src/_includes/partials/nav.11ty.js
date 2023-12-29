@@ -11,7 +11,7 @@ function opennav(e){
 	<div id="nav-icon" onclick="opennav(this)">
 		<img src="/assets/menu-icon.svg" />
 	</div>
-	<h1>${linkmaker(data, "", data.site.title)}</h1>
+	<h1 class="site-name">${linkmaker(data, "", data.site.title)}</h1>
 		<div id="nav-menu-items"><ul>
 			<li>${linkmaker(data, "/songs/", "Songs")}</li>
 			<li>${linkmaker(data, "/search/", "Search")}</li>

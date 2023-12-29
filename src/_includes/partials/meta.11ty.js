@@ -21,7 +21,7 @@ module.exports = function (data, title, description, tagSet, imgUrls) {
 		{
 			meta: "property",
 			property: "og:url",
-			content: `${data.metadata.baseUrl}${data.page.url}`,
+			content: `${data.site.domain}${data.page.url}`,
 		},
 		{ meta: "name", name: "author", content: `${data.metadata.username}` },
 		{ meta: "property", property: "og:title", content: `${title}` },

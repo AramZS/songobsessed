@@ -68,7 +68,7 @@ module.exports = async function (data, zones) {
 		<script defer data-domain="songobsessed.com" src="https://plausible.io/js/script.js" type="application/javascript"></script>
 		${zones.lateHead || ""}
 	</head>
-	<body hx-ext="morph">
+	<body hx-ext="morph" class="template-${zones.template}">
 		<div id="inner-body">
 		${nav(data)}
 			<div id="main-content" hx-history-elt>

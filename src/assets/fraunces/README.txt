@@ -1,7 +1,7 @@
 Fraunces Variable Font
 ======================
 
-This download contains Fraunces as both variable fonts and static fonts.
+This download contains Fraunces as both variable fonts and static fonts. From https://fonts.google.com/specimen/Fraunces
 
 Fraunces is a variable font with these axes:
   SOFT
