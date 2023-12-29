@@ -93,7 +93,7 @@ module.exports = async function (data, zones) {
 				<x-player id="xplayer"></x-player>
 			</div>
 		</aside>
-		<script src="/assets/js/xplayer.js" defer type="application/javascript"></script>
+		<script src="/assets/js/xplayer.js" defer type="application/javascript" hx-preserve="true"></script>
 	</body>
 </html>`;
 };

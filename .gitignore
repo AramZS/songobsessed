@@ -4,3 +4,5 @@ build
 docs
 .DS_Store
 **/.DS_Store
+build_log.txt
+buildlog.txt
