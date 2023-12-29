@@ -108,7 +108,7 @@ whole.forEach(async (track) => {
 			)
 				.then((response) => response.json())
 				.then((data) => {
-					console.log("LASTFM Data", data);
+					console.log("LASTFM Data", data, "for", track.track.name);
 					if (
 						data.hasOwnProperty("error") &&
 						data.hasOwnProperty("message")

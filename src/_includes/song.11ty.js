@@ -114,6 +114,10 @@ module.exports = async function (data) {
 		}
 		return new Uint32Array([hash])[0].toString(36);
 	};
+	if (data?.spotify && !data.spotifyUri) {
+		let spotifyUri = data.spotify.split("track/")[1];
+		onPageObject.media.spotifyUri = `spotify:track:${spotifyUri}`;
+	}
 	onPageObject.media.mediaId = simpleHash(onPageObject.media.title);
 	let tags = data.tags.filter((tag) => {
 		if (
