@@ -39,14 +39,16 @@ module.exports = async function (data, zones) {
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1">
 		<title>${data.title || data.site.title}</title>
 		<meta name="description" content="${meta_description}" />
-		<link href="/assets/fraunces/fraunces.css" rel="stylesheet">
-		<link rel="preconnect" href="https://www.youtube.com">
-		<link rel="dns-prefetch" href="https://www.youtube.com">
-		<link rel="preconnect" href="https://open.spotify.com">
-		<link rel="dns-prefetch" href="https://open.spotify.com">
-		<link rel="preload" href="/assets/css/template-song.css">
+		<link href="/assets/fraunces/fraunces.css" rel="stylesheet" hx-preserve="true">
+		<link rel="preconnect" href="https://www.youtube.com" hx-preserve="true">
+		<link rel="dns-prefetch" href="https://www.youtube.com" hx-preserve="true">
+		<link rel="preconnect" href="https://open.spotify.com" hx-preserve="true">
+		<link rel="dns-prefetch" href="https://open.spotify.com" hx-preserve="true">
+		<link rel="preload" href="/assets/css/template-song.css"  as="style" hx-preserve="true">
+		<link rel="preload" href="/assets/css/template-song-tags.css" as="style" hx-preserve="true">
+		<link rel="preload" href="/assets/css/template-tags.css" as="style" hx-preserve="true">
 		${metaChunk}
-		<script>
+		<script hx-preserve="true">
 		if("classList" in document.documentElement) {
 			document.documentElement.classList.add("has-js");
 		}
@@ -57,22 +59,23 @@ module.exports = async function (data, zones) {
 		};
 		</script>
 		${zones.earlyHead || ""}
-		<link rel="stylesheet" href="/assets/css/style.css">
-		<script src="/assets/js/htmx.min.js" type="application/javascript"></script>
-		<script src="https://www.youtube.com/iframe_api" async onload="(function(){var event = new Event('ytapi-ready'); document.dispatchEvent(event);})()"></script>
+		<link rel="stylesheet" href="/assets/css/style.css"  hx-preserve="true">
+		<script src="/assets/js/htmx.min.js" type="application/javascript" hx-preserve="true"></script>
+		<script src="https://www.youtube.com/iframe_api" async onload="(function(){var event = new Event('ytapi-ready'); document.dispatchEvent(event);})()" hx-preserve="true"></script>
 		<script src="https://open.spotify.com/embed/iframe-api/v1" async onload="(function(){
 			var event = new Event('spotify-api-ready'); 
 			document.dispatchEvent(event);
-		})()"></script>
-		<script src="/assets/js/script.js" defer type="application/javascript"></script>
-		<script defer data-domain="songobsessed.com" src="https://plausible.io/js/script.js" type="application/javascript"></script>
+		})()" hx-preserve="true"></script>
+		<script src="/assets/js/script.js" defer type="application/javascript" hx-preserve="true"></script>
+		<script src="/assets/js/head-support.js" defer type="application/javascript" hx-preserve="true"></script>
+		<script defer data-domain="songobsessed.com" src="https://plausible.io/js/script.js" type="application/javascript"  hx-preserve="true"></script>
+		${templateStyle}
 		${zones.lateHead || ""}
 	</head>
-	<body hx-ext="morph" >
+	<body hx-ext="morph head-support" >
 		<div id="inner-body">
 		${nav(data)}
 			<div id="main-content" hx-history-elt>
-			${templateStyle}
 				<header>
 					<h1 class="title">${data.title.trim()}</h1>
 				</header>
