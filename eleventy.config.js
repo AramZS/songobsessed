@@ -96,15 +96,26 @@ module.exports = function (eleventyConfig) {
 	};
 
 	const makePageObject = (tagName, slug, number, posts, first, last) => {
+		console.log(tagName, slug, number, first, last);
+		if (!tagName) {
+			console.error("tagName is undefined in makePageObject", tagName);
+			return;
+		}
+		if (!slug) {
+			console.log(
+				slug,
+				"slug is undefined in makePageObject, slugify",
+				tagName
+			);
+			slug = slugify(tagName, {
+				lower: true,
+				strict: true,
+				locale: "en",
+			});
+		}
 		return {
 			tagName: tagName,
-			slug: slug
-				? slug
-				: slugify(tagName, {
-						lower: true,
-						strict: true,
-						locale: "en",
-				  }),
+			slug: slug,
 			number: number,
 			posts: posts,
 			first: first,
@@ -112,13 +123,27 @@ module.exports = function (eleventyConfig) {
 		};
 	};
 
-	const getPostClusters = (allPosts, tagName, slug) => {
+	const getPostClusters = (
+		allPosts,
+		tagName,
+		slug,
+		controlSort,
+		reversePerPage
+	) => {
 		aSet = new Set();
-		let postArray = allPosts.reverse();
-		aSet = [...postArray];
-		postArray = paginate(aSet, 10);
+		if (controlSort) {
+			aSet = [...allPosts];
+		} else {
+			let postArray = allPosts.reverse();
+			aSet = [...postArray];
+		}
+
+		postArray = paginate(aSet, 20);
 		let paginatedPostArray = [];
 		postArray.forEach((p, i) => {
+			if (reversePerPage) {
+				p = p.reverse();
+			}
 			paginatedPostArray.push(
 				makePageObject(
 					tagName,
@@ -140,17 +165,22 @@ module.exports = function (eleventyConfig) {
 
 	// Create a list of posts by tag for paged lists
 	eleventyConfig.addCollection("deepTagList", (collection) => {
-		const maxPostsPerPage = 10;
+		const maxPostsPerPage = 20;
 		const pagedPosts = [];
 		tagList = getAllTags(collection.getAll());
 		tagList.forEach((tagName) => {
+			if (!tagName) {
+				console.error("tagName is undefined in deepTagList", tagName);
+				return;
+			}
+			tagName = `${tagName}`.trim(); // Convert numbers to strings
 			const taggedPosts = [
 				...collection.getFilteredByTag(tagName),
 			].reverse();
 			const numberOfPages = Math.ceil(
 				taggedPosts.length / maxPostsPerPage
 			);
-
+			console.log("Need to create a slug for:", tagName);
 			let slug = slugify(tagName, {
 				lower: true,
 				strict: true,
@@ -242,7 +272,7 @@ module.exports = function (eleventyConfig) {
 				JSON.stringify(song.data.playlists)
 			);
 		});
-		return getPostClusters(songPages, "Songs");
+		return getPostClusters(songPages, "Songs", false, true, true);
 	});
 
 	eleventyConfig.addPlugin(require("eleventy-plugin-dart-sass"), {
