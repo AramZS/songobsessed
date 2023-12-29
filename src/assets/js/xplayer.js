@@ -967,8 +967,9 @@ class PlayerElement extends HTMLElement {
 		this.handlePlayingChange(mediaId);
 	}
 }
-
-customElements.define("x-player", PlayerElement);
+if (!customElements.get("x-player")) {
+	customElements.define("x-player", PlayerElement);
+}
 
 /**
  * todo:
