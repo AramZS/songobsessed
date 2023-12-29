@@ -1,7 +1,7 @@
 ---
 title: "Gelernt by Käptn Peng and Die Tentakel von Delphi"
 description: "More information to come!"
-date: 2021-05-25T20:54:20Z
+date: 2021-09-28T13:32:07Z
 tags:
   - Tags Needed
 public: true
@@ -18,7 +18,7 @@ author: Aram Zucker-Scharff
 playlists:
   -
     name: "Obsessions"
-    position: 234
+    position: 282
     author: Aram Zucker-Scharff
 youtube: https://www.youtube.com/watch?v=JtULNuoS3jg
 spotify: https://open.spotify.com/track/1rEVYOEfQRHTCTU0UaeKwt
