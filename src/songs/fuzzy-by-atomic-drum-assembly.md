@@ -3,7 +3,7 @@ title: "Fuzzy by Atomic Drum Assembly"
 description: "More information to come!"
 date: 2021-05-25T20:52:42Z
 tags:
-  - "London based "music making space machine""
+  - "London based 'music making space machine'"
 public: true
 artists:
   - Atomic Drum Assembly

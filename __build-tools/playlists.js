@@ -237,7 +237,8 @@ whole.forEach(async (track) => {
 			}
 		});
 		let tagsArrayStringed = tagsArrayFiltered.map((tag) => {
-			return `"${tag}"`;
+			let safeTag = tag.replace(/"/g, "'");
+			return `"${safeTag}"`;
 		});
 		var YAMLTags = tagsArrayStringed.join(`
   - `);
