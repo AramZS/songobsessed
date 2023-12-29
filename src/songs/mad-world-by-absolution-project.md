@@ -1,7 +1,7 @@
 ---
 title: "Mad World by Absolution Project"
 description: "More information to come!"
-date: 2011-07-16T16:40:35Z
+date: 2009-06-16T16:40:35Z
 tags:
   - rock
   - cover songs
