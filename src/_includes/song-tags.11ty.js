@@ -23,6 +23,8 @@ module.exports = async function (data) {
 				"songsPages",
 				"tagList",
 				"deepTagList",
+				"Undefined",
+				"undefined",
 			].includes(collection)
 		) {
 			songCollection.push(collection);
@@ -66,6 +68,9 @@ module.exports = async function (data) {
 		return b.count - a.count;
 	});
 	let songCollectionHTMLArray = collectionObjects.map((tagObj) => {
+		if (!tagObj?.tag || tagObj.tag === "undefined") {
+			return "";
+		}
 		var tagSlug = slugger(`${tagObj.tag}`);
 		var tagLink = linkmaker(data, `/tag/${tagSlug}`, `${tagObj.tag}`);
 		return /*html*/ `
