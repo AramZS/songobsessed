@@ -1,6 +1,6 @@
 const base = require("./base.11ty");
 const linkmaker = require("../utils/linkmaker");
-
+const pagination = require("./partials/pagination.11ty");
 module.exports = async function (data) {
 	// console.log("tags data", data);
 	let tags = data.paged.posts.reduce((accumulator, post) => {
@@ -48,6 +48,7 @@ module.exports = async function (data) {
 			${data.content}
 			<br />
 			${tags}
+			${pagination(data)}
 			<hr /> 
 			
 		`,
