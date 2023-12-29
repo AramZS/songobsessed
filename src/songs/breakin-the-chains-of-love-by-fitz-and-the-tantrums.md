@@ -3,9 +3,17 @@ title: "Breakin' The Chains of Love by Fitz and The Tantrums"
 description: "More information to come!"
 date: 2011-07-16T16:44:30Z
 tags:
-  - soul
-  - Neo-Soul
+  - electronic
+  - pop
   - indie
+  - soul
+  - synth-pop
+  - indie pop
+  - pop rock
+  - blue-eyed soul
+  - indie funk
+  - pop soul
+  - Neo-Soul
   - West Coast swing
   - gossip girl
 public: true

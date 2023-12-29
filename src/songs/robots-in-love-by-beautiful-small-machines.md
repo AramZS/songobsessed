@@ -13,7 +13,7 @@ artists:
   - Beautiful Small Machines
 songtitle: "Robots in Love"
 album: "Robots in Love EP"
-featuredImage: ""
+featuredImage: "undefined.png"
 featuredImageCredit: "Image is used from album for review purposes."
 featuredImageLink: ""
 featuredImageAlt: ""
@@ -25,7 +25,7 @@ playlists:
     author: Aram Zucker-Scharff
 youtube: https://www.youtube.com/watch?v=vJHm6ZNgtm8
 spotify: 
-spotifyUri: spotify:local:Beautiful+Small+Machines:Robots+in+Love+EP:Robots+in+Love:229
+spotifyUri: 
 soundcloud:
 audiofile:
 podbean:

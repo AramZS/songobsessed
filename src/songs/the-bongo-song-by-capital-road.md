@@ -1,17 +1,14 @@
 ---
-title: "Jardin du Ranelagh by Bark Cat Bark"
+title: "The Bongo Song by Capital Road"
 description: "More information to come!"
-date: 2011-07-16T16:40:54Z
+date: 2011-07-16T16:41:35Z
 tags:
-  - Josh Todd
-  - instrumental
-  - suave
-  - dulce
+  - 
 public: true
 artists:
-  - Bark Cat Bark
-songtitle: "Jardin du Ranelagh"
-album: "Mathilde"
+  - Capital Road
+songtitle: "The Bongo Song"
+album: "It's All Gravy"
 featuredImage: "undefined.png"
 featuredImageCredit: "Image is used from album for review purposes."
 featuredImageLink: ""
@@ -20,16 +17,17 @@ author: Aram Zucker-Scharff
 playlists:
   -
     name: "Obsessions"
-    position: 2
+    position: 6
     author: Aram Zucker-Scharff
-youtube: https://www.youtube.com/watch?v=IcIIjC5Iywo
+youtube: 
 spotify: 
 spotifyUri: 
-soundcloud:
+soundcloud: 
 audiofile:
 podbean:
-lastfm: https://www.last.fm/music/Bark+Cat+Bark/_/Jardin+du+Ranelagh
+lastfm: https://www.last.fm/music/Capital+Road/_/The+Bongo+Song
 ---
 
 A song I plan to write more about.
-		
+
+Also can hear it at https://www.reverbnation.com/capitalroad/song/499576-the-bongo-song

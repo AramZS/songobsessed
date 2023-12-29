@@ -14,7 +14,7 @@ artists:
   - goto80
 songtitle: "Killer Piller"
 album: "Zyndabox"
-featuredImage: ""
+featuredImage: "undefined.png"
 featuredImageCredit: "Image is used from album for review purposes."
 featuredImageLink: ""
 featuredImageAlt: ""
@@ -26,7 +26,7 @@ playlists:
     author: Aram Zucker-Scharff
 youtube: https://www.youtube.com/watch?v=mAF4d5V12AA
 spotify: 
-spotifyUri: spotify:local:goto80:Zyndabox:Killer+Piller:206
+spotifyUri: 
 soundcloud:
 audiofile:
 podbean:

@@ -1,18 +1,20 @@
 ---
-title: "Jardin du Ranelagh by Bark Cat Bark"
+title: "Thing of beauty by Chesney Hawkes"
 description: "More information to come!"
-date: 2011-07-16T16:40:54Z
+date: 2011-07-16T16:41:59Z
 tags:
-  - Josh Todd
-  - instrumental
-  - suave
-  - dulce
+  - British pop singer, songwriter, and occasional actor
+  - english
+  - pop rock
+  - british
+  - pop and chart
+  - uk
 public: true
 artists:
-  - Bark Cat Bark
-songtitle: "Jardin du Ranelagh"
-album: "Mathilde"
-featuredImage: "undefined.png"
+  - Chesney Hawkes
+songtitle: "Thing of beauty"
+album: ""
+featuredImage: ""
 featuredImageCredit: "Image is used from album for review purposes."
 featuredImageLink: ""
 featuredImageAlt: ""
@@ -20,15 +22,15 @@ author: Aram Zucker-Scharff
 playlists:
   -
     name: "Obsessions"
-    position: 2
+    position: 8
     author: Aram Zucker-Scharff
-youtube: https://www.youtube.com/watch?v=IcIIjC5Iywo
+youtube: 
 spotify: 
 spotifyUri: 
 soundcloud:
 audiofile:
 podbean:
-lastfm: https://www.last.fm/music/Bark+Cat+Bark/_/Jardin+du+Ranelagh
+lastfm: https://www.last.fm/music/Chesney+Hawkes/_/Thing+of+beauty
 ---
 
 A song I plan to write more about.

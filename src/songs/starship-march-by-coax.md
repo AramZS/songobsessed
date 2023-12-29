@@ -1,18 +1,15 @@
 ---
-title: "Jardin du Ranelagh by Bark Cat Bark"
+title: "Starship March by Coax"
 description: "More information to come!"
-date: 2011-07-16T16:40:54Z
+date: 2011-07-16T16:42:19Z
 tags:
-  - Josh Todd
-  - instrumental
-  - suave
-  - dulce
+  - Norwegian producer Nicolai Vassend; aka "Reflex"
 public: true
 artists:
-  - Bark Cat Bark
-songtitle: "Jardin du Ranelagh"
-album: "Mathilde"
-featuredImage: "undefined.png"
+  - Coax
+songtitle: "Starship March"
+album: ""
+featuredImage: ""
 featuredImageCredit: "Image is used from album for review purposes."
 featuredImageLink: ""
 featuredImageAlt: ""
@@ -20,15 +17,15 @@ author: Aram Zucker-Scharff
 playlists:
   -
     name: "Obsessions"
-    position: 2
+    position: 10
     author: Aram Zucker-Scharff
-youtube: https://www.youtube.com/watch?v=IcIIjC5Iywo
+youtube: 
 spotify: 
 spotifyUri: 
 soundcloud:
 audiofile:
 podbean:
-lastfm: https://www.last.fm/music/Bark+Cat+Bark/_/Jardin+du+Ranelagh
+lastfm: https://www.last.fm/music/Coax/_/Starship+March
 ---
 
 A song I plan to write more about.

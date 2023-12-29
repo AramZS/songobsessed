@@ -13,7 +13,7 @@ artists:
   - Beautiful Small Machines
 songtitle: "Counting Back to One"
 album: "Robots in Love EP"
-featuredImage: ""
+featuredImage: "undefined.png"
 featuredImageCredit: "Image is used from album for review purposes."
 featuredImageLink: ""
 featuredImageAlt: ""
@@ -25,7 +25,7 @@ playlists:
     author: Aram Zucker-Scharff
 youtube: https://www.youtube.com/watch?v=lfx4UH659kQ
 spotify: 
-spotifyUri: spotify:local:Beautiful+Small+Machines:Robots+in+Love+EP:Counting+Back+to+One:237
+spotifyUri: 
 soundcloud:
 audiofile:
 podbean:

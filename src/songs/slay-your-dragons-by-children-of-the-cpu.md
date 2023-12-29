@@ -13,7 +13,7 @@ artists:
   - Children of the CPU
 songtitle: "Slay Your Dragons"
 album: "Back to BASIC"
-featuredImage: ""
+featuredImage: "undefined.png"
 featuredImageCredit: "Image is used from album for review purposes."
 featuredImageLink: ""
 featuredImageAlt: ""
@@ -25,7 +25,7 @@ playlists:
     author: Aram Zucker-Scharff
 youtube: https://www.youtube.com/watch?v=AJcqvy9T2ts
 spotify: 
-spotifyUri: spotify:local:Children+of+the+CPU:Back+to+BASIC:Slay+Your+Dragons:256
+spotifyUri: 
 soundcloud:
 audiofile:
 podbean:

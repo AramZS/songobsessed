@@ -24146,7 +24146,7 @@ whole.forEach(async (track) => {
 	++c;
 	//console.log(c, track.track.name);
 	// 453 total
-	if (c > 1 && c < 20) {
+	if (c > 20 && c < 21) {
 		console.log(c, track.track.name);
 		// c > 419 && c < 441) {
 		let playlistNumber = JSON.stringify(c);
@@ -24229,13 +24229,14 @@ whole.forEach(async (track) => {
 					}
 					resolve(ytlink);
 				})
-				.catch((error) =>
+				.catch((error) => {
 					console.error(
 						"\x1b[33m  Error: \x1b[0m",
 						"from retrieving " + lastFMData.track.url,
 						error
-					)
-				);
+					);
+					resolve("");
+				});
 		});
 		let ytlink = await ytcheck;
 		//console.log("artistsObject", artistsObject);
@@ -24300,9 +24301,10 @@ whole.forEach(async (track) => {
 		};
 		let localImageFileName = "";
 		let imageUrl = "";
+		let albumName = track.track.album.name;
 		if (image?.url) {
 			console.log("imageurl", image.url);
-			var sluggedAlbum = slugify(`${track.track.album.name}`, {
+			var sluggedAlbum = slugify(albumName ? albumName : title, {
 				lower: true,
 				strict: true,
 				locale: "en",
