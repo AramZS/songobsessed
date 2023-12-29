@@ -6,6 +6,7 @@ tags:
   - "rock"
   - "rap"
   - "hip hop"
+  - "horrorcore"
 public: true
 artists:
   - Stupeflip

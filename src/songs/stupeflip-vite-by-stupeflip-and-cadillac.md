@@ -8,6 +8,7 @@ tags:
   - "rap"
   - "exclamations"
   - "French hip hop"
+  - "horrorcore"
 public: true
 artists:
   - Stupeflip
