@@ -34,9 +34,9 @@ artists:
   - Tor and Sufjan Stevens
 songtitle: "John Wayne Gacy Jr. / Specialize (ft. Pete Rock & CL Smooth)"
 album: "Illinoize"
-featuredImage: ""
+featuredImage: "illinoize.jpeg"
 featuredImageCredit: "Image is used from album for review purposes."
-featuredImageLink: ""
+featuredImageLink: "https://web.archive.org/web/20090309003652/http://www.illinoize.biz/"
 featuredImageAlt: ""
 author: Aram Zucker-Scharff
 playlists:
@@ -44,14 +44,15 @@ playlists:
     name: "Obsessions"
     position: 64
     author: Aram Zucker-Scharff
-youtube: 
+youtube: https://youtu.be/XIUD1FZBvbA
 spotify: 
 spotifyUri: 
 soundcloud:
 audiofile:
 podbean:
-lastfm: 
+lastfm: https://www.last.fm/music/Tor+%2F+Sufjan+Stevens/_/John+Wayne+Gacy+Jr.+%2F+Specialize+(f.+Pete+Rock+&+CL+Smooth)
 ---
 
 A song I plan to write more about.
 		
+Mix tape: https://web.archive.org/web/20090309003652/http://www.illinoize.biz/ 
