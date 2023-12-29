@@ -16,6 +16,3 @@ eleventyComputed:
 
 Welcome to the list of songs I'm obsessed with.
 
-
-
-[Return to Home](/)
