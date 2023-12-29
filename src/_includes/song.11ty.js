@@ -2,6 +2,16 @@ const base = require("./base.11ty");
 const xplayer = require("./partials/xplayer.11ty");
 const sharp = require("sharp");
 const fs = require("fs");
+var slugify = require("slugify");
+const linkmaker = require("../utils/linkmaker");
+
+let slugger = (tag) => {
+	return slugify(`${tag}`, {
+		lower: true,
+		strict: true,
+		locale: "en",
+	});
+};
 
 let imageCheck = async function (data) {
 	// console.log("image data", data);
@@ -103,8 +113,26 @@ module.exports = async function (data) {
 		return new Uint32Array([hash])[0].toString(36);
 	};
 	onPageObject.media.mediaId = simpleHash(onPageObject.media.title);
-	let tagText = data.tags.map((tag) => {
-		return `<span class="genre-tag">${tag}</span>`;
+	let tags = data.tags.filter((tag) => {
+		if (
+			![
+				"all",
+				"tags",
+				"songs",
+				"songsPages",
+				"tagList",
+				"deepTagList",
+				"Undefined",
+				"undefined",
+			].includes(tag)
+		) {
+			return true;
+		}
+	});
+	let tagText = tags.map((tag) => {
+		var tagSlug = slugger(tag);
+		var tagLink = linkmaker(data, `/tag/${tagSlug}`, `${tag}`);
+		return `<span class="genre-tag">${tagLink}</span>`;
 	});
 	let linksSet = "";
 	if (data.youtube) {
