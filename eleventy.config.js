@@ -98,7 +98,13 @@ module.exports = function (eleventyConfig) {
 	const makePageObject = (tagName, slug, number, posts, first, last) => {
 		return {
 			tagName: tagName,
-			slug: slug ? slug : slugify(tagName.toLowerCase()),
+			slug: slug
+				? slug
+				: slugify(tagName, {
+						lower: true,
+						strict: true,
+						locale: "en",
+				  }),
 			number: number,
 			posts: posts,
 			first: first,
@@ -127,6 +133,99 @@ module.exports = function (eleventyConfig) {
 		// console.log(paginatedPostArray)
 		return paginatedPostArray;
 	};
+
+	eleventyConfig.addCollection("tagList", (collection) => {
+		return getAllTags(collection.getAll());
+	});
+
+	// Create a list of posts by tag for paged lists
+	eleventyConfig.addCollection("deepTagList", (collection) => {
+		const maxPostsPerPage = 10;
+		const pagedPosts = [];
+		tagList = getAllTags(collection.getAll());
+		tagList.forEach((tagName) => {
+			const taggedPosts = [
+				...collection.getFilteredByTag(tagName),
+			].reverse();
+			const numberOfPages = Math.ceil(
+				taggedPosts.length / maxPostsPerPage
+			);
+
+			let slug = slugify(tagName, {
+				lower: true,
+				strict: true,
+				locale: "en",
+			});
+			console.log("paged posts slug", slug);
+			let dupedTag = false;
+			if (pagedPosts.find((postsObj) => postsObj.slug === slug)) {
+				console.error(`Tag ${tagName} has duplicate slug`, slug);
+				dupedTag = true;
+			}
+
+			for (let pageNum = 1; pageNum <= numberOfPages; pageNum++) {
+				const sliceFrom = (pageNum - 1) * maxPostsPerPage;
+				const sliceTo = sliceFrom + maxPostsPerPage;
+				let pageObj = makePageObject(
+					tagName,
+					slug,
+					pageNum,
+					taggedPosts.slice(sliceFrom, sliceTo),
+					pageNum === 1,
+					pageNum === numberOfPages
+				);
+				if (!dupedTag) {
+					pagedPosts.push(pageObj);
+				} else {
+					let c = 1;
+					while (dupedTag) {
+						let aSet = pagedPosts.find((postsObj) => {
+							if (
+								postsObj.slug === slug &&
+								postsObj.number === c
+							) {
+								return true;
+							} else {
+								return false;
+							}
+						});
+						if (aSet) {
+							console.log(
+								`Duplicate slug ${slug} from ${tagName} found potential page`,
+								aSet
+							);
+							if (
+								maxPostsPerPage >=
+								aSet.posts.length + pageObj.posts.length
+							) {
+								let postsSet = new Set([
+									...aSet.posts,
+									...pageObj.posts,
+								]);
+								aSet.posts = [...postsSet];
+								console.log(
+									`Duplicate slug ${slug} from ${tagName} placed in with page`,
+									aSet
+								);
+								dupedTag = false;
+							}
+						} else {
+							pageObj.number = c;
+							pagedPosts.push(pageObj);
+							dupedTag = false;
+							console.log(
+								`Duplicate slug ${slug} from ${tagName} placed in a new page`,
+								pageObj
+							);
+						}
+						c++;
+					}
+				}
+			}
+		});
+		//console.log("pagedPosts", pagedPosts);
+		return pagedPosts;
+	});
 
 	eleventyConfig.addCollection("songsPages", (collection) => {
 		let songPages = collection.getFilteredByTag("songs");
