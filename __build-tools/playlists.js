@@ -68,11 +68,120 @@ var whole = require("./set");
  */
 
 var c = 0;
+
+c = 453;
+
+whole = [
+	{
+		added_at: "2023-12-19T21:03:40Z",
+		added_by: {
+			id: "aramzs",
+		},
+		track: {
+			album: {
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/album/65BIcIJ6OCJl5ZSit7Pr9C",
+				},
+				href: "https://api.spotify.com/v1/albums/65BIcIJ6OCJl5ZSit7Pr9C",
+				images: [
+					{
+						height: 640,
+						url: "https://i.scdn.co/image/ab67616d0000b273903c69da5839b931660d70b0",
+						width: 640,
+					},
+					{
+						height: 300,
+						url: "https://i.scdn.co/image/ab67616d00001e02903c69da5839b931660d70b0",
+						width: 300,
+					},
+					{
+						height: 64,
+						url: "https://i.scdn.co/image/ab67616d00004851903c69da5839b931660d70b0",
+						width: 64,
+					},
+				],
+				name: "Lightyears",
+			},
+			artists: [
+				{
+					href: "https://api.spotify.com/v1/artists/5L6COTBfO2KjrJgFYe96Q7",
+					name: "Dream Fiend",
+					uri: "spotify:artist:5L6COTBfO2KjrJgFYe96Q7",
+				},
+				{
+					href: "https://api.spotify.com/v1/artists/67cjZDUWm5goNObfOPrZIY",
+					name: "September 87",
+					uri: "spotify:artist:67cjZDUWm5goNObfOPrZIY",
+				},
+			],
+			external_ids: {
+				isrc: "QZDA42008005",
+			},
+			external_urls: {
+				spotify:
+					"https://open.spotify.com/track/7MdHPubKS1QWKVwDAZWzAP",
+			},
+			href: "https://api.spotify.com/v1/tracks/7MdHPubKS1QWKVwDAZWzAP",
+			name: "Lightyears",
+		},
+	},
+	{
+		added_at: "2023-12-29T20:41:56Z",
+		added_by: {
+			id: "aramzs",
+		},
+		track: {
+			album: {
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/album/38V0e8c11WMDKnarYzC22E",
+				},
+				href: "https://api.spotify.com/v1/albums/38V0e8c11WMDKnarYzC22E",
+				images: [
+					{
+						height: 640,
+						url: "https://i.scdn.co/image/ab67616d0000b273e93f1cfbda250721663f1474",
+						width: 640,
+					},
+					{
+						height: 300,
+						url: "https://i.scdn.co/image/ab67616d00001e02e93f1cfbda250721663f1474",
+						width: 300,
+					},
+					{
+						height: 64,
+						url: "https://i.scdn.co/image/ab67616d00004851e93f1cfbda250721663f1474",
+						width: 64,
+					},
+				],
+				name: "Altered Carbon (Original Series Soundtrack)",
+			},
+			artists: [
+				{
+					href: "https://api.spotify.com/v1/artists/3x0AYTwu5xlvORnoDKPnLb",
+					name: "Sune Rose Wagner",
+					uri: "spotify:artist:3x0AYTwu5xlvORnoDKPnLb",
+				},
+			],
+			external_ids: {
+				isrc: "USLS51815710",
+			},
+			external_urls: {
+				spotify:
+					"https://open.spotify.com/track/0fnCB0V0SSWYjZOAfRBRIM",
+			},
+			href: "https://api.spotify.com/v1/tracks/0fnCB0V0SSWYjZOAfRBRIM",
+			name: "More Human Than Human",
+		},
+	},
+];
+
 whole.forEach(async (track) => {
 	++c;
 	//console.log(c, track.track.name);
 	// 453 total
-	if (c > 380 && c < 401) {
+	if (c > 453) {
 		console.log(c, track.track.name);
 		// c > 419 && c < 441) {
 		let playlistNumber = JSON.stringify(c);
@@ -356,7 +465,7 @@ whole.forEach(async (track) => {
 		}
 		console.log("spotifyTrack", spotifyTrack);
 		let writeOptions = { flag: "w" };
-		// writeOptions = { flag: "wx" }; // Once we start writing stuff into the posts we don't want to overwrite them.
+		writeOptions = { flag: "wx" }; // Once we start writing stuff into the posts we don't want to overwrite them.
 		YAMLTags = YAMLTags ? YAMLTags : "Tags Needed";
 		let mdMode = `---
 title: "${title}"
