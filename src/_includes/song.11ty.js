@@ -171,7 +171,7 @@ module.exports = async function (data) {
 			hasSongData = true;
 		}
 	});
-	let playlistButton = hasSongData
+	let playlistButtons = hasSongData
 		? /*html*/ `
 <p>
 	<button onclick="(
@@ -190,11 +190,28 @@ module.exports = async function (data) {
 		: "";
 
 	let dateParts = data?.date.toString().split(" ");
+	let ytStatus = onPageObject.media.youtubeId
+		? "available-player"
+		: "not-available-player";
+	let spotifyStatus = onPageObject.media.spotifyUri
+		? "available-player"
+		: "not-available-player";
+	let nativeStatus = onPageObject.media.audiofile
+		? "available-player"
+		: "not-available-player";
 	let insert = {
 		template: "song",
 		content: /*html*/ `
-		<div id="song-image-wrapper">
-			<div id="song-image"><img src="${albumImage}" /></div>
+		<div id="song-image-and-availability-wrapper">
+
+			<div id="song-image-wrapper">
+				<div id="song-image"><img src="${albumImage}" /></div>
+			</div>			
+			<div id="song-availability">
+				<div class="availability-text">Play on </div><object class="player-type ${ytStatus}" data="/img/icons8-youtube.svg" type="image/svg+xml"></object>
+				<object class="player-type ${spotifyStatus}" data="/img/spotify.svg" type="image/svg+xml"></object>
+				<object class="player-type ${nativeStatus}" data="/img/html5-2.svg" type="image/svg+xml"></object>
+			</div>
 		</div>
 		<div id="article-body">
 			<div id="brief">
@@ -207,7 +224,7 @@ module.exports = async function (data) {
 			<p><span class="date-added">Added on: ${dateParts[0]} ${dateParts[1]} ${
 			dateParts[2]
 		} ${dateParts[3]}</span></p>
-			${playlistButton}
+			${playlistButtons}
 			${data.content}
 			<br />
 			<script>

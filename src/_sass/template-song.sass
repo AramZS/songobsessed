@@ -63,6 +63,49 @@ h1.title
             color: var(--dark-highlight-accent)
             text-decoration: none
 
+    #song-image-and-availability-wrapper
+        position: relative
+        width: fit-content
+    #song-availability
+        width: 100%
+        text-align: center
+        vertical-align: middle
+        display: flex
+        justify-items: center
+        flex-wrap: wrap
+        align-content: center
+        justify-content: center
+        margin-bottom: 1em
+        background-color: rgba(255, 46, 255, 0.196)
+        border-radius: 12px
+        z-index: 10
+        @media (min-width: 780px)
+            width: 68px
+            float: right
+            position: absolute
+            top: 0
+            min-height: fit-content
+
+            right: -70px
+        .availability-text
+            display: flex
+            align-content: center
+            flex-wrap: wrap
+            padding-right: 20px
+            @media (min-width: 780px)
+                padding-right: 0
+                margin-bottom: 20px
+        object
+            margin: 4px 40px 4px 0px
+            padding: 8px
+            background: var(--light-highlight-overlap)
+            border-radius: 12px
+            @media (min-width: 780px)
+                margin-right: 0
+                margin-bottom: 20px
+            &.available-player
+                background: var(--dark-highlight-accent)
+
     @media (max-width: 670px)
         #brief
             width: 100%
