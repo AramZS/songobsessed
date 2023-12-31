@@ -10,9 +10,18 @@ Welcome to <span class="site-name">Song Obsessed</span>. This is a site for me t
 
 So this site will hopefully work and, even if it isn't the best option, I'm running it, so I won't lose those songs and I'll always have a stable place to share them with others. 
 
+## Select your preferred player
+
+The audio player on this site supports each of these player types. Not all songs may be available in your preferred player type. If it is only available in another player type then the player will use that type. YouTube is the default. 
+
+<button class="xp-pref-selector" onclick=setPreferredAPI(this) data-pref="yt">YouTube</button> <button class="xp-pref-selector" onclick=setPreferredAPI(this) data-pref="spotify">Spotify</button> <button class="xp-pref-selector" onclick=setPreferredAPI(this) data-pref="native">Native</button>
+
+
+Heads up: This site assumes that if you click on a song, you want to listen to it. So it will start playing automatically or be added to your playlist. If you don't want that it to work like that, there's an autoplay switch in the top right.
+
 ## What is this site for?
 
-Right now<span class="site-name"> Song Obsessed </span>serves two goals, a lab for me to experiment with technology where a single site owner like myself can leverage all the places audio and video can be hosted to create something a little like their own mixtape, one that's dependent on the variety of media hosting tools out there, but not on any single one of them, as a sort of hedge against something happening to any of them. 
+Right now <span class="site-name">Song Obsessed</span> serves two goals, a lab for me to experiment with technology where a single site owner like myself can leverage all the places audio and video can be hosted to create something a little like their own mixtape, one that's dependent on the variety of media hosting tools out there, but not on any single one of them, as a sort of hedge against something happening to any of them. 
 
 I say a mixtape, but it isn't quite a mixtape and it isn't quite a blog. It's something that I hope takes advantage of the best qualities of the web to share a listening experience that's a little curated and a little self-directed. 
 
@@ -21,19 +30,11 @@ There are three main technologies that back this. The site is generated with [11
 But the main thing this is for, is to share the songs I find interesting in a way that you can easily listen to them. So check those out! 
 
 ### [Songs](/songs/)
-
-## Select your preferred player
-
-The audio player on this site supports each of these player types. Not all songs may be available in your preferred player type. If it is only available in another player type then the player will use that type. YouTube is the default. 
-
-<button class="xp-pref-selector" onclick=setPreferredAPI(this) data-pref="yt">YouTube</button> <button class="xp-pref-selector" onclick=setPreferredAPI(this) data-pref="spotify">Spotify</button> <button class="xp-pref-selector" onclick=setPreferredAPI(this) data-pref="native">Native</button>
-
-
-Heads up: This site assumes that if you click on a song, you want to listen to it. So it will start playing automatically. If you don't want that it to work like that, there's an autoplay switch in the top right.
+<br />
 
 ~~[Aram](https://aramzs.github.io/aramzs/)
 
-<br /><br /><br /><br />
+<br /><br /><br />
 
 ## WiP
 
@@ -55,17 +56,28 @@ The default image of a glass horn is used under Creative Commons from the [Met's
 	window.setPreferredAPI = function(t){
 		console.log("setPreferredAPI", t, t.dataset.pref)
 		xplayer.setRetainedSetting("preferredAPI", t.dataset.pref)
+		var el = new Array(
+				...document.getElementsByClassName("xp-pref-selector")
+			).forEach((el) => {
+				el.classList.remove("selected")
+			})
 		t.classList.add("selected")
 	}
-	setTimeout(function(){
+	var getCurrentAPIPref = function(){
 		let pref = xplayer.getRetainedSetting("preferredAPI")
-		if (pref) {
-			var el = new Array(
+		if (!pref) {
+			pref = "yt";
+		}
+		var el = new Array(
 				...document.getElementsByClassName("xp-pref-selector")
 			).filter((el) => {
 				return el.dataset.pref == pref;
 			})[0];
 			el.classList.add("selected")
-		}
-	}, 3000)
+	}
+	var timeout = setTimeout(getCurrentAPIPref, 3000)
+	document.addEventListener("xplaylist-ready", () => {
+		clearTimeout(timeout)
+		getCurrentAPIPref()
+	})
 </script>

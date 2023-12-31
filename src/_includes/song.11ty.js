@@ -181,6 +181,11 @@ module.exports = async function (data) {
 			)
 		}
 	)()">Add to Playlist</button>
+	<button onclick="(
+		function(){
+			window.xplayer.now = true
+		}
+	)()">Play Now</button>
 </p>`
 		: "";
 
