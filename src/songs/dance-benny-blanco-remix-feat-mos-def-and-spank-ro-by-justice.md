@@ -1,5 +1,5 @@
 ---
-title: "D.A.N.C.E. (Benny Blanco Remix Feat. Mos Def and Spank Ro... by Justice"
+title: "D.A.N.C.E. (Benny Blanco Remix Feat. Mos Def and Spank Rock) by Justice"
 description: "More information to come!"
 date: 2011-07-16T16:48:30Z
 tags:
@@ -15,10 +15,11 @@ tags:
   - european
   - electro house
   - dance and electronica
+  - remix
 public: true
 artists:
   - Justice
-songtitle: "D.A.N.C.E. (Benny Blanco Remix Feat. Mos Def and Spank Ro..."
+songtitle: "D.A.N.C.E. (Benny Blanco Remix Feat. Mos Def and Spank Rock)"
 album: ""
 featuredImage: ""
 featuredImageCredit: "Image is used from album for review purposes."
@@ -30,7 +31,7 @@ playlists:
     name: "Obsessions"
     position: 30
     author: Aram Zucker-Scharff
-youtube: 
+youtube: https://youtu.be/_Ripzhi_lJY
 spotify: 
 spotifyUri: 
 soundcloud:

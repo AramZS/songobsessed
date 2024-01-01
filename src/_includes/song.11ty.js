@@ -119,7 +119,7 @@ module.exports = async function (data) {
 		let spotifyUri = data.spotify.split("track/")[1];
 		onPageObject.media.spotifyUri = `spotify:track:${spotifyUri}`;
 	}
-	onPageObject.media.mediaId = simpleHash(onPageObject.media.title);
+	// onPageObject.media.mediaId = simpleHash(onPageObject.media.title);
 	let tags = data.tags.filter((tag) => {
 		if (
 			![
@@ -163,8 +163,9 @@ module.exports = async function (data) {
 			"www.youtube-nocookie.com/embed/"
 		);
 		let videoId = finalString.split("embed/")[1];
-		console.log("videoId", videoId);
-		onPageObject.media.youtubeId = videoId;
+		let finalVideoId = videoId.split("?")[0];
+		console.log("videoId", finalVideoId);
+		onPageObject.media.youtubeId = finalVideoId;
 	}
 	["spotifyUri", "youtubeId", "audiofile"].forEach((key) => {
 		if (onPageObject.media[key]) {
@@ -190,6 +191,7 @@ module.exports = async function (data) {
 		: "";
 
 	let dateParts = data?.date.toString().split(" ");
+	// Also change based on user preference based on homepage color scheme
 	let ytStatus = onPageObject.media.youtubeId
 		? "available-player"
 		: "not-available-player";
@@ -207,10 +209,14 @@ module.exports = async function (data) {
 			<div id="song-image-wrapper">
 				<div id="song-image"><img src="${albumImage}" /></div>
 			</div>			
-			<div id="song-availability">
-				<div class="availability-text">Play on </div><object class="player-type ${ytStatus}" data="/img/icons8-youtube.svg" type="image/svg+xml"></object>
-				<object class="player-type ${spotifyStatus}" data="/img/spotify.svg" type="image/svg+xml"></object>
-				<object class="player-type ${nativeStatus}" data="/img/html5-2.svg" type="image/svg+xml"></object>
+			<div id="song-availability" xp-playertypes>
+				<div class="availability-text">Play now</div>
+				
+				<img class="player-type ${ytStatus}" xp-playertype-play="yt" src="/img/icons8-youtube.svg" type="image/svg+xml" xp-playertype="yt" alt="YouTube logo"></img>
+
+				<img xp-playertype-play="spotify" class="player-type ${spotifyStatus}" src="/img/spotify.svg" type="image/svg+xml" alt="Spotify logo"></img>
+				
+				<img class="player-type ${nativeStatus}" xp-playertype-play="native" src="/img/html5-2.svg" type="image/svg+xml" alt="HTML5 logo for native player type"></img>
 			</div>
 		</div>
 		<div id="article-body">

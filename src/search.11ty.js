@@ -12,8 +12,7 @@ class Search {
 	async render(data) {
 		// console.log("Search page", data);
 		return /*html*/ `<div>
-				<h1>Search Tweet Text</h1>
-				<p>This form will you to search the text of the tweets.</p>
+				<p>This form will let you search song names, descriptions, albums, and tags. It also will check the text of the posts about those songs.</p>
 				<form class="js" method="get" id="search-text">
 					<script src="../assets/js/elasticlunr.min.js" defer></script>
 					<script src="../assets/js/search-setup.js" defer></script>

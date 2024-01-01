@@ -85,8 +85,9 @@ h1.title
             position: absolute
             top: 0
             min-height: fit-content
-
             right: -70px
+            padding-top: 6px
+            font-size: smaller
         .availability-text
             display: flex
             align-content: center
@@ -95,16 +96,28 @@ h1.title
             @media (min-width: 780px)
                 padding-right: 0
                 margin-bottom: 20px
-        object
+        object, img
             margin: 4px 40px 4px 0px
             padding: 8px
             background: var(--light-highlight-overlap)
             border-radius: 12px
+            opacity: 25%
+            cursor: default
             @media (min-width: 780px)
                 margin-right: 0
                 margin-bottom: 20px
             &.available-player
+                background: var(--med-highlight)
+                opacity: 100%
+                cursor: pointer
+            &.active-playertype
                 background: var(--dark-highlight-accent)
+        a.player-type-link
+            cursor: pointer
+            &.available-player
+                cursor: pointer
+                &:hover
+                    backdrop-filter: blur(2px)
 
     @media (max-width: 670px)
         #brief
