@@ -292,6 +292,7 @@ if (typeof PlayerElement === "undefined") {
 				e.target.getAttribute("xp-playertype-play")
 			) {
 				this.setPlaylistPlaying(mediaId);
+				this.removePlaylistTag(mediaId);
 				this.routeToCorrectPlayAPI(mediaId, true);
 			} else {
 				this.now = true;
