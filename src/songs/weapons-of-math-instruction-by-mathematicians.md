@@ -8,6 +8,7 @@ tags:
   - "rock"
   - "punk"
   - "alternative"
+  - Math Rock
 public: true
 artists:
   - Mathematicians

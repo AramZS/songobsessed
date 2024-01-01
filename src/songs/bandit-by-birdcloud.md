@@ -3,7 +3,10 @@ title: "Bandit by Birdcloud"
 description: "More information to come!"
 date: 2023-10-18T22:01:53Z
 tags:
-  - Tags Needed
+  - Alt-Country
+  - Country
+  - Folk
+  - Tongue-in-cheek
 public: true
 artists:
   - Birdcloud

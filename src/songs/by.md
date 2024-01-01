@@ -3,7 +3,8 @@ title: "เจ็บคอ by กระต่าย พรรณนิภา"
 description: "More information to come!"
 date: 2023-08-22T16:29:26Z
 tags:
-  - Tags Needed
+  - Luk Thung
+  - Thai
 public: true
 artists:
   - กระต่าย พรรณนิภา

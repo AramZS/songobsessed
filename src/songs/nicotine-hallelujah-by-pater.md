@@ -3,7 +3,8 @@ title: "Nicotine Hallelujah by Päter"
 description: "More information to come!"
 date: 2023-08-22T16:37:52Z
 tags:
-  - Tags Needed
+  - Pop
+  - Indie Pop
 public: true
 artists:
   - Päter

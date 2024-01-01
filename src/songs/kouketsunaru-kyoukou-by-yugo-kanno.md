@@ -3,7 +3,11 @@ title: "Kouketsunaru Kyoukou by Yugo Kanno"
 description: "More information to come!"
 date: 2023-08-22T16:28:29Z
 tags:
-  - Tags Needed
+  - JoJo
+  - Soundtrack
+  - Anime
+  - Japanese
+  - Instrumental
 public: true
 artists:
   - Yugo Kanno

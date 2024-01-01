@@ -3,7 +3,11 @@ title: "Walk, Don't Run by Herb Alpert & The Tijuana Brass"
 description: "More information to come!"
 date: 2023-08-22T16:26:52Z
 tags:
-  - Tags Needed
+  - "60s"
+  - Jazz
+  - Big Band
+  - Horns
+  - Brass
 public: true
 artists:
   - Herb Alpert & The Tijuana Brass

@@ -8,6 +8,7 @@ tags:
   - "alternative"
   - "indie rock"
   - "electro"
+  - Math Rock
 public: true
 artists:
   - Mathematicians

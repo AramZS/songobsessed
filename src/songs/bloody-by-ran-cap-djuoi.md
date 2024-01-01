@@ -3,7 +3,10 @@ title: "Bloody by Rắn Cạp Đuôi"
 description: "More information to come!"
 date: 2023-08-22T16:36:51Z
 tags:
-  - Tags Needed
+  - Drone
+  - Glitch
+  - Vietnamese
+  - "Post-rock"
 public: true
 artists:
   - Rắn Cạp Đuôi

@@ -3,7 +3,10 @@ title: "Punk as Fuck by The Homeless Gospel Choir"
 description: "More information to come!"
 date: 2023-08-22T16:33:31Z
 tags:
-  - Tags Needed
+  - Punk
+  - Folkpunk
+  - Folk Punk
+  - Murderfolk
 public: true
 artists:
   - The Homeless Gospel Choir

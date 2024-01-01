@@ -3,7 +3,9 @@ title: "Happy by Bukahara"
 description: "More information to come!"
 date: 2023-08-22T16:27:28Z
 tags:
-  - Tags Needed
+  - Folk
+  - Folk Pop
+  - German
 public: true
 artists:
   - Bukahara

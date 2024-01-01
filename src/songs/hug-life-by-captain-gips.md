@@ -9,6 +9,9 @@ tags:
   - "life"
   - "German hip hop"
   - "2010s"
+  - "Rap"
+  - "German Rap"
+  - "Positive Rap"
 public: true
 artists:
   - Captain Gips

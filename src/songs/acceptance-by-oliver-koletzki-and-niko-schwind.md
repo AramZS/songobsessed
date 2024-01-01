@@ -3,7 +3,9 @@ title: "Acceptance by Oliver Koletzki and Niko Schwind"
 description: "More information to come!"
 date: 2021-07-12T18:45:03Z
 tags:
-  - Tags Needed
+  - Orgánica
+  - Lowkey
+  - Drone
 public: true
 artists:
   - Oliver Koletzki

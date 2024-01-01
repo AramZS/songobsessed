@@ -6,6 +6,7 @@ tags:
   - "math pop"
   - "math rock"
   - "strumentale di un certo livello"
+  - "Progressive Jazz Rock"
 public: true
 artists:
   - Strawberry Girls

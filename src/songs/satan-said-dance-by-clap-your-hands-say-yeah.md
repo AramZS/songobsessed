@@ -6,7 +6,7 @@ tags:
   - "indie"
   - "indie rock"
   - "alternative"
-  - "Clap Your Hands Say Yeah"
+  - "Clap"
   - "rock"
 public: true
 artists:

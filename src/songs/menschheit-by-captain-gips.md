@@ -7,7 +7,9 @@ tags:
   - "2010s"
   - "german lyrics"
   - "2017"
-  - "captain gips"
+  - "Rap"
+  - "German Rap"
+  - "Positive Rap"
 public: true
 artists:
   - Captain Gips

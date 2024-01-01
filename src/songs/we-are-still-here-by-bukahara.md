@@ -3,7 +3,9 @@ title: "We Are Still Here! by Bukahara"
 description: "More information to come!"
 date: 2023-08-22T16:31:04Z
 tags:
-  - Tags Needed
+  - Folk
+  - Folk Pop
+  - German
 public: true
 artists:
   - Bukahara

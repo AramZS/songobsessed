@@ -3,7 +3,8 @@ title: "Obstinate Brain by Päter"
 description: "More information to come!"
 date: 2021-12-29T15:19:45Z
 tags:
-  - Tags Needed
+  - Pop
+  - Indie Pop
 public: true
 artists:
   - Päter

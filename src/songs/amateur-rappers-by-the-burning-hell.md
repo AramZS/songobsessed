@@ -3,7 +3,10 @@ title: "Amateur Rappers by The Burning Hell"
 description: "More information to come!"
 date: 2021-07-12T18:44:04Z
 tags:
-  - Tags Needed
+  - Alternative
+  - Canada
+  - Folk
+  - Alt-Folk
 public: true
 artists:
   - The Burning Hell

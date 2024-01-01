@@ -3,7 +3,8 @@ title: "All Falls Apart by Polyphia"
 description: "More information to come!"
 date: 2023-10-18T22:02:45Z
 tags:
-  - Tags Needed
+  - Progressive Metal
+  - Progressive Jazz Rock
 public: true
 artists:
   - Polyphia

@@ -4,6 +4,10 @@ description: "More information to come!"
 date: 2023-12-29T20:41:56Z
 tags:
   - "cover"
+  - Cyberpunk
+  - Danish
+  - Spooky
+  - Soundtrack
 public: true
 artists:
   - Sune Rose Wagner

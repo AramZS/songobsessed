@@ -3,7 +3,11 @@ title: "Prana by Jean du Voyage and Pierre Harmegnies"
 description: "More information to come!"
 date: 2023-10-18T22:01:35Z
 tags:
-  - Tags Needed
+  - Electronic
+  - French
+  - Techno Chill
+  - Indietronica
+  - Orgánica
 public: true
 artists:
   - Jean du Voyage

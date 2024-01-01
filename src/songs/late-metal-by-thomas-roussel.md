@@ -3,7 +3,8 @@ title: "LATE METAL by Thomas Roussel"
 description: "More information to come!"
 date: 2023-11-10T22:37:52Z
 tags:
-  - Tags Needed
+  - Epicore
+  - Trailercore
 public: true
 artists:
   - Thomas Roussel

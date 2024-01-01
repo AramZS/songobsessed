@@ -3,7 +3,11 @@ title: "with pure crystalll teeth by the olllam"
 description: "More information to come!"
 date: 2023-10-18T22:03:06Z
 tags:
-  - Tags Needed
+  - Folk
+  - Celtic
+  - Folktronica
+  - Post-rock
+  - Irish
 public: true
 artists:
   - the olllam

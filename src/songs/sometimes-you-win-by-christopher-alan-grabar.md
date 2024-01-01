@@ -3,7 +3,9 @@ title: "Sometimes You Win! by Christopher Alan Grabar"
 description: "More information to come!"
 date: 2023-08-22T16:28:55Z
 tags:
-  - Tags Needed
+  - Bang
+  - Video Game Music
+  - vgm
 public: true
 artists:
   - Christopher Alan Grabar

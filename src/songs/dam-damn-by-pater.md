@@ -3,7 +3,9 @@ title: "Dam, Damn by Päter"
 description: "More information to come!"
 date: 2021-05-25T20:56:25Z
 tags:
-  - Tags Needed
+  - Pop
+  - Indie Pop
+  - Climate Change
 public: true
 artists:
   - Päter

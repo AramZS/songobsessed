@@ -3,7 +3,10 @@ title: "Summer 2019 by Caroline Culver"
 description: "More information to come!"
 date: 2023-08-22T16:29:43Z
 tags:
-  - Tags Needed
+  - Indie Rock
+  - Indie
+  - Female Vocalist
+  - Singer-Songwriter
 public: true
 artists:
   - Caroline Culver

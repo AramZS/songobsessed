@@ -3,7 +3,8 @@ title: "It's Okay (To Punch Nazis) by Cheap Perfume"
 description: "More information to come!"
 date: 2023-08-30T21:05:59Z
 tags:
-  - Tags Needed
+  - Punk
+  - New Punk
 public: true
 artists:
   - Cheap Perfume

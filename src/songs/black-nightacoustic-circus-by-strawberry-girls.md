@@ -3,7 +3,8 @@ title: "Black Night/Acoustic Circus by Strawberry Girls"
 description: "More information to come!"
 date: 2023-08-22T16:39:14Z
 tags:
-  - Tags Needed
+  - Math Rock
+  - Progressive Jazz Rock
 public: true
 artists:
   - Strawberry Girls

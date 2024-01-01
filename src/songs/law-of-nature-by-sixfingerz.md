@@ -8,6 +8,7 @@ tags:
   - "lovedbybeyondwithin"
   - "novocals"
   - "5s"
+  - "Glitch Blues"
 public: true
 artists:
   - Sixfingerz

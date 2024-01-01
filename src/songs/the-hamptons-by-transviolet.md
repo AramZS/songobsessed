@@ -3,7 +3,11 @@ title: "The Hamptons by Transviolet"
 description: "More information to come!"
 date: 2023-08-22T16:27:56Z
 tags:
-  - Tags Needed
+  - Pop
+  - Electropop
+  - Indie Pop
+  - Lush
+  - Female Vocalists
 public: true
 artists:
   - Transviolet

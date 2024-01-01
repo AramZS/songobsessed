@@ -3,7 +3,9 @@ title: "Echo Basin by Electric Dragon"
 description: "More information to come!"
 date: 2023-08-22T16:32:46Z
 tags:
-  - Tags Needed
+  - Cyberpunk
+  - Synthwave
+  - Electronic
 public: true
 artists:
   - Electric Dragon

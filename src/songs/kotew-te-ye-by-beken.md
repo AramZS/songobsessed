@@ -3,7 +3,8 @@ title: "Kote'w Te Ye by Beken"
 description: "More information to come!"
 date: 2023-08-22T16:35:36Z
 tags:
-  - Tags Needed
+  - New Troubadour
+  - Haitian
 public: true
 artists:
   - Beken

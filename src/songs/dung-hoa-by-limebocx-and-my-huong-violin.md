@@ -1,13 +1,16 @@
 ---
-title: "Dung Họa by Limebócx and Mỹ Hương violin"
+title: "Dung Họa by Limebócx and Mỹ Hương"
 description: "More information to come!"
 date: 2023-08-22T16:36:06Z
 tags:
-  - Tags Needed
+  - Vietnamese
+  - Folktronica
+  - Zither
+  - Brainjazz
 public: true
 artists:
   - Limebócx
-  - Mỹ Hương violin
+  - Mỹ Hương
 songtitle: "Dung Họa"
 album: "Dung Họa"
 featuredImage: "dung-hoa.jpeg"

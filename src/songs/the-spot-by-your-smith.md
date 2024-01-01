@@ -4,6 +4,10 @@ description: "More information to come!"
 date: 2023-08-22T16:26:32Z
 tags:
   - "SXSW"
+  - "Indie Pop"
+  - Female Vocalists
+  - Indie
+  - Pop
 public: true
 artists:
   - Your Smith

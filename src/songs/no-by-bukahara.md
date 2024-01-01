@@ -4,6 +4,8 @@ description: "More information to come!"
 date: 2023-08-22T16:31:14Z
 tags:
   - "folk"
+  - Folk Pop
+  - German
 public: true
 artists:
   - Bukahara

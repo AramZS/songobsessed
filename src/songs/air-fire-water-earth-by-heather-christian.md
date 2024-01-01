@@ -3,7 +3,9 @@ title: "Air Fire Water Earth by Heather Christian"
 description: "More information to come!"
 date: 2023-08-22T16:39:55Z
 tags:
-  - Tags Needed
+  - Witchy
+  - Soundtrack
+  - Film Soundtrack
 public: true
 artists:
   - Heather Christian

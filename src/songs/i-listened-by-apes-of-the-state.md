@@ -8,6 +8,7 @@ tags:
   - "punk"
   - "alternative"
   - "alternative rock"
+  - "Murderfolk"
 public: true
 artists:
   - Apes of the State

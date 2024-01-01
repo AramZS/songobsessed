@@ -3,7 +3,9 @@ title: "Lightyears by Dream Fiend and September 87"
 description: "More information to come!"
 date: 2023-10-31T03:08:06Z
 tags:
-  - Tags Needed
+  - Synthwave
+  - Retrowave
+  - Cyberpunk
 public: true
 artists:
   - Dream Fiend

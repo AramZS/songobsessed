@@ -5,6 +5,7 @@ date: 2023-08-22T16:22:39Z
 tags:
   - "math pop"
   - "math rock"
+  - "Progressive Jazz Rock"
 public: true
 artists:
   - Strawberry Girls

@@ -1,9 +1,12 @@
 ---
 title: "Em by Đá Số Tới"
-description: "More information to come!"
+description: "Fun garage band pop punk from Vietnam."
 date: 2023-12-06T18:48:46Z
 tags:
-  - Tags Needed
+  - Vietnamese
+  - Pop Punk
+  - Garage Band
+  - Vietnamese Pop Punk
 public: true
 artists:
   - Đá Số Tới
