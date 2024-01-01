@@ -4,7 +4,7 @@ description: "More information to come!"
 date: 2011-07-16T16:42:45Z
 tags:
   - Lost Media
-  - Electronica
+  - electronica
   - Found on TheSixtyOne
 public: true
 artists:
