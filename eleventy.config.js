@@ -43,20 +43,31 @@ module.exports = function (eleventyConfig) {
 	let markdownItOptions = {
 		html: true,
 	};
-	let milaOptions = {
-		matcher(href, config) {
-			return href.startsWith("/");
+	let milaOptions = [
+		{
+			matcher(href) {
+				return href.match(/^https?:\/\//);
+			},
+			attrs: {
+				class: "external-link",
+				target: "_blank",
+			},
 		},
-		attrs: {
-			class: "hxlink",
-			"hx-boost": "true",
-			"hx-swap": "outerHTML show:top",
-			"hx-target": "#main-content",
-			"hx-select": "#main-content",
-			"hx-push-url": "true",
-			//"hx-replace-url": "true",
+		{
+			matcher(href, config) {
+				return href.startsWith("/");
+			},
+			attrs: {
+				class: "hxlink",
+				"hx-boost": "true",
+				"hx-swap": "outerHTML show:top",
+				"hx-target": "#main-content",
+				"hx-select": "#main-content",
+				"hx-push-url": "true",
+				//"hx-replace-url": "true",
+			},
 		},
-	};
+	];
 	let markdownLib = markdownIt(markdownItOptions).use(mila, milaOptions);
 	eleventyConfig.setLibrary("md", markdownLib);
 	function filterTagList(tags) {
