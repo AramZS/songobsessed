@@ -61,10 +61,12 @@ function getSearchResults(searchString, keepHistoryState) {
 		if (results.length) {
 			results.forEach((result) => {
 				var post = `<div class="post-result-container">
-					<div class="post-result-title">Song: <span class="post-result-main-title">${
+					<div class="post-result-title"><span class="search-field-name">Song</span>: <span class="post-result-main-title">${
 						result.doc.title
 					}</span></div>
-					<div class="post-result-album">Album: ${result.doc.album}</div>
+					<div class="post-result-album"><span class="search-field-name">Album</span>: <span class="post-result-album-title">${
+						result.doc.album
+					}</span></div>
 					<div class="post-result-description">${result.doc.description}</div>
 					<div class="post-result-date">
 						Added on: <span class="">${renderDate(new Date(result.doc.date))}</span>

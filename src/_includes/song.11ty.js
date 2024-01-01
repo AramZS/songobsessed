@@ -210,13 +210,20 @@ module.exports = async function (data) {
 				<div id="song-image"><img src="${albumImage}" /></div>
 			</div>			
 			<div id="song-availability" xp-playertypes>
-				<div class="availability-text">Play now</div>
+				<div class="availability-text">${
+					hasSongData ? "Play now" : "Media not available"
+				}</div>
 				
-				<img class="player-type ${ytStatus}" xp-playertype-play="yt" src="/img/icons8-youtube.svg" type="image/svg+xml" xp-playertype="yt" alt="YouTube logo"></img>
+				<img class="player-type ${ytStatus}" xp-playertype-play="yt" src="/img/icons8-youtube.svg" type="image/svg+xml" xp-playertype-status="${!!onPageObject
+			.media.youtubeId}" alt="YouTube logo"></img>
 
-				<img xp-playertype-play="spotify" class="player-type ${spotifyStatus}" src="/img/spotify.svg" type="image/svg+xml" alt="Spotify logo"></img>
+				<img xp-playertype-play="spotify" class="player-type ${spotifyStatus}" xp-playertype-status="${!!onPageObject
+			.media
+			.spotifyUri}" src="/img/spotify.svg" type="image/svg+xml" alt="Spotify logo"></img>
 				
-				<img class="player-type ${nativeStatus}" xp-playertype-play="native" src="/img/html5-2.svg" type="image/svg+xml" alt="HTML5 logo for native player type"></img>
+				<img class="player-type ${nativeStatus}" xp-playertype-play="native" xp-playertype-status="${!!onPageObject
+			.media
+			.audiofile}" src="/img/html5-2.svg" type="image/svg+xml" alt="HTML5 logo for native player type"></img>
 			</div>
 		</div>
 		<div id="article-body">

@@ -270,7 +270,16 @@ if (typeof PlayerElement === "undefined") {
 		}
 
 		reactToPlayerTypeControl(e) {
-			console.log("Play with playertype");
+			console.log(
+				"Play with playertype",
+				e.target.getAttribute("xp-playertype-play"),
+				"status ",
+				e.target.getAttribute("xp-playertype-status")
+			);
+			if ("false" == e.target.getAttribute("xp-playertype-status")) {
+				console.log("Player not available");
+				return;
+			}
 			var mediaId = this.getCurrentPageMediaID();
 			this.songDataStore[mediaId].preferredAPI =
 				e.target.getAttribute("xp-playertype-play");

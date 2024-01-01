@@ -29,3 +29,31 @@
 
 .player-type
     height: 50px
+
+#searchbox
+    margin-top: 10px
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    gap: 10px
+    grid-auto-rows: minmax(100px, auto)
+    @media (max-width: 832px)
+        grid-template-columns: repeat(2, 1fr)
+        grid-auto-rows: minmax(100px, auto)
+    li
+        font-size: 1.1em
+        list-style: none
+        align-content: center
+        padding: 20px
+        border-radius: 20px
+        background: var(--dark-highlight)
+        grid-column: span 1
+        grid-row: span 1
+        .post-result-main-title
+            font-size: 1.1em
+            font-family: 'Fraunces', serif
+            font-weight: 600
+            margin-bottom: 0.5em
+        .search-field-name
+            font-style: italic
+        .post-result-album-title
+            font-weight: 600
