@@ -3,7 +3,9 @@ title: "ใครคือเรา by Bodyslam"
 description: "More information to come!"
 date: 2023-08-22T16:15:43Z
 tags:
-  - Tags Needed
+  - Thai
+  - Rock
+  - Rocktronica
 public: true
 artists:
   - Bodyslam
