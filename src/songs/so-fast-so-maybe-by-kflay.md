@@ -16,6 +16,7 @@ tags:
   - "hip hop"
   - "sxsw 2011"
   - "share-tumblr"
+  - "nerdcore"
 public: true
 artists:
   - K.Flay

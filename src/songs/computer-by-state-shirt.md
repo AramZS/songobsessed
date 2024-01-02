@@ -27,10 +27,12 @@ youtube: https://www.youtube.com/watch?v=nhgxgP0osXs
 spotify: https://open.spotify.com/track/4dMuaUPtmzmHAytoEfF71R
 spotifyUri: 
 soundcloud:
-audiofile:
+audiofile: "State Shirt - Computer.mp3"
 podbean:
 lastfm: https://www.last.fm/music/State+Shirt/_/Computer
 ---
 
 A song I plan to write more about.
+
+Audio file provided under a CC BY-NC-SA 3.0 DEED license from [State Shirt](https://stateshirt.bandcamp.com/album/this-is-old). If you like it, buy it from their Bandcamp page.
 		

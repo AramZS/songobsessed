@@ -3,7 +3,7 @@ title: "Así Lo Hago Yo by Ona Mafalda"
 description: "More information to come!"
 date: 2021-05-25T20:55:14Z
 tags:
-  - Indie
+  - indie
   - Female Vocalists
 public: true
 artists:

@@ -30,4 +30,6 @@ lastfm: https://www.last.fm/music/P%C3%A4ter/_/Obstinate+Brain
 ---
 
 A song I plan to write more about.
+
+Damn, the mix on this is so good. 
 		

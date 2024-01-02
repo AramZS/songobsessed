@@ -6,7 +6,7 @@ tags:
   - "SXSW"
   - "Indie Pop"
   - Female Vocalists
-  - Indie
+  - indie
   - Pop
 public: true
 artists:

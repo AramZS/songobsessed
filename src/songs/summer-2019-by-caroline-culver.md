@@ -4,7 +4,7 @@ description: "More information to come!"
 date: 2023-08-22T16:29:43Z
 tags:
   - Indie Rock
-  - Indie
+  - indie
   - Female Vocalist
   - Singer-Songwriter
 public: true
