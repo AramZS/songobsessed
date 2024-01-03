@@ -46,6 +46,8 @@ Yeah, I know the console logs are excessive. Another thing on the list to fix, o
 
 The V1 of this site incorporates feedback from reviewers: [Alex Petros](https://alexpetros.com/) and [Jordan Gass-Poore'](https://jgasspoore.com/). Thanks!
 
+You can read more about how this site was made [in my changelog reflections](/about). 
+
 ## Notes on content on this site 
 
 Where I use images or audio files from other sites, they're used for the purpose of reviewing the audio and sometimes because there are simply no other options for sharing the audio. I will always try to link to the original source. If you'd like me to remove something, please [file an issue on GitHub](https://github.com/AramZS/songobsessed/issues). 
