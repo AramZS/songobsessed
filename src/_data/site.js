@@ -17,6 +17,7 @@ let data = {
 	},
 	site_url: process.env.DOMAIN,
 	domain: process.env.DOMAIN,
+	defaultImage: process.env.DOMAIN + "/img/glass-horn.jpg",
 };
 
 data.avatar = `/img/twitter-avy.jpg`;

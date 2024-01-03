@@ -23,8 +23,8 @@ module.exports = function (data, title, description, tagSet, imgUrls) {
 			property: "og:url",
 			content: `${data.site.domain}${data.page.url}`,
 		},
-		{ meta: "name", name: "author", content: `${data.metadata.username}` },
-		{ meta: "property", property: "og:title", content: `${title}` },
+		{ meta: "name", name: "author", content: `${data.me.name}` },
+		{ meta: "property", property: "og:title", content: `${data.title}` },
 		{
 			meta: "property",
 			property: "og:description",
@@ -33,7 +33,7 @@ module.exports = function (data, title, description, tagSet, imgUrls) {
 		{
 			meta: "property",
 			property: "og:site_name",
-			content: `${data.metadata.username}’s Song Obsessions`,
+			content: `Song Obsessed`,
 		},
 		{
 			meta: "property",
@@ -43,7 +43,7 @@ module.exports = function (data, title, description, tagSet, imgUrls) {
 		{
 			meta: "name",
 			name: "twitter:site",
-			content: data.metadata.username,
+			content: data.site.title,
 		},
 		{
 			meta: "name",
@@ -58,7 +58,7 @@ module.exports = function (data, title, description, tagSet, imgUrls) {
 		{
 			meta: "name",
 			name: "twitter:title",
-			content: `${title}`,
+			content: `${data.title}`,
 		},
 	];
 	if (previewImage) {
@@ -72,55 +72,38 @@ module.exports = function (data, title, description, tagSet, imgUrls) {
 			property: "og:image",
 			content: `${previewImage}`,
 		});
+	} else {
+		metaProperties.push({
+			meta: "name",
+			name: "twitter:image",
+			content: `${data.site.defaultImage}`,
+		});
+		metaProperties.push({
+			meta: "property",
+			property: "og:image",
+			content: `${data.site.defaultImage}`,
+		});
 	}
 
-	let id = { "@id": `${data.page.url}` };
+	let id = { "@id": `${data.site.domain}${data.page.url}` };
 
-	let tags = ["Twitter", ...Object.keys(tagSet)];
+	let tags = ["Music", "Songs", ...tagSet];
 
 	switch (data.page.fileSlug) {
-		case "tweet-pages":
-			jsonLDProperties.push({
-				"@type": ["BlogPosting", "ArchiveComponent"],
-			});
-			jsonLDProperties.push({ name: `${title}` });
-			jsonLDProperties.push({ identifier: `${data.tweet.id_str}` });
-			// jsonLDProperties.push({"headline": `${title}`})
-
-			jsonLDProperties.push({
-				itemLocation: `${data.metadata.baseUrl}${data.page.url}`,
-			});
-			jsonLDProperties.push({
-				holdingArchive: `${data.metadata.baseUrl}`,
-			});
-			jsonLDProperties.push({
-				hasPart: `${data.metadata.baseUrl}${data.page.url}`,
-			});
-			jsonLDProperties.push({
-				isPartOf: {
-					"@type": ["ArchiveOrganization", "WebSite"],
-					name: `${data.metadata.username}’s Song Obsessions`,
-					url: `${data.metadata.baseUrl}`,
-				},
-			});
-			if (previewImage) {
-				jsonLDProperties.push({ image: [...imgUrls] });
-			}
-			break;
+		case "song":
 		case "newest":
 		case "recent":
 		case "popular":
 			break;
 		default:
 			jsonLDProperties.push({
-				"@type": ["ArchiveOrganization", "WebSite"],
-			});
-			jsonLDProperties.push({ archiveHeld: `${data.page.url}` });
-			jsonLDProperties.push({
-				url: `${data.metadata.baseUrl}${data.page.url}`,
+				"@type": ["WebSite"],
 			});
 			jsonLDProperties.push({
-				name: `${data.metadata.username}’s Song Obsessions`,
+				url: `${data.site.domain}${data.page.url}`,
+			});
+			jsonLDProperties.push({
+				name: `${data.title ? data.title : "Song Obsessed"}`,
 			});
 	}
 
@@ -128,6 +111,9 @@ module.exports = function (data, title, description, tagSet, imgUrls) {
 		about: [data.metadata.username, data?.me?.name, ...tags],
 	});
 	jsonLDProperties.push(id);
+	let avatar = data.metadata?.avatar
+		? data.site.domain + data.metadata.avatar
+		: "";
 	let jsonLD = {
 		"@context": "http://schema.org",
 		creator: {
@@ -138,7 +124,7 @@ module.exports = function (data, title, description, tagSet, imgUrls) {
 				: `https://twitter.com/${data.metadata.username}`,
 			image: {
 				"@type": "ImageObject",
-				url: data.metadata?.avatar,
+				url: avatar,
 			},
 		},
 		inLanguage: data.metadata?.language,

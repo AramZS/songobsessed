@@ -25,8 +25,10 @@ module.exports = async function (data, zones) {
 		data,
 		`${data.site.title}`,
 		meta_description,
-		[],
-		() => {}
+		data?.tags ? data.tags : [],
+		data?.featuredImage
+			? [`${process.env.DOMAIN}/img/${data.featuredImage}`]
+			: []
 	);
 	let templateStyle = "";
 	if (zones.template) {
