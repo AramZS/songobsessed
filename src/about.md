@@ -109,3 +109,7 @@ In retrospect, I'm not sure that splitting stylesheets is the right choice for t
 #### Scrobbles from this site 
 
 I ended up finding the simplest of the [connectors](https://github.com/web-scrobbler/web-scrobbler/tree/master/src/connectors) to Web Scrobbler and just adding the elements to support it here. Perhaps I'll build my own connecter or work towards one of the more complex ones in the future. Right now though it Just Works, which is what I wanted for a V1.
+
+#### Pulling down from playlists and information from other sites. 
+
+Right now the process of pulling info from Spotify's API and the Last.fm and MusicBrainz APIs is messy and fairly manual. I'd like to turn that into an automated event in the long run. 
