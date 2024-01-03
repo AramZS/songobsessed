@@ -6,7 +6,7 @@ path: /
 layout: "index.11ty.js"
 ---
 
-Welcome to <span class="site-name">Song Obsessed</span>. This is a site for me to share my favorite songs and write about them. Since early 2009 I've been using a variety of sites to keep track of one song a day, a week or a month. Sometimes I've written about them, sometimes not. But trying to find a way to retain that list and remember them over time has been a challange. [First The61 closed](https://en.wikipedia.org/wiki/Thesixtyone). Then [ThisIsMyJam](https://www.theguardian.com/technology/2015/aug/10/this-is-my-jam-music-website-shuts-down-open-web). Now I use [Last.fm Obsessions](https://www.last.fm/user/Shade0/obsessions), but it doesn't work exactly how I'd like.
+Welcome to <span class="site-name">Song Obsessed</span>. This is a site for me to share my favorite songs and write about them. Since early 2009 I've been using a variety of sites to keep track of one song a day, a week or a month. Sometimes I've written about them, sometimes not. But trying to find a way to retain that list and remember them over time has been a challenge. [First The61 closed](https://en.wikipedia.org/wiki/Thesixtyone). Then [ThisIsMyJam](https://www.theguardian.com/technology/2015/aug/10/this-is-my-jam-music-website-shuts-down-open-web). Now I use [Last.fm Obsessions](https://www.last.fm/user/Shade0/obsessions), but it doesn't work exactly how I'd like.
 
 So this site will hopefully work and, even if it isn't the best option, I'm running it, so I won't lose those songs and I'll always have a stable place to share them with others. 
 

@@ -33,6 +33,6 @@ lastfm: https://www.last.fm/music/Electric+Dragon/_/Kara%27s+Theme+(Cartridge+19
 
 When I first heard this song in one of the [trailers](https://www.youtube.com/watch?v=2mns9HMvREA) for [Rollerdrome](https://store.privatedivision.com/game/rollerdrome) I had to hunt it down immediately. It is catchy as hell and while I'm familiar with and enjoy the work of both Cartridge 1987 and Electric Dragon, they've outdone themselves here. 
 		
-Kara's Theme, in this remix, is all high energy movement, full power 80s synth, and particularly epic. There's some fun complexities that keep it continually listenable, like the brief higher-key bridge at the two minute mark, and the change up right after that. The layering at the 3 minute mark really brings you towards the conclusion. There's just so much going on in this one track. It is also really gives you the vibe of the game, which is all about speed, precision, and action. 
+Kara's Theme, in this remix, is all high energy movement, full power 80s synth, and particularly epic. There's some fun complexities that keep it continually listenable, like the brief higher-key bridge at the two minute mark, and the change up right after that. The layering at the 3 minute mark really brings you towards the conclusion. There's just so much going on in this one track. It is also gives you the vibe of the game, which is all about speed, precision, and action. 
 
-Sadly, I'm not very good at the game, though I still have fun with it, and the really excellent soundtrack really helps. I recommend listening to the whole thing, it's all great. 
+Sadly, I'm not very good at the game, though I still have fun with it, and the excellent soundtrack really helps. I recommend listening to the whole thing, it's all great. 
