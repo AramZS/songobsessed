@@ -69,6 +69,7 @@ module.exports = function (eleventyConfig) {
 		},
 	];
 	let markdownLib = markdownIt(markdownItOptions).use(mila, milaOptions);
+	//		.use(require("markdown-it-github-headings"));
 	eleventyConfig.setLibrary("md", markdownLib);
 	function filterTagList(tags) {
 		return (tags || []).filter(

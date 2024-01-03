@@ -26,6 +26,7 @@
     "eleventy-plugin-dart-sass": "^1.0.3",
     "jsdom": "^23.0.1",
     "markdown-it": "^13.0.2",
+    "markdown-it-github-headings": "^2.0.1",
     "markdown-it-link-attributes": "^4.0.1",
     "sharp": "^0.33.1",
     "slugify": "^1.6.6"

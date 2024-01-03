@@ -5,6 +5,7 @@ date: 2021-12-29T15:18:48Z
 tags:
   - "electronic"
   - "chiptune"
+  - "spooky"
 public: true
 artists:
   - meganeko
