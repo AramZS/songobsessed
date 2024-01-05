@@ -109,7 +109,7 @@ module.exports = function (eleventyConfig) {
 	};
 
 	const makePageObject = (tagName, slug, number, posts, first, last) => {
-		console.log(tagName, slug, number, first, last);
+		//console.log(tagName, slug, number, first, last);
 		if (!tagName) {
 			console.error("tagName is undefined in makePageObject", tagName);
 			return;

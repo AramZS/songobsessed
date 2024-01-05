@@ -48,7 +48,7 @@ module.exports = async function (data) {
 			` + accumulator
 		);
 	}, "");
-	console.log(data.content);
+	// console.log(data.content);
 	let insert = {
 		template: "tags",
 		content: /*html*/ `

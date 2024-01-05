@@ -92,7 +92,7 @@ module.exports = async function (data) {
 	if (data.lastfm) {
 		linksSet += `<a href="${data.lastfm}" target="_blank" rel="noopener noreferrer">Last.fm</a> | `;
 	}
-	console.log("date", data.date.toString());
+	// console.log("date", data.date.toString());
 	if (data.youtube) {
 		let finalString = data.youtube.replaceAll(
 			"www.youtube.com/watch?v=",
@@ -105,7 +105,7 @@ module.exports = async function (data) {
 		);
 		let videoId = finalString.split("embed/")[1];
 		let finalVideoId = videoId.split("?")[0];
-		console.log("videoId", finalVideoId);
+		// console.log("videoId", finalVideoId);
 		onPageObject.media.youtubeId = finalVideoId;
 	}
 	["spotifyUri", "youtubeId", "audiofile"].forEach((key) => {
