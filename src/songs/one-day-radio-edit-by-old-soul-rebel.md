@@ -3,7 +3,10 @@ title: "One Day - Radio Edit by Old Soul Rebel"
 description: "More information to come!"
 date: 2023-08-22T16:16:02Z
 tags:
-  - Tags Needed
+  - rock
+  - rock n roll
+  - canada
+  - canadian
 public: true
 artists:
   - Old Soul Rebel

@@ -3,7 +3,10 @@ title: "Warfare by Katie Garfield"
 description: "More information to come!"
 date: 2021-12-29T15:19:29Z
 tags:
-  - Tags Needed
+  - epicore
+  - trailercore
+  - epic pop
+  - breathy trailer music
 public: true
 artists:
   - Katie Garfield

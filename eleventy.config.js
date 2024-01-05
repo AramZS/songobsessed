@@ -39,7 +39,8 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("src/img/");
 
 	eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
-
+	// https://www.11ty.dev/docs/plugins/rss/
+	eleventyConfig.addPlugin(pluginRss);
 	let markdownItOptions = {
 		html: true,
 	};

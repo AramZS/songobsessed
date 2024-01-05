@@ -6,6 +6,8 @@ tags:
   - Witchy
   - Soundtrack
   - Film Soundtrack
+  - epicore
+  - trailercore
 public: true
 artists:
   - Heather Christian

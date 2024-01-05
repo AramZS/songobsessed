@@ -4,6 +4,8 @@ description: "More information to come!"
 date: 2023-08-22T16:24:22Z
 tags:
   - "fresh cool grooves"
+  - folk
+  - outsider folk
 public: true
 artists:
   - Nahko And Medicine For The People

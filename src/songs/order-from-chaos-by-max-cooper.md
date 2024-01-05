@@ -7,6 +7,8 @@ tags:
   - "musique concrete"
   - "TRANXILIUM"
   - "SubSpalte"
+  - "neoclassical"
+  - Orgánica
 public: true
 artists:
   - Max Cooper

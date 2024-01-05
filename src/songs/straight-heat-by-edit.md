@@ -1,7 +1,7 @@
 ---
 title: "Straight Heat by edIT"
 description: "More information to come!"
-date: 2015-09-30T17:31:50Z
+date: 2011-12-16T17:31:50Z
 tags:
   - "member of The Glitch Mob"
   - "electronic"
