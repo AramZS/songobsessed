@@ -8,7 +8,7 @@ module.exports = async function (data) {
 	let albumImage = await imageCheck(obsession.data, "small");
 	let imageAlt =
 		data.featuredImageAlt ||
-		`Cover of album that contains ${data.songtitle}`;
+		`Cover of album that contains ${obsession.data.songtitle}`;
 	let obsessionTitle = linkmaker(
 		obsession.data,
 		obsession.data.page.url,
@@ -19,7 +19,7 @@ module.exports = async function (data) {
 	let obsessionImage = linkmaker(
 		obsession.data,
 		obsession.data.page.url,
-		`<img src="${albumImage}" alt="${imageAlt}"></img>`
+		`<img src="${albumImage}" alt="${imageAlt}" width="154px" height="154px"></img>`
 	);
 	let insert = {
 		content: /*html*/ `
