@@ -7,7 +7,7 @@ module.exports = function (data) {
 	if (!paged.first) {
 		first = pagination.href.previous;
 	} else {
-		first = `javascript:void(0)`;
+		first = ""; // `javascript:void(0)`;
 	}
 	let firstLink = linkmaker(
 		data,
@@ -21,7 +21,7 @@ module.exports = function (data) {
 	if (!paged.last) {
 		last = pagination.href.next;
 	} else {
-		last = `javascript:void(0)`;
+		last = ""; // `javascript:void(0)`;
 	}
 	let lastLink = linkmaker(
 		data,
