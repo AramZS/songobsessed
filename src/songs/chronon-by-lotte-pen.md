@@ -26,7 +26,7 @@ playlists:
     position: 457
     author: Aram Zucker-Scharff
 youtube: https://www.youtube.com/watch?v=7dbVtKTxuHs
-spotify: https://open.spotify.com/track/0zv6EtTAk4pcM6BbfBdMm6?si=0a083ad9c0814a51
+spotify: https://open.spotify.com/track/0zv6EtTAk4pcM6BbfBdMm6
 spotifyUri: 
 soundcloud: https://soundcloud.com/lottepen/chronon
 audiofile:
