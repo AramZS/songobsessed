@@ -23,6 +23,6 @@ let data = {
 data.avatar = `/img/twitter-avy.jpg`;
 
 module.exports = (info) => {
-	// console.log("final site info", data);
+	console.log("final site info", data);
 	return data;
 };

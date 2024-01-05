@@ -2,14 +2,15 @@
 {
   "eleventyExcludeFromCollections": true,
   "metadata": {
-    "title": "Song Obsessed",
-    "subtitle": "Notes on various projects",
+    "title": (function(){ return process.env.SITE_NAME })(),
+    "subtitle": (function(){ return process.env.DESCRIPTION })(),
     "url": (function(){ return process.env.DOMAIN + "/" })(),
     "feedUrl": (function(){ return process.env.DOMAIN + "/rss/" })(),
 	"lastBuildDate": (function(){
 		var date = new Date();
 		return date.toUTCString()
 	})(),
+	"test": (function(data){ console.log(data) })(),
     "author": {
       "name": "Aram Zucker-Scharff",
       "email": "aramdevblog@aramzs.me"
@@ -28,10 +29,10 @@
 	>
 
 <channel>
-	<title>{{ data.site.title }}</title>
+	<title>{{ metadata.title }}</title>
 	<atom:link href="{{ metadata.feedUrl }}" rel="self" type="application/rss+xml" />
 	<link>{{ metadata.url }}</link>
-	<description>{{ data.site.description }}</description>
+	<description>{{ metadata.subtitle }}</description>
 	<lastBuildDate>{{ metadata.lastBuildDate }}</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>hourly</sy:updatePeriod>
