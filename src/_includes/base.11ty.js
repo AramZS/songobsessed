@@ -71,6 +71,9 @@ module.exports = async function (data, zones) {
 		<script src="/assets/js/script.js" defer type="application/javascript" hx-preserve="true"></script>
 		<script src="/assets/js/head-support.js" defer type="application/javascript" hx-preserve="true"></script>
 		<script defer data-domain="songobsessed.com" src="https://plausible.io/js/script.js" type="application/javascript"  hx-preserve="true"></script>
+		<link rel="alternate" type="application/rss+xml" 
+			title="RSS Feed for ${process.env.DOMAIN}" 
+			href="/rss/index.xml" />
 		${templateStyle}
 		${zones.lateHead || ""}
 	</head>
