@@ -1,9 +1,8 @@
 const base = require("./base.11ty");
 const xplayer = require("./partials/xplayer.11ty");
-const sharp = require("sharp");
-const fs = require("fs");
 var slugify = require("slugify");
 const linkmaker = require("../utils/linkmaker");
+const imageCheck = require("../utils/imageCheck");
 
 let slugger = (tag) => {
 	return slugify(`${tag}`, {
@@ -13,70 +12,12 @@ let slugger = (tag) => {
 	});
 };
 
-let imageCheck = async function (data) {
-	// console.log("image data", data);
-	let promiseArray = [];
-	if (data?.featuredImage) {
-		let imagePath = `./src/img/${data.featuredImage}`;
-		let imageNameArray = data.featuredImage.split(".");
-		let imageName = data.featuredImage.replace(
-			`.${imageNameArray[imageNameArray.length - 1]}`,
-			""
-		);
-		if (!fs.existsSync(`./src/img/${imageName}-640.jpg`)) {
-			promiseArray.push(
-				await sharp(imagePath)
-					.resize(640)
-					.jpeg({ mozjpeg: true })
-					.toFile(`./src/img/${imageName}-640.jpg`)
-					.then((data) => {})
-					.catch((err) => {})
-			);
-		}
-		if (!fs.existsSync(`./src/img/${imageName}-240.jpg`)) {
-			promiseArray.push(
-				await sharp(imagePath)
-					.resize(240)
-					.jpeg({ mozjpeg: true })
-					.toFile(`./src/img/${imageName}-240.jpg`)
-					.then((data) => {})
-					.catch((err) => {})
-			);
-		}
-		let promiseResult = await Promise.all(promiseArray);
-		return `/img/${imageName}-640.jpg`;
-	} else {
-		// Default image used under creative commons from https://www.metmuseum.org/art/collection/search/501692
-		if (!fs.existsSync(`./src/img/glass-horn-240.jpg`)) {
-			let imagePath = `./src/img/glass-horn.jpg`;
-			promiseArray.push(
-				await sharp(imagePath)
-					.resize(240)
-					.jpeg({ mozjpeg: true })
-					.toFile(`./src/img/glass-horn-240.jpg`)
-					.then((data) => {})
-					.catch((err) => {})
-			);
-		}
-		if (!fs.existsSync(`./src/img/glass-horn-640.jpg`)) {
-			let imagePath = `./src/img/glass-horn.jpg`;
-			promiseArray.push(
-				await sharp(imagePath)
-					.resize(640)
-					.jpeg({ mozjpeg: true })
-					.toFile(`./src/img/glass-horn-640.jpg`)
-					.then((data) => {})
-					.catch((err) => {})
-			);
-		}
-		let promiseResult = await Promise.all(promiseArray);
-		return `/img/glass-horn-640.jpg`;
-	}
-};
-
 module.exports = async function (data) {
 	// console.log("post", data);
 	let albumImage = await imageCheck(data);
+	let imageAlt =
+		data.featuredImageAlt ||
+		`Cover of album that contains ${data.songtitle}`;
 	var onPageObject = {
 		site: data.site,
 		metadata: data.metadata,
@@ -207,7 +148,7 @@ module.exports = async function (data) {
 		<div id="song-image-and-availability-wrapper">
 
 			<div id="song-image-wrapper">
-				<div id="song-image"><img src="${albumImage}" /></div>
+				<div id="song-image"><img src="${albumImage}" alt="${imageAlt}" /></div>
 			</div>			
 			<div id="song-availability" xp-playertypes>
 				<div class="availability-text">${

@@ -1,0 +1,59 @@
+---js
+{
+  "eleventyExcludeFromCollections": true,
+  "metadata": {
+    "title": "Song Obsessed",
+    "subtitle": "Notes on various projects",
+    "url": (function(){ return process.env.DOMAIN + "/" })(),
+    "feedUrl": (function(){ return process.env.DOMAIN + "/rss/" })(),
+	"lastBuildDate": (function(){
+		var date = new Date();
+		return date.toUTCString()
+	})(),
+    "author": {
+      "name": "Aram Zucker-Scharff",
+      "email": "aramdevblog@aramzs.me"
+    }
+  },
+  "internalPageTypes": [ "feed" ]
+}
+---
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>{{ data.site.title }}</title>
+	<atom:link href="{{ metadata.feedUrl }}" rel="self" type="application/rss+xml" />
+	<link>{{ metadata.url }}</link>
+	<description>{{ data.site.description }}</description>
+	<lastBuildDate>{{ metadata.lastBuildDate }}</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://11ty.dev/</generator>
+	<managingEditor>
+		{{ metadata.author.email }} ({{ metadata.author.name }})
+	</managingEditor>
+	{%- for post in collections.songs | reverse %}
+	{% set absolutePostUrl %}{{ post.url | url | absoluteUrl(metadata.url) }}{% endset %}
+	<item>
+		<title>{{ post.data.title }}</title>
+		<link>{{ absolutePostUrl }}?source=rss</link>
+		<pubDate>{{ post.date.toUTCString() }}</pubDate>
+		<dc:creator>{{ metadata.author.name }}</dc:creator>
+		<guid isPermaLink="true">{{ absolutePostUrl }}</guid>
+		<description>{{ post.data.excerpt or post.data.description or "A song I'm obsessed with." }}</description>
+		<content:encoded><![CDATA[{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) | safe }}]]></content:encoded>
+		{%- for tag in post.tags %}
+		    <category><![CDATA[{{tag}}]]></category>
+		{%- endfor %}
+	</item>
+	{%- endfor %}
+	</channel>
+</rss>

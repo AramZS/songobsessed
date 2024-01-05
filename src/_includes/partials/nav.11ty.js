@@ -6,10 +6,10 @@ module.exports = function (data) {
 function opennav(e){
 	console.log(e.parentNode.parentNode); e.parentNode.parentNode.classList.toggle('open');
 }
-</script>	
+</script>
 <nav id="top-nav">
 	<div id="nav-icon" onclick="opennav(this)">
-		<img src="/assets/menu-icon.svg" />
+		<img src="/assets/menu-icon.svg" width="25px" height="25px" alt="menu icon"/>
 	</div>
 	<h1 class="site-name">${linkmaker(data, "", data.site.title, "site-name")}</h1>
 		<div id="nav-menu-items"><ul>

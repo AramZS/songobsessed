@@ -3,8 +3,10 @@ const linkmaker = require("../utils/linkmaker");
 const pagination = require("./partials/pagination.11ty");
 module.exports = async function (data) {
 	// console.log("tags data", data);
+	let c = 0;
 	let tags = data.paged.posts.reduce((accumulator, post) => {
 		let imageName;
+		c++;
 		if (!post.data.featuredImage) {
 			imageName = "glass-horn-240.jpg";
 		} else {
@@ -19,6 +21,9 @@ module.exports = async function (data) {
 		let tagText = filteredTags.map((tag) => {
 			return `<span class="genre-tag">${tag}</span>`;
 		});
+		let imageAlt =
+			data.featuredImageAlt ||
+			`Cover of album that contains ${data.songtitle}`;
 		//console.log("tagText", tagText);
 		return (
 			/*html*/ `
@@ -27,7 +32,9 @@ module.exports = async function (data) {
 					${linkmaker(
 						post.data,
 						post.data.page.url,
-						`<img src="/img/${imageName}" alt="${post.data.title}" />`
+						`<img src="/img/${imageName}" ${
+							c > 5 ? 'loading="lazy"' : 'loading="eager"'
+						} alt="${imageAlt}" />`
 					)}
 					</div>
 					<h3 class="p-name">${linkmaker(
@@ -41,10 +48,10 @@ module.exports = async function (data) {
 			` + accumulator
 		);
 	}, "");
+	console.log(data.content);
 	let insert = {
 		template: "tags",
 		content: /*html*/ `
-			<h2>${data.paged.tagName}</h2>
 			${data.content}
 			<br />
 			${tags}
