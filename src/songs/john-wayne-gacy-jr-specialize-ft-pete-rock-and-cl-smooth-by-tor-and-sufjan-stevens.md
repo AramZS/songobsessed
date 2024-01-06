@@ -29,6 +29,8 @@ tags:
   - "singer/songwriter"
   - "art pop"
   - "glitch pop"
+  - "remix"
+  - "Plunderphonics"
 public: true
 artists:
   - Tor and Sufjan Stevens

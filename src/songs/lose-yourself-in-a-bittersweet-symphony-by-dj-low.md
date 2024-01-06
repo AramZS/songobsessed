@@ -3,7 +3,8 @@ title: "Lose Yourself in a Bittersweet Symphony by DJ Low"
 description: "More information to come!"
 date: 2011-07-16T16:43:33Z
 tags:
-  - Tags Needed
+  - "Plunderphonics"
+  - "remix"
 public: true
 artists:
   - DJ Low

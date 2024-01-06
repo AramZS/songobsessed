@@ -4,6 +4,8 @@ description: "More information to come!"
 date: 2011-07-16T16:44:18Z
 tags:
   - electronica mix
+  - remix
+  - "Plunderphonics"
 public: true
 artists:
   - EEPROM

@@ -8,6 +8,8 @@ tags:
   - "trip-hop"
   - "snowboard"
   - "electronic"
+  - "remix"
+  - "Plunderphonics"
 public: true
 artists:
   - Shawn Lee's Ping Pong Orchestra vs. Nino Moschella
