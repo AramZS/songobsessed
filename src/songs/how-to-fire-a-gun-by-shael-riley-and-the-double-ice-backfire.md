@@ -8,6 +8,7 @@ tags:
   - "Awesome"
   - "chiptune"
   - "Nerdcore hip-hop"
+  - nerdcore
 public: true
 artists:
   - Shael Riley and The Double Ice Backfire
@@ -23,7 +24,7 @@ playlists:
     name: "Obsessions"
     position: 55
     author: Aram Zucker-Scharff
-youtube: https://www.youtube.com/watch?v=UFDnIgsoecI
+youtube: https://youtu.be/v9cI1X-sDRs
 spotify: 
 spotifyUri: 
 soundcloud:

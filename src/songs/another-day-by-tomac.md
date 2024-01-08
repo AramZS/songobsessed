@@ -9,6 +9,9 @@ tags:
   - "instrumental"
   - "00s"
   - "electronic instrumental"
+  - 8-bit
+  - electronic
+  - electronica
 public: true
 artists:
   - tomac
@@ -24,11 +27,11 @@ playlists:
     name: "Obsessions"
     position: 63
     author: Aram Zucker-Scharff
-youtube: 
+youtube: https://youtu.be/74JcTkQOSN0
 spotify: 
 spotifyUri: 
-soundcloud:
-audiofile:
+soundcloud: https://soundcloud.com/aramzs/tomac-another-day
+audiofile: "tomac - another day.mp3"
 podbean:
 lastfm: https://www.last.fm/music/Tomac/_/another+day
 ---

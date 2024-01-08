@@ -4,6 +4,11 @@ description: "More information to come!"
 date: 2013-03-15T04:01:03Z
 tags:
   - "Canadian DJ/producer Alexandre Nadeau"
+  - remix
+  - 8-bit
+  - electronic
+  - electronica
+  - Plunderphonics
 public: true
 artists:
   - tomac
@@ -19,11 +24,11 @@ playlists:
     name: "Obsessions"
     position: 69
     author: Aram Zucker-Scharff
-youtube: 
+youtube: https://youtu.be/hf5NZ-n50nk
 spotify: 
 spotifyUri: 
 soundcloud:
-audiofile:
+audiofile: "tomac - another daymension.mp3"
 podbean:
 lastfm: https://www.last.fm/music/Tomac/_/another+daymension
 ---

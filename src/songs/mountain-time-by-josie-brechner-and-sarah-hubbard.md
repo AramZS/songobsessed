@@ -3,7 +3,8 @@ title: "Mountain Time by Josie Brechner and Sarah Hubbard"
 description: "More information to come!"
 date: 2023-08-22T16:20:21Z
 tags:
-  - Tags Needed
+  - vgm
+  - video game music
 public: true
 artists:
   - Josie Brechner

@@ -3,7 +3,8 @@ title: "INFRA BRAD by Josie Brechner and Michaela Nachtigall"
 description: "More information to come!"
 date: 2023-08-22T16:18:30Z
 tags:
-  - Tags Needed
+  - vgm
+  - video game music
 public: true
 artists:
   - Josie Brechner

@@ -3,7 +3,8 @@ title: "Roots Among Ash by Visager"
 description: "More information to come!"
 date: 2023-08-22T16:22:03Z
 tags:
-  - "Josie Brechner"
+  - vgm
+  - video game music
 public: true
 artists:
   - Visager
@@ -29,4 +30,5 @@ lastfm: https://www.last.fm/music/VISAGER/_/Roots+Among+Ash
 ---
 
 A song I plan to write more about.
-		
+
+Visager now performs as Josie Brechner

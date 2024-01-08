@@ -5,6 +5,7 @@ date: 2015-09-30T17:31:50Z
 tags:
   - "Awesome"
   - "Fave indie pop"
+  - indie pop
 public: true
 artists:
   - Faded Paper Figures

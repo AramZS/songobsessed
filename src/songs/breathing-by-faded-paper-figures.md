@@ -3,7 +3,7 @@ title: "Breathing by Faded Paper Figures"
 description: "More information to come!"
 date: 2015-09-30T17:31:50Z
 tags:
-  - "6 of 10 stars"
+  - indie pop
 public: true
 artists:
   - Faded Paper Figures

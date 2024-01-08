@@ -3,11 +3,7 @@ title: "Holy Smoke by Faded Paper Figures"
 description: "More information to come!"
 date: 2015-09-30T17:31:50Z
 tags:
-  - "paper"
-  - "smoke"
-  - "figures"
-  - "Holy"
-  - "Faded"
+  - indie pop
 public: true
 artists:
   - Faded Paper Figures
