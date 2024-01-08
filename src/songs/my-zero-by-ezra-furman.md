@@ -8,7 +8,7 @@ tags:
   - "indie rock"
   - "indie pop"
   - "indie"
-  - "Fave Indie Pop"
+  - "Fave indie pop"
   - "fire"
   - "SXSW 2014"
 public: true

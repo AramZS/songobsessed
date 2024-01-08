@@ -4,7 +4,7 @@ description: "More information to come!"
 date: 2021-05-25T20:56:19Z
 tags:
   - pop
-  - Indie Pop
+  - indie pop
   - Climate Change
 public: true
 artists:

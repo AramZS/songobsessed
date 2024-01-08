@@ -4,7 +4,7 @@ description: "More information to come!"
 date: 2015-09-30T17:31:50Z
 tags:
   - "Awesome"
-  - "Fave Indie Pop"
+  - "Fave indie pop"
 public: true
 artists:
   - Faded Paper Figures

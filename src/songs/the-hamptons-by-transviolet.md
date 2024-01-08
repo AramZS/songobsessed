@@ -5,7 +5,7 @@ date: 2023-08-22T16:27:56Z
 tags:
   - pop
   - Electropop
-  - Indie Pop
+  - indie pop
   - Lush
   - Female Vocalists
 public: true

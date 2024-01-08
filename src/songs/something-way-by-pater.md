@@ -4,7 +4,7 @@ description: "More information to come!"
 date: 2023-11-27T22:37:40Z
 tags:
   - pop
-  - Indie Pop
+  - indie pop
 public: true
 artists:
   - Päter

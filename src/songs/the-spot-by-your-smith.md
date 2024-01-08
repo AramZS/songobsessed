@@ -4,7 +4,7 @@ description: "More information to come!"
 date: 2023-08-22T16:26:32Z
 tags:
   - "SXSW"
-  - "Indie Pop"
+  - "indie pop"
   - Female Vocalists
   - indie
   - pop

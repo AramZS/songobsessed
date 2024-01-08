@@ -100,7 +100,13 @@ module.exports = function (eleventyConfig) {
 				let tags = filterTagList(item.data.tags);
 				// console.log("Tags:", tags);
 				tags.forEach((tag) => {
-					tagSet.add(tag);
+					if (tag) {
+						tag = tag.trim();
+						tag = tag.toLowerCase();
+						tagSet.add(tag);
+					} else {
+						console.error("Tag is undefined", item.title);
+					}
 				});
 			}
 		});
