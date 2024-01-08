@@ -3,7 +3,7 @@ title: "The Hamptons by Transviolet"
 description: "More information to come!"
 date: 2023-08-22T16:27:56Z
 tags:
-  - Pop
+  - pop
   - Electropop
   - Indie Pop
   - Lush

@@ -6,7 +6,7 @@ tags:
   - chiptune
   - 8-bit
   - 8bit
-  - electronic
+  - Electronic
   - chiptunes
 public: true
 artists:

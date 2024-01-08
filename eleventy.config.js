@@ -115,11 +115,11 @@ module.exports = function (eleventyConfig) {
 			return;
 		}
 		if (!slug) {
-			console.log(
+			/*console.log(
 				slug,
 				"slug is undefined in makePageObject, slugify",
 				tagName
-			);
+			);*/
 			slug = slugify(tagName, {
 				lower: true,
 				strict: true,
@@ -193,13 +193,13 @@ module.exports = function (eleventyConfig) {
 			const numberOfPages = Math.ceil(
 				taggedPosts.length / maxPostsPerPage
 			);
-			console.log("Need to create a slug for:", tagName);
+			// console.log("Need to create a slug for:", tagName);
 			let slug = slugify(tagName, {
 				lower: true,
 				strict: true,
 				locale: "en",
 			});
-			console.log("paged posts slug", slug);
+			// console.log("paged posts slug", slug);
 			let dupedTag = false;
 			if (pagedPosts.find((postsObj) => postsObj.slug === slug)) {
 				console.error(`Tag ${tagName} has duplicate slug`, slug);
@@ -234,8 +234,8 @@ module.exports = function (eleventyConfig) {
 						});
 						if (aSet) {
 							console.log(
-								`Duplicate slug ${slug} from ${tagName} found potential page`,
-								aSet
+								`Duplicate slug ${slug} from ${tagName} found potential matching page`, //,
+								`${aSet.tagName} with slug ${aSet.slug} and page number ${aSet.number}`
 							);
 							if (
 								maxPostsPerPage >=
@@ -247,8 +247,8 @@ module.exports = function (eleventyConfig) {
 								]);
 								aSet.posts = [...postsSet];
 								console.log(
-									`Duplicate slug ${slug} from ${tagName} placed in with page`,
-									aSet
+									`Duplicate slug ${slug} from ${tagName} placed in with page`, //,
+									`${aSet.tagName} with slug ${aSet.slug} and page number ${aSet.number}`
 								);
 								dupedTag = false;
 							}

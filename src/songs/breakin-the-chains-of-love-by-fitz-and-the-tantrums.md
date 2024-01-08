@@ -3,7 +3,7 @@ title: "Breakin' The Chains of Love by Fitz and The Tantrums"
 description: "More information to come!"
 date: 2011-07-16T16:44:30Z
 tags:
-  - electronic
+  - Electronic
   - pop
   - indie
   - soul

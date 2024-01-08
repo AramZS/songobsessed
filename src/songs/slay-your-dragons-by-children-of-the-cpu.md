@@ -4,7 +4,7 @@ description: "More information to come!"
 date: 2011-07-16T16:42:07Z
 tags:
   - synthpop
-  - electronic
+  - Electronic
   - electronica
   - Dreamy
   - melancholy

@@ -3,7 +3,7 @@ title: "Don't Let Go by Ona Mafalda"
 description: "More information to come!"
 date: 2023-10-22T02:48:18Z
 tags:
-  - Indie
+  - indie
   - Female Vocalists
 public: true
 artists:

@@ -3,7 +3,7 @@ title: "Earth in Revolt by Päter"
 description: "More information to come!"
 date: 2021-05-25T20:56:19Z
 tags:
-  - Pop
+  - pop
   - Indie Pop
   - Climate Change
 public: true

@@ -5,7 +5,7 @@ date: 2011-07-16T16:48:30Z
 tags:
   - French electro house, Gaspard Augé & Xavier de Rosnay
   - rock
-  - electronic
+  - Electronic
   - french
   - dance
   - house

@@ -3,7 +3,7 @@ title: "OkiiRobo Navigation System by Henry Homesweet"
 description: "More information to come!"
 date: 2011-07-16T16:45:46Z
 tags:
-  - electronic
+  - Electronic
   - uk
   - chip
   - england

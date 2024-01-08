@@ -13,7 +13,6 @@ tags:
   - "dance-pop"
   - "québec"
   - "québécois"
-  - "quebec"
   - "dance and electronica"
   - "funktronica"
   - "nu-disco"

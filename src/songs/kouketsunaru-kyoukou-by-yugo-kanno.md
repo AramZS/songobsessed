@@ -7,7 +7,7 @@ tags:
   - Soundtrack
   - Anime
   - Japanese
-  - Instrumental
+  - instrumental
 public: true
 artists:
   - Yugo Kanno

@@ -15,7 +15,7 @@ tags:
   - "latin pop"
   - "reggaeton"
   - "español"
-  - "edm"
+  - "EDM"
   - "méxico"
   - "cumbia"
   - "vallenato"

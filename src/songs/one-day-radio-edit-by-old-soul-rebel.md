@@ -6,7 +6,7 @@ tags:
   - rock
   - rock n roll
   - canada
-  - canadian
+  - Canadian
 public: true
 artists:
   - Old Soul Rebel

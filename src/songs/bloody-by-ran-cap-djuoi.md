@@ -4,7 +4,7 @@ description: "More information to come!"
 date: 2023-08-22T16:36:51Z
 tags:
   - Drone
-  - Glitch
+  - glitch
   - Vietnamese
   - "Post-rock"
 public: true

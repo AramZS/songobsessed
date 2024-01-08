@@ -4,7 +4,7 @@ description: "More information to come!"
 date: 2023-10-18T22:03:06Z
 tags:
   - Folk
-  - Celtic
+  - celtic
   - Folktronica
   - Post-rock
   - Irish

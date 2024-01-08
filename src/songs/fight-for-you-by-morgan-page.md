@@ -3,7 +3,7 @@ title: "Fight For You by Morgan Page"
 description: "More information to come!"
 date: 2011-07-16T16:51:07Z
 tags:
-  - electronic
+  - Electronic
   - progressive house
   - electro house
   - House

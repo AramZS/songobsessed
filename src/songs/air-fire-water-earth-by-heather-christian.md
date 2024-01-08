@@ -7,7 +7,7 @@ tags:
   - Soundtrack
   - Film Soundtrack
   - epicore
-  - trailercore
+  - Trailercore
 public: true
 artists:
   - Heather Christian

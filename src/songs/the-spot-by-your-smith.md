@@ -7,7 +7,7 @@ tags:
   - "Indie Pop"
   - Female Vocalists
   - indie
-  - Pop
+  - pop
 public: true
 artists:
   - Your Smith

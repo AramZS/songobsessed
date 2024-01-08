@@ -3,7 +3,7 @@ title: "I’m Downright Amazed At What I Can Destroy With Just A Hammer by Atom 
 description: "More information to come!"
 date: 2023-08-30T21:06:29Z
 tags:
-  - electronic
+  - Electronic
   - punk
   - humour
   - punk rock

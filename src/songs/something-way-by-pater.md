@@ -3,7 +3,7 @@ title: "Something // Way by Päter"
 description: "More information to come!"
 date: 2023-11-27T22:37:40Z
 tags:
-  - Pop
+  - pop
   - Indie Pop
 public: true
 artists:

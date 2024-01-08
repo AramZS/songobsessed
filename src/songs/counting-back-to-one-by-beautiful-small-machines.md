@@ -4,7 +4,7 @@ description: "More information to come!"
 date: 2011-07-16T16:41:09Z
 tags:
   - Electro Pop
-  - electronic
+  - Electronic
   - electropop
   - female vocalists
   - I like these guys now

@@ -3,7 +3,7 @@ title: "Four Walls by Päter"
 description: "More information to come!"
 date: 2023-08-22T16:36:36Z
 tags:
-  - Pop
+  - pop
   - Indie Pop
 public: true
 artists:

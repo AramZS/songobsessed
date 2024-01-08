@@ -11,7 +11,6 @@ tags:
   - "funky house"
   - "progressive house"
   - "electro house"
-  - "edm"
   - "EDM"
   - "nicky romero"
 public: true

@@ -5,7 +5,7 @@ date: 2023-12-13T21:08:57Z
 tags:
   - "synth-pop"
   - "synthwave"
-  - "cyberpunk"
+  - "Cyberpunk"
 public: true
 artists:
   - Electric Dragon

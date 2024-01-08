@@ -5,7 +5,7 @@ date: 2023-08-22T16:38:11Z
 tags:
   - Hip Hop
   - Rap
-  - Pop
+  - pop
 public: true
 artists:
   - Macklemore & Ryan Lewis

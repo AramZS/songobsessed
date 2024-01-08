@@ -4,7 +4,7 @@ description: "More information to come!"
 date: 2023-08-22T16:15:43Z
 tags:
   - Thai
-  - Rock
+  - rock
   - Rocktronica
 public: true
 artists:
