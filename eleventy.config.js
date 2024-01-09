@@ -100,9 +100,7 @@ module.exports = function (eleventyConfig) {
 				let tags = filterTagList(item.data.tags);
 				// console.log("Tags:", tags);
 				tags.forEach((tag) => {
-					if (tag) {
-						tag = tag.trim();
-						tag = tag.toLowerCase();
+					if (tag && typeof tag !== "undefined") {
 						tagSet.add(tag);
 					} else {
 						console.error("Tag is undefined", item.title);
@@ -187,15 +185,58 @@ module.exports = function (eleventyConfig) {
 		const maxPostsPerPage = 20;
 		const pagedPosts = [];
 		tagList = getAllTags(collection.getAll());
+		let dupedPages = [];
 		tagList.forEach((tagName) => {
 			if (!tagName) {
 				console.error("tagName is undefined in deepTagList", tagName);
 				return;
 			}
 			tagName = `${tagName}`.trim(); // Convert numbers to strings
-			const taggedPosts = [
+			let capCheck = tagName.split("");
+			let tagNameCapitalized = capCheck.reduce((acc, val, i) => {
+				if (i === 1) {
+					return acc.toUpperCase() + val;
+				} else {
+					return acc + val;
+				}
+			});
+			tagName = tagNameCapitalized;
+			let taggedPosts = [
 				...collection.getFilteredByTag(tagName),
+				...collection.getFilteredByTag(tagName.toLowerCase()),
+				...collection.getFilteredByTag(tagName.toUpperCase()),
+				...collection.getFilteredByTag(tagNameCapitalized),
+				...collection.getFilteredByTag(
+					slugify(tagName, {
+						lower: true,
+						strict: true,
+						locale: "en",
+					})
+				),
+				...collection.getFilteredByTag(
+					slugify(tagName, {
+						lower: true,
+						strict: false,
+						locale: "en",
+					})
+				),
+				...collection.getFilteredByTag(
+					slugify(tagName, {
+						lower: false,
+						strict: false,
+						locale: "en",
+					})
+				),
+				...collection.getFilteredByTag(
+					slugify(tagName, {
+						lower: false,
+						strict: true,
+						locale: "en",
+					})
+				),
 			].reverse();
+			let uniqueTaggedPosts = new Set(taggedPosts);
+			taggedPosts = [...uniqueTaggedPosts];
 			const numberOfPages = Math.ceil(
 				taggedPosts.length / maxPostsPerPage
 			);
@@ -205,13 +246,15 @@ module.exports = function (eleventyConfig) {
 				strict: true,
 				locale: "en",
 			});
+			if (slug.length > 30) {
+				console.log("long slug", tagName, "into", slug);
+			}
 			// console.log("paged posts slug", slug);
 			let dupedTag = false;
 			if (pagedPosts.find((postsObj) => postsObj.slug === slug)) {
 				console.error(`Tag ${tagName} has duplicate slug`, slug);
 				dupedTag = true;
 			}
-
 			for (let pageNum = 1; pageNum <= numberOfPages; pageNum++) {
 				const sliceFrom = (pageNum - 1) * maxPostsPerPage;
 				const sliceTo = sliceFrom + maxPostsPerPage;
@@ -224,55 +267,98 @@ module.exports = function (eleventyConfig) {
 					pageNum === numberOfPages
 				);
 				if (!dupedTag) {
-					pagedPosts.push(pageObj);
-				} else {
-					let c = 1;
-					while (dupedTag) {
-						let aSet = pagedPosts.find((postsObj) => {
-							if (
-								postsObj.slug === slug &&
-								postsObj.number === c
-							) {
-								return true;
-							} else {
-								return false;
-							}
-						});
-						if (aSet) {
-							console.log(
-								`Duplicate slug ${slug} from ${tagName} found potential matching page`, //,
-								`${aSet.tagName} with slug ${aSet.slug} and page number ${aSet.number}`
-							);
-							if (
-								maxPostsPerPage >=
-								aSet.posts.length + pageObj.posts.length
-							) {
-								let postsSet = new Set([
-									...aSet.posts,
-									...pageObj.posts,
-								]);
-								aSet.posts = [...postsSet];
-								console.log(
-									`Duplicate slug ${slug} from ${tagName} placed in with page`, //,
-									`${aSet.tagName} with slug ${aSet.slug} and page number ${aSet.number}`
-								);
-								dupedTag = false;
-							}
-						} else {
-							pageObj.number = c;
-							pagedPosts.push(pageObj);
-							dupedTag = false;
-							console.log(
-								`Duplicate slug ${slug} from ${tagName} placed in a new page`,
-								pageObj
+					try {
+						let matchedPages = pagedPosts.find(
+							(postsObj) => postsObj?.slug === slug
+						);
+						if (
+							matchedPages &&
+							matchedPages.length >= pageObj.number
+						) {
+							pageObj.number = matchedPages.length + 1;
+							console.error(
+								`Tag ${tagName} has a previously duplicate slug`,
+								slug,
+								`changing from ${pageNum} to ${pageObj.number}`
 							);
 						}
-						c++;
+					} catch (e) {
+						console.log("!!! Duped page check has gone wrong", e);
 					}
+					pageObj.posts.reverse();
+					pagedPosts.push(pageObj);
+				} else {
+					dupedPages.push(pageObj);
 				}
 			}
 		});
-		//console.log("pagedPosts", pagedPosts);
+
+		if (dupedPages.length) {
+			dupedPages.forEach((pageObj) => {
+				return;
+				let c = 1;
+				let slug = pageObj.slug;
+				let tagName = pageObj.tagName;
+				let pageNumber = 1;
+				let aSet = pagedPosts.find((postsObj) => {
+					if (
+						postsObj.slug === slug &&
+						// postsObj.number === c &&
+						postsObj.posts.length < maxPostsPerPage
+					) {
+						c++;
+						return true;
+					} else {
+						return false;
+					}
+				});
+				if (aSet) {
+					console.log(
+						`Duplicate slug ${slug} from ${tagName} on ${pageObj.pageNum} found potential matching page`, //,
+						`${aSet.tagName} with slug ${aSet.slug} and page number ${aSet.number} with ${aSet.posts.length} posts`
+					);
+					if (
+						maxPostsPerPage >=
+						aSet.posts.length + pageObj.posts.length
+					) {
+						let postsSet = new Set([
+							...aSet.posts,
+							...pageObj.posts,
+						]);
+						aSet.posts = [...postsSet];
+						console.log(
+							`Duplicate slug ${slug} from ${tagName} placed in with page`, //,
+							`${aSet.tagName} with slug ${aSet.slug} and page number ${aSet.number}`
+						);
+					} else {
+						console.log(
+							"!! page split",
+							`${aSet.tagName} with slug ${aSet.slug} and page number ${aSet.number}`
+						);
+						pageObj.number = c;
+						pagedPosts.push(pageObj);
+						console.log(
+							"!! page split",
+							`Duplicate slug ${slug} from ${tagName} placed in a new page`,
+							pageObj
+						);
+					}
+				} else {
+					pageObj.number = ++c;
+					pagedPosts.push(pageObj);
+					dupedTag = false;
+					console.log(
+						`Duplicate slug ${slug} from ${tagName} on page ${pageObj.pageNum} placed in a new page`,
+						pageObj
+					);
+				}
+			});
+		}
+		console.log(
+			"pagedPosts electronic check pages",
+			pagedPosts.filter((pO) => pO.slug === "electronic")
+		);
+		console.log("pagedPosts total pages", pagedPosts.length);
 		return pagedPosts;
 	});
 
