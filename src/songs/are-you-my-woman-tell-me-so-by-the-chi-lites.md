@@ -3,7 +3,7 @@ title: "Are You My Woman ( Tell Me So ) by The Chi-Lites"
 description: "More information to come!"
 date: 2015-09-30T17:31:50Z
 tags:
-  - "rnb"
+  - "R&B"
 public: true
 artists:
   - The Chi-Lites

@@ -17,7 +17,7 @@ artists:
   - tomac
 songtitle: "another day"
 album: ""
-featuredImage: ""
+featuredImage: "tomac.jpg"
 featuredImageCredit: "Image is used from album for review purposes."
 featuredImageLink: ""
 featuredImageAlt: ""

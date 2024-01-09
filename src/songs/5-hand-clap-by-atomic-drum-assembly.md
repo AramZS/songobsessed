@@ -3,7 +3,9 @@ title: "5 Hand Clap by Atomic Drum Assembly"
 description: "More information to come!"
 date: 2021-05-25T20:59:06Z
 tags:
-  - "London based 'music making space machine'"
+  - "brassy"
+  - "clang pop"
+  - "movement assembly"
 public: true
 artists:
   - Atomic Drum Assembly

@@ -4,7 +4,7 @@ description: "More information to come!"
 date: 2023-08-22T16:12:48Z
 tags:
   - "Disco"
-  - "rnb"
+  - "R&B"
   - "seen live"
   - "pop"
   - "soul"

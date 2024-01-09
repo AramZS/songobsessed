@@ -14,7 +14,7 @@ artists:
   - tomac
 songtitle: "another daymension"
 album: ""
-featuredImage: ""
+featuredImage: "tomac.jpg"
 featuredImageCredit: "Image is used from album for review purposes."
 featuredImageLink: ""
 featuredImageAlt: ""

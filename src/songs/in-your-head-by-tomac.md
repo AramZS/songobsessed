@@ -12,7 +12,7 @@ artists:
   - tomac
 songtitle: "in your head"
 album: ""
-featuredImage: ""
+featuredImage: "tomac.jpg"
 featuredImageCredit: "Image is used from album for review purposes."
 featuredImageLink: ""
 featuredImageAlt: ""

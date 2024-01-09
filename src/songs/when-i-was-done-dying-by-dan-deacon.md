@@ -8,6 +8,7 @@ tags:
   - "Experimental pop"
   - "Progressive Pop"
   - "Neo-Psychedelia"
+  - "clang pop"
 public: true
 artists:
   - Dan Deacon

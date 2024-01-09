@@ -8,6 +8,7 @@ tags:
   - "alternative"
   - "experimental"
   - "synth"
+  - "clang pop"
 public: true
 artists:
   - Dan Deacon

@@ -1,8 +1,9 @@
 ---
 title: "Markdown Styleguide"
 eleventyExcludeFromCollections: true
-internalPageTypes: [ 'home' ]
+internalPageTypes: [ 'about' ]
 layout: "layout.11ty.js"
+permalink: "/md-styleguide/index.html"
 ---
 
 # Poor Man's Styleguide
@@ -202,4 +203,4 @@ Monospace Text wrapped in "pre" tags:
 
 # Media and Form Elements
 
-The remaining sections contain elements that cannot be represented in markdown. Please consult [the HTML version](/style-guide), to see these elements.
+The remaining sections contain elements that cannot be represented in markdown. Please consult [the HTML version](/styleguide), to see these elements.

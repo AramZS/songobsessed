@@ -8,6 +8,9 @@ tags:
   - "German hip hop"
   - "2010s"
   - "german lyrics"
+  - "German Rap"
+  - "Rap"
+  - "hip hop"
 public: true
 artists:
   - Sookee

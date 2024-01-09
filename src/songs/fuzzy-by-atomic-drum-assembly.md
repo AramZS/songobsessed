@@ -3,7 +3,9 @@ title: "Fuzzy by Atomic Drum Assembly"
 description: "More information to come!"
 date: 2021-05-25T20:52:42Z
 tags:
-  - "London based 'music making space machine'"
+  - "brassy"
+  - "clang pop"
+  - "movement assembly"
 public: true
 artists:
   - Atomic Drum Assembly

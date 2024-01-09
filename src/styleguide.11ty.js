@@ -15,12 +15,13 @@ class HTMLStyleguide {
 		// console.log("Search page", data);
 		return /*html*/ `<h1>Poor Man's Styleguide</h1>
 
-<p>A quick-and-dirty frontend styleguide. See <a href="${linkmaker(
+<p>A quick-and-dirty frontend styleguide. See ${linkmaker(
 			data,
-			"/md-styleguide"
-		)}">the markdown version</a>.
+			"/md-styleguide",
+			"the markdown version"
+		)}.
 
-<em>Based on Bryan Braun's <a href="https://github.com/bryanbraun/poor-mans-styleguide">Poor man's Styleguide</a></em></p>
+<em>Based on Bryan Braun's <a href="https://github.com/bryanbraun/poor-mans-styleguide" target="_blank">Poor man's Styleguide</a></em> which I discovered through <a href="https://photogabble.co.uk/styleguide/" target="_blank">Simon Dann's website</a></p>
 
 <hr />
 

@@ -8,7 +8,6 @@ tags:
   - "american"
   - "funk"
   - "soul"
-  - "rnb"
   - "motown"
   - "soul and reggae"
   - "pop soul"

@@ -3,7 +3,9 @@ title: "Next to You by Atomic Drum Assembly"
 description: "More information to come!"
 date: 2023-08-22T16:17:12Z
 tags:
-  - Tags Needed
+  - "brassy"
+  - "clang pop"
+  - "movement assembly"
 public: true
 artists:
   - Atomic Drum Assembly
