@@ -29,6 +29,8 @@
     "markdown-it-github-headings": "^2.0.1",
     "markdown-it-link-attributes": "^4.0.1",
     "sharp": "^0.33.1",
-    "slugify": "^1.6.6"
+    "slugify": "^1.6.6",
+    "transliteration": "^2.3.5",
+    "urlsafe-base64": "^1.0.0"
   }
 }

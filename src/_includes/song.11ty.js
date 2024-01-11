@@ -3,8 +3,9 @@ const xplayer = require("./partials/xplayer.11ty");
 var slugify = require("slugify");
 const linkmaker = require("../utils/linkmaker");
 const imageCheck = require("../utils/imageCheck");
+const slugger = require("../utils/slugger");
 
-let slugger = (tag) => {
+let sluggerBasic = (tag) => {
 	return slugify(`${tag}`, {
 		lower: true,
 		strict: true,
@@ -78,9 +79,14 @@ module.exports = async function (data) {
 		}
 	});
 	let tagText = tags.map((tag) => {
-		var tagSlug = slugger(tag);
+		var tagSlug = sluggerBasic(tag);
 		var tagLink = linkmaker(data, `/tag/${tagSlug}`, `${tag}`);
 		return `<span class="genre-tag">${tagLink}</span>`;
+	});
+	let artistText = data.artists.map((tag) => {
+		var tagSlug = slugger(tag);
+		var tagLink = linkmaker(data, `/artist/${tagSlug}`, `${tag}`);
+		return `${tagLink}`;
 	});
 	let linksSet = "";
 	if (data.youtube) {
@@ -170,7 +176,7 @@ module.exports = async function (data) {
 		<div id="article-body">
 			<div id="brief">
 				<p>${data.description}</p>
-				<p>Artists: <span>${data.artists.join(", ")}</span></p>
+				<p>Artists: <span class="artist-list">${artistText.join(", ")}</span></p>
 				<p>Album: <span>${data.album}</span></p>
 				<p>Tags: <span>${tagText.join(" | ")}</span></p>
 				<p>${linksSet}</p>

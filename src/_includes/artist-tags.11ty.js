@@ -1,19 +1,11 @@
 const base = require("./base.11ty");
 const linkmaker = require("../utils/linkmaker");
-var slugify = require("slugify");
-
-let slugger = (tag) => {
-	return slugify(`${tag}`, {
-		lower: true,
-		strict: true,
-		locale: "en",
-	});
-};
+const slugger = require("../utils/slugger");
 
 module.exports = async function (data) {
 	// console.log("song-tags", data);
-	let songCollection = [];
-	Object.keys(data.collections).forEach((collection) => {
+	let artistCollection = [];
+	Object.keys(data.collections.deepArtistsList).forEach((collection) => {
 		// let collectionArray = data.collections[collection];
 		if (
 			![
@@ -29,16 +21,16 @@ module.exports = async function (data) {
 				"artistsList",
 			].includes(collection)
 		) {
-			songCollection.push(collection);
 		}
 	});
-	let songCollectionTags = [];
+	artistCollection.push(...data.collections.artistsList);
+	let artistCollectionTags = [];
 	let matchedTags = {};
-	songCollection.forEach((tag) => {
-		// console.log("tag", tag);
+	artistCollection.forEach((tag) => {
+		//console.log("artist", tag);
 		var tagSlug = slugger(tag);
-		if (!songCollectionTags.includes(tagSlug)) {
-			songCollectionTags.push(tagSlug);
+		if (!artistCollectionTags.includes(tagSlug)) {
+			artistCollectionTags.push(tagSlug);
 		} else {
 			if (matchedTags[tagSlug]) {
 				matchedTags[tagSlug].push(tag);
@@ -48,14 +40,14 @@ module.exports = async function (data) {
 		}
 		//songCollectionTags.push(tagSlug);
 	});
-	let collectionObjects = songCollection.map((tag) => {
+	let collectionObjects = artistCollection.map((tag) => {
 		let collectionObj = { count: 0 };
 		let slug = slugger(tag);
-		if (songCollectionTags.includes(slug)) {
-			collectionObj = { tag: tag, count: data.collections[tag].length };
-			var index = songCollectionTags.indexOf(slug);
+		if (artistCollectionTags.includes(slug)) {
+			collectionObj = { tag: tag };
+			var index = artistCollectionTags.indexOf(slug);
 			if (index !== -1) {
-				songCollectionTags.splice(index, 1);
+				artistCollectionTags.splice(index, 1);
 			}
 		}
 		if (collectionObj.count > 0 && matchedTags.hasOwnProperty(slug)) {
@@ -74,11 +66,10 @@ module.exports = async function (data) {
 			return "";
 		}
 		var tagSlug = slugger(`${tagObj.tag}`);
-		var tagLink = linkmaker(data, `/tag/${tagSlug}`, `${tagObj.tag}`);
+		var tagLink = linkmaker(data, `/artist/${tagSlug}`, `${tagObj.tag}`);
 		return /*html*/ `
 		<div class="genre-tag-box">
 			<div class="tag-name">${tagLink}</div>
-			<div class="tag-count">${tagObj.count}</div>
 		</div>
 		`;
 	});

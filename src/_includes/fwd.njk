@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script data-domain="fightwithtools.dev" src="https://plausible.io/js/plausible.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="canonical" href="{{ isBasedOn }}" />
+        <meta http-equiv="Status" content="301 Moved Permanently"/>
+        <meta http-equiv="Link" rel="canonical" content="{{ isBasedOn }}" />
+        <meta http-equiv="Location" rel="canonical" content="{{ isBasedOn }}" />
+        <meta http-equiv="refresh" content="0; URL='{{ isBasedOn }}'" />
+        <title>Song Obsessed: {{title}}</title>
+		<script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "BlogPosting",
+            "headline": "{{title}}",
+            "description": "{{description}}",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "{{ isBasedOn }}"
+            },
+            "isBasedOn": "{{ isBasedOn }}",
+            "isPartOf": {
+                "@type": ["CreativeWork", "Product", "Blog"],
+                "name": "Song Obsessed",
+                "productID": "songobsessed.com"
+            }
+        }
+    </script>
+    </head>
+    <body>
+        <a href="{{isBasedOn}}">moved here</a>
+        <br /><br />
+        {{ content | safe }}
+    </body>
+</html>

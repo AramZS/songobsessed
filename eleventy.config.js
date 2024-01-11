@@ -6,6 +6,7 @@ var markdownIt = require("markdown-it");
 var mila = require("markdown-it-link-attributes");
 const sitemap = require("@quasibit/eleventy-plugin-sitemap");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
+const slugger = require("./src/utils/slugger");
 
 require("dotenv").config();
 
@@ -110,6 +111,27 @@ module.exports = function (eleventyConfig) {
 		});
 		tagList = [...tagSet];
 		return tagList;
+	};
+
+	getAllArtists = (allPosts) => {
+		let artistSet = new Set();
+		let artistList = [];
+
+		allPosts.forEach((item) => {
+			if ("artists" in item.data) {
+				let artists = item.data.artists;
+				// console.log("Tags:", tags);
+				artists.forEach((tag) => {
+					if (tag && typeof tag !== "undefined") {
+						artistSet.add(tag);
+					} else {
+						console.error("Artist is undefined", item.title);
+					}
+				});
+			}
+		});
+		artistList = [...artistSet];
+		return artistList;
 	};
 
 	const makePageObject = (tagName, slug, number, posts, first, last) => {
@@ -378,6 +400,94 @@ module.exports = function (eleventyConfig) {
 			);
 		});
 		return getPostClusters(songPages, "Songs", false, true, true);
+	});
+
+	eleventyConfig.addCollection("artistsList", (collection) => {
+		let tagList = getAllArtists(collection.getAll());
+		return tagList;
+	});
+
+	eleventyConfig.addCollection("deepArtistsList", (collection) => {
+		const maxPostsPerPage = 20;
+		const pagedPosts = [];
+		tagList = getAllArtists(collection.getAll());
+		let dupedPages = [];
+		tagList.forEach((tagName) => {
+			if (!tagName) {
+				console.error("tagName is undefined in deepTagList", tagName);
+				return;
+			}
+			tagName = `${tagName}`; // Convert numbers to strings
+			var collectionOfArtist = collection.getAll().filter((post) => {
+				if (post.data.artists) {
+					return post.data.artists.includes(tagName);
+				}
+				return false;
+			});
+			let taggedPosts = [...collectionOfArtist].reverse();
+			let uniqueTaggedPosts = new Set(taggedPosts);
+			taggedPosts = [...uniqueTaggedPosts];
+			const numberOfPages = Math.ceil(
+				taggedPosts.length / maxPostsPerPage
+			);
+			// console.log("Need to create a slug for:", tagName);
+			let slug = slugger(tagName);
+			if (!slug) {
+				console.log("artist slug failed", tagName, "into", slug);
+			}
+			if (slug.length > 30) {
+				console.log("long artist slug", tagName, "into", slug);
+			}
+			// console.log("paged posts slug", slug);
+			let dupedTag = false;
+			if (pagedPosts.find((postsObj) => postsObj.slug === slug)) {
+				console.error(`Tag ${tagName} has duplicate slug`, slug);
+				dupedTag = true;
+			}
+			for (let pageNum = 1; pageNum <= numberOfPages; pageNum++) {
+				const sliceFrom = (pageNum - 1) * maxPostsPerPage;
+				const sliceTo = sliceFrom + maxPostsPerPage;
+				let pageObj = makePageObject(
+					tagName,
+					slug,
+					pageNum,
+					taggedPosts.slice(sliceFrom, sliceTo),
+					pageNum === 1,
+					pageNum === numberOfPages
+				);
+				if (!dupedTag) {
+					try {
+						let matchedPages = pagedPosts.find(
+							(postsObj) => postsObj?.slug === slug
+						);
+						if (
+							matchedPages &&
+							matchedPages.length >= pageObj.number
+						) {
+							pageObj.number = matchedPages.length + 1;
+							console.error(
+								`Artist ${tagName} has a previously duplicate slug`,
+								slug,
+								`changing from ${pageNum} to ${pageObj.number}`
+							);
+						}
+					} catch (e) {
+						console.log("!!! Duped page check has gone wrong", e);
+					}
+					pageObj.posts.reverse();
+					pagedPosts.push(pageObj);
+				} else {
+					dupedPages.push(pageObj);
+				}
+			}
+		});
+
+		console.log(
+			"pagedPosts electronic check pages",
+			pagedPosts.filter((pO) => pO.slug === "electronic")
+		);
+		console.log("pagedPosts total pages", pagedPosts.length);
+		return pagedPosts;
 	});
 
 	eleventyConfig.addPlugin(require("eleventy-plugin-dart-sass"), {
