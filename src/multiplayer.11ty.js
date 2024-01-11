@@ -74,6 +74,7 @@ class Multiplayer {
                     });
                     peer.on('connection', function (c) {
                         // Allow only a single connection
+						// TODO: multiple connections should be allowed
                         if (conn && conn.open) {
                             c.on('open', function() {
                                 c.send("Already connected to another client");
