@@ -6,7 +6,7 @@ tags:
   - "indie rock"
   - "new wave"
   - "10s"
-  - "female vocalists"
+  - "female vocalist"
   - "electronic"
   - "canada"
   - "soft rock"

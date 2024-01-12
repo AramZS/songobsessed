@@ -3,7 +3,12 @@ title: "With Your Two Hands by The Wind and The Wave"
 description: "More information to come!"
 date: 2023-08-22T16:28:40Z
 tags:
-  - Tags Needed
+  - alt-country
+  - folk
+  - indie folk
+  - Texas
+  - female vocalist
+  - longing
 public: true
 artists:
   - The Wind and The Wave

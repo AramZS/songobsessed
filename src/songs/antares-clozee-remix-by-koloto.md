@@ -3,7 +3,15 @@ title: "Antares - Clozee Remix by Koloto"
 description: "More information to come!"
 date: 2015-09-30T17:31:50Z
 tags:
-  - Tags Needed
+  - electronic
+  - experimental
+  - electronica
+  - british
+  - glitch-hop
+  - brain repair
+  - remix
+  - buzz
+  - glitch
 public: true
 artists:
   - Koloto

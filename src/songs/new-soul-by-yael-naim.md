@@ -7,7 +7,7 @@ tags:
   - "israeli composer"
   - "rock and indie"
   - "pop"
-  - "female vocalists"
+  - "female vocalist"
   - "indie"
   - "happy"
   - "folk"

@@ -7,7 +7,7 @@ tags:
   - "pop"
   - "guitar"
   - "alternative rock"
-  - "female vocalists"
+  - "female vocalist"
 public: true
 artists:
   - Serena Ryder

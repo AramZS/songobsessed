@@ -3,7 +3,7 @@ title: "Hipster Bitch by Lelia Broussard"
 description: "More information to come!"
 date: 2013-03-15T05:14:21Z
 tags:
-  - "female vocalists"
+  - "female vocalist"
   - "singer-songwriter"
   - "Rousing"
   - "trippy"

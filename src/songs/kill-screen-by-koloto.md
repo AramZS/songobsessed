@@ -3,7 +3,16 @@ title: "Kill Screen by Koloto"
 description: "More information to come!"
 date: 2015-09-30T17:31:50Z
 tags:
-  - Tags Needed
+  - electronic
+  - experimental
+  - electronica
+  - british
+  - glitch-hop
+  - brain repair
+  - piano
+  - glitch
+  - accelerates
+  - trill
 public: true
 artists:
   - Koloto

@@ -3,7 +3,12 @@ title: "San Cristóbal by Mal Blum"
 description: "More information to come!"
 date: 2023-08-22T16:25:52Z
 tags:
-  - Tags Needed
+  - folk
+  - queer
+  - folk punk
+  - indie folk
+  - lyrical
+  - new york
 public: true
 artists:
   - Mal Blum

@@ -6,7 +6,7 @@ tags:
   - Electro Pop
   - Electronic
   - electropop
-  - female vocalists
+  - female vocalist
   - I like these guys now
 public: true
 artists:

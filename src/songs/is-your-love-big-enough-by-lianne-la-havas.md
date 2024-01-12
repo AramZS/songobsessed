@@ -6,7 +6,7 @@ tags:
   - "folk"
   - "soul"
   - "alternative pop"
-  - "female vocalists"
+  - "female vocalist"
   - "british"
   - "singer-songwriter"
   - "roll down the windows and sing"

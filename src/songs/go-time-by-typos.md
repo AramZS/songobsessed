@@ -3,7 +3,10 @@ title: "Go Time by typo.s"
 description: "More information to come!"
 date: 2023-08-22T16:26:12Z
 tags:
-  - Tags Needed
+  - upbeat
+  - electronic
+  - electronica
+  - dance
 public: true
 artists:
   - typo.s

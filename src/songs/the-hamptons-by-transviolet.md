@@ -7,7 +7,7 @@ tags:
   - Electropop
   - indie pop
   - Lush
-  - Female Vocalists
+  - female vocalist
 public: true
 artists:
   - Transviolet

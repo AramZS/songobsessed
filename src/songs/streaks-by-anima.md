@@ -3,7 +3,16 @@ title: "Streaks by ANIMA!"
 description: "More information to come!"
 date: 2023-08-22T16:33:16Z
 tags:
-  - Tags Needed
+  - electronic
+  - indie
+  - indietronica
+  - piano
+  - snapping
+  - light
+  - sweet
+  - indie pop
+  - clapping
+  - upbeat
 public: true
 artists:
   - ANIMA!

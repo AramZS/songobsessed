@@ -3,7 +3,10 @@ title: "Edge of Depression by Felix Ayerza"
 description: "More information to come!"
 date: 2023-08-22T16:27:17Z
 tags:
-  - Tags Needed
+  - static
+  - electronica
+  - electronic
+  - ambient
 public: true
 artists:
   - Felix Ayerza

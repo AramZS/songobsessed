@@ -13,7 +13,7 @@ tags:
   - "ethereal"
   - "famous"
   - "female"
-  - "female vocalists"
+  - "female vocalist"
   - "female vocals"
   - "fun"
   - "australian"

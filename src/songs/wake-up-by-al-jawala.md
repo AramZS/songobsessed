@@ -11,7 +11,7 @@ tags:
   - "alternative"
   - "big beats"
   - "oriental"
-  - "female vocalists"
+  - "female vocalist"
 public: true
 artists:
   - Äl Jawala

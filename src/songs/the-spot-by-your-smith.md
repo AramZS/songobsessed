@@ -5,7 +5,7 @@ date: 2023-08-22T16:26:32Z
 tags:
   - "SXSW"
   - "indie pop"
-  - Female Vocalists
+  - female vocalist
   - indie
   - pop
 public: true

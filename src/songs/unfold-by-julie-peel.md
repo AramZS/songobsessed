@@ -3,7 +3,7 @@ title: "Unfold by Julie Peel"
 description: "More information to come!"
 date: 2011-07-16T16:48:11Z
 tags:
-  - female vocalists
+  - female vocalist
   - singer-songwriter
   - acoustic
   - indie

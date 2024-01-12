@@ -4,7 +4,7 @@ description: "More information to come!"
 date: 2021-05-25T20:55:14Z
 tags:
   - indie
-  - Female Vocalists
+  - female vocalist
 public: true
 artists:
   - Ona Mafalda

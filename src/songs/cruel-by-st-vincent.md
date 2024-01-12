@@ -11,7 +11,7 @@ tags:
   - "indie"
   - "art rock"
   - "love at first listen"
-  - "female vocalists"
+  - "female vocalist"
 public: true
 artists:
   - St. Vincent

@@ -5,7 +5,7 @@ date: 2013-03-15T04:16:59Z
 tags:
   - "indie"
   - "pop"
-  - "female vocalists"
+  - "female vocalist"
   - "singer-songwriter"
   - "beautiful"
 public: true

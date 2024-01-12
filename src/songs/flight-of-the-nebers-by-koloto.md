@@ -3,7 +3,13 @@ title: "Flight Of The Nebers by Koloto"
 description: "More information to come!"
 date: 2023-08-22T16:32:57Z
 tags:
-  - Tags Needed
+  - electronic
+  - experimental
+  - british
+  - glitch-hop
+  - brain repair
+  - piano
+  - xylophone
 public: true
 artists:
   - Koloto

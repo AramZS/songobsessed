@@ -3,7 +3,11 @@ title: "Синяя река by FolkBeat"
 description: "More information to come!"
 date: 2023-08-22T16:27:40Z
 tags:
-  - Tags Needed
+  - Folk
+  - neo-folk
+  - outsider folk
+  - russian
+  - folktronica
 public: true
 artists:
   - FolkBeat

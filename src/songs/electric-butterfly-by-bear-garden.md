@@ -3,7 +3,9 @@ title: "Electric Butterfly by Bear Garden"
 description: "More information to come!"
 date: 2023-08-22T16:35:12Z
 tags:
-  - Tags Needed
+  - Saxophone
+  - Brassy
+  - Neo Big Band
 public: true
 artists:
   - Bear Garden

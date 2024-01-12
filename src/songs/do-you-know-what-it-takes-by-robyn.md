@@ -12,7 +12,7 @@ tags:
   - "europop"
   - "dance"
   - "90s"
-  - "female vocalists"
+  - "female vocalist"
 public: true
 artists:
   - Robyn

@@ -10,7 +10,7 @@ tags:
   - "garron dupree"
   - "jon wilson"
   - "indie"
-  - "female vocalists"
+  - "female vocalist"
   - "Eisley"
   - "alternative"
   - "indie pop"

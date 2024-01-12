@@ -5,7 +5,7 @@ date: 2015-09-30T17:31:50Z
 tags:
   - "rock"
   - "punk rock"
-  - "female vocalists"
+  - "female vocalist"
   - "alternative rock"
   - "punk"
 public: true

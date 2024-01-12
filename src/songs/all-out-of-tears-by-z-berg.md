@@ -4,7 +4,7 @@ description: "More information to come!"
 date: 2023-08-22T16:27:01Z
 tags:
   - "pop"
-  - "female vocalists"
+  - "female vocalist"
   - "fire"
   - "2018"
 public: true

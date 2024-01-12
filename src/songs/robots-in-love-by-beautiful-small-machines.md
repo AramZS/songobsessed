@@ -5,7 +5,7 @@ date: 2023-08-22T16:24:36Z
 tags:
   - "Awesome"
   - "thesixtyone"
-  - "female vocalists"
+  - "female vocalist"
   - "00s"
   - "spotify"
 public: true
