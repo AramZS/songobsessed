@@ -3,7 +3,11 @@ title: "Sing for Me - Lohse Version by Borislav Slavov"
 description: "More information to come!"
 date: 2021-05-25T20:59:58Z
 tags:
-  - Tags Needed
+  - vgm
+  - fun
+  - soundtrack
+  - video game music
+  - instrumental
 public: true
 artists:
   - Borislav Slavov
