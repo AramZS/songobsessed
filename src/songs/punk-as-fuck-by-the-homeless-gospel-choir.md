@@ -4,7 +4,6 @@ description: "More information to come!"
 date: 2023-08-22T16:33:31Z
 tags:
   - Punk
-  - Folkpunk
   - Folk Punk
   - Murderfolk
 public: true

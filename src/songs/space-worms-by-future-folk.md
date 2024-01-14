@@ -3,7 +3,8 @@ title: "Space Worms by Future Folk"
 description: "More information to come!"
 date: 2015-09-30T17:31:50Z
 tags:
-  - "Poland, Dubstep, Electronic"
+  - Folk
+  - Alt-Folk
 public: true
 artists:
   - Future Folk

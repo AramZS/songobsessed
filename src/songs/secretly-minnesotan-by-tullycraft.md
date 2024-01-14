@@ -23,7 +23,7 @@ playlists:
     name: "Obsessions"
     position: 276
     author: Aram Zucker-Scharff
-youtube: https://www.youtube.com/watch?v=d7xDCbm-xZU
+youtube: https://youtu.be/k-pcBV6AuFQ
 spotify: https://open.spotify.com/track/0XVQtD2C7x44m4OEO02Pbx
 spotifyUri: spotify:track:0XVQtD2C7x44m4OEO02Pbx
 soundcloud:

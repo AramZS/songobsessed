@@ -3,7 +3,9 @@ title: "Waiting for Death by Candle Kid"
 description: "More information to come!"
 date: 2023-08-22T16:20:06Z
 tags:
-  - Tags Needed
+  - Folk
+  - Muderfolk
+  - Folk punk
 public: true
 artists:
   - Candle Kid
