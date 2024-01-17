@@ -15,7 +15,7 @@ songtitle: "Delicate Cycle"
 album: "Hokey Fright"
 featuredImage: "hokey-fright.jpg"
 featuredImageCredit: "Image is used from album for review purposes."
-featuredImageLink: "https://andreyatriana.bandcamp.com/track/clutterbug"
+featuredImageLink: ""
 featuredImageAlt: ""
 author: Aram Zucker-Scharff
 playlists:
