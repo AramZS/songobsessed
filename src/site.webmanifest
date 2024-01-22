@@ -3,18 +3,18 @@
 	"short_name": "Song Obsessed",
 	"icons": [
 		{
-			"src": "/assets/android-chrome-192x192.png",
+			"src": "/assets/favicon-192x192.png",
 			"sizes": "192x192",
 			"type": "image/png"
 		},
 		{
-			"src": "/assets/android-chrome-192x192-maskable.png",
+			"src": "/assets/favicon-192x192-maskable.png",
 			"sizes": "192x192",
 			"type": "image/png",
 			"purpose": "maskable"
 		},
 		{
-			"src": "/assets/android-chrome-512x512.png",
+			"src": "/assets/favicon-512x512.png",
 			"sizes": "512x512",
 			"type": "image/png"
 		}
