@@ -17,7 +17,7 @@ class ServiceWorker {
 			"utf8"
 		);
 		return /*js*/ `
-const VERSION = ${data.site.serviceWorkerVer};
+const VERSION = "${data.site.serviceWorkerVer}";
 
 ${serviceWorkerScript}		
 		`;
