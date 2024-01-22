@@ -117,6 +117,24 @@ module.exports = function (eleventyConfig) {
 		);
 	}
 
+	if (!fs.existsSync(`./src/assets/${imageName}-192x192-maskable.png`)) {
+		promiseSet.push(
+			new Promise((resolve, reject) => {
+				sharp(`./src/assets/favicon-maskable.png`)
+					.resize(192, 192)
+					.png()
+					.toFile(`./src/assets/${imageName}-192x192-maskable.png`)
+					.then((data) => {
+						resolve(data);
+					})
+					.catch((err) => {
+						console.log("favicon maker", err);
+						reject(err);
+					});
+			})
+		);
+	}
+
 	if (!fs.existsSync(`./src/assets/${imageName}-512x512.png`)) {
 		promiseSet.push(
 			new Promise((resolve, reject) => {

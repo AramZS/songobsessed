@@ -78,7 +78,7 @@ module.exports = async function (data, zones) {
 		<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
 		<link rel="manifest" href="/site.webmanifest">
 		<meta name="msapplication-TileColor" content="#1f1836">
-
+		<meta name="theme-color" content="#1f1836">
 
 		<link rel="canonical" href="${process.env.DOMAIN}${data.page.url}" />
 		<link rel="alternate" type="application/rss+xml" 
