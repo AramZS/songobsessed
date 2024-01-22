@@ -7,6 +7,8 @@ var mila = require("markdown-it-link-attributes");
 const sitemap = require("@quasibit/eleventy-plugin-sitemap");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const slugger = require("./src/utils/slugger");
+const sharp = require("sharp");
+const fs = require("fs");
 
 require("dotenv").config();
 
@@ -34,12 +36,105 @@ process.env.PRIMARY_AUTHOR = "Aram Zucker-Scharff";
 module.exports = function (eleventyConfig) {
 	eleventyConfig.ignores.add("README.md");
 	eleventyConfig.addPassthroughCopy("src/assets/");
+	eleventyConfig.addPassthroughCopy("src/site.webmanifest");
 	eleventyConfig.addPassthroughCopy("src/favicon.ico");
 	eleventyConfig.addPassthroughCopy(".nojekyll");
 	eleventyConfig.addPassthroughCopy("CNAME");
 	eleventyConfig.addPassthroughCopy("src/img/");
 
 	eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
+
+	let imagePath = `./src/assets/favicon.png`;
+	let imageName = "favicon";
+	let promiseSet = [];
+	if (!fs.existsSync(`./src/assets/apple-touch-icon.png`)) {
+		promiseSet.push(
+			new Promise((resolve, reject) => {
+				sharp(imagePath)
+					.resize(180, 180)
+					.png()
+					.toFile(`./src/assets/apple-touch-icon.png`)
+					.then((data) => {
+						resolve(data);
+					})
+					.catch((err) => {
+						console.log("favicon maker", err);
+						reject(err);
+					});
+			})
+		);
+	}
+	if (!fs.existsSync(`./src/assets/${imageName}-16x16.jpg`)) {
+		promiseSet.push(
+			new Promise((resolve, reject) => {
+				sharp(imagePath)
+					.resize(16, 16)
+					.png()
+					.toFile(`./src/assets/${imageName}-16x16.png`)
+					.then((data) => {
+						resolve(data);
+					})
+					.catch((err) => {
+						console.log("favicon maker", err);
+						reject(err);
+					});
+			})
+		);
+	}
+	if (!fs.existsSync(`./src/assets/${imageName}-32x32.png`)) {
+		promiseSet.push(
+			new Promise((resolve, reject) => {
+				sharp(imagePath)
+					.resize(32, 32)
+					.png()
+					.toFile(`./src/assets/${imageName}-32x32.png`)
+					.then((data) => {
+						resolve(data);
+					})
+					.catch((err) => {
+						console.log("favicon maker", err);
+						reject(err);
+					});
+			})
+		);
+	}
+
+	if (!fs.existsSync(`./src/assets/${imageName}-192x192.png`)) {
+		promiseSet.push(
+			new Promise((resolve, reject) => {
+				sharp(imagePath)
+					.resize(192, 192)
+					.png()
+					.toFile(`./src/assets/${imageName}-192x192.png`)
+					.then((data) => {
+						resolve(data);
+					})
+					.catch((err) => {
+						console.log("favicon maker", err);
+						reject(err);
+					});
+			})
+		);
+	}
+
+	if (!fs.existsSync(`./src/assets/${imageName}-512x512.png`)) {
+		promiseSet.push(
+			new Promise((resolve, reject) => {
+				sharp(imagePath)
+					.resize(512, 512)
+					.png()
+					.toFile(`./src/assets/${imageName}-512x512.png`)
+					.then((data) => {
+						resolve(data);
+					})
+					.catch((err) => {
+						console.log("favicon maker", err);
+						reject(err);
+					});
+			})
+		);
+	}
+
 	// https://www.11ty.dev/docs/plugins/rss/
 	eleventyConfig.addPlugin(pluginRss);
 	let markdownItOptions = {

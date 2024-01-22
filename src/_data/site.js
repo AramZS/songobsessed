@@ -1,6 +1,14 @@
 require("dotenv").config();
 const metadata = require("../_data/metadata.js");
 
+let randomVer = () => {
+	// eslint-disable-next-line no-bitwise
+	const segment = () =>
+		(((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+
+	return `${segment()}-${segment()}-${segment()}`;
+};
+
 let data = {
 	username: "Chronotope", // No leading @ here
 	title: process.env.SITE_NAME,
@@ -18,6 +26,7 @@ let data = {
 	site_url: process.env.DOMAIN,
 	domain: process.env.DOMAIN,
 	defaultImage: process.env.DOMAIN + "/img/glass-horn.jpg",
+	serviceWorkerVer: randomVer(),
 };
 
 data.avatar = `/img/twitter-avy.jpg`;

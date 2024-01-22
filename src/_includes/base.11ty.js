@@ -71,6 +71,15 @@ module.exports = async function (data, zones) {
 		<script src="/assets/js/script.js" defer type="application/javascript" hx-preserve="true"></script>
 		<script src="/assets/js/head-support.js" defer type="application/javascript" hx-preserve="true"></script>
 		<script defer data-domain="songobsessed.com" src="https://plausible.io/js/script.js" type="application/javascript"  hx-preserve="true"></script>
+
+		<!-- Favicon Meta -->
+		<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">
+		<meta name="msapplication-TileColor" content="#1f1836">
+
+
 		<link rel="canonical" href="${process.env.DOMAIN}${data.page.url}" />
 		<link rel="alternate" type="application/rss+xml" 
 			title="RSS Feed for ${process.env.DOMAIN}" 
