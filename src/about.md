@@ -1,6 +1,5 @@
 ---
 title: "What is this site?"
-eleventyExcludeFromCollections: true
 layout: "layout.11ty.js"
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: "Artists"
-eleventyExcludeFromCollections: true
 internalPageTypes: [ 'collection' ]
 permalink: /artists/index.html
 layout: "artist-tags.11ty.js"

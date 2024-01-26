@@ -1,6 +1,5 @@
 ---
 title: "Song Obsessed"
-eleventyExcludeFromCollections: true
 internalPageTypes: [ 'home' ]
 path: /
 layout: "index.11ty.js"

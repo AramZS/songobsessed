@@ -1,6 +1,5 @@
 ---
 title: "Privacy Policy"
-eleventyExcludeFromCollections: true
 layout: "layout.11ty.js"
 ---
 

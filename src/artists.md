@@ -1,6 +1,5 @@
 ---
 layout: "tags.11ty.js"
-eleventyExcludeFromCollections: true
 pagination:
     data: collections.deepArtistsList
     size: 1

@@ -1,6 +1,5 @@
 ---
 title: "How to Scrobble from this Site"
-eleventyExcludeFromCollections: true
 internalPageTypes: [ 'home' ]
 layout: "layout.11ty.js"
 ---
