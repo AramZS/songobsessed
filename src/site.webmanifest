@@ -2,7 +2,7 @@
 	"name": "Song Obsessed",
 	"short_name": "Song Obsessed",
 	"id": "song-obsessed",
-	"description": "Get one song suggestion today, playable through your favorite service.",
+	"description": "Get one song suggestion per week, playable through your favorite service.",
 	"icons": [
 		{
 			"src": "/assets/favicon-192x192.png",
