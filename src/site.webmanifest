@@ -35,6 +35,9 @@
 	],
 	"dir": "ltr",
 	"lang": "en",
+	"edge_side_panel": {
+		"preferred_width": 500
+	},
 	"screenshots": [
 		{
 			"src": "assets/so5.png",
