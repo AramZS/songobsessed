@@ -1,6 +1,8 @@
 {
 	"name": "Song Obsessed",
 	"short_name": "Song Obsessed",
+	"id": "song-obsessed",
+	"description": "Get one song suggestion today, playable through your favorite service.",
 	"icons": [
 		{
 			"src": "/assets/favicon-192x192.png",
@@ -16,12 +18,83 @@
 		{
 			"src": "/assets/favicon-512x512.png",
 			"sizes": "512x512",
-			"type": "image/png"
+			"type": "image/png",
+			"purpose": "any"
 		}
 	],
 	"theme_color": "#1f1836",
 	"background_color": "#1f1836",
 	"start_url": "/",
 	"scope": "/",
-	"display": "standalone"
+	"display_override": [
+		"window-controls-overlay"
+	],
+	"display": "standalone",
+	"categories": [
+		"music"
+	],
+	"dir": "ltr",
+	"lang": "en",
+	"screenshots": [
+		{
+			"src": "assets/so5.png",
+			"sizes": "1280x720",
+			"type": "image/png",
+			"form_factor": "wide",
+			"label": "Browsing a song"
+		},
+		{
+			"src": "assets/so6.png",
+			"sizes": "1280x720",
+			"type": "image/png",
+			"form_factor": "wide",
+			"label": "Selecting a new music video to watch"
+		},
+		{
+			"src": "assets/so7.png",
+			"sizes": "1280x720",
+			"type": "image/png",
+			"form_factor": "wide",
+			"label": "Browsing music genres"
+		},
+		{
+			"src": "assets/so8.png",
+			"sizes": "1280x720",
+			"type": "image/png",
+			"form_factor": "wide",
+			"label": "Browsing a music tag"
+		},
+		{
+			"src": "assets/so1.png",
+			"sizes": "430x932",
+			"type": "image/png",
+			"form_factor": "narrow",
+			"label": "Song Obsessed homepage with updates",
+			"platform": "ios"
+		},
+		{
+			"src": "assets/so2.png",
+			"sizes": "430x932",
+			"type": "image/png",
+			"form_factor": "narrow",
+			"label": "Browsing songs",
+			"platform": "android"
+		},
+		{
+			"src": "assets/so3.png",
+			"sizes": "430x932",
+			"type": "image/png",
+			"form_factor": "narrow",
+			"label": "Listening to a song",
+			"platform": "ios"
+		},
+		{
+			"src": "assets/so4.png",
+			"sizes": "430x932",
+			"type": "image/png",
+			"form_factor": "narrow",
+			"label": "Browsing a song while listening to another song",
+			"platform": "android"
+		}
+	]
 }

@@ -39,9 +39,10 @@ module.exports = async function (data, zones) {
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1">
+		<link rel="preload" as="style" href="/assets/fraunces/fraunces.css" />
 		<title>${data.title || data.site.title}</title>
 		<meta name="description" content="${meta_description}" />
-		<link href="/assets/fraunces/fraunces.css" rel="stylesheet" hx-preserve="true">
+		<link href="/assets/fraunces/fraunces.css" rel="stylesheet" hx-preserve="true" media="print" onload="this.media='all'">
 		<link rel="preconnect" href="https://www.youtube.com" hx-preserve="true">
 		<link rel="dns-prefetch" href="https://www.youtube.com" hx-preserve="true">
 		<link rel="preconnect" href="https://open.spotify.com" hx-preserve="true">
@@ -70,6 +71,7 @@ module.exports = async function (data, zones) {
 		})()" hx-preserve="true"></script>
 		<script src="/assets/js/script.js" defer type="application/javascript" hx-preserve="true"></script>
 		<script src="/assets/js/head-support.js" defer type="application/javascript" hx-preserve="true"></script>
+		<script src="/service-worker.js" defer type="application/javascript" hx-preserve="true"></script>
 		<script defer data-domain="songobsessed.com" src="https://plausible.io/js/script.js" type="application/javascript"  hx-preserve="true"></script>
 
 		<!-- Favicon Meta -->

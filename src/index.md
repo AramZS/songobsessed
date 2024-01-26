@@ -63,7 +63,9 @@ The default image of a glass horn is used under Creative Commons from the [Met's
 		var el = new Array(
 				...document.getElementsByClassName("xp-pref-selector")
 			).forEach((el) => {
-				el.classList.remove("selected")
+				if (el){
+					el.classList.remove("selected")
+				}
 			})
 		t.classList.add("selected")
 	}
@@ -75,8 +77,10 @@ The default image of a glass horn is used under Creative Commons from the [Met's
 		var el = new Array(
 				...document.getElementsByClassName("xp-pref-selector")
 			).filter((el) => {
-				el.classList.remove("disabled")
-				return el.dataset.pref == pref;
+				if (el){
+					el.classList.remove("disabled")
+					return el.dataset.pref == pref;
+				}
 			})[0];
 			el.classList.add("selected")
 	}
