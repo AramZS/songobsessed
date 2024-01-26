@@ -28,5 +28,4 @@ podbean:
 lastfm: https://www.last.fm/music/Beatenberg/_/Scorpionfish
 ---
 
-A song I plan to write more about.
-		
+The beginning of using Last.fm for Obsessions. 

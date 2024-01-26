@@ -50,28 +50,28 @@ self.addEventListener("fetch", (event) => {
 	if (EXCLUDED_URLS.some((page) => event.request.url.indexOf(page) > -1)) {
 		return;
 	}
+	var url = event.request.url;
+	if (
+		(url && url.startsWith("chrome-extension")) ||
+		url.includes("extension") ||
+		!(url.indexOf("http") === 0)
+	) {
+	} else {
+		// return from cache, falling back to network
+		event.respondWith(
+			caches.match(event.request).then((cachedResponse) => {
+				if (cachedResponse) {
+					return cachedResponse;
+				}
 
-	// return from cache, falling back to network
-	event.respondWith(
-		caches.match(event.request).then((cachedResponse) => {
-			if (cachedResponse) {
-				return cachedResponse;
-			}
-
-			return caches.open(CACHE_KEYS.RUNTIME).then((cache) =>
-				fetch(event.request).then((response) => {
-					var url = event.request.url;
-					if (
-						(url && url.startsWith("chrome-extension")) ||
-						url.includes("extension") ||
-						!(url.indexOf("http") === 0)
-					)
-						return;
-					return cache
-						.put(event.request, response.clone())
-						.then(() => response);
-				})
-			);
-		})
-	);
+				return caches.open(CACHE_KEYS.RUNTIME).then((cache) =>
+					fetch(event.request).then((response) => {
+						return cache
+							.put(event.request, response.clone())
+							.then(() => response);
+					})
+				);
+			})
+		);
+	}
 });
