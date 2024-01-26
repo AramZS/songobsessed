@@ -71,6 +71,7 @@ module.exports = async function (data, zones) {
 		})()" hx-preserve="true"></script>
 		<script src="/assets/js/script.js" defer type="application/javascript" hx-preserve="true"></script>
 		<script src="/assets/js/head-support.js" defer type="application/javascript" hx-preserve="true"></script>
+		<script src="/assets/js/script.js" defer type="application/javascript" hx-preserve="true"></script>
 		<script src="/service-worker.js" defer type="application/javascript" hx-preserve="true"></script>
 		<script defer data-domain="songobsessed.com" src="https://plausible.io/js/script.js" type="application/javascript"  hx-preserve="true"></script>
 

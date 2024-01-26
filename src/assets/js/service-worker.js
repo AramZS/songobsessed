@@ -58,15 +58,20 @@ self.addEventListener("fetch", (event) => {
 				return cachedResponse;
 			}
 
-			return caches
-				.open(CACHE_KEYS.RUNTIME)
-				.then((cache) =>
-					fetch(event.request).then((response) =>
-						cache
-							.put(event.request, response.clone())
-							.then(() => response)
+			return caches.open(CACHE_KEYS.RUNTIME).then((cache) =>
+				fetch(event.request).then((response) => {
+					var url = event.request.url;
+					if (
+						(url && url.startsWith("chrome-extension")) ||
+						url.includes("extension") ||
+						!(url.indexOf("http") === 0)
 					)
-				);
+						return;
+					return cache
+						.put(event.request, response.clone())
+						.then(() => response);
+				})
+			);
 		})
 	);
 });
