@@ -54,7 +54,8 @@ self.addEventListener("fetch", (event) => {
 	if (
 		(url && url.startsWith("chrome-extension")) ||
 		url.includes("extension") ||
-		!(url.indexOf("http") === 0)
+		!(url.indexOf("http") === 0) ||
+		event.request.method === "POST"
 	) {
 	} else {
 		// return from cache, falling back to network
