@@ -28,7 +28,7 @@ youtube: https://youtu.be/hf5NZ-n50nk
 spotify: 
 spotifyUri: 
 soundcloud:
-audiofile: "tomac - another daymension.mp3"
+audiofile: "tomac-another daymension.mp3"
 podbean:
 lastfm: https://www.last.fm/music/Tomac/_/another+daymension
 ---

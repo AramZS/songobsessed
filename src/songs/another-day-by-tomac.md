@@ -31,7 +31,7 @@ youtube: https://youtu.be/74JcTkQOSN0
 spotify: 
 spotifyUri: 
 soundcloud: https://soundcloud.com/aramzs/tomac-another-day
-audiofile: "tomac - another day.mp3"
+audiofile: "tomac-another day.mp3"
 podbean:
 lastfm: https://www.last.fm/music/Tomac/_/another+day
 ---
