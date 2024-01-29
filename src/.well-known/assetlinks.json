@@ -1,0 +1,14 @@
+[
+	{
+		"relation": [
+			"delegate_permission/common.handle_all_urls"
+		],
+		"target": {
+			"namespace": "android_app",
+			"package_name": "com.songobsessed.twa",
+			"sha256_cert_fingerprints": [
+				"27:53:56:EF:67:2D:F1:C7:E7:2C:65:5E:65:1D:85:87:9E:10:FF:AB:7D:4B:B9:14:15:F9:2B:13:94:8E:99:51"
+			]
+		}
+	}
+]
