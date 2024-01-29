@@ -36,6 +36,7 @@ process.env.PRIMARY_AUTHOR = "Aram Zucker-Scharff";
 module.exports = function (eleventyConfig) {
 	eleventyConfig.ignores.add("README.md");
 	eleventyConfig.addPassthroughCopy("src/assets/");
+	eleventyConfig.addPassthroughCopy("src/.well-known/");
 	eleventyConfig.addPassthroughCopy("src/site.webmanifest");
 	eleventyConfig.addPassthroughCopy("src/favicon.ico");
 	eleventyConfig.addPassthroughCopy(".nojekyll");

@@ -7,6 +7,7 @@ tags:
   - "blues rock"
   - "bay area indie"
   - "bluz"
+  - "hat music"
 public: true
 artists:
   - The Stone Foxes
