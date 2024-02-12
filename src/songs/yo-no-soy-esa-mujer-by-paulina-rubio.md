@@ -7,7 +7,7 @@ tags:
   - "folk"
   - "dance"
   - "techno"
-  - "synth-pop"
+  - "synthpop"
   - "electropop"
   - "dance-pop"
   - "pop rock"

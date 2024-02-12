@@ -10,7 +10,6 @@ tags:
   - "experimental"
   - "electro"
   - "electronica"
-  - "synth-pop"
   - "electropop"
   - "european"
   - "dance and electronica"

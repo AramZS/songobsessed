@@ -7,7 +7,7 @@ tags:
   - pop
   - indie
   - soul
-  - synth-pop
+  - synthpop
   - indie pop
   - pop rock
   - blue-eyed soul

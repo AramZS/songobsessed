@@ -3,7 +3,7 @@ title: "Strange Feeling - Bonus Track by Panama"
 description: "More information to come!"
 date: 2023-08-22T16:36:24Z
 tags:
-  - Synthpop
+  - synthpop
   - Nu Disco
 public: true
 artists:

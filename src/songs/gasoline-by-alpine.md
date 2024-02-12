@@ -6,7 +6,7 @@ tags:
   - "Australian indie pop"
   - "pop"
   - "indie"
-  - "synth pop"
+  - "synthpop"
   - "alternative"
   - "electronic"
   - "electronica"
@@ -29,7 +29,6 @@ tags:
   - "dance"
   - "dream"
   - "electro"
-  - "synthpop"
   - "indie pop"
 public: true
 artists:

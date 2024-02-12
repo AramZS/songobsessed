@@ -3,7 +3,7 @@ title: "Kara's Theme (Cartridge 1987 Remix) by Electric Dragon and Cartridge 198
 description: "From a video game comes one of the best synthwave tracks I've heard in a while."
 date: 2023-12-13T21:08:57Z
 tags:
-  - "synth-pop"
+  - "synthpop"
   - "synthwave"
   - "Cyberpunk"
 public: true

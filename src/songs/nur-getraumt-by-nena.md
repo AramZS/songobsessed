@@ -8,7 +8,6 @@ tags:
   - "pop"
   - "punk rock"
   - "new wave"
-  - "synth-pop"
   - "pop rock"
   - "europop"
   - "pop rap"
