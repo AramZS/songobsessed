@@ -73,107 +73,53 @@ c = 453;
 
 whole = [
 	{
-		added_at: "2023-12-19T21:03:40Z",
-		added_by: {
-			id: "aramzs",
-		},
 		track: {
-			album: {
-				external_urls: {
-					spotify:
-						"https://open.spotify.com/album/65BIcIJ6OCJl5ZSit7Pr9C",
+			artists: [
+				{
+					href: "https://api.spotify.com/v1/artists/39XOEoh22kWNy5vsEZbAuX",
+					name: "The Narcissist Cookbook",
+					uri: "spotify:artist:39XOEoh22kWNy5vsEZbAuX",
 				},
-				href: "https://api.spotify.com/v1/albums/65BIcIJ6OCJl5ZSit7Pr9C",
+			],
+			album: {
 				images: [
 					{
 						height: 640,
-						url: "https://i.scdn.co/image/ab67616d0000b273903c69da5839b931660d70b0",
+						url: "https://i.scdn.co/image/ab67616d0000b2738a3d6e58184d81b355ddc07f",
 						width: 640,
 					},
 					{
 						height: 300,
-						url: "https://i.scdn.co/image/ab67616d00001e02903c69da5839b931660d70b0",
+						url: "https://i.scdn.co/image/ab67616d00001e028a3d6e58184d81b355ddc07f",
 						width: 300,
 					},
 					{
 						height: 64,
-						url: "https://i.scdn.co/image/ab67616d00004851903c69da5839b931660d70b0",
+						url: "https://i.scdn.co/image/ab67616d000048518a3d6e58184d81b355ddc07f",
 						width: 64,
 					},
 				],
-				name: "Lightyears",
-			},
-			artists: [
-				{
-					href: "https://api.spotify.com/v1/artists/5L6COTBfO2KjrJgFYe96Q7",
-					name: "Dream Fiend",
-					uri: "spotify:artist:5L6COTBfO2KjrJgFYe96Q7",
+				external_urls: {
+					spotify:
+						"https://open.spotify.com/album/677DDXZPYZLzkL1gCyRfIg",
 				},
-				{
-					href: "https://api.spotify.com/v1/artists/67cjZDUWm5goNObfOPrZIY",
-					name: "September 87",
-					uri: "spotify:artist:67cjZDUWm5goNObfOPrZIY",
-				},
-			],
-			external_ids: {
-				isrc: "QZDA42008005",
+				href: "https://api.spotify.com/v1/albums/677DDXZPYZLzkL1gCyRfIg",
+				name: "This Is How We Get Better",
 			},
 			external_urls: {
 				spotify:
-					"https://open.spotify.com/track/7MdHPubKS1QWKVwDAZWzAP",
+					"https://open.spotify.com/track/1i1zf89MyoUyh1WGIiUh3Z",
 			},
-			href: "https://api.spotify.com/v1/tracks/7MdHPubKS1QWKVwDAZWzAP",
-			name: "Lightyears",
+			href: "https://api.spotify.com/v1/tracks/1i1zf89MyoUyh1WGIiUh3Z",
+			name: "the Pattern",
+			external_ids: {
+				isrc: "GBSMU0069809",
+			},
 		},
-	},
-	{
-		added_at: "2023-12-29T20:41:56Z",
 		added_by: {
 			id: "aramzs",
 		},
-		track: {
-			album: {
-				external_urls: {
-					spotify:
-						"https://open.spotify.com/album/38V0e8c11WMDKnarYzC22E",
-				},
-				href: "https://api.spotify.com/v1/albums/38V0e8c11WMDKnarYzC22E",
-				images: [
-					{
-						height: 640,
-						url: "https://i.scdn.co/image/ab67616d0000b273e93f1cfbda250721663f1474",
-						width: 640,
-					},
-					{
-						height: 300,
-						url: "https://i.scdn.co/image/ab67616d00001e02e93f1cfbda250721663f1474",
-						width: 300,
-					},
-					{
-						height: 64,
-						url: "https://i.scdn.co/image/ab67616d00004851e93f1cfbda250721663f1474",
-						width: 64,
-					},
-				],
-				name: "Altered Carbon (Original Series Soundtrack)",
-			},
-			artists: [
-				{
-					href: "https://api.spotify.com/v1/artists/3x0AYTwu5xlvORnoDKPnLb",
-					name: "Sune Rose Wagner",
-					uri: "spotify:artist:3x0AYTwu5xlvORnoDKPnLb",
-				},
-			],
-			external_ids: {
-				isrc: "USLS51815710",
-			},
-			external_urls: {
-				spotify:
-					"https://open.spotify.com/track/0fnCB0V0SSWYjZOAfRBRIM",
-			},
-			href: "https://api.spotify.com/v1/tracks/0fnCB0V0SSWYjZOAfRBRIM",
-			name: "More Human Than Human",
-		},
+		added_at: "2024-03-15T23:09:29Z",
 	},
 ];
 
