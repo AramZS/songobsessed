@@ -8,6 +8,7 @@ tags:
   - "Plunderphonics"
   - Rap
   - Hip Hop
+  - bastard pop
 public: true
 artists:
   - Kleptones
