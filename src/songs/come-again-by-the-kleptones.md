@@ -29,7 +29,7 @@ spotifyUri:
 soundcloud:
 audiofile: "Kleptones - Come Again.mp3"
 podbean:
-lastfm: https://www.last.fm/music/+noredirect/Tegan+&+Sara+vs.+Mylo/_/Walking+with+a+Ghost+in+Paris
+lastfm: https://www.last.fm/music/The+Kleptones/_/Come+Again
 ---
 
 A great selection from a great remix album, featuring  Beatles vs Beastie Boys vs Boston & more
