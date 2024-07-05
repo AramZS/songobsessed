@@ -69,57 +69,57 @@ var whole = require("./set");
 
 var c = 0;
 
-c = 453;
+c = 458;
 
 whole = [
 	{
 		track: {
 			artists: [
 				{
-					href: "https://api.spotify.com/v1/artists/39XOEoh22kWNy5vsEZbAuX",
-					name: "The Narcissist Cookbook",
-					uri: "spotify:artist:39XOEoh22kWNy5vsEZbAuX",
+					href: "https://api.spotify.com/v1/artists/3ztRX1UoIOsFqpD7dB6R8O",
+					name: "illuminati hotties",
+					uri: "spotify:artist:3ztRX1UoIOsFqpD7dB6R8O",
 				},
 			],
 			album: {
 				images: [
 					{
 						height: 640,
-						url: "https://i.scdn.co/image/ab67616d0000b2738a3d6e58184d81b355ddc07f",
+						url: "https://i.scdn.co/image/ab67616d0000b273824ccdf75ccb515b3e5e6efa",
 						width: 640,
 					},
 					{
 						height: 300,
-						url: "https://i.scdn.co/image/ab67616d00001e028a3d6e58184d81b355ddc07f",
+						url: "https://i.scdn.co/image/ab67616d00001e02824ccdf75ccb515b3e5e6efa",
 						width: 300,
 					},
 					{
 						height: 64,
-						url: "https://i.scdn.co/image/ab67616d000048518a3d6e58184d81b355ddc07f",
+						url: "https://i.scdn.co/image/ab67616d00004851824ccdf75ccb515b3e5e6efa",
 						width: 64,
 					},
 				],
 				external_urls: {
 					spotify:
-						"https://open.spotify.com/album/677DDXZPYZLzkL1gCyRfIg",
+						"https://open.spotify.com/album/2Epa4HydFeZJ6rxm8OZ7aw",
 				},
-				href: "https://api.spotify.com/v1/albums/677DDXZPYZLzkL1gCyRfIg",
-				name: "This Is How We Get Better",
+				href: "https://api.spotify.com/v1/albums/2Epa4HydFeZJ6rxm8OZ7aw",
+				name: "FREE I.H: This Is Not the One You've Been Waiting For",
 			},
 			external_urls: {
 				spotify:
-					"https://open.spotify.com/track/1i1zf89MyoUyh1WGIiUh3Z",
+					"https://open.spotify.com/track/5ZJfOkp2r5AbLjRdnu3UQd",
 			},
-			href: "https://api.spotify.com/v1/tracks/1i1zf89MyoUyh1WGIiUh3Z",
-			name: "the Pattern",
+			href: "https://api.spotify.com/v1/tracks/5ZJfOkp2r5AbLjRdnu3UQd",
+			name: "freequent letdown",
 			external_ids: {
-				isrc: "GBSMU0069809",
+				isrc: "USC5Q2000004",
 			},
 		},
 		added_by: {
 			id: "aramzs",
 		},
-		added_at: "2024-03-15T23:09:29Z",
+		added_at: "2024-07-05T15:19:10Z",
 	},
 ];
 
@@ -130,7 +130,7 @@ whole.forEach(async (track) => {
 	if (c > 453) {
 		console.log(c, track.track.name);
 		// c > 419 && c < 441) {
-		let playlistNumber = JSON.stringify(c);
+		let playlistNumber = JSON.stringify(c + 14);
 		/*console.log(
 			track,
 			track.track.artists,
@@ -159,7 +159,7 @@ whole.forEach(async (track) => {
 						"User-Agent":
 							"Song Obsessed/1.0 ( http://aramzs.github.io )",
 					},
-				}
+				},
 			)
 				.then((response) => response.json())
 				.then((data) => {
@@ -172,7 +172,7 @@ whole.forEach(async (track) => {
 							"LastFM Error",
 							data.message,
 							"for",
-							track.track.name
+							track.track.name,
 						);
 						resolve(false);
 					}
@@ -189,7 +189,7 @@ whole.forEach(async (track) => {
 						"User-Agent":
 							"Song Obsessed/1.0 ( http://aramzs.github.io )",
 					},
-				}
+				},
 			)
 				.then((response) => response.json())
 				.then((data) => {
@@ -197,7 +197,7 @@ whole.forEach(async (track) => {
 					resolve(data);
 				})
 				.catch((error) =>
-					console.error("\x1b[33m  mbz Error: \x1b[0m", error)
+					console.error("\x1b[33m  mbz Error: \x1b[0m", error),
 				);
 		});
 		let artistsObject = await artistGenre;
@@ -228,7 +228,7 @@ whole.forEach(async (track) => {
 						console.error(
 							"\x1b[33m  Error: \x1b[0m",
 							"from retrieving " + lastFMData.track.url,
-							error
+							error,
 						);
 						resolve("");
 					});
@@ -268,7 +268,7 @@ whole.forEach(async (track) => {
 			}
 		} else {
 			console.log(
-				`\x1b[33m  Song ${playlistNumber} ${track.track.name} failed artists check. \x1b[0m`
+				`\x1b[33m  Song ${playlistNumber} ${track.track.name} failed artists check. \x1b[0m`,
 			);
 		}
 		console.log("lastFMData.track", lastFMData.track);
@@ -282,7 +282,7 @@ whole.forEach(async (track) => {
 			});
 		} else {
 			console.error(
-				`\x1b[33m  Song ${playlistNumber} ${track.track.name} failed lastFMData check. \x1b[0m`
+				`\x1b[33m  Song ${playlistNumber} ${track.track.name} failed lastFMData check. \x1b[0m`,
 			);
 		}
 		let tagsArray = Array.from(tags);
@@ -300,7 +300,7 @@ whole.forEach(async (track) => {
 		let commaSeperatedArtists = artists.join(", ");
 		let title = `${track.track.name} by ${commaSeperatedArtists.replace(
 			/,(?=[^,]+$)/,
-			" and"
+			" and",
 		)}`;
 		let slug = slugify(`${title}`, {
 			lower: true,
@@ -314,7 +314,7 @@ whole.forEach(async (track) => {
 					"Image request passed undefined filename",
 					aUrl,
 					filetype,
-					filename
+					filename,
 				);
 				return false;
 			}
@@ -344,7 +344,7 @@ whole.forEach(async (track) => {
 					e,
 					aUrl,
 					filetype,
-					filename
+					filename,
 				);
 				return false;
 			}
@@ -370,7 +370,7 @@ whole.forEach(async (track) => {
 			localImageFileName = await processImageUrl(
 				image.url,
 				"jpeg",
-				sluggedAlbum
+				sluggedAlbum,
 			);
 			imageUrl = image.url;
 		} else if (lastFMData?.track?.album?.image) {
@@ -384,7 +384,7 @@ whole.forEach(async (track) => {
 			localImageFileName = await processImageUrl(
 				image["#text"],
 				"png",
-				sluggedAlbum
+				sluggedAlbum,
 			);
 		}
 		localImageFileName = localImageFileName ? localImageFileName : "";
@@ -450,7 +450,7 @@ A song I plan to write more about.
 			fs.writeFileSync(
 				"./src/songs/" + slug + ".md",
 				mdMode,
-				writeOptions
+				writeOptions,
 			);
 		} catch (e) {
 			console.log("Write error", e);
