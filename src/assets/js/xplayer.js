@@ -22,6 +22,7 @@ if (typeof PlayerElement === "undefined") {
 			this.spotifyController = false;
 			this.autoPlay = true;
 			this.internalPlaylist = [];
+			this.playcheck = false;
 			this.songDataStore = {};
 			this.classList.add(this.playerEmptyStateClass);
 			this.classList.add("miniplayer");
@@ -47,7 +48,7 @@ if (typeof PlayerElement === "undefined") {
 						window["xplayer-setup"].innerText
 					) {
 						window.xplayer.songDataStore[value] = JSON.parse(
-							window["xplayer-setup"].innerText
+							window["xplayer-setup"].innerText,
 						).song;
 						window.xplayer.songDataStore[value].siteUrl =
 							window.location.href;
@@ -61,7 +62,7 @@ if (typeof PlayerElement === "undefined") {
 					// Use the properties of the thing we are proxying if we haven't overwritten them.
 					if (
 						Object.getOwnPropertyNames(
-							Object.getPrototypeOf(this)
+							Object.getPrototypeOf(this),
 						).includes(property)
 					) {
 						return window.xplayer.songDataStore[target[property]];
@@ -75,7 +76,7 @@ if (typeof PlayerElement === "undefined") {
 			};
 			this.playlistManager = new Proxy(
 				this.internalPlaylist,
-				this.playlistHandler
+				this.playlistHandler,
 			);
 			this.internalPlayed = [];
 			this.songsAdded = new Set();
@@ -97,7 +98,7 @@ if (typeof PlayerElement === "undefined") {
 				"htmx:afterOnLoad",
 				function (evt) {
 					this.htmxSwapCallback();
-				}.bind(this)
+				}.bind(this),
 			);
 			this.setup();
 			this.hookPlayerTypeControls();
@@ -200,7 +201,7 @@ if (typeof PlayerElement === "undefined") {
 					console.log(
 						"Next playlist item command click",
 						command,
-						mediaId
+						mediaId,
 					);
 					switch (command) {
 						case "queue-next":
@@ -264,7 +265,7 @@ if (typeof PlayerElement === "undefined") {
 				}
 				el.addEventListener(
 					"click",
-					this.reactToPlayerTypeControl.bind(this)
+					this.reactToPlayerTypeControl.bind(this),
 				);
 			});
 		}
@@ -274,7 +275,7 @@ if (typeof PlayerElement === "undefined") {
 				"Play with playertype",
 				e.target.getAttribute("xp-playertype-play"),
 				"status ",
-				e.target.getAttribute("xp-playertype-status")
+				e.target.getAttribute("xp-playertype-status"),
 			);
 			if ("false" == e.target.getAttribute("xp-playertype-status")) {
 				console.log("Player not available");
@@ -287,7 +288,7 @@ if (typeof PlayerElement === "undefined") {
 				"Play with playertype song ",
 				mediaId,
 				"has preferred API of ",
-				this.songDataStore[mediaId].preferredAPI
+				this.songDataStore[mediaId].preferredAPI,
 			);
 			if (
 				this.playlistManager.length == 0 &&
@@ -322,7 +323,7 @@ if (typeof PlayerElement === "undefined") {
 		setRetainedSettings(settingsObj) {
 			localStorage.setItem(
 				this.localStorageKey,
-				JSON.stringify(settingsObj)
+				JSON.stringify(settingsObj),
 			);
 		}
 		setRetainedSetting(settingName, settingValue) {
@@ -345,7 +346,7 @@ if (typeof PlayerElement === "undefined") {
 		imgMaker(mediaId) {
 			var url = this.songDataStore[mediaId].featuredImage.replace(
 				"640",
-				"240"
+				"240",
 			);
 			return `<img src="${url}" class="xplayer-image" data-xp-image-mediaid="${mediaId}" />`;
 		}
@@ -368,7 +369,7 @@ if (typeof PlayerElement === "undefined") {
 			}
 			innerCode += ` by ${artistHtml}`;
 			innerCode += `   <span class="playlist-link-chip playlist-chip">${this.linkMaker(
-				mediaObj.siteUrl
+				mediaObj.siteUrl,
 			)}</span>`;
 			if (!active) {
 				innerCode += ` <span class="playlist-next-chip playlist-chip" xp-command="queue-next">⬆</span>`;
@@ -376,7 +377,7 @@ if (typeof PlayerElement === "undefined") {
 				innerCode += ` <span class="playlist-remove-chip playlist-chip" xp-command="playlist-remove">⌧</span>`;
 				newItem.setAttribute(
 					"data-pp",
-					this.playlistManager.length - 1
+					this.playlistManager.length - 1,
 				);
 			}
 			// newItem.id = "playlist-item-" + mediaId;
@@ -564,7 +565,7 @@ if (typeof PlayerElement === "undefined") {
 				}
 				this.SpotifyIFrameController.addListener(
 					"playback_update",
-					managePlaybackUpdate
+					managePlaybackUpdate,
 				);
 				this.SpotifyIFrameController.addListener("ready", (e) => {
 					console.log("SpotifyIFrameController ready event", e);
@@ -575,7 +576,7 @@ if (typeof PlayerElement === "undefined") {
 			window.SpotifyIFrameAPI.createController(
 				element,
 				options,
-				callback
+				callback,
 			);
 			this.internalPlayed.push(mediaId);
 		}
@@ -616,7 +617,7 @@ if (typeof PlayerElement === "undefined") {
 			};
 			audioElement.addEventListener(
 				"canplaythrough",
-				readyToPlay.bind(this)
+				readyToPlay.bind(this),
 			);
 			let advancePlay = () => {
 				console.log("Native song ended");
@@ -635,7 +636,7 @@ if (typeof PlayerElement === "undefined") {
 			console.log(
 				"nativeNext called",
 				this,
-				' with mediaId "' + mediaId + '"'
+				' with mediaId "' + mediaId + '"',
 			);
 			this.player.src = mediaId;
 			let readyToPlay = () => {
@@ -647,7 +648,7 @@ if (typeof PlayerElement === "undefined") {
 			// TODO: Need to remove the old events
 			this.player.addEventListener(
 				"canplaythrough",
-				readyToPlay.bind(this)
+				readyToPlay.bind(this),
 			);
 			this.internalPlayed.push(mediaId);
 		}
@@ -662,7 +663,7 @@ if (typeof PlayerElement === "undefined") {
 				'routeToCorrectPlayAPI with mediaId "' +
 					mediaId +
 					'" results in preferred API of ',
-				preferredAPI
+				preferredAPI,
 			);
 			this.selectPlayAPI(mediaObj, autoplay, preferredAPI);
 		}
@@ -741,7 +742,7 @@ if (typeof PlayerElement === "undefined") {
 				"dropFromPlaylistArray",
 				JSON.stringify(targetArray),
 				mediaId,
-				index
+				index,
 			);
 			if (index > -1) {
 				// only splice array when item is found
@@ -750,7 +751,7 @@ if (typeof PlayerElement === "undefined") {
 			console.log(
 				"dropFromPlaylistArray completed",
 				JSON.stringify(targetArray),
-				mediaId
+				mediaId,
 			);
 			return removed;
 		}
@@ -773,7 +774,7 @@ if (typeof PlayerElement === "undefined") {
 							this.setMediaState("playing");
 						}
 					};
-					setTimeout(playCheck.bind(this), 5000);
+					this.playcheck = setTimeout(playCheck.bind(this), 5000);
 					break;
 				case "spotify":
 				case "native":
@@ -794,12 +795,13 @@ if (typeof PlayerElement === "undefined") {
 			console.log("pause");
 			switch (type) {
 				case "yt":
+					this.playcheck && clearTimeout(this.playcheck);
 					try {
 						this.player.pauseVideo();
 					} catch (e) {
 						console.log(
 							"YT player pause failed, likely because player not ready",
-							e
+							e,
 						);
 					}
 					break;
@@ -817,7 +819,7 @@ if (typeof PlayerElement === "undefined") {
 			console.log("Advance to next media item.");
 			console.log(
 				"Song Data store state at makeMediaAdvance now ",
-				this.songDataStore
+				this.songDataStore,
 			);
 			if (this.playlistManager.length > 0) {
 				var nextMedia = "";
@@ -825,7 +827,7 @@ if (typeof PlayerElement === "undefined") {
 					nextMedia = specificMediaId;
 					this.dropFromPlaylistArray(
 						this.playlistManager,
-						specificMediaId
+						specificMediaId,
 					);
 				} else {
 					nextMedia = this.playlistManager.shift();
@@ -835,7 +837,7 @@ if (typeof PlayerElement === "undefined") {
 					"Next media item is:",
 					nextMedia,
 					" with API ",
-					this.songDataStore[nextMedia].preferredAPI
+					this.songDataStore[nextMedia].preferredAPI,
 				);
 				this.removePlaylistTag(nextMedia);
 				//var nextMediaObj = this.songDataStore[nextMedia];
@@ -849,7 +851,7 @@ if (typeof PlayerElement === "undefined") {
 			) {
 				console.log(
 					"Not in playlist, not playing, Switch current media to ",
-					specificMediaId
+					specificMediaId,
 				);
 				this.setPlaylistPlaying(specificMediaId);
 				this.routeToCorrectPlayAPI(specificMediaId, true);
@@ -864,7 +866,7 @@ if (typeof PlayerElement === "undefined") {
 		removePlaylistTag(mediaId) {
 			//var el = document.getElementById("playlist-item-" + mediaId);
 			var el = document.querySelector(
-				`#xplayer-playlist-next .playlist-item[data-media-id="${mediaId}"]`
+				`#xplayer-playlist-next .playlist-item[data-media-id="${mediaId}"]`,
 			);
 			if (el) {
 				el.remove();
@@ -880,7 +882,7 @@ if (typeof PlayerElement === "undefined") {
 				" changed from ",
 				previousValue,
 				" to ",
-				currentValue
+				currentValue,
 			);
 			switch (attribute) {
 				case "xp-playing":
@@ -935,7 +937,7 @@ if (typeof PlayerElement === "undefined") {
 				} else {
 					console.log(
 						"x-player has already played or added this song and will not auto-enqueue it again.",
-						mediaId
+						mediaId,
 					);
 				}
 			}
@@ -1030,7 +1032,7 @@ if (typeof PlayerElement === "undefined") {
 					finalPosition = oldItem.dataset.pp;
 				} else {
 					oldItem = new Array(
-						...document.getElementsByClassName("playlist-item")
+						...document.getElementsByClassName("playlist-item"),
 					).filter((el) => {
 						if (el.getAttribute("data-media-id") == mediaId) {
 							finalPosition = 0 + arrayPosition;
@@ -1046,12 +1048,12 @@ if (typeof PlayerElement === "undefined") {
 					"oldItem selected to move",
 					oldItem,
 					"final position",
-					finalPosition
+					finalPosition,
 				);
 				this.dropFromPlaylistArray(
 					this.playlistManager,
 					mediaId,
-					finalPosition
+					finalPosition,
 				);
 				this.playlistManager.unshift(mediaId);
 				this.playlistqueue.prepend(oldItem);
@@ -1067,16 +1069,16 @@ if (typeof PlayerElement === "undefined") {
 			console.log(
 				"Process song object to currently playing",
 				mediaId,
-				this.songDataStore[mediaId]
+				this.songDataStore[mediaId],
 			);
 			this.setAttribute("xp-playing", mediaId);
 			window["xplayer-currently"].innerHTML = "";
 			window["xplayer-currently"].append(
-				this.mediaEntryMaker(mediaId, true)
+				this.mediaEntryMaker(mediaId, true),
 			);
 			window["xplayer-currently"].setAttribute(
 				"data-active-media",
-				mediaId
+				mediaId,
 			);
 			htmx.process(window["xplayer-currently"]);
 		}
@@ -1085,7 +1087,7 @@ if (typeof PlayerElement === "undefined") {
 			this.setAttribute("xp-last-added", mediaId);
 			this.songsAdded.add(mediaId);
 			this.songDataStore[mediaId] = JSON.parse(
-				window["xplayer-setup"].innerText
+				window["xplayer-setup"].innerText,
 			).media;
 			this.songDataStore[mediaId].siteUrl = window.location.href;
 			this.songDataStore[mediaId].mediaId = mediaId;
@@ -1099,7 +1101,7 @@ if (typeof PlayerElement === "undefined") {
 				if (!this.shouldAddToPlaylist() && !!!advancing) {
 					console.log(
 						"Song Data store state now ",
-						this.songDataStore
+						this.songDataStore,
 					);
 					this.setPlaylistPlaying(mediaId);
 					// This will destroy the binding to `this` unless it
@@ -1120,7 +1122,7 @@ if (typeof PlayerElement === "undefined") {
 		// Getters and Setters
 		getEmbedMediaState(value) {
 			return Object.keys(this.mediaStates).find(
-				(key) => this.mediaStates[key] === value
+				(key) => this.mediaStates[key] === value,
 			);
 		}
 
