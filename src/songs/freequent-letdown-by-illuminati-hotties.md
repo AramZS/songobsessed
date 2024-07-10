@@ -1,6 +1,6 @@
 ---
 title: "freequent letdown by illuminati hotties"
-description: "More information to come!"
+description: "A dive into bubblegrunge."
 date: 2024-07-05T15:19:10Z
 tags:
   - "indie rock"

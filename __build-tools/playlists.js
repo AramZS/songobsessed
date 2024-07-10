@@ -76,50 +76,50 @@ whole = [
 		track: {
 			artists: [
 				{
-					href: "https://api.spotify.com/v1/artists/3ztRX1UoIOsFqpD7dB6R8O",
-					name: "illuminati hotties",
-					uri: "spotify:artist:3ztRX1UoIOsFqpD7dB6R8O",
+					href: "https://api.spotify.com/v1/artists/5iMYu8Sj8dZEDsWJxSFwPP",
+					name: "Jhariah",
+					uri: "spotify:artist:5iMYu8Sj8dZEDsWJxSFwPP",
 				},
 			],
 			album: {
 				images: [
 					{
 						height: 640,
-						url: "https://i.scdn.co/image/ab67616d0000b273824ccdf75ccb515b3e5e6efa",
+						url: "https://i.scdn.co/image/ab67616d0000b27336346a1a5bc20cba58358836",
 						width: 640,
 					},
 					{
 						height: 300,
-						url: "https://i.scdn.co/image/ab67616d00001e02824ccdf75ccb515b3e5e6efa",
+						url: "https://i.scdn.co/image/ab67616d00001e0236346a1a5bc20cba58358836",
 						width: 300,
 					},
 					{
 						height: 64,
-						url: "https://i.scdn.co/image/ab67616d00004851824ccdf75ccb515b3e5e6efa",
+						url: "https://i.scdn.co/image/ab67616d0000485136346a1a5bc20cba58358836",
 						width: 64,
 					},
 				],
 				external_urls: {
 					spotify:
-						"https://open.spotify.com/album/2Epa4HydFeZJ6rxm8OZ7aw",
+						"https://open.spotify.com/album/0qlhHGeAVsdJNiKJbHFuEY",
 				},
-				href: "https://api.spotify.com/v1/albums/2Epa4HydFeZJ6rxm8OZ7aw",
-				name: "FREE I.H: This Is Not the One You've Been Waiting For",
+				href: "https://api.spotify.com/v1/albums/0qlhHGeAVsdJNiKJbHFuEY",
+				name: "TRUST CEREMONY",
 			},
 			external_urls: {
 				spotify:
-					"https://open.spotify.com/track/5ZJfOkp2r5AbLjRdnu3UQd",
+					"https://open.spotify.com/track/7LOwrqIpO4EgiM2cdy5Swn",
 			},
-			href: "https://api.spotify.com/v1/tracks/5ZJfOkp2r5AbLjRdnu3UQd",
-			name: "freequent letdown",
+			href: "https://api.spotify.com/v1/tracks/7LOwrqIpO4EgiM2cdy5Swn",
+			name: "TRUST CEREMONY",
 			external_ids: {
-				isrc: "USC5Q2000004",
+				isrc: "QZGLS2472370",
 			},
 		},
 		added_by: {
 			id: "aramzs",
 		},
-		added_at: "2024-07-05T15:19:10Z",
+		added_at: "2024-07-10T03:50:20Z",
 	},
 ];
 
