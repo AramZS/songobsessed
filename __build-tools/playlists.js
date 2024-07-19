@@ -76,50 +76,50 @@ whole = [
 		track: {
 			artists: [
 				{
-					href: "https://api.spotify.com/v1/artists/5iMYu8Sj8dZEDsWJxSFwPP",
-					name: "Jhariah",
-					uri: "spotify:artist:5iMYu8Sj8dZEDsWJxSFwPP",
+					href: "https://api.spotify.com/v1/artists/2xNs2zfnh52ORUTI4Qfvxf",
+					name: "saoirse dream",
+					uri: "spotify:artist:2xNs2zfnh52ORUTI4Qfvxf",
 				},
 			],
 			album: {
 				images: [
 					{
 						height: 640,
-						url: "https://i.scdn.co/image/ab67616d0000b27336346a1a5bc20cba58358836",
+						url: "https://i.scdn.co/image/ab67616d0000b27306b071f9794978ad9db2625d",
 						width: 640,
 					},
 					{
 						height: 300,
-						url: "https://i.scdn.co/image/ab67616d00001e0236346a1a5bc20cba58358836",
+						url: "https://i.scdn.co/image/ab67616d00001e0206b071f9794978ad9db2625d",
 						width: 300,
 					},
 					{
 						height: 64,
-						url: "https://i.scdn.co/image/ab67616d0000485136346a1a5bc20cba58358836",
+						url: "https://i.scdn.co/image/ab67616d0000485106b071f9794978ad9db2625d",
 						width: 64,
 					},
 				],
 				external_urls: {
 					spotify:
-						"https://open.spotify.com/album/0qlhHGeAVsdJNiKJbHFuEY",
+						"https://open.spotify.com/album/0SS7QRTl0W0CBbUCPkmmaM",
 				},
-				href: "https://api.spotify.com/v1/albums/0qlhHGeAVsdJNiKJbHFuEY",
-				name: "TRUST CEREMONY",
+				href: "https://api.spotify.com/v1/albums/0SS7QRTl0W0CBbUCPkmmaM",
+				name: "catherine never broke again",
 			},
 			external_urls: {
 				spotify:
-					"https://open.spotify.com/track/7LOwrqIpO4EgiM2cdy5Swn",
+					"https://open.spotify.com/track/2RP8p6uDqJCMvpXxfo3L7s",
 			},
-			href: "https://api.spotify.com/v1/tracks/7LOwrqIpO4EgiM2cdy5Swn",
-			name: "TRUST CEREMONY",
+			href: "https://api.spotify.com/v1/tracks/2RP8p6uDqJCMvpXxfo3L7s",
+			name: "catherine never broke again",
 			external_ids: {
-				isrc: "QZGLS2472370",
+				isrc: "QZAKB2314822",
 			},
 		},
 		added_by: {
 			id: "aramzs",
 		},
-		added_at: "2024-07-10T03:50:20Z",
+		added_at: "2024-07-19T14:05:11Z",
 	},
 ];
 
