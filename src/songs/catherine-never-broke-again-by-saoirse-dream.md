@@ -11,6 +11,7 @@ tags:
   - "hyperpop"
   - "hyper-pop"
   - "digicore"
+  - "5th wave emo"
 public: true
 artists:
   - saoirse dream

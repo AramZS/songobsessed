@@ -76,50 +76,50 @@ whole = [
 		track: {
 			artists: [
 				{
-					href: "https://api.spotify.com/v1/artists/2xNs2zfnh52ORUTI4Qfvxf",
-					name: "saoirse dream",
-					uri: "spotify:artist:2xNs2zfnh52ORUTI4Qfvxf",
+					href: "https://api.spotify.com/v1/artists/33L1klom7IXmoAP8fjrGm9",
+					name: "gabby start",
+					uri: "spotify:artist:33L1klom7IXmoAP8fjrGm9",
 				},
 			],
 			album: {
 				images: [
 					{
 						height: 640,
-						url: "https://i.scdn.co/image/ab67616d0000b27306b071f9794978ad9db2625d",
+						url: "https://i.scdn.co/image/ab67616d0000b2730c5a7813c7804338695ee479",
 						width: 640,
 					},
 					{
 						height: 300,
-						url: "https://i.scdn.co/image/ab67616d00001e0206b071f9794978ad9db2625d",
+						url: "https://i.scdn.co/image/ab67616d00001e020c5a7813c7804338695ee479",
 						width: 300,
 					},
 					{
 						height: 64,
-						url: "https://i.scdn.co/image/ab67616d0000485106b071f9794978ad9db2625d",
+						url: "https://i.scdn.co/image/ab67616d000048510c5a7813c7804338695ee479",
 						width: 64,
 					},
 				],
 				external_urls: {
 					spotify:
-						"https://open.spotify.com/album/0SS7QRTl0W0CBbUCPkmmaM",
+						"https://open.spotify.com/album/64BIl2SeeXciQWEIpCNcoK",
 				},
-				href: "https://api.spotify.com/v1/albums/0SS7QRTl0W0CBbUCPkmmaM",
-				name: "catherine never broke again",
+				href: "https://api.spotify.com/v1/albums/64BIl2SeeXciQWEIpCNcoK",
+				name: "alex",
 			},
 			external_urls: {
 				spotify:
-					"https://open.spotify.com/track/2RP8p6uDqJCMvpXxfo3L7s",
+					"https://open.spotify.com/track/7AZrdgVJ3RCk77Z7OQsm2K",
 			},
-			href: "https://api.spotify.com/v1/tracks/2RP8p6uDqJCMvpXxfo3L7s",
-			name: "catherine never broke again",
+			href: "https://api.spotify.com/v1/tracks/7AZrdgVJ3RCk77Z7OQsm2K",
+			name: "The air traffic control tower",
 			external_ids: {
-				isrc: "QZAKB2314822",
+				isrc: "USAT22214981",
 			},
 		},
 		added_by: {
 			id: "aramzs",
 		},
-		added_at: "2024-07-19T14:05:11Z",
+		added_at: "2024-10-03T22:13:49Z",
 	},
 ];
 
@@ -130,7 +130,7 @@ whole.forEach(async (track) => {
 	if (c > 453) {
 		console.log(c, track.track.name);
 		// c > 419 && c < 441) {
-		let playlistNumber = JSON.stringify(c + 14);
+		let playlistNumber = 472 + 1;
 		/*console.log(
 			track,
 			track.track.artists,
