@@ -76,50 +76,55 @@ whole = [
 		track: {
 			artists: [
 				{
-					href: "https://api.spotify.com/v1/artists/33L1klom7IXmoAP8fjrGm9",
-					name: "gabby start",
-					uri: "spotify:artist:33L1klom7IXmoAP8fjrGm9",
+					href: "https://api.spotify.com/v1/artists/2ifvIECHAlEgPMBuBOJ0lG",
+					name: "Bear McCreary",
+					uri: "spotify:artist:2ifvIECHAlEgPMBuBOJ0lG",
+				},
+				{
+					href: "https://api.spotify.com/v1/artists/7gfnIXQlp4f6VRiTbhksAD",
+					name: "Brendan McCreary",
+					uri: "spotify:artist:7gfnIXQlp4f6VRiTbhksAD",
 				},
 			],
 			album: {
 				images: [
 					{
 						height: 640,
-						url: "https://i.scdn.co/image/ab67616d0000b2730c5a7813c7804338695ee479",
+						url: "https://i.scdn.co/image/ab67616d0000b273cee89e2059e39919097b7e9f",
 						width: 640,
 					},
 					{
 						height: 300,
-						url: "https://i.scdn.co/image/ab67616d00001e020c5a7813c7804338695ee479",
+						url: "https://i.scdn.co/image/ab67616d00001e02cee89e2059e39919097b7e9f",
 						width: 300,
 					},
 					{
 						height: 64,
-						url: "https://i.scdn.co/image/ab67616d000048510c5a7813c7804338695ee479",
+						url: "https://i.scdn.co/image/ab67616d00004851cee89e2059e39919097b7e9f",
 						width: 64,
 					},
 				],
 				external_urls: {
 					spotify:
-						"https://open.spotify.com/album/64BIl2SeeXciQWEIpCNcoK",
+						"https://open.spotify.com/album/0LyMwCSiZQB7mrzEGEgmpk",
 				},
-				href: "https://api.spotify.com/v1/albums/64BIl2SeeXciQWEIpCNcoK",
-				name: "alex",
+				href: "https://api.spotify.com/v1/albums/0LyMwCSiZQB7mrzEGEgmpk",
+				name: "The 4:30 Movie (Original Motion Picture Soundtrack)",
 			},
 			external_urls: {
 				spotify:
-					"https://open.spotify.com/track/7AZrdgVJ3RCk77Z7OQsm2K",
+					"https://open.spotify.com/track/2n6O9IeiVBPeuTbsK4O1pu",
 			},
-			href: "https://api.spotify.com/v1/tracks/7AZrdgVJ3RCk77Z7OQsm2K",
-			name: "The air traffic control tower",
+			href: "https://api.spotify.com/v1/tracks/2n6O9IeiVBPeuTbsK4O1pu",
+			name: "24 Karat Case of Love",
 			external_ids: {
-				isrc: "USAT22214981",
+				isrc: "USGYL2455001",
 			},
 		},
 		added_by: {
 			id: "aramzs",
 		},
-		added_at: "2024-10-03T22:13:49Z",
+		added_at: "2024-10-23T16:05:35Z",
 	},
 ];
 
@@ -130,7 +135,7 @@ whole.forEach(async (track) => {
 	if (c > 453) {
 		console.log(c, track.track.name);
 		// c > 419 && c < 441) {
-		let playlistNumber = 472 + 1;
+		let playlistNumber = 473 + 1;
 		/*console.log(
 			track,
 			track.track.artists,
