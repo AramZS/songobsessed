@@ -69,62 +69,57 @@ var whole = require("./set");
 
 var c = 0;
 
-c = 458;
+c = 459;
 
 whole = [
 	{
 		track: {
 			artists: [
 				{
-					href: "https://api.spotify.com/v1/artists/2ifvIECHAlEgPMBuBOJ0lG",
-					name: "Bear McCreary",
-					uri: "spotify:artist:2ifvIECHAlEgPMBuBOJ0lG",
-				},
-				{
-					href: "https://api.spotify.com/v1/artists/7gfnIXQlp4f6VRiTbhksAD",
-					name: "Brendan McCreary",
-					uri: "spotify:artist:7gfnIXQlp4f6VRiTbhksAD",
+					href: "https://api.spotify.com/v1/artists/5JnDtVBl4kEOs1TytoSw8c",
+					name: "God Of Shamisen",
+					uri: "spotify:artist:5JnDtVBl4kEOs1TytoSw8c",
 				},
 			],
 			album: {
 				images: [
 					{
 						height: 640,
-						url: "https://i.scdn.co/image/ab67616d0000b273cee89e2059e39919097b7e9f",
+						url: "https://i.scdn.co/image/ab67616d0000b27347c227312b947011e4e920cd",
 						width: 640,
 					},
 					{
 						height: 300,
-						url: "https://i.scdn.co/image/ab67616d00001e02cee89e2059e39919097b7e9f",
+						url: "https://i.scdn.co/image/ab67616d00001e0247c227312b947011e4e920cd",
 						width: 300,
 					},
 					{
 						height: 64,
-						url: "https://i.scdn.co/image/ab67616d00004851cee89e2059e39919097b7e9f",
+						url: "https://i.scdn.co/image/ab67616d0000485147c227312b947011e4e920cd",
 						width: 64,
 					},
 				],
 				external_urls: {
 					spotify:
-						"https://open.spotify.com/album/0LyMwCSiZQB7mrzEGEgmpk",
+						"https://open.spotify.com/album/03duyXXMyNm5BAqwHvkjcR",
 				},
-				href: "https://api.spotify.com/v1/albums/0LyMwCSiZQB7mrzEGEgmpk",
-				name: "The 4:30 Movie (Original Motion Picture Soundtrack)",
+				href: "https://api.spotify.com/v1/albums/03duyXXMyNm5BAqwHvkjcR",
+				name: "Dragon String Attack",
 			},
 			external_urls: {
 				spotify:
-					"https://open.spotify.com/track/2n6O9IeiVBPeuTbsK4O1pu",
+					"https://open.spotify.com/track/58nirW7DEq3qWLBHU5aRAH",
 			},
-			href: "https://api.spotify.com/v1/tracks/2n6O9IeiVBPeuTbsK4O1pu",
-			name: "24 Karat Case of Love",
+			href: "https://api.spotify.com/v1/tracks/58nirW7DEq3qWLBHU5aRAH",
+			name: "The Science Fiction Of Ray Bradbury Attack",
 			external_ids: {
-				isrc: "USGYL2455001",
+				isrc: "ushm80870326",
 			},
 		},
 		added_by: {
 			id: "aramzs",
 		},
-		added_at: "2024-10-23T16:05:35Z",
+		added_at: "2025-01-01T22:45:48Z",
 	},
 ];
 
@@ -135,7 +130,7 @@ whole.forEach(async (track) => {
 	if (c > 453) {
 		console.log(c, track.track.name);
 		// c > 419 && c < 441) {
-		let playlistNumber = 473 + 1;
+		let playlistNumber = 474 + 1;
 		/*console.log(
 			track,
 			track.track.artists,
@@ -164,7 +159,7 @@ whole.forEach(async (track) => {
 						"User-Agent":
 							"Song Obsessed/1.0 ( http://aramzs.github.io )",
 					},
-				},
+				}
 			)
 				.then((response) => response.json())
 				.then((data) => {
@@ -177,7 +172,7 @@ whole.forEach(async (track) => {
 							"LastFM Error",
 							data.message,
 							"for",
-							track.track.name,
+							track.track.name
 						);
 						resolve(false);
 					}
@@ -194,7 +189,7 @@ whole.forEach(async (track) => {
 						"User-Agent":
 							"Song Obsessed/1.0 ( http://aramzs.github.io )",
 					},
-				},
+				}
 			)
 				.then((response) => response.json())
 				.then((data) => {
@@ -202,7 +197,7 @@ whole.forEach(async (track) => {
 					resolve(data);
 				})
 				.catch((error) =>
-					console.error("\x1b[33m  mbz Error: \x1b[0m", error),
+					console.error("\x1b[33m  mbz Error: \x1b[0m", error)
 				);
 		});
 		let artistsObject = await artistGenre;
@@ -233,7 +228,7 @@ whole.forEach(async (track) => {
 						console.error(
 							"\x1b[33m  Error: \x1b[0m",
 							"from retrieving " + lastFMData.track.url,
-							error,
+							error
 						);
 						resolve("");
 					});
@@ -273,7 +268,7 @@ whole.forEach(async (track) => {
 			}
 		} else {
 			console.log(
-				`\x1b[33m  Song ${playlistNumber} ${track.track.name} failed artists check. \x1b[0m`,
+				`\x1b[33m  Song ${playlistNumber} ${track.track.name} failed artists check. \x1b[0m`
 			);
 		}
 		console.log("lastFMData.track", lastFMData.track);
@@ -287,7 +282,7 @@ whole.forEach(async (track) => {
 			});
 		} else {
 			console.error(
-				`\x1b[33m  Song ${playlistNumber} ${track.track.name} failed lastFMData check. \x1b[0m`,
+				`\x1b[33m  Song ${playlistNumber} ${track.track.name} failed lastFMData check. \x1b[0m`
 			);
 		}
 		let tagsArray = Array.from(tags);
@@ -305,7 +300,7 @@ whole.forEach(async (track) => {
 		let commaSeperatedArtists = artists.join(", ");
 		let title = `${track.track.name} by ${commaSeperatedArtists.replace(
 			/,(?=[^,]+$)/,
-			" and",
+			" and"
 		)}`;
 		let slug = slugify(`${title}`, {
 			lower: true,
@@ -319,7 +314,7 @@ whole.forEach(async (track) => {
 					"Image request passed undefined filename",
 					aUrl,
 					filetype,
-					filename,
+					filename
 				);
 				return false;
 			}
@@ -349,7 +344,7 @@ whole.forEach(async (track) => {
 					e,
 					aUrl,
 					filetype,
-					filename,
+					filename
 				);
 				return false;
 			}
@@ -375,7 +370,7 @@ whole.forEach(async (track) => {
 			localImageFileName = await processImageUrl(
 				image.url,
 				"jpeg",
-				sluggedAlbum,
+				sluggedAlbum
 			);
 			imageUrl = image.url;
 		} else if (lastFMData?.track?.album?.image) {
@@ -389,7 +384,7 @@ whole.forEach(async (track) => {
 			localImageFileName = await processImageUrl(
 				image["#text"],
 				"png",
-				sluggedAlbum,
+				sluggedAlbum
 			);
 		}
 		localImageFileName = localImageFileName ? localImageFileName : "";
@@ -455,7 +450,7 @@ A song I plan to write more about.
 			fs.writeFileSync(
 				"./src/songs/" + slug + ".md",
 				mdMode,
-				writeOptions,
+				writeOptions
 			);
 		} catch (e) {
 			console.log("Write error", e);
