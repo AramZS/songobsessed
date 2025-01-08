@@ -76,50 +76,50 @@ whole = [
 		track: {
 			artists: [
 				{
-					href: "https://api.spotify.com/v1/artists/5JnDtVBl4kEOs1TytoSw8c",
-					name: "God Of Shamisen",
-					uri: "spotify:artist:5JnDtVBl4kEOs1TytoSw8c",
+					href: "https://api.spotify.com/v1/artists/5Tomvwat8AxMGd2ewkDNPs",
+					name: "NOBRO",
+					uri: "spotify:artist:5Tomvwat8AxMGd2ewkDNPs",
 				},
 			],
 			album: {
 				images: [
 					{
 						height: 640,
-						url: "https://i.scdn.co/image/ab67616d0000b27347c227312b947011e4e920cd",
+						url: "https://i.scdn.co/image/ab67616d0000b273a45dbf5a79db48741deff759",
 						width: 640,
 					},
 					{
 						height: 300,
-						url: "https://i.scdn.co/image/ab67616d00001e0247c227312b947011e4e920cd",
+						url: "https://i.scdn.co/image/ab67616d00001e02a45dbf5a79db48741deff759",
 						width: 300,
 					},
 					{
 						height: 64,
-						url: "https://i.scdn.co/image/ab67616d0000485147c227312b947011e4e920cd",
+						url: "https://i.scdn.co/image/ab67616d00004851a45dbf5a79db48741deff759",
 						width: 64,
 					},
 				],
 				external_urls: {
 					spotify:
-						"https://open.spotify.com/album/03duyXXMyNm5BAqwHvkjcR",
+						"https://open.spotify.com/album/5Ae3xDGRamEFOSmzdtPGGv",
 				},
-				href: "https://api.spotify.com/v1/albums/03duyXXMyNm5BAqwHvkjcR",
-				name: "Dragon String Attack",
+				href: "https://api.spotify.com/v1/albums/5Ae3xDGRamEFOSmzdtPGGv",
+				name: "Live Your Truth Shred Some Gnar",
 			},
 			external_urls: {
 				spotify:
-					"https://open.spotify.com/track/58nirW7DEq3qWLBHU5aRAH",
+					"https://open.spotify.com/track/5xhXYjfrYlkd9BXPyCjn00",
 			},
-			href: "https://api.spotify.com/v1/tracks/58nirW7DEq3qWLBHU5aRAH",
-			name: "The Science Fiction Of Ray Bradbury Attack",
+			href: "https://api.spotify.com/v1/tracks/5xhXYjfrYlkd9BXPyCjn00",
+			name: "Get with U",
 			external_ids: {
-				isrc: "ushm80870326",
+				isrc: "CADE72101331",
 			},
 		},
 		added_by: {
 			id: "aramzs",
 		},
-		added_at: "2025-01-01T22:45:48Z",
+		added_at: "2025-01-08T18:17:16Z",
 	},
 ];
 
@@ -130,7 +130,7 @@ whole.forEach(async (track) => {
 	if (c > 453) {
 		console.log(c, track.track.name);
 		// c > 419 && c < 441) {
-		let playlistNumber = 474 + 1;
+		let playlistNumber = 475 + 1;
 		/*console.log(
 			track,
 			track.track.artists,
