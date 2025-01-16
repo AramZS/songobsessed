@@ -21,7 +21,7 @@ module.exports = function (youtubeUrl, autoplay, songData) {
 		} else {
 			finalString += "?";
 		}
-		finalString += "autoplay=1";
+		finalString += "autoplay=1&controls=0";
 	}
 	// songData.youtubeId = videoId;
 	var jsonString = JSON.stringify(songData);

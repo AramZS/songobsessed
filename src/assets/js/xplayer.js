@@ -426,7 +426,7 @@ if (typeof PlayerElement === "undefined") {
 				} else {
 					append += "?";
 				}
-				append += "autoplay=1";
+				append += "autoplay=1&controls=0";
 			}
 			return /*html*/ `<iframe class="youtube-iframe" src="${videoUrl}${append}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
 		}
@@ -461,6 +461,8 @@ if (typeof PlayerElement === "undefined") {
 							autoplay: autoplay ? 1 : 0,
 							enablejsapi: 1,
 							origin: document.location.host,
+							controls: 0,
+							disablekb: 0,
 						},
 						events: {
 							onReady: autoplay ? onPlayerReady : () => {},
