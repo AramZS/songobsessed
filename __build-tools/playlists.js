@@ -76,50 +76,50 @@ whole = [
 		track: {
 			artists: [
 				{
-					href: "https://api.spotify.com/v1/artists/5Tomvwat8AxMGd2ewkDNPs",
-					name: "NOBRO",
-					uri: "spotify:artist:5Tomvwat8AxMGd2ewkDNPs",
+					href: "https://api.spotify.com/v1/artists/7h2unW7eZtsPqA2O46ai3Z",
+					name: "GUPPY",
+					uri: "spotify:artist:7h2unW7eZtsPqA2O46ai3Z",
 				},
 			],
 			album: {
 				images: [
 					{
 						height: 640,
-						url: "https://i.scdn.co/image/ab67616d0000b273a45dbf5a79db48741deff759",
+						url: "https://i.scdn.co/image/ab67616d0000b273a91af7d52844da27476b8f2b",
 						width: 640,
 					},
 					{
 						height: 300,
-						url: "https://i.scdn.co/image/ab67616d00001e02a45dbf5a79db48741deff759",
+						url: "https://i.scdn.co/image/ab67616d00001e02a91af7d52844da27476b8f2b",
 						width: 300,
 					},
 					{
 						height: 64,
-						url: "https://i.scdn.co/image/ab67616d00004851a45dbf5a79db48741deff759",
+						url: "https://i.scdn.co/image/ab67616d00004851a91af7d52844da27476b8f2b",
 						width: 64,
 					},
 				],
 				external_urls: {
 					spotify:
-						"https://open.spotify.com/album/5Ae3xDGRamEFOSmzdtPGGv",
+						"https://open.spotify.com/album/7DgxHSUA9QEZozUrlxhiI0",
 				},
-				href: "https://api.spotify.com/v1/albums/5Ae3xDGRamEFOSmzdtPGGv",
-				name: "Live Your Truth Shred Some Gnar",
+				href: "https://api.spotify.com/v1/albums/7DgxHSUA9QEZozUrlxhiI0",
+				name: "Something is Happening…",
 			},
 			external_urls: {
 				spotify:
-					"https://open.spotify.com/track/5xhXYjfrYlkd9BXPyCjn00",
+					"https://open.spotify.com/track/7vM2XjIZRTLQ3JmPezcHVr",
 			},
-			href: "https://api.spotify.com/v1/tracks/5xhXYjfrYlkd9BXPyCjn00",
-			name: "Get with U",
+			href: "https://api.spotify.com/v1/tracks/7vM2XjIZRTLQ3JmPezcHVr",
+			name: "Texting & Driving",
 			external_ids: {
-				isrc: "CADE72101331",
+				isrc: "QZAKB2346984",
 			},
 		},
 		added_by: {
 			id: "aramzs",
 		},
-		added_at: "2025-01-08T18:17:16Z",
+		added_at: "2025-01-27T18:22:32Z",
 	},
 ];
 
@@ -130,7 +130,7 @@ whole.forEach(async (track) => {
 	if (c > 453) {
 		console.log(c, track.track.name);
 		// c > 419 && c < 441) {
-		let playlistNumber = 475 + 1;
+		let playlistNumber = 476 + 1;
 		/*console.log(
 			track,
 			track.track.artists,
@@ -153,7 +153,9 @@ whole.forEach(async (track) => {
 
 		let lastFMPromisedData = new Promise((resolve, reject) => {
 			fetch(
-				`http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${LASTFM_API_KEY}&artist=${artists[0]}&track=${track.track.name}&format=json`,
+				`http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${LASTFM_API_KEY}&artist=${
+					artists[0]
+				}&track=${encodeURIComponent(track.track.name)}&format=json`,
 				{
 					headers: {
 						"User-Agent":
