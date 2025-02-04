@@ -47,19 +47,31 @@ jobs:
         run: npm run build
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        id: upload
+        uses: actions/upload-pages-artifact@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           path: ./docs
+          name: github-pages
 
-  # Deployment job
+ 
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}   
     runs-on: ubuntu-latest
     needs: build
+    permissions:
+      pages: write
+      id-token: write    
     steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: ./docs
+      - name: Verify artifact download
+        run: ls -l ./docs          
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
