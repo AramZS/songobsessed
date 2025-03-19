@@ -76,50 +76,50 @@ whole = [
 		track: {
 			artists: [
 				{
-					href: "https://api.spotify.com/v1/artists/0jVOavowJ5X4ooKXX5PcM1",
-					name: "Arcadia Grey",
-					uri: "spotify:artist:0jVOavowJ5X4ooKXX5PcM1",
+					href: "https://api.spotify.com/v1/artists/4qNZw759AdHSMugyDMrIlF",
+					name: "Let's Eat Grandma",
+					uri: "spotify:artist:4qNZw759AdHSMugyDMrIlF",
 				},
 			],
 			album: {
 				images: [
 					{
 						height: 640,
-						url: "https://i.scdn.co/image/ab67616d0000b273348ad2106fb15c83a6888aa6",
+						url: "https://i.scdn.co/image/ab67616d0000b2737d0f4cb35acfa26d64440ab1",
 						width: 640,
 					},
 					{
 						height: 300,
-						url: "https://i.scdn.co/image/ab67616d00001e02348ad2106fb15c83a6888aa6",
+						url: "https://i.scdn.co/image/ab67616d00001e027d0f4cb35acfa26d64440ab1",
 						width: 300,
 					},
 					{
 						height: 64,
-						url: "https://i.scdn.co/image/ab67616d00004851348ad2106fb15c83a6888aa6",
+						url: "https://i.scdn.co/image/ab67616d000048517d0f4cb35acfa26d64440ab1",
 						width: 64,
 					},
 				],
 				external_urls: {
 					spotify:
-						"https://open.spotify.com/album/5rubT6Fym4vCmpfWvaoDaq",
+						"https://open.spotify.com/album/0m3hMo1B0sgTP2FDmyyq5z",
 				},
-				href: "https://api.spotify.com/v1/albums/5rubT6Fym4vCmpfWvaoDaq",
-				name: "Konami Code",
+				href: "https://api.spotify.com/v1/albums/0m3hMo1B0sgTP2FDmyyq5z",
+				name: "From The Morning",
 			},
 			external_urls: {
 				spotify:
-					"https://open.spotify.com/track/1vyrecUJouR6yv30BhwUjM",
+					"https://open.spotify.com/track/6bbIz8p9iBSkPcytSKTSGt",
 			},
-			href: "https://api.spotify.com/v1/tracks/1vyrecUJouR6yv30BhwUjM",
-			name: "Moshpit Girlfriend",
+			href: "https://api.spotify.com/v1/tracks/6bbIz8p9iBSkPcytSKTSGt",
+			name: "From The Morning",
 			external_ids: {
-				isrc: "QZES81990882",
+				isrc: "GBKZV2200062",
 			},
 		},
 		added_by: {
 			id: "aramzs",
 		},
-		added_at: "2025-02-04T03:00:53Z",
+		added_at: "2025-03-19T21:51:55Z",
 	},
 ];
 
@@ -130,7 +130,7 @@ whole.forEach(async (track) => {
 	if (c > 453) {
 		console.log(c, track.track.name);
 		// c > 419 && c < 441) {
-		let playlistNumber = 477 + 1;
+		let playlistNumber = 479 + 1;
 		/*console.log(
 			track,
 			track.track.artists,
