@@ -76,50 +76,50 @@ whole = [
 		track: {
 			artists: [
 				{
-					href: "https://api.spotify.com/v1/artists/4qNZw759AdHSMugyDMrIlF",
-					name: "Let's Eat Grandma",
-					uri: "spotify:artist:4qNZw759AdHSMugyDMrIlF",
+					href: "https://api.spotify.com/v1/artists/0EJdA6JT738oZGopzk8Usg",
+					name: "Voyou",
+					uri: "spotify:artist:0EJdA6JT738oZGopzk8Usg",
 				},
 			],
 			album: {
 				images: [
 					{
 						height: 640,
-						url: "https://i.scdn.co/image/ab67616d0000b2737d0f4cb35acfa26d64440ab1",
+						url: "https://i.scdn.co/image/ab67616d0000b2732bf2baa3878ac19c71ad969c",
 						width: 640,
 					},
 					{
 						height: 300,
-						url: "https://i.scdn.co/image/ab67616d00001e027d0f4cb35acfa26d64440ab1",
+						url: "https://i.scdn.co/image/ab67616d00001e022bf2baa3878ac19c71ad969c",
 						width: 300,
 					},
 					{
 						height: 64,
-						url: "https://i.scdn.co/image/ab67616d000048517d0f4cb35acfa26d64440ab1",
+						url: "https://i.scdn.co/image/ab67616d000048512bf2baa3878ac19c71ad969c",
 						width: 64,
 					},
 				],
 				external_urls: {
 					spotify:
-						"https://open.spotify.com/album/0m3hMo1B0sgTP2FDmyyq5z",
+						"https://open.spotify.com/album/7veLHJkF3anIdkKy4sGd5T",
 				},
-				href: "https://api.spotify.com/v1/albums/0m3hMo1B0sgTP2FDmyyq5z",
-				name: "From The Morning",
+				href: "https://api.spotify.com/v1/albums/7veLHJkF3anIdkKy4sGd5T",
+				name: "Des confettis en désordre",
 			},
 			external_urls: {
 				spotify:
-					"https://open.spotify.com/track/6bbIz8p9iBSkPcytSKTSGt",
+					"https://open.spotify.com/track/3Wk2VX8h0Wd327tndC1Vmb",
 			},
-			href: "https://api.spotify.com/v1/tracks/6bbIz8p9iBSkPcytSKTSGt",
-			name: "From The Morning",
+			href: "https://api.spotify.com/v1/tracks/3Wk2VX8h0Wd327tndC1Vmb",
+			name: "Le confort",
 			external_ids: {
-				isrc: "GBKZV2200062",
+				isrc: "FRPI61900070",
 			},
 		},
 		added_by: {
 			id: "aramzs",
 		},
-		added_at: "2025-03-19T21:51:55Z",
+		added_at: "2025-05-18T21:12:19Z",
 	},
 ];
 
@@ -130,7 +130,7 @@ whole.forEach(async (track) => {
 	if (c > 453) {
 		console.log(c, track.track.name);
 		// c > 419 && c < 441) {
-		let playlistNumber = 479 + 1;
+		let playlistNumber = 480 + 1;
 		/*console.log(
 			track,
 			track.track.artists,
