@@ -9,6 +9,7 @@ tags:
   - "FM4"
   - "electropop"
   - "French electropop"
+  - "french language"
 public: true
 artists:
   - Voyou

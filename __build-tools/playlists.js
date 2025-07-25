@@ -76,50 +76,75 @@ whole = [
 		track: {
 			artists: [
 				{
-					href: "https://api.spotify.com/v1/artists/0EJdA6JT738oZGopzk8Usg",
-					name: "Voyou",
-					uri: "spotify:artist:0EJdA6JT738oZGopzk8Usg",
+					href: "https://api.spotify.com/v1/artists/7DxGG5hXfOSgepxXa7UqRF",
+					name: "Lamomali",
+					uri: "spotify:artist:7DxGG5hXfOSgepxXa7UqRF",
+				},
+				{
+					href: "https://api.spotify.com/v1/artists/6soPpJHlCtN6SY8pWlfbC6",
+					name: "-M-",
+					uri: "spotify:artist:6soPpJHlCtN6SY8pWlfbC6",
+				},
+				{
+					href: "https://api.spotify.com/v1/artists/0wiCfDEHaEcPkKZOi7Nivl",
+					name: "Yamê",
+					uri: "spotify:artist:0wiCfDEHaEcPkKZOi7Nivl",
+				},
+				{
+					href: "https://api.spotify.com/v1/artists/4G5ZJny3HvX6Il7eHVfnNC",
+					name: "Fatoumata Diawara",
+					uri: "spotify:artist:4G5ZJny3HvX6Il7eHVfnNC",
+				},
+				{
+					href: "https://api.spotify.com/v1/artists/2nCACYdIndYchzX4bxLcTW",
+					name: "Toumani Diabaté",
+					uri: "spotify:artist:2nCACYdIndYchzX4bxLcTW",
+				},
+				{
+					href: "https://api.spotify.com/v1/artists/315I2IHM3SKeXen5SdTerA",
+					name: "Balla Diabaté",
+					uri: "spotify:artist:315I2IHM3SKeXen5SdTerA",
 				},
 			],
 			album: {
 				images: [
 					{
 						height: 640,
-						url: "https://i.scdn.co/image/ab67616d0000b2732bf2baa3878ac19c71ad969c",
+						url: "https://i.scdn.co/image/ab67616d0000b2731073c1950bc791e262d8a424",
 						width: 640,
 					},
 					{
 						height: 300,
-						url: "https://i.scdn.co/image/ab67616d00001e022bf2baa3878ac19c71ad969c",
+						url: "https://i.scdn.co/image/ab67616d00001e021073c1950bc791e262d8a424",
 						width: 300,
 					},
 					{
 						height: 64,
-						url: "https://i.scdn.co/image/ab67616d000048512bf2baa3878ac19c71ad969c",
+						url: "https://i.scdn.co/image/ab67616d000048511073c1950bc791e262d8a424",
 						width: 64,
 					},
 				],
 				external_urls: {
 					spotify:
-						"https://open.spotify.com/album/7veLHJkF3anIdkKy4sGd5T",
+						"https://open.spotify.com/album/4VJJRtcT8tGXwxGkHq51Hy",
 				},
-				href: "https://api.spotify.com/v1/albums/7veLHJkF3anIdkKy4sGd5T",
-				name: "Des confettis en désordre",
+				href: "https://api.spotify.com/v1/albums/4VJJRtcT8tGXwxGkHq51Hy",
+				name: "Lamomali Totem",
 			},
 			external_urls: {
 				spotify:
-					"https://open.spotify.com/track/3Wk2VX8h0Wd327tndC1Vmb",
+					"https://open.spotify.com/track/1az86oPGTUWVNJ78ohyJif",
 			},
-			href: "https://api.spotify.com/v1/tracks/3Wk2VX8h0Wd327tndC1Vmb",
-			name: "Le confort",
+			href: "https://api.spotify.com/v1/tracks/1az86oPGTUWVNJ78ohyJif",
+			name: "Totem",
 			external_ids: {
-				isrc: "FRPI61900070",
+				isrc: "FR11Y2500030",
 			},
 		},
 		added_by: {
 			id: "aramzs",
 		},
-		added_at: "2025-05-18T21:12:19Z",
+		added_at: "2025-07-25T21:21:12Z",
 	},
 ];
 
@@ -130,7 +155,7 @@ whole.forEach(async (track) => {
 	if (c > 453) {
 		console.log(c, track.track.name);
 		// c > 419 && c < 441) {
-		let playlistNumber = 480 + 1;
+		let playlistNumber = 481 + 1;
 		/*console.log(
 			track,
 			track.track.artists,
