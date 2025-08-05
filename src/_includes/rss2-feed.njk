@@ -43,6 +43,7 @@
 	</managingEditor>
 	{%- for post in collections.songs | reverse %}
 	{% set absolutePostUrl %}{{ post.url | url | absoluteUrl(metadata.url) }}{% endset %}
+	{% set embedReadyYouTubeUrl %}{{ post.data.youtube | youtubeEmbedify }}{% endset %}
 	<item>
 		<title>{{ post.data.title }}</title>
 		<link>{{ absolutePostUrl }}?source=rss</link>
@@ -50,7 +51,7 @@
 		<dc:creator>{{ metadata.author.name }}</dc:creator>
 		<guid isPermaLink="true">{{ absolutePostUrl }}</guid>
 		<description>{{ post.data.excerpt or post.data.description or "A song I'm obsessed with." }}</description>
-		<content:encoded><![CDATA[{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) | safe }} <iframe class="youtube-iframe" src="{{post.data.youtube}}" frameborder="0" width="640" height="390" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>]]></content:encoded>
+		<content:encoded><![CDATA[{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) | safe }} <iframe class="youtube-iframe" src="{{embedReadyYouTubeUrl}}" frameborder="0" width="640" height="390" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>]]></content:encoded>
 		{%- for tag in post.tags %}
 		    <category><![CDATA[{{tag}}]]></category>
 		{%- endfor %}

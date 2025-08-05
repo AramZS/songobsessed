@@ -187,6 +187,21 @@ module.exports = function (eleventyConfig) {
 	let markdownLib = markdownIt(markdownItOptions).use(mila, milaOptions);
 	//		.use(require("markdown-it-github-headings"));
 	eleventyConfig.setLibrary("md", markdownLib);
+
+	// Add a filter to take a standard YouTube URL and convert it to an embed URL
+	eleventyConfig.addFilter("youtubeEmbedify", (url) => {
+		if (!url) {
+			return "";
+		}
+		let youtubeId = url.match(
+			/(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/
+		);
+		if (youtubeId && youtubeId[1]) {
+			return `https://www.youtube.com/embed/${youtubeId[1]}`;
+		}
+		return "";
+	});
+
 	function filterTagList(tags) {
 		return (tags || []).filter(
 			(tag) =>
