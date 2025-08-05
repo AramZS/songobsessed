@@ -76,75 +76,50 @@ whole = [
 		track: {
 			artists: [
 				{
-					href: "https://api.spotify.com/v1/artists/7DxGG5hXfOSgepxXa7UqRF",
-					name: "Lamomali",
-					uri: "spotify:artist:7DxGG5hXfOSgepxXa7UqRF",
-				},
-				{
-					href: "https://api.spotify.com/v1/artists/6soPpJHlCtN6SY8pWlfbC6",
-					name: "-M-",
-					uri: "spotify:artist:6soPpJHlCtN6SY8pWlfbC6",
-				},
-				{
-					href: "https://api.spotify.com/v1/artists/0wiCfDEHaEcPkKZOi7Nivl",
-					name: "Yamê",
-					uri: "spotify:artist:0wiCfDEHaEcPkKZOi7Nivl",
-				},
-				{
-					href: "https://api.spotify.com/v1/artists/4G5ZJny3HvX6Il7eHVfnNC",
-					name: "Fatoumata Diawara",
-					uri: "spotify:artist:4G5ZJny3HvX6Il7eHVfnNC",
-				},
-				{
-					href: "https://api.spotify.com/v1/artists/2nCACYdIndYchzX4bxLcTW",
-					name: "Toumani Diabaté",
-					uri: "spotify:artist:2nCACYdIndYchzX4bxLcTW",
-				},
-				{
-					href: "https://api.spotify.com/v1/artists/315I2IHM3SKeXen5SdTerA",
-					name: "Balla Diabaté",
-					uri: "spotify:artist:315I2IHM3SKeXen5SdTerA",
+					href: "https://api.spotify.com/v1/artists/5G4Nw3oz2lzx4gneIDs3YX",
+					name: "Pinc Louds",
+					uri: "spotify:artist:5G4Nw3oz2lzx4gneIDs3YX",
 				},
 			],
 			album: {
 				images: [
 					{
 						height: 640,
-						url: "https://i.scdn.co/image/ab67616d0000b2731073c1950bc791e262d8a424",
+						url: "https://i.scdn.co/image/ab67616d0000b273d2be1b9f668da4aabf059d34",
 						width: 640,
 					},
 					{
 						height: 300,
-						url: "https://i.scdn.co/image/ab67616d00001e021073c1950bc791e262d8a424",
+						url: "https://i.scdn.co/image/ab67616d00001e02d2be1b9f668da4aabf059d34",
 						width: 300,
 					},
 					{
 						height: 64,
-						url: "https://i.scdn.co/image/ab67616d000048511073c1950bc791e262d8a424",
+						url: "https://i.scdn.co/image/ab67616d00004851d2be1b9f668da4aabf059d34",
 						width: 64,
 					},
 				],
 				external_urls: {
 					spotify:
-						"https://open.spotify.com/album/4VJJRtcT8tGXwxGkHq51Hy",
+						"https://open.spotify.com/album/4WRTtvpNTplFv9fiSy4We9",
 				},
-				href: "https://api.spotify.com/v1/albums/4VJJRtcT8tGXwxGkHq51Hy",
-				name: "Lamomali Totem",
+				href: "https://api.spotify.com/v1/albums/4WRTtvpNTplFv9fiSy4We9",
+				name: "Apple Crumble",
 			},
 			external_urls: {
 				spotify:
-					"https://open.spotify.com/track/1az86oPGTUWVNJ78ohyJif",
+					"https://open.spotify.com/track/49j0pRvoQMiBeuTmdLYSjY",
 			},
-			href: "https://api.spotify.com/v1/tracks/1az86oPGTUWVNJ78ohyJif",
-			name: "Totem",
+			href: "https://api.spotify.com/v1/tracks/49j0pRvoQMiBeuTmdLYSjY",
+			name: "This Hate Hurts",
 			external_ids: {
-				isrc: "FR11Y2500030",
+				isrc: "QZU9S2500037",
 			},
 		},
 		added_by: {
 			id: "aramzs",
 		},
-		added_at: "2025-07-25T21:21:12Z",
+		added_at: "2025-08-05T18:06:40Z",
 	},
 ];
 
@@ -155,7 +130,7 @@ whole.forEach(async (track) => {
 	if (c > 453) {
 		console.log(c, track.track.name);
 		// c > 419 && c < 441) {
-		let playlistNumber = 481 + 1;
+		let playlistNumber = 482 + 1;
 		/*console.log(
 			track,
 			track.track.artists,
