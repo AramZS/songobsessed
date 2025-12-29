@@ -76,50 +76,50 @@ whole = [
 		track: {
 			artists: [
 				{
-					href: "https://api.spotify.com/v1/artists/5G4Nw3oz2lzx4gneIDs3YX",
-					name: "Pinc Louds",
-					uri: "spotify:artist:5G4Nw3oz2lzx4gneIDs3YX",
+					href: "https://api.spotify.com/v1/artists/7mhv3pjuY4JRkMKuUK9mPh",
+					name: "DJ Sabrina The Teenage DJ",
+					uri: "spotify:artist:7mhv3pjuY4JRkMKuUK9mPh",
 				},
 			],
 			album: {
 				images: [
 					{
 						height: 640,
-						url: "https://i.scdn.co/image/ab67616d0000b273d2be1b9f668da4aabf059d34",
+						url: "https://i.scdn.co/image/ab67616d0000b27312fa1265eb53a6d8b82a1f16",
 						width: 640,
 					},
 					{
 						height: 300,
-						url: "https://i.scdn.co/image/ab67616d00001e02d2be1b9f668da4aabf059d34",
+						url: "https://i.scdn.co/image/ab67616d00001e0212fa1265eb53a6d8b82a1f16",
 						width: 300,
 					},
 					{
 						height: 64,
-						url: "https://i.scdn.co/image/ab67616d00004851d2be1b9f668da4aabf059d34",
+						url: "https://i.scdn.co/image/ab67616d0000485112fa1265eb53a6d8b82a1f16",
 						width: 64,
 					},
 				],
 				external_urls: {
 					spotify:
-						"https://open.spotify.com/album/4WRTtvpNTplFv9fiSy4We9",
+						"https://open.spotify.com/album/1AJDflSN0o9w7OB4HdxUGy",
 				},
-				href: "https://api.spotify.com/v1/albums/4WRTtvpNTplFv9fiSy4We9",
-				name: "Apple Crumble",
+				href: "https://api.spotify.com/v1/albums/1AJDflSN0o9w7OB4HdxUGy",
+				name: "Fantasy",
 			},
 			external_urls: {
 				spotify:
-					"https://open.spotify.com/track/49j0pRvoQMiBeuTmdLYSjY",
+					"https://open.spotify.com/track/4CI2r7La45q2W7tlRmcgi6",
 			},
-			href: "https://api.spotify.com/v1/tracks/49j0pRvoQMiBeuTmdLYSjY",
-			name: "This Hate Hurts",
+			href: "https://api.spotify.com/v1/tracks/4CI2r7La45q2W7tlRmcgi6",
+			name: "All These Years - Mixed",
 			external_ids: {
-				isrc: "QZU9S2500037",
+				isrc: "QZZEB2540293",
 			},
 		},
 		added_by: {
 			id: "aramzs",
 		},
-		added_at: "2025-08-05T18:06:40Z",
+		added_at: "2025-12-29T16:32:53Z",
 	},
 ];
 
@@ -130,7 +130,7 @@ whole.forEach(async (track) => {
 	if (c > 453) {
 		console.log(c, track.track.name);
 		// c > 419 && c < 441) {
-		let playlistNumber = 482 + 1;
+		let playlistNumber = 483 + 1;
 		/*console.log(
 			track,
 			track.track.artists,
