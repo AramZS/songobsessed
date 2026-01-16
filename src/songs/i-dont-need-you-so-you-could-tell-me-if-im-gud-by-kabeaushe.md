@@ -4,6 +4,14 @@ description: "It hits the brain and you only need it more."
 date: 2026-01-16T02:26:06Z
 tags:
   - "Kenyan multi-instrumentalist, singer and producer"
+  - nyege nyege tapes
+  - experimental
+  - uganda
+  - electronic
+  - hip hop
+  - kenyan
+  - kenya
+  - hakuna kulala
 public: true
 artists:
   - KABEAUSHÉ
