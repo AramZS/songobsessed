@@ -497,37 +497,37 @@ let theWholeKebab = async () => {
 			writeOptions = { flag: "wx" }; // Once we start writing stuff into the posts we don't want to overwrite them.
 			YAMLTags = YAMLTags ? YAMLTags : "Tags Needed";
 			let mdMode = `---
-	title: "${title}"
-	description: "${description}"
-	date: ${track.added_at}
-	tags:
-	- ${YAMLTags}
-	public: true
-	artists:
-	- ${YAMLArtists}
-	songtitle: "${track.track.name}"
-	album: "${track.track.album.name}"
-	featuredImage: "${localImageFileName}"
-	featuredImageCredit: "Image is used from album for review purposes."
-	featuredImageLink: "${imageUrl}"
-	featuredImageAlt: ""
-	author: Aram Zucker-Scharff
-	playlists:
-	-
-		name: "Obsessions"
-		position: ${playlistNumber}
-		author: ${process.env.PLAYLIST_AUTHOR}
-	youtube: ${ytlink}
-	spotify: ${spotifyTrack}
-	spotifyUri: ${spotifyUri}
-	soundcloud:
-	audiofile:
-	podbean:
-	lastfm: ${lastFMData ? lastFMData.track.url : ""}
-	---
+title: "${title}"
+description: "${description}"
+date: ${track.added_at}
+tags:
+  - ${YAMLTags}
+public: true
+artists:
+  - ${YAMLArtists}
+songtitle: "${track.track.name}"
+album: "${track.track.album.name}"
+featuredImage: "${localImageFileName}"
+featuredImageCredit: "Image is used from album for review purposes."
+featuredImageLink: "${imageUrl}"
+featuredImageAlt: ""
+author: Aram Zucker-Scharff
+playlists:
+-
+  name: "Obsessions"
+  position: ${playlistNumber}
+  author: ${process.env.PLAYLIST_AUTHOR}
+youtube: ${ytlink}
+spotify: ${spotifyTrack}
+spotifyUri: ${spotifyUri}
+soundcloud:
+audiofile:
+podbean:
+lastfm: ${lastFMData ? lastFMData.track.url : ""}
+---
 
-	A song I plan to write more about.
-			`;
+A song I plan to write more about.
+`;
 			console.log(playlistNumber, "Writing file for ", slug);
 			try {
 				fs.writeFileSync(
