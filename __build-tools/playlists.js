@@ -16,33 +16,21 @@ require("dotenv").config();
 
 const LASTFM_API_KEY = process.env.LASTFM_API_KEY;
 const SPOTIFY_ACCESS_TOKEN = process.env.SPOTIFY_ACCESS_TOKEN;
-let obsessionPlaylistNumber = 0;
-let newObsessionPlaylistNumber = 0;
-// read ./obsessionCount.txt and set obsessionPlaylistNumber to that value
-try {
-	let data = fs.readFileSync("./obsessionCount.txt", "utf8");
-	obsessionPlaylistNumber = parseInt(data);
-	newObsessionPlaylistNumber = obsessionPlaylistNumber + 1;
-	fs.writeFileSync(
-		"./obsessionCount.txt",
-		newObsessionPlaylistNumber.toString(),
-		"utf8"
-	);
-} catch (e) {
-	console.error("Error reading obsessionCount.txt", e);
-}
+
 
 var whole = require("./set");
 
 var spotify_auth_grabber = () => {
 	try {
 		return new Promise((resolve, reject) => {
+			const accessToken = process.env.SPOTIFY_ACCESS_TOKEN || (new Buffer.from(process.env.SPOTIFY_CLIENT_ID + ':' + process.env.SPOTIFY_CLIENT_SECRET).toString('base64'))
+			console.log("Using access token:", accessToken);
 			const options = {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/x-www-form-urlencoded",
 					"User-Agent": "insomnia/9.1.1",
-					Authorization: "Basic " + process.env.SPOTIFY_ACCESS_TOKEN,
+					Authorization: "Basic " + accessToken,
 				},
 				body: new URLSearchParams({ grant_type: "client_credentials" }),
 			};
@@ -50,6 +38,7 @@ var spotify_auth_grabber = () => {
 			fetch("https://accounts.spotify.com/api/token", options)
 				.then((response) => response.json())
 				.then((response) => {
+					console.log(response)
 					resolve(response.access_token);
 				})
 				.catch((err) => console.error(err));
@@ -60,8 +49,12 @@ var spotify_auth_grabber = () => {
 	}
 };
 
-async function getLatestObsession() {
+async function getLatestObsession(newObsessionPlaylistNumber) {
 	const spotifyAuth = await spotify_auth_grabber();
+	if (!spotifyAuth) {
+		console.error("Failed to get Spotify auth token");
+		return false;
+	}
 	const playlistPointer = newObsessionPlaylistNumber / 2;
 	const options = {
 		method: "GET",
@@ -72,7 +65,7 @@ async function getLatestObsession() {
 	const playlist = new Promise((resolve, reject) => {
 		fetch(
 			"https://api.spotify.com/v1/playlists/2mSWs9FQ3n06F7yriWDr0M/tracks?=&=&limit=50&fields=items(added_by.id%2Cadded_at%2Ctrack(name%2Chref%2Cexternal_urls%2Cexternal_ids%2Chref%2Calbum(name%2Chref%2Cexternal_urls%2Cimages)%2Cartists(name%2Cgenres%2Chref%2Curi)))&offset=" +
-				Math.floor(playlistPointer),
+			Math.floor(playlistPointer),
 			options
 		)
 			.then((response) => response.json())
@@ -83,7 +76,14 @@ async function getLatestObsession() {
 			.then((data) => resolve(data))
 			.catch((err) => console.error(err));
 	});
-	let playlistData = await playlist;
+	let playlistData;
+	try {
+		playlistData = await playlist;
+	} catch (e) {
+		console.error("Error getting latest obsession", e);
+		return false;
+	}
+
 	// pop the last item off the playlist data
 	let latestObsession = playlistData.items.pop();
 	return [latestObsession];
@@ -95,44 +95,44 @@ async function getLatestObsession() {
   added_at: '2023-12-06T18:48:46Z',
   added_by: { id: 'aramzs' },
   track: {
-    album: {
-      external_urls: [Object],
-      href: 'https://api.spotify.com/v1/albums/3gT18SfuM7NII3Ab55AznQ',
-      images: [{
-    height: 640,
-    url: 'https://i.scdn.co/image/ab67616d0000b273e3243d4f602537b8951c6b7a',
-    width: 640
+	album: {
+	  external_urls: [Object],
+	  href: 'https://api.spotify.com/v1/albums/3gT18SfuM7NII3Ab55AznQ',
+	  images: [{
+	height: 640,
+	url: 'https://i.scdn.co/image/ab67616d0000b273e3243d4f602537b8951c6b7a',
+	width: 640
   },
   {
-    height: 300,
-    url: 'https://i.scdn.co/image/ab67616d00001e02e3243d4f602537b8951c6b7a',
-    width: 300
+	height: 300,
+	url: 'https://i.scdn.co/image/ab67616d00001e02e3243d4f602537b8951c6b7a',
+	width: 300
   },
   {
-    height: 64,
-    url: 'https://i.scdn.co/image/ab67616d00004851e3243d4f602537b8951c6b7a',
-    width: 64
+	height: 64,
+	url: 'https://i.scdn.co/image/ab67616d00004851e3243d4f602537b8951c6b7a',
+	width: 64
   }],
-      name: 'Em'
-    },
-    artists: [
+	  name: 'Em'
+	},
+	artists: [
   {
-    external_urls: {
-      spotify: 'https://open.spotify.com/artist/2BAhRYk5QrGfs5KNo9gHr4'
-    },
-    href: 'https://api.spotify.com/v1/artists/2BAhRYk5QrGfs5KNo9gHr4',
-    name: 'Đá Số Tới',
-    uri: 'spotify:artist:2BAhRYk5QrGfs5KNo9gHr4'
+	external_urls: {
+	  spotify: 'https://open.spotify.com/artist/2BAhRYk5QrGfs5KNo9gHr4'
+	},
+	href: 'https://api.spotify.com/v1/artists/2BAhRYk5QrGfs5KNo9gHr4',
+	name: 'Đá Số Tới',
+	uri: 'spotify:artist:2BAhRYk5QrGfs5KNo9gHr4'
   }
 ],
-    external_ids: { isrc: 'VNA0M1908747' },
-    external_urls: {
-      spotify: 'https://open.spotify.com/track/1UVoU1n7QWGJfhaSUNuFlf'
-    },
-    href: 'https://api.spotify.com/v1/tracks/1UVoU1n7QWGJfhaSUNuFlf',
-    id: '1UVoU1n7QWGJfhaSUNuFlf',
-    name: 'Em',
-    uri: 'spotify:track:1UVoU1n7QWGJfhaSUNuFlf'
+	external_ids: { isrc: 'VNA0M1908747' },
+	external_urls: {
+	  spotify: 'https://open.spotify.com/track/1UVoU1n7QWGJfhaSUNuFlf'
+	},
+	href: 'https://api.spotify.com/v1/tracks/1UVoU1n7QWGJfhaSUNuFlf',
+	id: '1UVoU1n7QWGJfhaSUNuFlf',
+	name: 'Em',
+	uri: 'spotify:track:1UVoU1n7QWGJfhaSUNuFlf'
   }
 }
 
@@ -194,7 +194,30 @@ whole = [
 	},
 ];
 let theWholeKebab = async () => {
-	whole = await getLatestObsession();
+	let obsessionPlaylistNumber = 0;
+	let newObsessionPlaylistNumber = 0;
+	// read ./obsessionCount.txt and set obsessionPlaylistNumber to that value
+	try {
+		let data = fs.readFileSync("./obsessionCount.txt", "utf8");
+		obsessionPlaylistNumber = parseInt(data);
+		newObsessionPlaylistNumber = obsessionPlaylistNumber + 1;
+
+	} catch (e) {
+		console.error("Error reading obsessionCount.txt", e);
+	}
+	whole = await getLatestObsession(newObsessionPlaylistNumber);
+
+	fs.writeFileSync(
+		"./obsessionCount.txt",
+		newObsessionPlaylistNumber.toString(),
+		"utf8"
+	);
+
+	if (!whole) {
+		console.error("Failed to get latest obsession");
+		return false;
+	}
+
 
 	whole.forEach(async (track) => {
 		++c;
@@ -226,8 +249,7 @@ let theWholeKebab = async () => {
 
 			let lastFMPromisedData = new Promise((resolve, reject) => {
 				fetch(
-					`http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${LASTFM_API_KEY}&artist=${
-						artists[0]
+					`http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${LASTFM_API_KEY}&artist=${artists[0]
 					}&track=${encodeURIComponent(
 						track.track.name
 					)}&format=json`,
@@ -481,7 +503,7 @@ let theWholeKebab = async () => {
 			}
 			let spotifyTrack =
 				!!track.track?.external_urls?.spotify &&
-				track.track.external_urls.spotify != "undefined"
+					track.track.external_urls.spotify != "undefined"
 					? track.track.external_urls.spotify
 					: "";
 			let spotifyUri =
@@ -540,6 +562,7 @@ A song I plan to write more about.
 			}
 		}
 	});
+	console.log("Finished writing all files", "./src/songs/" + slug + ".md",);
 };
 
 theWholeKebab();
