@@ -1,6 +1,6 @@
 ---
 title: "Line Go Up Line Go Down by Emperor X"
-description: "More information to come!"
+description: "An old-time protest song for a new age, with an extra helping of new style"
 date: 2026-06-30T21:25:16Z
 tags:
   - lo-fi
