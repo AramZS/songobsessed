@@ -224,7 +224,7 @@ let theWholeKebab = async () => {
 		//console.log(c, track.track.name);
 		// 453 total
 		if (c > 453) {
-			console.log(c, track.track.name);
+			console.log('start', c, track.track.name);
 			// c > 419 && c < 441) {
 			let playlistNumber = newObsessionPlaylistNumber;
 			/*console.log(
@@ -406,6 +406,7 @@ let theWholeKebab = async () => {
 				/,(?=[^,]+$)/,
 				" and"
 			)}`;
+			console.log('Track data: ', track.track, ' by ', artists)
 			let slug = slugify(`${title}`, {
 				lower: true,
 				strict: true,
@@ -560,9 +561,9 @@ A song I plan to write more about.
 			} catch (e) {
 				console.log("Write error", e);
 			}
+			console.log("Finished writing all files", "./src/songs/" + slug + ".md",);
 		}
 	});
-	console.log("Finished writing all files", "./src/songs/" + slug + ".md",);
 };
 
 theWholeKebab();
