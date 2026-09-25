@@ -3,8 +3,7 @@ title: "Dear Pressure by Miracles of Modern Science"
 description: "More information to come!"
 date: 2023-08-22T16:18:05Z
 tags:
-  - "favorites"
-  - "8 of 10 stars"
+  - "orchestral pop"
 public: true
 artists:
   - Miracles of Modern Science
